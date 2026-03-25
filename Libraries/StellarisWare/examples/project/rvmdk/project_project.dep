@@ -1,0 +1,8 @@
+Dependencies for Project 'project', Target 'project': (DO NOT MODIFY !)
+CompilerVersion: 6210000::V6.21::ARMCLANG
+F (.\project.c)(0x66065A92)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../..-I./RTE/_project-IE:/KeilPacks/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/KeilPacks/Keil/LM3S_DFP/1.1.1/Device/Include-D__UVISION_VERSION="539" -D_RTE_ -DLM3S9D96 -D_RTE_ -Drvmdk -DPART_LM3S9D96 -DDEBUG-o ./rvmdk/project.o -MD)
+I (..\..\driverlib\debug.he.\..\driverlib\gpio.h)(0x00000000)
+I (..\..\driverlib\pin_map.h\.\..\driverlib\sysctl.h)(0x00000000)
+F (.\startup_rvmdk.S)(0x6537ADAC)(--target=arm-arm-none-eabi -mcpu=cortex-m3 -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4-I./RTE/_project-IE:/KeilPacks/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/KeilPacks/Keil/LM3S_DFP/1.1.1/Device/Include-D__UVISION_VERSION=539 -D_RTE_ -DLM3S9D96 -D_RTE_-o ./rvmdk/startup_rvmdk.o)
+F (..\..\driverlib\rvmdk-cm3\driverlib-cm3.lib)(0x6537ADAC)()
+F (.\readme.txt)(0x6537ADAC)()

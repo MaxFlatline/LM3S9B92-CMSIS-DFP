@@ -1,0 +1,30 @@
+                                
+
+CMSIS-Driver_Validation v3.1.0 CMSIS-Driver GPIO Test Report   Nov 22 2025   12:14:52 
+
+TEST 01: GPIO_Setup                       PASSED
+TEST 02: GPIO_SetDirection                PASSED
+TEST 03: GPIO_SetOutputMode               PASSED
+TEST 04: GPIO_SetPullResistor             PASSED
+TEST 05: GPIO_SetEventTrigger             
+  DV_GPIO.c (572): [FAILED] Event ARM_GPIO_EVENT_RISING_EDGE was not signaled!
+  DV_GPIO.c (575): [FAILED] Event was not signaled on Pin Under Test pin!
+  DV_GPIO.c (582): [FAILED] Number of signaled events was 0! Expected number of events was 1!
+  DV_GPIO.c (609): [FAILED] Event ARM_GPIO_EVENT_FALLING_EDGE was not signaled!
+  DV_GPIO.c (612): [FAILED] Event was not signaled on Pin Under Test pin!
+  DV_GPIO.c (619): [FAILED] Number of signaled events was 0! Expected number of events was 1!
+  DV_GPIO.c (647): [FAILED] Event ARM_GPIO_EVENT_RISING_EDGE or ARM_GPIO_EVENT_EITHER_EDGE was not signaled!
+  DV_GPIO.c (650): [FAILED] Event was not signaled on Pin Under Test pin!
+  DV_GPIO.c (657): [FAILED] Number of signaled events was 0! Expected number of events was 1!
+  DV_GPIO.c (668): [FAILED] Event ARM_GPIO_EVENT_FALLING_EDGE or ARM_GPIO_EVENT_EITHER_EDGE was not signaled!
+  DV_GPIO.c (671): [FAILED] Event was not signaled on Pin Under Test pin!
+  DV_GPIO.c (678): [FAILED] Number of signaled events was 0! Expected number of events was 1!
+                                          FAILED
+TEST 06: GPIO_SetOutput                   PASSED
+TEST 07: GPIO_GetInput                    PASSED
+
+Test Summary: 7 Tests, 6 Passed, 1 Failed.
+Test Result: FAILED
+
+
+

@@ -1,0 +1,193 @@
+Dependencies for Project 'driverlib-cm3', Target 'driverlib-cm3': (DO NOT MODIFY !)
+CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
+F (.\adc.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\adc.o --omf_browse .\rvmdk-cm3\adc.crf --depend .\rvmdk-cm3\adc.d)
+I (..\inc/hw_adc.h)(0x6537ADAC)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\inc/hw_sysctl.h)(0x6537ADAC)
+I (..\driverlib/adc.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+F (.\can.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\can.o --omf_browse .\rvmdk-cm3\can.crf --depend .\rvmdk-cm3\can.d)
+I (..\inc/hw_can.h)(0x6537ADAC)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_nvic.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/can.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+F (.\comp.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\comp.o --omf_browse .\rvmdk-cm3\comp.crf --depend .\rvmdk-cm3\comp.d)
+I (..\inc/hw_comp.h)(0x6537ADAC)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/comp.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+F (.\cpu.c)(0x686C1BE1)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\cpu.o --omf_browse .\rvmdk-cm3\cpu.crf --depend .\rvmdk-cm3\cpu.d)
+I (..\driverlib/cpu.h)(0x6537ADAC)
+F (.\epi.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\epi.o --omf_browse .\rvmdk-cm3\epi.crf --depend .\rvmdk-cm3\epi.d)
+I (..\inc/hw_epi.h)(0x6537ADAC)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/epi.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+F (.\ethernet.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\ethernet.o --omf_browse .\rvmdk-cm3\ethernet.crf --depend .\rvmdk-cm3\ethernet.d)
+I (..\inc/hw_ethernet.h)(0x6537ADAC)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/ethernet.h)(0x6537ADAC)
+I (..\driverlib/sysctl.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+F (.\flash.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\flash.o --omf_browse .\rvmdk-cm3\flash.crf --depend .\rvmdk-cm3\flash.d)
+I (..\inc/hw_flash.h)(0x6537ADAC)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_sysctl.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/flash.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+F (.\gpio.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\gpio.o --omf_browse .\rvmdk-cm3\gpio.crf --depend .\rvmdk-cm3\gpio.d)
+I (..\inc/hw_gpio.h)(0x6537ADAC)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_sysctl.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/gpio.h)(0x6537ADAC)
+I (..\driverlib/pin_map.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+F (.\hibernate.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\hibernate.o --omf_browse .\rvmdk-cm3\hibernate.crf --depend .\rvmdk-cm3\hibernate.d)
+I (..\inc/hw_hibernate.h)(0x6537ADAC)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_sysctl.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/hibernate.h)(0x6537ADAC)
+I (..\driverlib/sysctl.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+F (.\i2c.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\i2c.o --omf_browse .\rvmdk-cm3\i2c.crf --depend .\rvmdk-cm3\i2c.d)
+I (..\inc/hw_i2c.h)(0x6537ADAC)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_sysctl.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/i2c.h)(0x6537ADAC)
+I (..\driverlib/sysctl.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+F (.\i2s.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\i2s.o --omf_browse .\rvmdk-cm3\i2s.crf --depend .\rvmdk-cm3\i2s.d)
+I (..\inc/hw_i2s.h)(0x6537ADAC)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/i2s.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+F (.\interrupt.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\interrupt.o --omf_browse .\rvmdk-cm3\interrupt.crf --depend .\rvmdk-cm3\interrupt.d)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_nvic.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/cpu.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+F (.\mpu.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\mpu.o --omf_browse .\rvmdk-cm3\mpu.crf --depend .\rvmdk-cm3\mpu.d)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_nvic.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+I (..\driverlib/mpu.h)(0x6537ADAC)
+F (.\pwm.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\pwm.o --omf_browse .\rvmdk-cm3\pwm.crf --depend .\rvmdk-cm3\pwm.d)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_pwm.h)(0x6537ADAC)
+I (..\inc/hw_sysctl.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+I (..\driverlib/pwm.h)(0x6537ADAC)
+F (.\qei.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\qei.o --omf_browse .\rvmdk-cm3\qei.crf --depend .\rvmdk-cm3\qei.d)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_qei.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+I (..\driverlib/qei.h)(0x6537ADAC)
+F (.\ssi.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\ssi.o --omf_browse .\rvmdk-cm3\ssi.crf --depend .\rvmdk-cm3\ssi.d)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_ssi.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+I (..\driverlib/ssi.h)(0x6537ADAC)
+I (..\driverlib/sysctl.h)(0x6537ADAC)
+F (.\sysctl.c)(0x686C1BCD)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\sysctl.o --omf_browse .\rvmdk-cm3\sysctl.crf --depend .\rvmdk-cm3\sysctl.d)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_nvic.h)(0x6537ADAC)
+I (..\inc/hw_sysctl.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/cpu.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+I (..\driverlib/sysctl.h)(0x6537ADAC)
+F (.\systick.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\systick.o --omf_browse .\rvmdk-cm3\systick.crf --depend .\rvmdk-cm3\systick.d)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_nvic.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+I (..\driverlib/systick.h)(0x6537ADAC)
+F (.\timer.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\timer.o --omf_browse .\rvmdk-cm3\timer.crf --depend .\rvmdk-cm3\timer.d)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_timer.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+I (..\driverlib/timer.h)(0x6537ADAC)
+F (.\uart.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\uart.o --omf_browse .\rvmdk-cm3\uart.crf --depend .\rvmdk-cm3\uart.d)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_sysctl.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\inc/hw_uart.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+I (..\driverlib/uart.h)(0x6537ADAC)
+I (..\driverlib/sysctl.h)(0x6537ADAC)
+F (.\udma.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\udma.o --omf_browse .\rvmdk-cm3\udma.crf --depend .\rvmdk-cm3\udma.d)
+I (..\inc/hw_sysctl.h)(0x6537ADAC)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\inc/hw_udma.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+I (..\driverlib/udma.h)(0x6537ADAC)
+F (.\usb.c)(0x6537ADAC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\usb.o --omf_browse .\rvmdk-cm3\usb.crf --depend .\rvmdk-cm3\usb.d)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\inc/hw_sysctl.h)(0x6537ADAC)
+I (..\inc/hw_usb.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+I (..\driverlib/sysctl.h)(0x6537ADAC)
+I (..\driverlib/udma.h)(0x6537ADAC)
+I (..\driverlib/usb.h)(0x6537ADAC)
+F (.\watchdog.c)(0x68C6BA91)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 -Otime --apcs=interwork --split_sections -I ..-IE:\Keil_v5\ARM\RV31\INC-IE:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="539" -Drvmdk-o .\rvmdk-cm3\watchdog.o --omf_browse .\rvmdk-cm3\watchdog.crf --depend .\rvmdk-cm3\watchdog.d)
+I (..\inc/hw_ints.h)(0x6537ADAC)
+I (..\inc/hw_memmap.h)(0x68C6AE3B)
+I (..\inc/hw_types.h)(0x6537ADAC)
+I (..\inc/hw_watchdog.h)(0x6537ADAC)
+I (..\driverlib/debug.h)(0x6537ADAC)
+I (..\driverlib/interrupt.h)(0x6537ADAC)
+I (..\driverlib/watchdog.h)(0x6537ADAC)
+F (.\readme.txt)(0x6537ADAC)()
