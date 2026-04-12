@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- File naming: lm3s9b92.svd -->
+
+<!--
+
+  Copyright (c) 2026, MaxFlatline
+  All rights reserved.
+
+  [Full BSD-3-Clause license text - See https://opensource.org]
+
+  SPDX-License-Identifier: BSD-3-Clause
+
+  $Date:         04. April 2026
+  $Revision:     1.0.0
+
+  Version 1.0:
+  - Initial release.
+-->
+
+<device schemaVersion="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD.xsd" >
+  <vendor>Texas Instruments Inc.</vendor>                           <!-- device vendor name -->
+  <vendorID>TI</vendorID>                              4            <!-- device vendor short name -->
+  <name>lm3s9b92</name>                                             <!-- name of part-->
+  <series>LM3S</series>                                             <!-- device series the device belongs to -->
+  <version>1.2</version>                                            <!-- version of this description, adding CMSIS-SVD 1.1 tags -->
+  <description>ARM Cortex-M3 Stellaris Device</description>
+  <licenseText>                                                     <!-- this license text will appear in header file. \n force line breaks -->
+    Redistribution and use in source and binary forms, with or without\n
+    modification, are permitted provided that the following conditions\n
+    are met:\n
+    \n
+    Redistributions of source code must retain the above copyright\n
+    notice, this list of conditions and the following disclaimer.\n
+    \n
+    Redistributions in binary form must reproduce the above copyright\n
+    notice, this list of conditions and the following disclaimer\n
+    listed in this license in the documentation and/or other materials\n
+    provided with the distribution.\n
+    \n
+    Neither the name of the copyright holders nor the names of its\n
+    contributors may be used to endorse or promote products derived\n
+    from this software without specific prior written permission.\n
+    \n
+    The copyright holders provide no reassurances that the source code\n
+    provided does not infringe any patent, copyright, or any other\n
+    intellectual property rights of third parties. The copyright holders\n
+    disclaim any liability to any recipient for claims brought against\n
+    recipient by any third party for infringement of that parties\n
+    intellectual property rights.\n
+    \n
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n
+    “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n
+    A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\n
+    OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\n
+    SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\n
+    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,\n
+    DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY\n
+    THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n
+    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\n
+    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  </licenseText>
+  <cpu>                                                           <!-- details about the cpu embedded in the device -->
+    <name>CM3</name>
+    <revision>r2p0</revision>
+    <endian>little</endian>
+    <mpuPresent>false</mpuPresent>
+    <fpuPresent>false</fpuPresent>
+    <nvicPrioBits>3</nvicPrioBits>
+    <vendorSystickConfig>false</vendorSystickConfig>
+  </cpu>
+  <addressUnitBits>8</addressUnitBits>                            <!-- byte addressable memory -->
+  <width>32</width>                                               <!-- bus width is 32 bits -->
+  <!-- default settings implicitly inherited by subsequent sections -->
+  <size>32</size>                                                 <!-- this is the default size (number of bits) of all peripherals and register that do not define "size" themselves -->
+  <access>read-write</access>                                     <!-- default access permission for all subsequent registers -->
+  <resetValue>0x00000000</resetValue>                             <!-- by default all bits of the registers are initialized to 0 on reset -->
+  <resetMask>0x00000000</resetMask>                               <!-- by default none of 32Bits of the registers are used -->
+  
+  <peripherals>
+    <!-- General purpose input output port A -->
+    <peripheral>
+      <name>GPIOA</name>
+      <version>1.0</version>
+      <description>Register map for GPIO PORT A peripheral</description>
+      <groupName>GPIO</groupName>
+      <baseAddress>0x40004000</baseAddress>
+      <size>32</size>
+      <access>read-write</access>
+      
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x00001000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <registers>
+      </registers>
+    </peripheral>
+  
+  
+    <!-- Watchdog timer 0 -->
+    <peripheral>
+      <name>WDT0</name>
+      <version>1.0</version>
+      <description>Watchdog timer 0, with 32-bit down counter </description>
+      <groupName>WDT</groupName>
+      <baseAddress>0x40000000</baseAddress>
+      <size>32</size>
+      <access>read-write</access>
+      
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x00001000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>WDT0</name>
+        <description>Watchdog Timer 0 interrupt.</description>
+        <value>0</value>
+      </interrupt>
+      
+      <registers>
+        <!-- WDTLOAD: Watchdog Load Register -->
+        <register>
+          <name>WDTLOAD</name>
+          <description>32-bit interval value used by the 32-bit watchdog down-counter.</description>
+          <addressOffset>0x00000000</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0xFFFFFFFF</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+        </register>
+        
+        <!-- WDTVALUE: Watchdog Value Register -->
+        <register>
+          <name>WDTVALUE</name>
+          <description>32-bit register with the current count value of the timer.</description>
+          <addressOffset>0x00000004</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0xFFFFFFFF</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+        </register>
+        
+        <!-- WDTCTL: Watchdog Control Register -->
+        <register>
+          <name>WDTCTL</name>
+          <description>Watchdog Control Register.</description>
+          <addressOffset>0x00000008</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x80000003</resetMask>
+          
+          <fields>
+            <!-- WRC: Write Complete -->
+            <field>
+              <name>WRC</name>
+              <description>Watchdog Timer Write Complete</description>
+              <bitRange>[31:31]</bitRange>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Busy</name>
+                  <description>A write access to one of the WDT1 registers is in progress.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Ready</name>
+                  <description>A write access is not in progress, and WDT registers can be read or written.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- RESEN: Reset Event Enable -->
+            <field>
+              <name>RESEN</name>
+              <description>Watchdog Reset Enable</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disabled</name>
+                  <description>Watchdog Timer reset output is disabled.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enabled</name>
+                  <description>Watchdog Timer reset output is enabled.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- INTEN: Interrupt Enable -->
+            <field>
+              <name>INTEN</name>
+              <description>Watchdog Interrupt Enable</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disabled</name>
+                  <description>Watchdog Timer interrupt event is disabled (once this bit is set, it can only be cleared by a hardware reset).</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enabled</name>
+                  <description>Watchdog Timer interrupt event enabled. Once enabled, all writes are ignored.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- WDTICR: Watchdog Interrupt Clear Register -->
+        <register>
+          <name>ICR</name>
+          <description>Watchdog Interrupt Clear Register.</description>
+          <addressOffset>0x0000000C</addressOffset>
+          <size>32</size>
+          <access>write-only</access>
+          
+          <resetMask>0x00000000</resetMask>
+        </register>
+        
+        <!-- WDTRIS: Watchdog Raw Interrupt Status Register -->
+        <register>
+          <name>RIS</name>
+          <description>Watchdog Raw Interrupt Status Register.</description>
+          <addressOffset>0x00000010</addressOffset>
+          <size>32</size>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          <fields>
+            <!-- WDTRIS: Watchdog Raw Interrupt Status -->
+            <field>
+              <name>WDTRIS</name>
+              <description>Watchdog Raw Interrupt Status</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Reset</name>
+                  <description>The watchdog has not timed out.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Set</name>
+                  <description>A watchdog time-out event has occurred.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- WDTMIS: Watchdog Masked Interrupt Status Register -->
+        <register>
+          <name>WDTMIS</name>
+          <description>Watchdog Masked Interrupt Status Register.</description>
+          <addressOffset>0x00000014</addressOffset>
+          <size>32</size>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          
+          <fields>
+            <!-- WDTMIS: Watchdog Masked Interrupt Status -->
+            <field>
+              <name>WDTMIS</name>
+              <description>Watchdog Masked Interrupt Status.</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Reset</name>
+                  <description>The watchdog has not timed out or the watchdog timer interrupt is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Set</name>
+                  <description>A watchdog time-out event has been signalled to the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- WDTTEST: Watchdog Test Register -->
+        <register>
+          <name>WDTTEST</name>
+          <description>Watchdog Test Register.</description>
+          <addressOffset>0x00000418</addressOffset>
+          <size>32</size>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00001000</resetMask>
+          
+          <fields>
+            <!-- STALL: Watchdog Stall Enable -->
+            <field>
+              <name>STALL</name>
+              <description>Watchdog Stall Enable.</description>
+              <bitRange>[8:8]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disabled</name>
+                  <description>If the microcontroller is stopped with a debugger, the watchdog timer stops counting. Once the microcontroller is restarted, the watchdog timer resumes counting.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enabled</name>
+                  <description>The watchdog timer continues counting if the microcontroller is stopped with a debugger.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- WDTLOCK: Watchdog Lock Register -->
+        <register>
+          <name>WDTLOCK</name>
+          <description>Watchdog Lock Register.</description>
+          <addressOffset>0x00000C00</addressOffset>
+          <size>32</size>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+          
+          <fields>
+            <field>
+              <name>WDTLOCK</name>
+              <description>Watchdog Lock</description>
+              <bitRange>[0:0]</bitRange>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>Unlocked</name>
+                  <description>Watchdog registers are unlocked for write access.</description>
+                  <value>0x00000000</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Locked</name>
+                  <description>Watchdog registers are locked for write access.</description>
+                  <value>0x00000001</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+    
+    <!-- Watchdog timer 1 -->
+    <peripheral derivedFrom="WDT0">
+        <name>WDT1</name>
+        <baseAddress>0x40001000</baseAddress>
+        <interrupt>
+          <name>WDT1</name>
+          <description>Watchdog Timer 1 interrupt.</description>
+          <value>1</value>
+        </interrupt>
+      </peripheral>
+    </peripherals>
+    
+
+</device>
