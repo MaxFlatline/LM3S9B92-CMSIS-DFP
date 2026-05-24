@@ -83,8 +83,9 @@
     <peripheral>
       <name>GPIOA</name>
       <version>1.0</version>
-      <description>Register map for GPIO PORT A peripheral</description>
+      <description>Register map for GPIO PORT A peripheral.</description>
       <groupName>GPIO</groupName>
+      <headerStructName>GPIO</headerStructName>
       <baseAddress>0x40004000</baseAddress>
       <size>32</size>
       <access>read-write</access>
@@ -95,11 +96,625 @@
         <usage>registers</usage>
       </addressBlock>
       
+      <interrupt>
+        <name>GPIOA</name>
+        <description>GPIO A interrupt.</description>
+        <value>0</value>
+      </interrupt>
+      
       <registers>
+        <register>
+          <name>DATA[%s]</name>
+          <description>Data of GPIO Port.</description>
+          <addressOffset>0x0</addressOffset>
+          <dim>256</dim>
+          <dimIncrement>4</dimIncrement>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DATA%s</name>
+              <description>GPIO Port single-pin data.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>OutputPinWrite</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PIN_SET</name>
+                  <description>Set output pin high.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_RESET</name>
+                  <description>Set output pin low.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <name>InputPinRead</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_SET</name>
+                  <description>Input pin set high.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_RESET</name>
+                  <description>Input pin set low.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>DIR</name>
+          <description>Directions of GPIO Port pins.</description>
+          <addressOffset>0x400</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DIR%s</name>
+              <description>GPIO Port pin directions.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinDirectionSet</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT</name>
+                  <description>Set pin to output.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_INPUT</name>
+                  <description>Set pin to input.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <name>PinDirectionGet</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT</name>
+                  <description>Pin set as output.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_INPUT</name>
+                  <description>Pin set as input.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>IS</name>
+          <description>GPIO Interrupt Sense.</description>
+          <addressOffset>0x404</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IS%s</name>
+              <description>GPIO Port pin interrupt sensitivity.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinDirectionSet</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_LEVEL</name>
+                  <description>Set pin interrupt sensitivity to level.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_EDGE</name>
+                  <description>Set pin interrupt sensitivity to edge.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <name>PinDirectionGet</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_LEVEL</name>
+                  <description>Pin interrupt sensitivity set to level.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_EDGE</name>
+                  <description>Pin interrupt sensitivity set to edge.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>IBE</name>
+          <description>GPIO Interrupt Both Edges Sensitivity.</description>
+          <addressOffset>0x408</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IBE%s</name>
+              <description>GPIO Port pin interrupt both edges sensitivity.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptEdgeSensitivitySet</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_SENS_BOTH_EDGES</name>
+                  <description>Both edges on the corresponding pin trigger an interrupt.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_SENS_IEV</name>
+                  <description>Interrupt generation is controlled by the GPIOIEV register.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>IEV</name>
+          <description>GPIO Interrupt Event.</description>
+          <addressOffset>0x40C</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IEV%s</name>
+              <description>GPIO Port pin interrupt event selection.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptEventSelect</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_TRIG_RISING_EDGE</name>
+                  <description>A rising edge or a High level on the corresponding pin triggers
+an interrupt.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_TRIG_FALLING_EDGE</name>
+                  <description>A falling edge or a Low level on the corresponding pin triggers
+an interrupt.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>IM</name>
+          <description>GPIO Interrupt Mask.</description>
+          <addressOffset>0x410</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IME%s</name>
+              <description>GPIO Port interrupt mask.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptMask</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_UNMASKED_PIN</name>
+                  <description>The interrupt from the corresponding pin is sent to the interrupt
+controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_MASKED_PIN</name>
+                  <description>The interrupt from the corresponding pin is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>RIS</name>
+          <description>GPIO Raw Interrupt Status.</description>
+          <addressOffset>0x414</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>RIS%s</name>
+              <description>GPIO Port pin raw interrupt status.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              
+              
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptRawInterruptStatus</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_PIN_RAW_STATUS_TRUE</name>
+                  <description>An interrupt condition has occurred on the corresponding pin.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_PIN_RAW_STATUS_FALSE</name>
+                  <description>An interrupt condition has not occurred on the corresponding
+pin.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>MIS</name>
+          <description>GPIO Mask Interrupt Status.</description>
+          <addressOffset>0x418</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>MIS%s</name>
+              <description>GPIO Port pin masked interrupt status.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptMaskedStatus</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_PIN_MASK_STATUS_TRUE</name>
+                  <description>An interrupt condition on the corresponding pin has triggered an interrupt to the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_PIN_MASK_STATUS_FALSE</name>
+                  <description>An interrupt condition on the corresponding pin is masked or
+has not occurred.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>IC</name>
+          <description>GPIO Interrupt Clear.</description>
+          <addressOffset>0x41C</addressOffset>
+          <access>write-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IC%s</name>
+              <description>GPIO Port pin interrupt clear.</description>
+              <modifiedWriteValues>oneToClear</modifiedWriteValues>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptClear</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_CLR</name>
+                  <description>The corresponding interrupt is cleared.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_NOP</name>
+                  <description>The corresponding interrupt is unaffected.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>AFSEL</name>
+          <description>GPIO Alternate Function Select.</description>
+          <addressOffset>0x420</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>AFSEL%s</name>
+              <description>GPIO Port pin alternate function select.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptClear</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_AF</name>
+                  <description>The associated pin functions as a peripheral signal and is
+controlled by the alternate hardware function.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_GP</name>
+                  <description>The associated pin functions as a GPIO and is controlled by
+the GPIO registers.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>DR2R</name>
+          <description>GPIO 2-mA Drive Select.</description>
+          <addressOffset>0x500</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DRV2%s</name>
+              <description>GPIO Port pin output pad 2-mA drive enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinOutoutPad2mA</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_2MA</name>
+                  <description>The corresponding GPIO pin has 2-mA drive.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_2MA_INACTIVE</name>
+                  <description>The drive for the corresponding GPIO pin is controlled by the
+GPIODR4R or GPIODR8R register.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>DR4R</name>
+          <description>GPIO 4-mA Drive Select.</description>
+          <addressOffset>0x504</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DRV4%s</name>
+              <description>GPIO Port pin output pad 4-mA drive enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinOutoutPad4mA</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_4MA</name>
+                  <description>The corresponding GPIO pin has 4-mA drive.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_4MA_INACTIVE</name>
+                  <description>The drive for the corresponding GPIO pin is controlled by the
+GPIODR2R or GPIODR8R register.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>DR8R</name>
+          <description>GPIO 8-mA Drive Select.</description>
+          <addressOffset>0x508</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DRV8%s</name>
+              <description>GPIO Port pin output pad 8-mA drive enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinOutoutPad4mA</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_8MA</name>
+                  <description>The corresponding GPIO pin has 8-mA drive.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_8MA_INACTIVE</name>
+                  <description>The drive for the corresponding GPIO pin is controlled by the
+GPIODR2R or GPIODR4R register.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>ODR</name>
+          <description>GPIO Open Drain Select.</description>
+          <addressOffset>0x50C</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>ODE%s</name>
+              <description>Output Pad Open Drain Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinOutoutPad4mA</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_OD</name>
+                  <description>The corresponding pin is configured as open drain.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_OD_OFF</name>
+                  <description>The corresponding pin is not configured as open drain.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
       </registers>
     </peripheral>
   
-  
+    <!-- General purpose input output port B -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOB</name>
+        <baseAddress>0x40005000</baseAddress>
+        <interrupt>
+          <name>GPIOB</name>
+          <description>GPIO B interrupt.</description>
+          <value>1</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port C -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOC</name>
+        <baseAddress>0x40006000</baseAddress>
+        <interrupt>
+          <name>GPIOC</name>
+          <description>GPIO C interrupt.</description>
+          <value>2</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port D -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOD</name>
+        <baseAddress>0x40007000</baseAddress>
+        <interrupt>
+          <name>GPIOD</name>
+          <description>GPIO D interrupt.</description>
+          <value>3</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port E -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOE</name>
+        <baseAddress>0x40024000</baseAddress>
+        <interrupt>
+          <name>GPIOE</name>
+          <description>GPIO E interrupt.</description>
+          <value>4</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port F -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOF</name>
+        <baseAddress>0x40025000</baseAddress>
+        <interrupt>
+          <name>GPIOF</name>
+          <description>GPIO F interrupt.</description>
+          <value>30</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port G -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOG</name>
+        <baseAddress>0x40026000</baseAddress>
+        <interrupt>
+          <name>GPIOG</name>
+          <description>GPIO G interrupt.</description>
+          <value>31</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port H -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOH</name>
+        <baseAddress>0x40027000</baseAddress>
+        <interrupt>
+          <name>GPIOH</name>
+          <description>GPIO H interrupt.</description>
+          <value>32</value>
+        </interrupt>
+    </peripheral>
+    
     <!-- Watchdog timer 0 -->
     <peripheral>
       <name>WDT0</name>
@@ -118,8 +733,8 @@
       
       <interrupt>
         <name>WDT0</name>
-        <description>Watchdog Timer 0 interrupt.</description>
-        <value>0</value>
+        <description>Watchdog Timer 0 and 1 interrupt.</description>
+        <value>18</value>
       </interrupt>
       
       <registers>
@@ -361,13 +976,8 @@
     <peripheral derivedFrom="WDT0">
         <name>WDT1</name>
         <baseAddress>0x40001000</baseAddress>
-        <interrupt>
-          <name>WDT1</name>
-          <description>Watchdog Timer 1 interrupt.</description>
-          <value>1</value>
-        </interrupt>
-      </peripheral>
-    </peripherals>
+    </peripheral>
+  </peripherals>
     
 
 </device>
