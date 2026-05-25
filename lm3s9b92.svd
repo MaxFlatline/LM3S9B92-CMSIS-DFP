@@ -368,8 +368,7 @@ controller.</description>
               <bitOffset>0</bitOffset>
               <bitWidth>1</bitWidth>
               <dim>8</dim>
-              
-              
+              <dimIncrement>1</dimIncrement>
               <dimIndex>0-7</dimIndex>
 
               <enumeratedValues>
@@ -584,7 +583,7 @@ GPIODR2R or GPIODR8R register.</description>
               <dimIndex>0-7</dimIndex>
 
               <enumeratedValues>
-                <name>PinOutoutPad4mA</name>
+                <name>PinOutoutPad8mA</name>
                 <usage>read-write</usage>
                 <enumeratedValue>
                   <name>PIN_OUTPUT_8MA</name>
@@ -619,16 +618,152 @@ GPIODR2R or GPIODR4R register.</description>
               <dimIndex>0-7</dimIndex>
 
               <enumeratedValues>
-                <name>PinOutoutPad4mA</name>
+                <name>PinOpenDrainPad</name>
                 <usage>read-write</usage>
                 <enumeratedValue>
-                  <name>PIN_OUTPUT_OD</name>
+                  <name>PIN_OUTPUT_OD_ON</name>
                   <description>The corresponding pin is configured as open drain.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>PIN_OUTPUT_OD_OFF</name>
                   <description>The corresponding pin is not configured as open drain.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>PUR</name>
+          <description>GPIO Pull-Up Select.</description>
+          <addressOffset>0x510</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PUE%s</name>
+              <description>Pad Weak Pull-Up Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinPullUp</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_PULL_UP_WEAK</name>
+                  <description>The corresponding pin has a weak pull-up resistor.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_PULL_UP_OFF</name>
+                  <description>The corresponding pin is not affected.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>PDR</name>
+          <description>GPIO Pull-Down Select.</description>
+          <addressOffset>0x514</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PDE%s</name>
+              <description>Pad Weak Pull-Down Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinPullDown</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_PULL_DOWN_WEAK</name>
+                  <description>The corresponding pin has a weak pull-down resistor.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_PULL_DOWN_OFF</name>
+                  <description>The corresponding pin is not affected.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>SLR</name>
+          <description>GPIO Slew Rate Control Select.</description>
+          <addressOffset>0x518</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>SRL%s</name>
+              <description>Slew Rate Limit Enable (8-mA drive only).</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>Pin8maSlewRate</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_SLEW_RATE_ON</name>
+                  <description>Slew rate control is enabled for the corresponding pin.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_SLEW_RATE_OFF</name>
+                  <description>Slew rate control is disabled for the corresponding pin.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>DEN</name>
+          <description>GPIO Digital Enable.</description>
+          <addressOffset>0x51C</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DEN%s</name>
+              <description>Digital Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinDigitalFunctionEnable</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_DIGITAL_FUNC_ON</name>
+                  <description>The digital functions for the corresponding pin are enabled.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_DIGITAL_FUNC_OFF</name>
+                  <description>The digital functions for the corresponding pin are disabled.</description>
                   <value>0</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -715,13 +850,26 @@ GPIODR2R or GPIODR4R register.</description>
         </interrupt>
     </peripheral>
     
+    <!-- General purpose input output port J -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOJ</name>
+        <baseAddress>0x4003D000</baseAddress>
+        <interrupt>
+          <name>GPIOJ</name>
+          <description>GPIO J interrupt.</description>
+          <value>54</value>
+        </interrupt>
+    </peripheral>
+    
     <!-- Watchdog timer 0 -->
     <peripheral>
       <name>WDT0</name>
       <version>1.0</version>
-      <description>Watchdog timer 0, with 32-bit down counter </description>
+      <description>Watchdog timer 0, with 32-bit down counter.</description>
       <groupName>WDT</groupName>
+      <headerStructName>WDT</headerStructName>
       <baseAddress>0x40000000</baseAddress>
+      
       <size>32</size>
       <access>read-write</access>
       
@@ -976,6 +1124,60 @@ GPIODR2R or GPIODR4R register.</description>
     <peripheral derivedFrom="WDT0">
         <name>WDT1</name>
         <baseAddress>0x40001000</baseAddress>
+    </peripheral>
+    
+
+    <!-- System Control -->
+    <peripheral>
+      <name>SYSCTL</name>
+      <version>1.0</version>
+      <description>System control configures the overall operation of the device and provides information about the device.</description>
+      <baseAddress>0x400FE000</baseAddress>
+      
+      <size>32</size>
+      <access>read-write</access>
+      
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x000001A4</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>SYSCTL</name>
+        <description>System Control interrupt.</description>
+        <value>28</value>
+      </interrupt>
+      
+      
+      <registers>
+        <!-- DID0: Device Identification 0 Register -->
+        <register>
+          <name>DID0</name>
+          <description>This register identifies the version of the microcontroller.</description>
+          <addressOffset>0x00000000</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x10040000</resetValue>
+          <resetMask>0xFFFF0000</resetMask>
+          <fields>
+            <!-- VER: Write Complete -->
+            <field>
+              <name>VER</name>
+              <description>DID0 Version.</description>
+              <bitRange>[30:28]</bitRange>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DID0VER</name>
+                  <description>Second version of the DID0 register format.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      </registers>
     </peripheral>
   </peripherals>
     
