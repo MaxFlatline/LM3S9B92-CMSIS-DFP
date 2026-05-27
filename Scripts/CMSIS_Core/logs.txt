@@ -1,0 +1,29 @@
+
+Arguments: E:\Keil_v5\ARM\cmsis-toolbox\bin\svdconv.exe \Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\SVD\lm3s9b92.svd -o E:\Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\Sources\Core\inc --generate=header --fields=struct
+
+
+*** INFO M332: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/SVD/lm3s9b92.svd (Line 1212) 
+  Peripheral 'SYSCTL' has only one Register.
+
+
+Found 0 Error(s) and 0 Warning(s).
+
+Arguments: E:\Keil_v5\ARM\cmsis-toolbox\bin\svdconv.exe \Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\SVD\lm3s9b92.svd -o E:\Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\SVD --generate sfr
+
+
+*** INFO M332: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/SVD/lm3s9b92.svd (Line 1212) 
+  Peripheral 'SYSCTL' has only one Register.
+
+*** INFO M125: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/SVD/lm3s9b92.svd
+  SfrCC2 report:
+
+SfrCC2 PreProcessor V2.15.0.0
+Copyright (C) 2013 - 2020 ARM Ltd and ARM Germany GmbH. All rights reserved.
+
+SfrCC2 PreProcessing Complete.  0 Warning(s),  0 Error(s)
+
+SfrCC2 report end.
+
+
+
+Found 0 Error(s) and 0 Warning(s).

@@ -1,0 +1,1266 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- File naming: lm3s9b92.svd -->
+
+<!--
+
+  Copyright (c) 2026, MaxFlatline
+  All rights reserved.
+
+  [Full BSD-3-Clause license text - See https://opensource.org]
+
+  SPDX-License-Identifier: BSD-3-Clause
+
+  $Date:         04. April 2026
+  $Revision:     1.0.0
+
+  Version 1.0:
+  - Initial release.
+-->
+
+<device schemaVersion="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD.xsd" >
+  <vendor>Texas Instruments Inc.</vendor>                           <!-- device vendor name -->
+  <vendorID>TI</vendorID>                              4            <!-- device vendor short name -->
+  <name>lm3s9b92</name>                                             <!-- name of part-->
+  <series>LM3S</series>                                             <!-- device series the device belongs to -->
+  <version>1.2</version>                                            <!-- version of this description, adding CMSIS-SVD 1.1 tags -->
+  <description>ARM Cortex-M3 Stellaris Device</description>
+  <licenseText>                                                     <!-- this license text will appear in header file. \n force line breaks -->
+    Redistribution and use in source and binary forms, with or without\n
+    modification, are permitted provided that the following conditions\n
+    are met:\n
+    \n
+    Redistributions of source code must retain the above copyright\n
+    notice, this list of conditions and the following disclaimer.\n
+    \n
+    Redistributions in binary form must reproduce the above copyright\n
+    notice, this list of conditions and the following disclaimer\n
+    listed in this license in the documentation and/or other materials\n
+    provided with the distribution.\n
+    \n
+    Neither the name of the copyright holders nor the names of its\n
+    contributors may be used to endorse or promote products derived\n
+    from this software without specific prior written permission.\n
+    \n
+    The copyright holders provide no reassurances that the source code\n
+    provided does not infringe any patent, copyright, or any other\n
+    intellectual property rights of third parties. The copyright holders\n
+    disclaim any liability to any recipient for claims brought against\n
+    recipient by any third party for infringement of that parties\n
+    intellectual property rights.\n
+    \n
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n
+    “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n
+    A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\n
+    OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\n
+    SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\n
+    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,\n
+    DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY\n
+    THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n
+    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\n
+    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  </licenseText>
+  <cpu>                                                           <!-- details about the cpu embedded in the device -->
+    <name>CM3</name>
+    <revision>r2p0</revision>
+    <endian>little</endian>
+    <mpuPresent>false</mpuPresent>
+    <fpuPresent>false</fpuPresent>
+    <nvicPrioBits>3</nvicPrioBits>
+    <vendorSystickConfig>false</vendorSystickConfig>
+  </cpu>
+  <addressUnitBits>8</addressUnitBits>                            <!-- byte addressable memory -->
+  <width>32</width>                                               <!-- bus width is 32 bits -->
+  <!-- default settings implicitly inherited by subsequent sections -->
+  <size>32</size>                                                 <!-- this is the default size (number of bits) of all peripherals and register that do not define "size" themselves -->
+  <access>read-write</access>                                     <!-- default access permission for all subsequent registers -->
+  <resetValue>0x00000000</resetValue>                             <!-- by default all bits of the registers are initialized to 0 on reset -->
+  <resetMask>0x00000000</resetMask>                               <!-- by default none of 32Bits of the registers are used -->
+  
+  <peripherals>
+    <!-- General purpose input output port A -->
+    <peripheral>
+      <name>GPIOA</name>
+      <version>1.0</version>
+      <description>Register map for GPIO PORT A peripheral.</description>
+      <groupName>GPIO</groupName>
+      <headerStructName>GPIO</headerStructName>
+      <baseAddress>0x40004000</baseAddress>
+      <size>32</size>
+      <access>read-write</access>
+      
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x00001000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>GPIOA</name>
+        <description>GPIO A interrupt.</description>
+        <value>0</value>
+      </interrupt>
+      
+      <registers>
+        <register>
+          <name>DATA[%s]</name>
+          <description>Data of GPIO Port.</description>
+          <addressOffset>0x0</addressOffset>
+          <dim>256</dim>
+          <dimIncrement>4</dimIncrement>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DATA%s</name>
+              <description>Pin%s data.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>OutputPinWrite</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PIN_SET</name>
+                  <description>Set output pin high.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_RESET</name>
+                  <description>Set output pin low.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <name>InputPinRead</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_SET</name>
+                  <description>Input pin set high.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_RESET</name>
+                  <description>Input pin set low.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>DIR</name>
+          <description>Directions of GPIO Port pins.</description>
+          <addressOffset>0x400</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DIR%s</name>
+              <description>Pin%s Data Direction.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinDirectionSet</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT</name>
+                  <description>Set pin to output.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_INPUT</name>
+                  <description>Set pin to input.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <name>PinDirectionGet</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT</name>
+                  <description>Pin set as output.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_INPUT</name>
+                  <description>Pin set as input.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>IS</name>
+          <description>GPIO Interrupt Sense.</description>
+          <addressOffset>0x404</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IS%s</name>
+              <description>Pin%s Interrupt Sense.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinDirectionSet</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_LEVEL</name>
+                  <description>Set pin interrupt sensitivity to level.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_EDGE</name>
+                  <description>Set pin interrupt sensitivity to edge.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <name>PinDirectionGet</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_LEVEL</name>
+                  <description>Pin interrupt sensitivity set to level.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_EDGE</name>
+                  <description>Pin interrupt sensitivity set to edge.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>IBE</name>
+          <description>GPIO Interrupt Both Edges.</description>
+          <addressOffset>0x408</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IBE%s</name>
+              <description>Pin%s Interrupt Both Edges.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptEdgeSensitivitySet</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_SENS_BOTH_EDGES</name>
+                  <description>Both edges on the corresponding pin trigger an interrupt.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_SENS_IEV</name>
+                  <description>Interrupt generation is controlled by the GPIOIEV register.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>IEV</name>
+          <description>GPIO Interrupt Event.</description>
+          <addressOffset>0x40C</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IEV%s</name>
+              <description>Pin%s Interrupt Event.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptEventSelect</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_TRIG_RISING_EDGE</name>
+                  <description>A rising edge or a High level on the corresponding pin triggers
+an interrupt.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_TRIG_FALLING_EDGE</name>
+                  <description>A falling edge or a Low level on the corresponding pin triggers
+an interrupt.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>IM</name>
+          <description>GPIO Interrupt Mask.</description>
+          <addressOffset>0x410</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IME%s</name>
+              <description>Pin%s Interrupt Mask Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptMask</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_UNMASKED_PIN</name>
+                  <description>The interrupt from the corresponding pin is sent to the interrupt
+controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_MASKED_PIN</name>
+                  <description>The interrupt from the corresponding pin is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>RIS</name>
+          <description>GPIO Raw Interrupt Status.</description>
+          <addressOffset>0x414</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>RIS%s</name>
+              <description>Pin%s Interrupt Raw Status.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptRawInterruptStatus</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_PIN_RAW_STATUS_TRUE</name>
+                  <description>An interrupt condition has occurred on the corresponding pin.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_PIN_RAW_STATUS_FALSE</name>
+                  <description>An interrupt condition has not occurred on the corresponding
+pin.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>MIS</name>
+          <description>GPIO Mask Interrupt Status.</description>
+          <addressOffset>0x418</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>MIS%s</name>
+              <description>Pin%s Masked Interrupt Status.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptMaskedStatus</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_PIN_MASK_STATUS_TRUE</name>
+                  <description>An interrupt condition on the corresponding pin has triggered an interrupt to the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_PIN_MASK_STATUS_FALSE</name>
+                  <description>An interrupt condition on the corresponding pin is masked or
+has not occurred.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>IC</name>
+          <description>GPIO Interrupt Clear.</description>
+          <addressOffset>0x41C</addressOffset>
+          <access>write-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IC%s</name>
+              <description>Pin%s Interrupt Clear.</description>
+              <modifiedWriteValues>oneToClear</modifiedWriteValues>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptClear</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_CLR</name>
+                  <description>The corresponding interrupt is cleared.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_NOP</name>
+                  <description>The corresponding interrupt is unaffected.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>AFSEL</name>
+          <description>GPIO Alternate Function Select.</description>
+          <addressOffset>0x420</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>AFSEL%s</name>
+              <description>Pin%s Alternate Function Select.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinInterruptClear</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_AF</name>
+                  <description>The associated pin functions as a peripheral signal and is
+controlled by the alternate hardware function.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_GP</name>
+                  <description>The associated pin functions as a GPIO and is controlled by
+the GPIO registers.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>DR2R</name>
+          <description>GPIO 2-mA Drive Select.</description>
+          <addressOffset>0x500</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DRV2%s</name>
+              <description>Pad%s Output 2-mA Drive Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinOutoutPad2mA</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_2MA</name>
+                  <description>The corresponding GPIO pin has 2-mA drive.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_2MA_INACTIVE</name>
+                  <description>The drive for the corresponding GPIO pin is controlled by the
+GPIODR4R or GPIODR8R register.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>DR4R</name>
+          <description>GPIO 4-mA Drive Select.</description>
+          <addressOffset>0x504</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DRV4%s</name>
+              <description>Pad%s Output 4-mA Drive Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinOutoutPad4mA</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_4MA</name>
+                  <description>The corresponding GPIO pin has 4-mA drive.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_4MA_INACTIVE</name>
+                  <description>The drive for the corresponding GPIO pin is controlled by the
+GPIODR2R or GPIODR8R register.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>DR8R</name>
+          <description>GPIO 8-mA Drive Select.</description>
+          <addressOffset>0x508</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DRV8%s</name>
+              <description>Pad%s Output 8-mA Drive Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinOutoutPad8mA</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_8MA</name>
+                  <description>The corresponding GPIO pin has 8-mA drive.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_8MA_INACTIVE</name>
+                  <description>The drive for the corresponding GPIO pin is controlled by the
+GPIODR2R or GPIODR4R register.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>ODR</name>
+          <description>GPIO Open Drain Select.</description>
+          <addressOffset>0x50C</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>ODE%s</name>
+              <description>Pad%s Output Open Drain Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinOpenDrainPad</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_OD_ON</name>
+                  <description>The corresponding pin is configured as open drain.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_OD_OFF</name>
+                  <description>The corresponding pin is not configured as open drain.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>PUR</name>
+          <description>GPIO Pull-Up Select.</description>
+          <addressOffset>0x510</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PUE%s</name>
+              <description>Pad%s Weak Pull-Up Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinPullUp</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_PULL_UP_WEAK</name>
+                  <description>The corresponding pin has a weak pull-up resistor.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_PULL_UP_OFF</name>
+                  <description>The corresponding pin is not affected.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>PDR</name>
+          <description>GPIO Pull-Down Select.</description>
+          <addressOffset>0x514</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PDE%s</name>
+              <description>Pad%s Weak Pull-Down Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinPullDown</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_PULL_DOWN_WEAK</name>
+                  <description>The corresponding pin has a weak pull-down resistor.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_PULL_DOWN_OFF</name>
+                  <description>The corresponding pin is not affected.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>SLR</name>
+          <description>GPIO Slew Rate Control Select.</description>
+          <addressOffset>0x518</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>SRL%s</name>
+              <description>Pin%s Slew Rate Limit Enable (8-mA drive only).</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>Pin8maSlewRate</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_SLEW_RATE_ON</name>
+                  <description>Slew rate control is enabled for the corresponding pin.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_SLEW_RATE_OFF</name>
+                  <description>Slew rate control is disabled for the corresponding pin.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>DEN</name>
+          <description>GPIO Digital Enable.</description>
+          <addressOffset>0x51C</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DEN%s</name>
+              <description>Pin%s Digital Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinDigitalFunctionEnable</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_DIGITAL_FUNC_ON</name>
+                  <description>The digital functions for the corresponding pin are enabled.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_DIGITAL_FUNC_OFF</name>
+                  <description>The digital functions for the corresponding pin are disabled.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>LOCK</name>
+          <description>GPIO Lock.</description>
+          <addressOffset>0x520</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000001</resetValue>
+          <resetMask>0xffffffff</resetMask>
+        </register>
+        <register>
+          <name>CR</name>
+          <description>GPIO Commit Register.</description>
+          <addressOffset>0x524</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x000000ff</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>CR%s</name>
+              <description>Pin%s Commit.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinCommit</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_COMMIT_ENABLED</name>
+                  <description>The corresponding GPIOAFSEL, GPIOPUR, GPIOPDR, or
+GPIODEN bits can be written.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_COMMIT_DISABLED</name>
+                  <description>The corresponding GPIOAFSEL, GPIOPUR, GPIOPDR, or
+GPIODEN bits cannot be written.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>AMSEL</name>
+          <description>GPIO Analog Mode Select.</description>
+          <addressOffset>0x528</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000f0</resetMask>
+          <fields>
+            <field>
+              <name>GPIOAMSEL%s</name>
+              <description>Pin%s Analog Mode Select.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              <dim>4</dim>
+              <dimIncrement>1</dimIncrement>
+              <dimIndex>4-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PinAnalogMode</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_COMMIT_ENABLED</name>
+                  <description>The analog function of the pin is enabled, the isolation is
+disabled, and the pin is capable of analog functions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_COMMIT_DISABLED</name>
+                  <description>The analog function of the pin is disabled, the isolation is
+enabled, and the pin is capable of digital functions as specified
+by the other GPIO configuration registers.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+  
+    <!-- General purpose input output port B -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOB</name>
+        <baseAddress>0x40005000</baseAddress>
+        <interrupt>
+          <name>GPIOB</name>
+          <description>GPIO B interrupt.</description>
+          <value>1</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port C -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOC</name>
+        <baseAddress>0x40006000</baseAddress>
+        <interrupt>
+          <name>GPIOC</name>
+          <description>GPIO C interrupt.</description>
+          <value>2</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port D -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOD</name>
+        <baseAddress>0x40007000</baseAddress>
+        <interrupt>
+          <name>GPIOD</name>
+          <description>GPIO D interrupt.</description>
+          <value>3</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port E -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOE</name>
+        <baseAddress>0x40024000</baseAddress>
+        <interrupt>
+          <name>GPIOE</name>
+          <description>GPIO E interrupt.</description>
+          <value>4</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port F -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOF</name>
+        <baseAddress>0x40025000</baseAddress>
+        <interrupt>
+          <name>GPIOF</name>
+          <description>GPIO F interrupt.</description>
+          <value>30</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port G -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOG</name>
+        <baseAddress>0x40026000</baseAddress>
+        <interrupt>
+          <name>GPIOG</name>
+          <description>GPIO G interrupt.</description>
+          <value>31</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port H -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOH</name>
+        <baseAddress>0x40027000</baseAddress>
+        <interrupt>
+          <name>GPIOH</name>
+          <description>GPIO H interrupt.</description>
+          <value>32</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port J -->
+    <peripheral derivedFrom="GPIOA">
+        <name>GPIOJ</name>
+        <baseAddress>0x4003D000</baseAddress>
+        <interrupt>
+          <name>GPIOJ</name>
+          <description>GPIO J interrupt.</description>
+          <value>54</value>
+        </interrupt>
+    </peripheral>
+    
+    <!-- Watchdog timer 0 -->
+    <peripheral>
+      <name>WDT0</name>
+      <version>1.0</version>
+      <description>Watchdog timer 0, with 32-bit down counter.</description>
+      <groupName>WDT</groupName>
+      <headerStructName>WDT</headerStructName>
+      <baseAddress>0x40000000</baseAddress>
+      
+      <size>32</size>
+      <access>read-write</access>
+      
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x00001000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>WDT0</name>
+        <description>Watchdog Timer 0 and 1 interrupt.</description>
+        <value>18</value>
+      </interrupt>
+      
+      <registers>
+        <!-- WDTLOAD: Watchdog Load Register -->
+        <register>
+          <name>WDTLOAD</name>
+          <description>32-bit interval value used by the 32-bit watchdog down-counter.</description>
+          <addressOffset>0x00000000</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0xFFFFFFFF</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+        </register>
+        
+        <!-- WDTVALUE: Watchdog Value Register -->
+        <register>
+          <name>WDTVALUE</name>
+          <description>32-bit register with the current count value of the timer.</description>
+          <addressOffset>0x00000004</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0xFFFFFFFF</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+        </register>
+        
+        <!-- WDTCTL: Watchdog Control Register -->
+        <register>
+          <name>WDTCTL</name>
+          <description>Watchdog Control Register.</description>
+          <addressOffset>0x00000008</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x80000003</resetMask>
+          
+          <fields>
+            <!-- WRC: Write Complete -->
+            <field>
+              <name>WRC</name>
+              <description>Watchdog Timer Write Complete</description>
+              <bitRange>[31:31]</bitRange>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Busy</name>
+                  <description>A write access to one of the WDT1 registers is in progress.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Ready</name>
+                  <description>A write access is not in progress, and WDT registers can be read or written.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- RESEN: Reset Event Enable -->
+            <field>
+              <name>RESEN</name>
+              <description>Watchdog Reset Enable</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disabled</name>
+                  <description>Watchdog Timer reset output is disabled.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enabled</name>
+                  <description>Watchdog Timer reset output is enabled.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- INTEN: Interrupt Enable -->
+            <field>
+              <name>INTEN</name>
+              <description>Watchdog Interrupt Enable</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disabled</name>
+                  <description>Watchdog Timer interrupt event is disabled (once this bit is set, it can only be cleared by a hardware reset).</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enabled</name>
+                  <description>Watchdog Timer interrupt event enabled. Once enabled, all writes are ignored.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- WDTICR: Watchdog Interrupt Clear Register -->
+        <register>
+          <name>ICR</name>
+          <description>Watchdog Interrupt Clear Register.</description>
+          <addressOffset>0x0000000C</addressOffset>
+          <size>32</size>
+          <access>write-only</access>
+          
+          <resetMask>0x00000000</resetMask>
+        </register>
+        
+        <!-- WDTRIS: Watchdog Raw Interrupt Status Register -->
+        <register>
+          <name>RIS</name>
+          <description>Watchdog Raw Interrupt Status Register.</description>
+          <addressOffset>0x00000010</addressOffset>
+          <size>32</size>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          <fields>
+            <!-- WDTRIS: Watchdog Raw Interrupt Status -->
+            <field>
+              <name>WDTRIS</name>
+              <description>Watchdog Raw Interrupt Status</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Reset</name>
+                  <description>The watchdog has not timed out.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Set</name>
+                  <description>A watchdog time-out event has occurred.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- WDTMIS: Watchdog Masked Interrupt Status Register -->
+        <register>
+          <name>WDTMIS</name>
+          <description>Watchdog Masked Interrupt Status Register.</description>
+          <addressOffset>0x00000014</addressOffset>
+          <size>32</size>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          
+          <fields>
+            <!-- WDTMIS: Watchdog Masked Interrupt Status -->
+            <field>
+              <name>WDTMIS</name>
+              <description>Watchdog Masked Interrupt Status.</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Reset</name>
+                  <description>The watchdog has not timed out or the watchdog timer interrupt is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Set</name>
+                  <description>A watchdog time-out event has been signalled to the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- WDTTEST: Watchdog Test Register -->
+        <register>
+          <name>WDTTEST</name>
+          <description>Watchdog Test Register.</description>
+          <addressOffset>0x00000418</addressOffset>
+          <size>32</size>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00001000</resetMask>
+          
+          <fields>
+            <!-- STALL: Watchdog Stall Enable -->
+            <field>
+              <name>STALL</name>
+              <description>Watchdog Stall Enable.</description>
+              <bitRange>[8:8]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disabled</name>
+                  <description>If the microcontroller is stopped with a debugger, the watchdog timer stops counting. Once the microcontroller is restarted, the watchdog timer resumes counting.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enabled</name>
+                  <description>The watchdog timer continues counting if the microcontroller is stopped with a debugger.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- WDTLOCK: Watchdog Lock Register -->
+        <register>
+          <name>WDTLOCK</name>
+          <description>Watchdog Lock Register.</description>
+          <addressOffset>0x00000C00</addressOffset>
+          <size>32</size>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+          
+          <fields>
+            <field>
+              <name>WDTLOCK</name>
+              <description>Watchdog Lock</description>
+              <bitRange>[0:0]</bitRange>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>Unlocked</name>
+                  <description>Watchdog registers are unlocked for write access.</description>
+                  <value>0x00000000</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Locked</name>
+                  <description>Watchdog registers are locked for write access.</description>
+                  <value>0x00000001</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+    
+    <!-- Watchdog timer 1 -->
+    <peripheral derivedFrom="WDT0">
+        <name>WDT1</name>
+        <baseAddress>0x40001000</baseAddress>
+    </peripheral>
+    
+
+    <!-- System Control -->
+    <peripheral>
+      <name>SYSCTL</name>
+      <version>1.0</version>
+      <description>System control configures the overall operation of the device and provides information about the device.</description>
+      <baseAddress>0x400FE000</baseAddress>
+      
+      <size>32</size>
+      <access>read-write</access>
+      
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x000001A4</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>SYSCTL</name>
+        <description>System Control interrupt.</description>
+        <value>28</value>
+      </interrupt>
+      
+      
+      <registers>
+        <!-- DID0: Device Identification 0 Register -->
+        <register>
+          <name>DID0</name>
+          <description>This register identifies the version of the microcontroller.</description>
+          <addressOffset>0x00000000</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x10040000</resetValue>
+          <resetMask>0xFFFF0000</resetMask>
+          <fields>
+            <!-- VER: Write Complete -->
+            <field>
+              <name>VER</name>
+              <description>DID0 Version.</description>
+              <bitRange>[30:28]</bitRange>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DID0VER</name>
+                  <description>Second version of the DID0 register format.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+  </peripherals>
+    
+
+</device>

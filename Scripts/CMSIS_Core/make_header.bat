@@ -1,0 +1,2 @@
+E:\Keil_v5\ARM\cmsis-toolbox\bin\svdconv.exe %E:\Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\SVD\lm3s9b92.svd% % -o E:\Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\Sources\Core\inc% % --generate=header% % --fields=struct% > ./logs.txt
+E:\Keil_v5\ARM\cmsis-toolbox\bin\svdconv.exe %E:\Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\SVD\lm3s9b92.svd% % -o E:\Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\SVD% % --generate sfr%  >> ./logs.txt
