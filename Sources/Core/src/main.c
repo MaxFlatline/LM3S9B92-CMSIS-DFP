@@ -6,7 +6,7 @@
 #include "RTE_Components.h"             // Component selection
 #include CMSIS_device_header
 #include "cmsis_os2.h"                  // CMSIS:RTOS2
-#include "cmsis_dv.h"
+//#include "cmsis_dv.h"
 #include "unity_fixture.h"
 #include <stdio.h>
 #include "EventRecorder.h"              // CMSIS-View:Event Recorder&&DAP
@@ -101,21 +101,21 @@ static ARM_DRIVER_GPIO *LEDdrv =  &Driver_GPIO5;
 void app_main (void *argument) {
     
     // LED1
-    LEDdrv->Setup          (GPIO_PIN4, NULL);
-    LEDdrv->SetOutput      (GPIO_PIN4, 0U);
-    LEDdrv->SetDirection   (GPIO_PIN4, ARM_GPIO_OUTPUT);
-    // LED2
-    LEDdrv->Setup          (GPIO_PIN5, NULL);
-    LEDdrv->SetOutput      (GPIO_PIN5, 1U);
-    LEDdrv->SetDirection   (GPIO_PIN5, ARM_GPIO_OUTPUT);
-    osThreadNew(cmsis_dv, NULL, NULL);
+//    LEDdrv->Setup          (GPIO_PIN4, NULL);
+//    LEDdrv->SetOutput      (GPIO_PIN4, 0U);
+//    LEDdrv->SetDirection   (GPIO_PIN4, ARM_GPIO_OUTPUT);
+//    // LED2
+//    LEDdrv->Setup          (GPIO_PIN5, NULL);
+//    LEDdrv->SetOutput      (GPIO_PIN5, 1U);
+//    LEDdrv->SetDirection   (GPIO_PIN5, ARM_GPIO_OUTPUT);
+//    osThreadNew(cmsis_dv, NULL, NULL);
     
     for (;;) {
-        LEDdrv->SetOutput      (GPIO_PIN4, 1U);
-        LEDdrv->SetOutput      (GPIO_PIN5, 0U);
-        osDelay(500);
-        LEDdrv->SetOutput      (GPIO_PIN4, 0U);
-        LEDdrv->SetOutput      (GPIO_PIN5, 1U);
+//        LEDdrv->SetOutput      (GPIO_PIN4, 1U);
+//        LEDdrv->SetOutput      (GPIO_PIN5, 0U);
+//        osDelay(500);
+//        LEDdrv->SetOutput      (GPIO_PIN4, 0U);
+//        LEDdrv->SetOutput      (GPIO_PIN5, 1U);
         osDelay(500);
     }
 }

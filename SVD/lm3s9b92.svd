@@ -851,6 +851,50 @@ by the other GPIO configuration registers.</description>
             </field>
           </fields>
         </register>
+        <register>
+          <name>PCTL</name>
+          <description>GPIO Port Control.</description>
+          <addressOffset>0x52C</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0xffffffff</resetMask>
+          <fields>
+            <field>
+              <name>PMC%s</name>
+              <description>Port%s Mux Control.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>4</bitWidth>
+              <dim>8</dim>
+              <dimIncrement>4</dimIncrement>
+              <dimIndex>0-7</dimIndex>
+
+              <enumeratedValues>
+                <name>PMC</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PCTL_0x0</name>
+                  <description>No alternative function selected.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0x1</name>
+                  <description>PA0_U0Rx, PA1_U0Tx, PA2_SSI0Clk, PA3_SSI0Fss, PA4_SSI0Rx, PA5_SSI0Tx, PA6_I2C1SCL, PA7_I2C1SDA, PB0_CCP0, PB1_CCP2, PB2_I2C0SCL, PB3_I2C0SDA, PB5_C0o, PB6_CCP1, PC4_CCP5, PC5_CCP1, PC6_CCP3, PC7_CCP4, PD0_PWM0, PD1_PWM1, PD2_U1Rx, PD3_U1Tx, PD4_CCP0, PD5_CCP2, PD6_Fault0, PD7_IDX0, PE0_PWM4, PE1_PWM5, PE2_CCP4, PE3_CCP1, PE4_CCP3, PE5_CCP5, PE6_PWM4, PE7_PWM5, PF0_CAN1Rx, PF1_CAN1Tx, PF2_LED1, PF3_LED0, PF4_CCP0, PF5_CCP2, PG0_U2Rx, PG1_U2Tx, PG7_PhB1, PH0_CCP6, PH1_CCP7, PH2_IDX1, PH3_PhB0</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0x2</name>
+                  <description>PA6_CCP1, PA7_CCP4, PB0_PWM2, PB1_PWM3, PB2_IDX0, PB3_Fault0, PB5_CCP5, PB6_CCP7, PC4_PhA0, PC5_C1o, PC6_PhB0, PC7_PhB0, PD0_CAN0Rx, PD1_CAN0Tx, PD2_CCP6, PD3_CCP7, PD4_CCP3, PD5_CCP4, PD7_C0o, PE0_SSI1Clk, PE1_SSI1Fss, PE2_SSI1Rx, PE3_SSI1Tx, PE6_C1o, PE7_C2o, PF0_PhB0, PF1_IDX1, PF2_PWM4, PF3_PWM5, PF4_C0o, PF5_C1o, PG0_PWM0, PG1_PWM1, PH0_PWM2, PH1_PWM3, PH2_C1o, PH3_Fault0</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0xB</name>
+                  <description>PD1_PhB1, PH4_SSI1Clk, PH5_SSI1Fss, PH6_SSI1Rx, PH7_SSI1Tx, PJ0_I2C1SCL, PJ1_I2C1SDA,</description>
+                  <value>0xB</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
       </registers>
     </peripheral>
   
