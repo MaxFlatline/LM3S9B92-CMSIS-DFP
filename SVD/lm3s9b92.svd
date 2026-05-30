@@ -1,0 +1,2208 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- File naming: lm3s9b92.svd -->
+
+<!--
+
+  Copyright (c) 2026, MaxFlatline
+  All rights reserved.
+
+  [Full BSD-3-Clause license text - See https://opensource.org]
+
+  SPDX-License-Identifier: BSD-3-Clause
+
+  $Date:         04. April 2026
+  $Revision:     1.0.0
+
+  Version 1.0:
+  - Initial release.
+-->
+
+<device schemaVersion="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD.xsd" >
+  <vendor>Texas Instruments Inc.</vendor>                           <!-- device vendor name -->
+  <vendorID>TI</vendorID>                              4            <!-- device vendor short name -->
+  <name>lm3s9b92</name>                                             <!-- name of part-->
+  <series>LM3S</series>                                             <!-- device series the device belongs to -->
+  <version>1.2</version>                                            <!-- version of this description, adding CMSIS-SVD 1.1 tags -->
+  <description>ARM Cortex-M3 Stellaris Device</description>
+  <licenseText>                                                     <!-- this license text will appear in header file. \n force line breaks -->
+    Redistribution and use in source and binary forms, with or without\n
+    modification, are permitted provided that the following conditions\n
+    are met:\n
+    \n
+    Redistributions of source code must retain the above copyright\n
+    notice, this list of conditions and the following disclaimer.\n
+    \n
+    Redistributions in binary form must reproduce the above copyright\n
+    notice, this list of conditions and the following disclaimer\n
+    listed in this license in the documentation and/or other materials\n
+    provided with the distribution.\n
+    \n
+    Neither the name of the copyright holders nor the names of its\n
+    contributors may be used to endorse or promote products derived\n
+    from this software without specific prior written permission.\n
+    \n
+    The copyright holders provide no reassurances that the source code\n
+    provided does not infringe any patent, copyright, or any other\n
+    intellectual property rights of third parties. The copyright holders\n
+    disclaim any liability to any recipient for claims brought against\n
+    recipient by any third party for infringement of that parties\n
+    intellectual property rights.\n
+    \n
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n
+    “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n
+    A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\n
+    OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\n
+    SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\n
+    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,\n
+    DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY\n
+    THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n
+    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\n
+    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  </licenseText>
+  <cpu>                                                           <!-- details about the cpu embedded in the device -->
+    <name>CM3</name>
+    <revision>r2p0</revision>
+    <endian>little</endian>
+    <mpuPresent>false</mpuPresent>
+    <fpuPresent>false</fpuPresent>
+    <nvicPrioBits>3</nvicPrioBits>
+    <vendorSystickConfig>false</vendorSystickConfig>
+  </cpu>
+  <addressUnitBits>8</addressUnitBits>                            <!-- byte addressable memory -->
+  <width>32</width>                                               <!-- bus width is 32 bits -->
+  <!-- default settings implicitly inherited by subsequent sections -->
+  <size>32</size>                                                 <!-- this is the default size (number of bits) of all peripherals and register that do not define "size" themselves -->
+  <access>read-write</access>                                     <!-- default access permission for all subsequent registers -->
+  <resetValue>0x00000000</resetValue>                             <!-- by default all bits of the registers are initialized to 0 on reset -->
+  <resetMask>0x00000000</resetMask>                               <!-- by default none of 32Bits of the registers are used -->
+  
+  <peripherals>
+    <!-- General purpose input output port A -->
+    <peripheral>
+      <name>GPIOA</name>
+      <version>1.0</version>
+      <description>Register map for GPIO PORT A peripheral.</description>
+      <groupName>GPIO</groupName>
+      <headerStructName>GPIO</headerStructName>
+      <baseAddress>0x40004000</baseAddress>
+      <size>32</size>
+      <access>read-write</access>
+      
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x00001000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>GPIOA</name>
+        <description>GPIO A interrupt.</description>
+        <value>0</value>
+      </interrupt>
+      
+      <registers>
+      <!-- DATA: GPIO Data Register -->
+        <register>
+          <name>DATA[%s]</name>
+          <description>Data of GPIO Port.</description>
+          <addressOffset>0x0</addressOffset>
+          <dim>256</dim>
+          <dimIncrement>4</dimIncrement>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DATA7</name>
+              <description>Pin7 data.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>OutputPinWrite</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PIN_SET</name>
+                  <description>Set output pin high.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_RESET</name>
+                  <description>Set output pin low.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <name>InputPinRead</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_SET</name>
+                  <description>Input pin set high.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_RESET</name>
+                  <description>Input pin set low.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="DATA7">
+              <name>DATA6</name>
+              <description>Pin6 data.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="DATA7">
+              <name>DATA5</name>
+              <description>Pin5 data.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="DATA7">
+              <name>DATA4</name>
+              <description>Pin4 data.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="DATA7">
+              <name>DATA3</name>
+              <description>Pin3 data.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="DATA7">
+              <name>DATA2</name>
+              <description>Pin2 data.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="DATA7">
+              <name>DATA1</name>
+              <description>Pin1 data.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="DATA7">
+              <name>DATA0</name>
+              <description>Pin0 data.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- DIR: GPIO Digital Direction Register -->
+        <register>
+          <name>DIR</name>
+          <description>Directions of GPIO Port pins.</description>
+          <addressOffset>0x400</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DIR7</name>
+              <description>Pin7 Data Direction.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinDirectionSet</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT</name>
+                  <description>Set pin to output.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_INPUT</name>
+                  <description>Set pin to input.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <name>PinDirectionGet</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT</name>
+                  <description>Pin set as output.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_INPUT</name>
+                  <description>Pin set as input.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="DIR7">
+              <name>DIR6</name>
+              <description>Pin6 Data Direction.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="DIR7">
+              <name>DIR5</name>
+              <description>Pin5 Data Direction.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="DIR7">
+              <name>DIR4</name>
+              <description>Pin4 Data Direction.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="DIR7">
+              <name>DIR3</name>
+              <description>Pin3 Data Direction.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="DIR7">
+              <name>DIR2</name>
+              <description>Pin2 Data Direction.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="DIR7">
+              <name>DIR1</name>
+              <description>Pin1 Data Direction.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="DIR7">
+              <name>DIR0</name>
+              <description>Pin0 Data Direction.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- IS: GPIO Interrupt Sense Register -->
+        <register>
+          <name>IS</name>
+          <description>GPIO Interrupt Sense.</description>
+          <addressOffset>0x404</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IS7</name>
+              <description>Pin7 Interrupt Sense.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinDirectionSet</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_LEVEL</name>
+                  <description>Set pin interrupt sensitivity to level.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_EDGE</name>
+                  <description>Set pin interrupt sensitivity to edge.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <name>PinDirectionGet</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_LEVEL</name>
+                  <description>Pin interrupt sensitivity set to level.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_EDGE</name>
+                  <description>Pin interrupt sensitivity set to edge.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="IS7">
+              <name>IS6</name>
+              <description>Pin6 Interrupt Sense.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="IS7">
+              <name>IS5</name>
+              <description>Pin5 Interrupt Sense.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="IS7">
+              <name>IS4</name>
+              <description>Pin4 Interrupt Sense.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="IS7">
+              <name>IS3</name>
+              <description>Pin3 Interrupt Sense.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="IS7">
+              <name>IS2</name>
+              <description>Pin2 Interrupt Sense.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="IS7">
+              <name>IS1</name>
+              <description>Pin1 Interrupt Sense.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="IS7">
+              <name>IS0</name>
+              <description>Pin0 Interrupt Sense.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- IBE: GPIO Interrupt Both Edges Register -->
+        <register>
+          <name>IBE</name>
+          <description>GPIO Interrupt Both Edges.</description>
+          <addressOffset>0x408</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IBE7</name>
+              <description>Pin7 Interrupt Both Edges.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinInterruptEdgeSensitivitySet</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_SENS_BOTH_EDGES</name>
+                  <description>Both edges on the corresponding pin trigger an interrupt.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_SENS_IEV</name>
+                  <description>Interrupt generation is controlled by the GPIOIEV register.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="IBE7">
+              <name>IBE6</name>
+              <description>Pin6 Interrupt Both Edges.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="IBE7">
+              <name>IBE5</name>
+              <description>Pin5 Interrupt Both Edges.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="IBE7">
+              <name>IBE4</name>
+              <description>Pin4 Interrupt Both Edges.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="IBE7">
+              <name>IBE3</name>
+              <description>Pin3 Interrupt Both Edges.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="IBE7">
+              <name>IBE2</name>
+              <description>Pin2 Interrupt Both Edges.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="IBE7">
+              <name>IBE1</name>
+              <description>Pin1 Interrupt Both Edges.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="IBE7">
+              <name>IBE0</name>
+              <description>Pin0 Interrupt Both Edges.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- IEV: GPIO Interrupt Event Register -->
+        <register>
+          <name>IEV</name>
+          <description>GPIO Interrupt Event.</description>
+          <addressOffset>0x40C</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IEV7</name>
+              <description>Pin7 Interrupt Event.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinInterruptEventSelect</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_TRIG_RISING_EDGE</name>
+                  <description>A rising edge or a High level on the corresponding pin triggers an interrupt.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_TRIG_FALLING_EDGE</name>
+                  <description>A falling edge or a Low level on the corresponding pin triggers an interrupt.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV6</name>
+              <description>Pin6 Interrupt Event.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV5</name>
+              <description>Pin5 Interrupt Event.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV4</name>
+              <description>Pin4 Interrupt Event.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV3</name>
+              <description>Pin3 Interrupt Event.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV2</name>
+              <description>Pin2 Interrupt Event.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV1</name>
+              <description>Pin1 Interrupt Event.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV0</name>
+              <description>Pin0 Interrupt Event.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- IM: GPIO Interrupt Mask Register -->
+        <register>
+          <name>IM</name>
+          <description>GPIO Interrupt Mask.</description>
+          <addressOffset>0x410</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IME7</name>
+              <description>Pin7 Interrupt Mask Enable.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinInterruptMask</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_UNMASKED_PIN</name>
+                  <description>The interrupt from the corresponding pin is sent to the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_MASKED_PIN</name>
+                  <description>The interrupt from the corresponding pin is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME6</name>
+              <description>Pin6 Interrupt Mask Enable.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME5</name>
+              <description>Pin5 Interrupt Mask Enable.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME4</name>
+              <description>Pin4 Interrupt Mask Enable.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME3</name>
+              <description>Pin3 Interrupt Mask Enable.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME2</name>
+              <description>Pin2 Interrupt Mask Enable.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME1</name>
+              <description>Pin1 Interrupt Mask Enable.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME0</name>
+              <description>Pin0 Interrupt Mask Enable.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- RIS: GPIO Raw Interrupt Status Register -->
+        <register>
+          <name>RIS</name>
+          <description>GPIO Raw Interrupt Status.</description>
+          <addressOffset>0x414</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>RIS7</name>
+              <description>Pin7 Interrupt Raw Status.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinInterruptRawInterruptStatus</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_PIN_RAW_STATUS_TRUE</name>
+                  <description>An interrupt condition has occurred on the corresponding pin.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_PIN_RAW_STATUS_FALSE</name>
+                  <description>An interrupt condition has not occurred on the corresponding pin.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS6</name>
+              <description>Pin6 Interrupt Raw Status.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS5</name>
+              <description>Pin5 Interrupt Raw Status.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS4</name>
+              <description>Pin4 Interrupt Raw Status.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS3</name>
+              <description>Pin3 Interrupt Raw Status.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS2</name>
+              <description>Pin2 Interrupt Raw Status.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS1</name>
+              <description>Pin1 Interrupt Raw Status.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS0</name>
+              <description>Pin0 Interrupt Raw Status.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- MIS: GPIO Masked Interrupt Register -->
+        <register>
+          <name>MIS</name>
+          <description>GPIO Mask Interrupt Status.</description>
+          <addressOffset>0x418</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>MIS7</name>
+              <description>Pin7 Masked Interrupt Status.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinInterruptMaskedStatus</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_PIN_MASK_STATUS_TRUE</name>
+                  <description>An interrupt condition on the corresponding pin has triggered an interrupt to the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_PIN_MASK_STATUS_FALSE</name>
+                  <description>An interrupt condition on the corresponding pin is masked or has not occurred.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS6</name>
+              <description>Pin6 Masked Interrupt Status.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS5</name>
+              <description>Pin5 Masked Interrupt Status.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS4</name>
+              <description>Pin4 Masked Interrupt Status.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS3</name>
+              <description>Pin3 Masked Interrupt Status.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS2</name>
+              <description>Pin2 Masked Interrupt Status.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS1</name>
+              <description>Pin1 Masked Interrupt Status.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS0</name>
+              <description>Pin0 Masked Interrupt Status.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- IC: GPIO Interrupt Clear Register -->
+        <register>
+          <name>IC</name>
+          <description>GPIO Interrupt Clear.</description>
+          <addressOffset>0x41C</addressOffset>
+          <access>write-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>IC7</name>
+              <description>Pin7 Interrupt Clear.</description>
+              <modifiedWriteValues>oneToClear</modifiedWriteValues>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinInterruptClear</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PIN_IRQ_CLR</name>
+                  <description>The corresponding interrupt is cleared.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_IRQ_NOP</name>
+                  <description>The corresponding interrupt is unaffected.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="IC7">
+              <name>IC6</name>
+              <description>Pin6 Interrupt Clear.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="IC7">
+              <name>IC5</name>
+              <description>Pin5 Interrupt Clear.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="IC7">
+              <name>IC4</name>
+              <description>Pin4 Interrupt Clear.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="IC7">
+              <name>IC3</name>
+              <description>Pin3 Interrupt Clear.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="IC7">
+              <name>IC2</name>
+              <description>Pin2 Interrupt Clear.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="IC7">
+              <name>IC1</name>
+              <description>Pin1 Interrupt Clear.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="IC7">
+              <name>IC0</name>
+              <description>Pin0 Interrupt Clear.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- AFSEL: GPIO Alternate Function Select Register -->
+        <register>
+          <name>AFSEL</name>
+          <description>GPIO Alternate Function Select.</description>
+          <addressOffset>0x420</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>AFSEL7</name>
+              <description>Pin7 Alternate Function Select.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinInterruptClear</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_AF</name>
+                  <description>The associated pin functions as a peripheral signal and is controlled by the alternate hardware function.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_GP</name>
+                  <description>The associated pin functions as a GPIO and is controlled by the GPIO registers.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="AFSEL7">
+              <name>AFSEL6</name>
+              <description>Pin6 Alternate Function Select.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="AFSEL7">
+              <name>AFSEL5</name>
+              <description>Pin5 Alternate Function Select.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="AFSEL7">
+              <name>AFSEL4</name>
+              <description>Pin4 Alternate Function Select.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="AFSEL7">
+              <name>AFSEL3</name>
+              <description>Pin3 Alternate Function Select.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="AFSEL7">
+              <name>AFSEL2</name>
+              <description>Pin2 Alternate Function Select.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="AFSEL7">
+              <name>AFSEL1</name>
+              <description>Pin1 Alternate Function Select.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="AFSEL7">
+              <name>AFSEL0</name>
+              <description>Pin0 Alternate Function Select.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- DR2R: GPIO 2-ma Drive Select Register -->
+        <register>
+          <name>DR2R</name>
+          <description>GPIO 2-mA Drive Select.</description>
+          <addressOffset>0x500</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DRV2_7</name>
+              <description>Pad7 Output 2-mA Drive Enable.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinOutoutPad2mA</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_2MA</name>
+                  <description>The corresponding GPIO pin has 2-mA drive.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_2MA_INACTIVE</name>
+                  <description>The drive for the corresponding GPIO pin is controlled by the GPIODR4R or GPIODR8R register.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <field derivedFrom="DRV2_7">
+              <name>DRV2_6</name>
+              <description>Pad6 Output 2-mA Drive Enable.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="DRV2_7">
+              <name>DRV2_5</name>
+              <description>Pad5 Output 2-mA Drive Enable.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="DRV2_7">
+              <name>DRV2_4</name>
+              <description>Pad4 Output 2-mA Drive Enable.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="DRV2_7">
+              <name>DRV2_3</name>
+              <description>Pad3 Output 2-mA Drive Enable.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="DRV2_7">
+              <name>DRV2_2</name>
+              <description>Pad2 Output 2-mA Drive Enable.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="DRV2_7">
+              <name>DRV2_1</name>
+              <description>Pad1 Output 2-mA Drive Enable.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="DRV2_7">
+              <name>DRV2_0</name>
+              <description>Pad0 Output 2-mA Drive Enable.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- DR4R: GPIO 4-ma Drive Select Register -->
+        <register>
+          <name>DR4R</name>
+          <description>GPIO 4-mA Drive Select.</description>
+          <addressOffset>0x504</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DRV4_7</name>
+              <description>Pad7 Output 4-mA Drive Enable.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinOutoutPad4mA</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_4MA</name>
+                  <description>The corresponding GPIO pin has 4-mA drive.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_4MA_INACTIVE</name>
+                  <description>The drive for the corresponding GPIO pin is controlled by the GPIODR2R or GPIODR8R register.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="DRV4_7">
+              <name>DRV4_6</name>
+              <description>Pad6 Output 4-mA Drive Enable.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="DRV4_7">
+              <name>DRV4_5</name>
+              <description>Pad5 Output 4-mA Drive Enable.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="DRV4_7">
+              <name>DRV4_4</name>
+              <description>Pad4 Output 4-mA Drive Enable.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="DRV4_7">
+              <name>DRV4_3</name>
+              <description>Pad3 Output 4-mA Drive Enable.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="DRV4_7">
+              <name>DRV4_2</name>
+              <description>Pad2 Output 4-mA Drive Enable.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="DRV4_7">
+              <name>DRV4_1</name>
+              <description>Pad1 Output 4-mA Drive Enable.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="DRV4_7">
+              <name>DRV4_0</name>
+              <description>Pad0 Output 4-mA Drive Enable.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- DR8R: GPIO 8-ma Drive Select Register -->
+        <register>
+          <name>DR8R</name>
+          <description>GPIO 8-mA Drive Select.</description>
+          <addressOffset>0x508</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DRV8_7</name>
+              <description>Pad7 Output 8-mA Drive Enable.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinOutoutPad8mA</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_8MA</name>
+                  <description>The corresponding GPIO pin has 8-mA drive.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_8MA_INACTIVE</name>
+                  <description>The drive for the corresponding GPIO pin is controlled by the GPIODR2R or GPIODR4R register.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="DRV8_7">
+              <name>DRV8_6</name>
+              <description>Pad6 Output 8-mA Drive Enable.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="DRV8_7">
+              <name>DRV8_5</name>
+              <description>Pad5 Output 8-mA Drive Enable.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="DRV8_7">
+              <name>DRV8_4</name>
+              <description>Pad4 Output 8-mA Drive Enable.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="DRV8_7">
+              <name>DRV8_3</name>
+              <description>Pad3 Output 8-mA Drive Enable.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="DRV8_7">
+              <name>DRV8_2</name>
+              <description>Pad2 Output 8-mA Drive Enable.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="DRV8_7">
+              <name>DRV8_1</name>
+              <description>Pad1 Output 8-mA Drive Enable.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="DRV8_7">
+              <name>DRV8_0</name>
+              <description>Pad0 Output 8-mA Drive Enable.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- ODR: GPIO Open Drain Select Register -->
+        <register>
+          <name>ODR</name>
+          <description>GPIO Open Drain Select.</description>
+          <addressOffset>0x50C</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>ODE7</name>
+              <description>Pad7 Output Open Drain Enable.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinOpenDrainPad</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_OD_ON</name>
+                  <description>The corresponding pin is configured as open drain.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_OUTPUT_OD_OFF</name>
+                  <description>The corresponding pin is not configured as open drain.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="ODE7">
+              <name>ODE6</name>
+              <description>Pad6 Output Open Drain Enable.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="ODE7">
+              <name>ODE5</name>
+              <description>Pad5 Output Open Drain Enable.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="ODE7">
+              <name>ODE4</name>
+              <description>Pad4 Output Open Drain Enable.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="ODE7">
+              <name>ODE3</name>
+              <description>Pad3 Output Open Drain Enable.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="ODE7">
+              <name>ODE2</name>
+              <description>Pad2 Output Open Drain Enable.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="ODE7">
+              <name>ODE1</name>
+              <description>Pad1 Output Open Drain Enable.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="ODE7">
+              <name>ODE0</name>
+              <description>Pad0 Output Open Drain Enable.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- PUR: GPIO Pull-Up Select Register -->
+        <register>
+          <name>PUR</name>
+          <description>GPIO Pull-Up Select.</description>
+          <addressOffset>0x510</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PUE7</name>
+              <description>Pad7 Weak Pull-Up Enable.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinPullUp</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_PULL_UP_WEAK</name>
+                  <description>The corresponding pin has a weak pull-up resistor.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_PULL_UP_OFF</name>
+                  <description>The corresponding pin is not affected.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="PUE7">
+              <name>PUE6</name>
+              <description>Pad6 Weak Pull-Up Enable.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="PUE7">
+              <name>PUE5</name>
+              <description>Pad5 Weak Pull-Up Enable.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="PUE7">
+              <name>PUE4</name>
+              <description>Pad4 Weak Pull-Up Enable.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="PUE7">
+              <name>PUE3</name>
+              <description>Pad3 Weak Pull-Up Enable.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="PUE7">
+              <name>PUE2</name>
+              <description>Pad2 Weak Pull-Up Enable.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="PUE7">
+              <name>PUE1</name>
+              <description>Pad1 Weak Pull-Up Enable.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="PUE7">
+              <name>PUE0</name>
+              <description>Pad0 Weak Pull-Up Enable.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- PDR: GPIO Pull-Down Select Register -->
+        <register>
+          <name>PDR</name>
+          <description>GPIO Pull-Down Select.</description>
+          <addressOffset>0x514</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PDE7</name>
+              <description>Pad7 Weak Pull-Down Enable.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinPullDown</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_PULL_DOWN_WEAK</name>
+                  <description>The corresponding pin has a weak pull-down resistor.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_PULL_DOWN_OFF</name>
+                  <description>The corresponding pin is not affected.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="PDE7">
+              <name>PDE6</name>
+              <description>Pad6 Weak Pull-Down Enable.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="PDE7">
+              <name>PDE5</name>
+              <description>Pad5 Weak Pull-Down Enable.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="PDE7">
+              <name>PDE4</name>
+              <description>Pad4 Weak Pull-Down Enable.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="PDE7">
+              <name>PDE3</name>
+              <description>Pad3 Weak Pull-Down Enable.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="PDE7">
+              <name>PDE2</name>
+              <description>Pad2 Weak Pull-Down Enable.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="PDE7">
+              <name>PDE1</name>
+              <description>Pad1 Weak Pull-Down Enable.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="PDE7">
+              <name>PDE0</name>
+              <description>Pad0 Weak Pull-Down Enable.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- SLR: GPIO Slew Rate Control Register -->
+        <register>
+          <name>SLR</name>
+          <description>GPIO Slew Rate Control Select.</description>
+          <addressOffset>0x518</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>SRL7</name>
+              <description>Pin7 Slew Rate Limit Enable (8-mA drive only).</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>Pin8maSlewRate</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_SLEW_RATE_ON</name>
+                  <description>Slew rate control is enabled for the corresponding pin.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_SLEW_RATE_OFF</name>
+                  <description>Slew rate control is disabled for the corresponding pin.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="SRL7">
+              <name>SRL6</name>
+              <description>Pin6 Slew Rate Limit Enable (8-mA drive only).</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="SRL7">
+              <name>SRL5</name>
+              <description>Pin5 Slew Rate Limit Enable (8-mA drive only).</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="SRL7">
+              <name>SRL4</name>
+              <description>Pin4 Slew Rate Limit Enable (8-mA drive only).</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="SRL7">
+              <name>SRL3</name>
+              <description>Pin3 Slew Rate Limit Enable (8-mA drive only).</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="SRL7">
+              <name>SRL2</name>
+              <description>Pin2 Slew Rate Limit Enable (8-mA drive only).</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="SRL7">
+              <name>SRL1</name>
+              <description>Pin1 Slew Rate Limit Enable (8-mA drive only).</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="SRL7">
+              <name>SRL0</name>
+              <description>Pin0 Slew Rate Limit Enable (8-mA drive only).</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- DEN: GPIO Digital Enable Register -->
+        <register>
+          <name>DEN</name>
+          <description>GPIO Digital Enable.</description>
+          <addressOffset>0x51C</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>DEN7</name>
+              <description>Pin7 Digital Enable.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinDigitalFunctionEnable</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_DIGITAL_FUNC_ON</name>
+                  <description>The digital functions for the corresponding pin are enabled.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_DIGITAL_FUNC_OFF</name>
+                  <description>The digital functions for the corresponding pin are disabled.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="DEN7">
+              <name>DEN6</name>
+              <description>Pin6 Digital Enable.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="DEN7">
+              <name>DEN5</name>
+              <description>Pin5 Digital Enable.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="DEN7">
+              <name>DEN4</name>
+              <description>Pin4 Digital Enable.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="DEN7">
+              <name>DEN3</name>
+              <description>Pin3 Digital Enable.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="DEN7">
+              <name>DEN2</name>
+              <description>Pin2 Digital Enable.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="DEN7">
+              <name>DEN1</name>
+              <description>Pin1 Digital Enable.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="DEN7">
+              <name>DEN0</name>
+              <description>Pin0 Digital Enable.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- LOCK: GPIO Lock Register -->
+        <register>
+          <name>LOCK</name>
+          <description>GPIO Lock.</description>
+          <addressOffset>0x520</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000001</resetValue>
+          <resetMask>0xffffffff</resetMask>
+        </register>
+      <!-- CR: GPIO Commit Register -->
+        <register>
+          <name>CR</name>
+          <description>GPIO Commit Register.</description>
+          <addressOffset>0x524</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x000000ff</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>CR7</name>
+              <description>Pin7 Commit.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinCommit</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_COMMIT_ENABLED</name>
+                  <description>The corresponding GPIOAFSEL, GPIOPUR, GPIOPDR, or
+GPIODEN bits can be written.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_COMMIT_DISABLED</name>
+                  <description>The corresponding GPIOAFSEL, GPIOPUR, GPIOPDR, or
+GPIODEN bits cannot be written.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="CR7">
+              <name>CR6</name>
+              <description>Pin6 Commit.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="CR7">
+              <name>CR5</name>
+              <description>Pin5 Commit.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="CR7">
+              <name>CR4</name>
+              <description>Pin4 Commit.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="CR7">
+              <name>CR3</name>
+              <description>Pin3 Commit.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="CR7">
+              <name>CR2</name>
+              <description>Pin2 Commit.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="CR7">
+              <name>CR1</name>
+              <description>Pin1 Commit.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="CR7">
+              <name>CR0</name>
+              <description>Pin0 Commit.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- AMSEL: GPIO Analog Mode Select Register -->
+        <register>
+          <name>AMSEL</name>
+          <description>GPIO Analog Mode Select.</description>
+          <addressOffset>0x528</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000f0</resetMask>
+          <fields>
+            <field>
+              <name>GPIOAMSEL7</name>
+              <description>Pin7 Analog Mode Select.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <name>PinAnalogMode</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PIN_COMMIT_ENABLED</name>
+                  <description>The analog function of the pin is enabled, the isolation is
+disabled, and the pin is capable of analog functions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PIN_COMMIT_DISABLED</name>
+                  <description>The analog function of the pin is disabled, the isolation is
+enabled, and the pin is capable of digital functions as specified
+by the other GPIO configuration registers.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom="GPIOAMSEL7">
+              <name>GPIOAMSEL6</name>
+              <description>Pin6 Analog Mode Select.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="GPIOAMSEL7">
+              <name>GPIOAMSEL5</name>
+              <description>Pin5 Analog Mode Select.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="GPIOAMSEL7">
+              <name>GPIOAMSEL4</name>
+              <description>Pin4 Analog Mode Select.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- PCTL: GPIO Port Control Register -->
+        <register>
+          <name>PCTL</name>
+          <description>GPIO Port Control.</description>
+          <addressOffset>0x52C</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0xffffffff</resetMask>
+          <fields>
+            <field>
+              <name>PMC7</name>
+              <description>Port7 Mux Control.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>4</bitWidth>
+
+              <enumeratedValues>
+                <name>PMC</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PCTL_0x0</name>
+                  <description>No alternative function selected.</description>
+                  <value>0x0</value>
+                  <isDefault>true</isDefault>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0x1</name>
+                  <description>PA0_U0Rx, PA1_U0Tx, PA2_SSI0Clk, PA3_SSI0Fss, PA4_SSI0Rx, PA5_SSI0Tx, PA6_I2C1SCL, PA7_I2C1SDA, PB0_CCP0, PB1_CCP2, PB2_I2C0SCL, PB3_I2C0SDA, PB5_C0o, PB6_CCP1, PC4_CCP5, PC5_CCP1, PC6_CCP3, PC7_CCP4, PD0_PWM0, PD1_PWM1, PD2_U1Rx, PD3_U1Tx, PD4_CCP0, PD5_CCP2, PD6_Fault0, PD7_IDX0, PE0_PWM4, PE1_PWM5, PE2_CCP4, PE3_CCP1, PE4_CCP3, PE5_CCP5, PE6_PWM4, PE7_PWM5, PF0_CAN1Rx, PF1_CAN1Tx, PF2_LED1, PF3_LED0, PF4_CCP0, PF5_CCP2, PG0_U2Rx, PG1_U2Tx, PG7_PhB1, PH0_CCP6, PH1_CCP7, PH2_IDX1, PH3_PhB0</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0x2</name>
+                  <description>PA6_CCP1, PA7_CCP4, PB0_PWM2, PB1_PWM3, PB2_IDX0, PB3_Fault0, PB5_CCP5, PB6_CCP7, PC4_PhA0, PC5_C1o, PC6_PhB0, PC7_PhB0, PD0_CAN0Rx, PD1_CAN0Tx, PD2_CCP6, PD3_CCP7, PD4_CCP3, PD5_CCP4, PD7_C0o, PE0_SSI1Clk, PE1_SSI1Fss, PE2_SSI1Rx, PE3_SSI1Tx, PE6_C1o, PE7_C2o, PF0_PhB0, PF1_IDX1, PF2_PWM4, PF3_PWM5, PF4_C0o, PF5_C1o, PG0_PWM0, PG1_PWM1, PH0_PWM2, PH1_PWM3, PH2_C1o, PH3_Fault0</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0x3</name>
+                  <description>PB5_CCP6, PB6_C0o, PC0_TCK_SWCLK, PC1_TMS_SWDIO, PC2_TDI, PC3_TDO_SWO, PC5_C1o, PC6_C2o, PD0_IDX0, PD1_PhA0, PD2_PWM2, PD3_PWM3, PD7_CCP1, PE0_CCP3, PE1_Fault0, PE2_PhB1, PE3_PhB1, PF0_PWM0, PF1_PWM1, PG0_I2C1SCL, PG1_I2C1SDA</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0x4</name>
+                  <description>PA2_PWM4, PA3_PWM5, PA4_PWM6, PA5_PWM7, PA6_PWM0, PA7_PWM1, PB1_CCP1, PB2_CC3, PB3_Fault3, PB4_U2Rx, PB5_CCP0, PB6_Fault1, PB7_NMI, PC4_PWM6, PC5_Fault2, PC6_PWM7, PC7_CCP0, PD0_U2Rx, PD1_U2Tx, PD2_CCP5, PD3_CCP0, PE1_CCP2, PE2_PhA0, PE3_PhB0, PE4_Fault0, PF2_PWM2, PF3_PWM3, PF4_Fault0, PG0_PWM4, PG1_PWM5, PG7_PWM7, PH2_Fault3, PH3_USB0EPEN, PH4_USB0PFLT</description>
+                  <value>0x4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0x5</name>
+                  <description>PA4_CAN0Rx, PA5_CAN0Tx, PA6_PWM4, PA7_PWM5, PB0_U1Rx, PB1_U1Tx, PB2_CCP0, PB4_CAN0Rx, PB5_CAN0Tx, PB6_IDX0, PC4_CCP2, PC5_CCP3, PC6_U1Rx, PC7_U1Tx, PD0_U1Rx, PD1_U1Tx, PD2_CCP5, PE1_CCP6, PE2_CCP2, PE3_CCP7, PE4_U2Tx</description>
+                  <value>0x5</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0x6</name>
+                  <description>PA6_CAN0Rx, PA7_CAN0Tx, PB4_IDX0, PB5_CCP2, PB6_CCP5, PC4_CCP4, PC5_USB0EPEN, PC6_CCP0, PC7_USB0PFLT, PD0_CCP6, PD1_CCP7, PE4_CCP2</description>
+                  <value>0x6</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0x7</name>
+                  <description>PA7_CCP3, PB4_U1Rx, PB5_U1Tx, PC6_USB0PFLT, PC7_C1o, PG0_USB0EPEN</description>
+                  <value>0x7</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0x8</name>
+                  <description>PA0_I2C1SCL, PA1_I2C1SDA, PA6_USB0EPEN, PA7_USB0PFLT, PB2_USB0EPEN, PB3_USB0PFLT, PB4_EPI0S23, PB5_EPI0S22, PC4_EPI0S2, PC5_EPI0S3, PC6_EPI0S4, PC7_EPI0S5, PD0_I2S0RXSCK, PD1_I2S0RXWS, PD2_EPI0S20, PD3_EPI0S21, PD4_I2S0RXSD, PD5_I2S0RXMCLK, PD6_I2S0TXSCK, PD7_I2S0TXWS, PE0_EPI0S8, PE1_EPI0S9, PE2_EPI0S24, PE3_EPI0S25, PF0_I2S0TXSD, PF1_I2S0TXMCLK, PF4_EPI0S12, PF5_EPI0S15, PG0_EPI0S13, PG1_EPI0S14, PG7_CCP5, PH0_EPI0S6, PH1_EPI0S7, PH2_EPI0S1, PH3_EPI0S0, PH4_EPI0S10, PH5_EPI0S11, PH6_EPI0S26, PH7_EPI0S27, PJ0_EPI0S16, PJ1_EPI0S17, PJ2_EPI0S18, PJ3_EPI0S19, PJ4_EPI0S28, PJ5_EPI0S29, PJ6_EPI0S30</description>
+                  <value>0x8</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0x9</name>
+                  <description>PA0_U1Rx, PA1_U1Tx, PA2_I2S0RXSD, PA3_I2S0RXMCLK, PA4_I2S0TXSCK, PA5_I2S0TXWS, PA6_U1CTS, PA7_U1DCD, PB6_I2S0TXSCK, PC4_CCP1, PD0_U1CTS, PD1_U1DCD, PD4_U1RI, PD5_U2Rx, PD6_U2Tx, PD7_U1DTR, PE0_USB0PFLT, PE4_I2S0TXWS, PE5_I2S0TXSD, PE6_U1CTS, PE7_U1DCD, PF0_U1DSR, PF1_U1RTS, PF2_SSI1Clk, PF3_SSI1Fss, PF4_SSI1Rx, PF5_SSI1Tx, PG7_EPI0S31, PH0_PWM4, PH1_PWM5, PJ1_USB0PFLT, PJ2_CCP0, PJ3_U1CTS, PJ4_U1DCD, PJ5_U1DSR, PJ6_U1RTS, PJ7_U1DTR</description>
+                  <value>0x9</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0xA</name>
+                  <description>PD1_CCP2, PD4_EPI0S19, PD5_EPI0S28, PD6_EPI0S29, PD7_EPI0S30, PF0_CCP3, PH5_Fault2, PH6_PWM4, PH7_PWM5, PJ0_PWM0, PJ1_PWM1, PJ2_Fault0, PJ3_CCP6, PJ4_CCP4, PJ5_CCP2, PJ6_CCP1, PJ7_CCP0</description>
+                  <value>0xA</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PCTL_0xB</name>
+                  <description>PD1_PhB1, PH4_SSI1Clk, PH5_SSI1Fss, PH6_SSI1Rx, PH7_SSI1Tx, PJ0_I2C1SCL, PJ1_I2C1SDA,</description>
+                  <value>0xB</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field derivedFrom=="PMC7">
+              <name>PMC6</name>
+              <description>Port6 Mux Control.</description>
+              <bitOffset>24</bitOffset>
+            </field>
+            <field derivedFrom=="PMC7">
+              <name>PMC5</name>
+              <description>Port5 Mux Control.</description>
+              <bitOffset>20</bitOffset>
+            </field>
+            <field derivedFrom=="PMC7">
+              <name>PMC4</name>
+              <description>Port4 Mux Control.</description>
+              <bitOffset>16</bitOffset>
+            </field>
+            <field derivedFrom=="PMC7">
+              <name>PMC3</name>
+              <description>Port3 Mux Control.</description>
+              <bitOffset>12</bitOffset>
+            </field>
+            <field derivedFrom=="PMC7">
+              <name>PMC2</name>
+              <description>Port2 Mux Control.</description>
+              <bitOffset>8</bitOffset>
+            </field>
+            <field derivedFrom=="PMC7">
+              <name>PMC1</name>
+              <description>Port1 Mux Control.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom=="PMC7">
+              <name>PMC0</name>
+              <description>Port0 Mux Control.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID4: GPIO Peripheral Identification 4 Register -->
+        <register>
+          <name>PeriphID4</name>
+          <description>GPIO Peripheral Identification 4.</description>
+          <addressOffset>0xFD0</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID4</name>
+              <description>Peripheral ID Register [7:0].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID5: GPIO Peripheral Identification 5 Register -->
+        <register>
+          <name>PeriphID5</name>
+          <description>GPIO Peripheral Identification 5.</description>
+          <addressOffset>0xFD4</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID5</name>
+              <description>Peripheral ID Register [15:8].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID6: GPIO Peripheral Identification 6 Register -->
+        <register>
+          <name>PeriphID6</name>
+          <description>GPIO Peripheral Identification 6.</description>
+          <addressOffset>0xFD8</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID6</name>
+              <description>Peripheral ID Register [23:16].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID7: GPIO Peripheral Identification 7 Register -->
+        <register>
+          <name>PeriphID7</name>
+          <description>GPIO Peripheral Identification 7.</description>
+          <addressOffset>0xFDC</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID7</name>
+              <description>Peripheral ID Register [31:24].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID0: GPIO Peripheral Identification 0 Register -->
+        <register>
+          <name>PeriphID0</name>
+          <description>GPIO Peripheral Identification 0.</description>
+          <addressOffset>0xFE0</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000081</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID0</name>
+              <description>Peripheral ID Register [7:0].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID1: GPIO Peripheral Identification 1 Register -->
+        <register>
+          <name>PeriphID1</name>
+          <description>GPIO Peripheral Identification 1.</description>
+          <addressOffset>0xFE4</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID1</name>
+              <description>Peripheral ID Register [15:8].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID2: GPIO Peripheral Identification 2 Register -->
+        <register>
+          <name>PeriphID2</name>
+          <description>GPIO Peripheral Identification 2.</description>
+          <addressOffset>0xFE8</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000018</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID2</name>
+              <description>Peripheral ID Register [23:16].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID3: GPIO Peripheral Identification 3 Register -->
+        <register>
+          <name>PeriphID3</name>
+          <description>GPIO Peripheral Identification 3.</description>
+          <addressOffset>0xFEC</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000001</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID3</name>
+              <description>Peripheral ID Register [31:24].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PCellID0: GPIO PrimeCell Identification 0 Register -->
+        <register>
+          <name>PCellID0</name>
+          <description>GPIO PrimeCell Identification 0.</description>
+          <addressOffset>0xFF0</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x0000000D</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>CID0</name>
+              <description>PrimeCell ID Register [7:0].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PCellID1: GPIO PrimeCell Identification 1 Register -->
+        <register>
+          <name>PCellID1</name>
+          <description>GPIO PrimeCell Identification 1.</description>
+          <addressOffset>0xFF4</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x000000F0</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>CID1</name>
+              <description>PrimeCell ID Register [15:8].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PCellID2: GPIO PrimeCell Identification 2 Register -->
+        <register>
+          <name>PCellID2</name>
+          <description>GPIO PrimeCell Identification 2.</description>
+          <addressOffset>0xFF8</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000005</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>CID2</name>
+              <description>PrimeCell ID Register [23:16].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PCellID3: GPIO PrimeCell Identification 3 Register -->
+        <register>
+          <name>PCellID3</name>
+          <description>GPIO PrimeCell Identification 3.</description>
+          <addressOffset>0xFFC</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x000000B1</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>CID3</name>
+              <description>PrimeCell ID Register [31:24].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+  
+    <!-- General purpose input output port B -->
+    <peripheral derivedFrom="GPIOA">
+      <name>GPIOB</name>
+      <baseAddress>0x40005000</baseAddress>
+      <interrupt>
+        <name>GPIOB</name>
+        <description>GPIO B interrupt.</description>
+        <value>1</value>
+      </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port C -->
+    <peripheral derivedFrom="GPIOA">
+      <name>GPIOC</name>
+      <baseAddress>0x40006000</baseAddress>
+      <interrupt>
+        <name>GPIOC</name>
+        <description>GPIO C interrupt.</description>
+        <value>2</value>
+      </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port D -->
+    <peripheral derivedFrom="GPIOA">
+      <name>GPIOD</name>
+      <baseAddress>0x40007000</baseAddress>
+      <interrupt>
+        <name>GPIOD</name>
+        <description>GPIO D interrupt.</description>
+        <value>3</value>
+      </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port E -->
+    <peripheral derivedFrom="GPIOA">
+      <name>GPIOE</name>
+      <baseAddress>0x40024000</baseAddress>
+      <interrupt>
+        <name>GPIOE</name>
+        <description>GPIO E interrupt.</description>
+        <value>4</value>
+      </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port F -->
+    <peripheral derivedFrom="GPIOA">
+      <name>GPIOF</name>
+      <baseAddress>0x40025000</baseAddress>
+      <interrupt>
+        <name>GPIOF</name>
+        <description>GPIO F interrupt.</description>
+        <value>30</value>
+      </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port G -->
+    <peripheral derivedFrom="GPIOA">
+      <name>GPIOG</name>
+      <baseAddress>0x40026000</baseAddress>
+      <interrupt>
+        <name>GPIOG</name>
+        <description>GPIO G interrupt.</description>
+        <value>31</value>
+      </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port H -->
+    <peripheral derivedFrom="GPIOA">
+      <name>GPIOH</name>
+      <baseAddress>0x40027000</baseAddress>
+      <interrupt>
+        <name>GPIOH</name>
+        <description>GPIO H interrupt.</description>
+        <value>32</value>
+      </interrupt>
+    </peripheral>
+    
+    <!-- General purpose input output port J -->
+    <peripheral derivedFrom="GPIOA">
+      <name>GPIOJ</name>
+      <baseAddress>0x4003D000</baseAddress>
+      <interrupt>
+        <name>GPIOJ</name>
+        <description>GPIO J interrupt.</description>
+        <value>54</value>
+      </interrupt>
+    </peripheral>
+    
+    <!-- Watchdog timer 0 -->
+    <peripheral>
+      <name>WDT0</name>
+      <version>1.0</version>
+      <description>Watchdog timer 0, with 32-bit down counter.</description>
+      <groupName>WDT</groupName>
+      <headerStructName>WDT</headerStructName>
+      <baseAddress>0x40000000</baseAddress>
+      
+      <size>32</size>
+      <access>read-write</access>
+      
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x00001000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>WDT0</name>
+        <description>Watchdog Timer 0 and 1 interrupt.</description>
+        <value>18</value>
+      </interrupt>
+      
+      <registers>
+        <!-- WDTLOAD: Watchdog Load Register -->
+        <register>
+          <name>WDTLOAD</name>
+          <description>32-bit interval value used by the 32-bit watchdog down-counter.</description>
+          <addressOffset>0x00000000</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0xFFFFFFFF</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+        </register>
+        
+        <!-- WDTVALUE: Watchdog Value Register -->
+        <register>
+          <name>WDTVALUE</name>
+          <description>32-bit register with the current count value of the timer.</description>
+          <addressOffset>0x00000004</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0xFFFFFFFF</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+        </register>
+        
+        <!-- WDTCTL: Watchdog Control Register -->
+        <register>
+          <name>WDTCTL</name>
+          <description>Watchdog Control Register.</description>
+          <addressOffset>0x00000008</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x80000003</resetMask>
+          
+          <fields>
+            <!-- WRC: Write Complete -->
+            <field>
+              <name>WRC</name>
+              <description>Watchdog Timer Write Complete</description>
+              <bitRange>[31:31]</bitRange>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Busy</name>
+                  <description>A write access to one of the WDT1 registers is in progress.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Ready</name>
+                  <description>A write access is not in progress, and WDT registers can be read or written.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- RESEN: Reset Event Enable -->
+            <field>
+              <name>RESEN</name>
+              <description>Watchdog Reset Enable</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disabled</name>
+                  <description>Watchdog Timer reset output is disabled.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enabled</name>
+                  <description>Watchdog Timer reset output is enabled.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- INTEN: Interrupt Enable -->
+            <field>
+              <name>INTEN</name>
+              <description>Watchdog Interrupt Enable</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disabled</name>
+                  <description>Watchdog Timer interrupt event is disabled (once this bit is set, it can only be cleared by a hardware reset).</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enabled</name>
+                  <description>Watchdog Timer interrupt event enabled. Once enabled, all writes are ignored.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- WDTICR: Watchdog Interrupt Clear Register -->
+        <register>
+          <name>ICR</name>
+          <description>Watchdog Interrupt Clear Register.</description>
+          <addressOffset>0x0000000C</addressOffset>
+          <size>32</size>
+          <access>write-only</access>
+          
+          <resetMask>0x00000000</resetMask>
+        </register>
+        
+        <!-- WDTRIS: Watchdog Raw Interrupt Status Register -->
+        <register>
+          <name>RIS</name>
+          <description>Watchdog Raw Interrupt Status Register.</description>
+          <addressOffset>0x00000010</addressOffset>
+          <size>32</size>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          <fields>
+            <!-- WDTRIS: Watchdog Raw Interrupt Status -->
+            <field>
+              <name>WDTRIS</name>
+              <description>Watchdog Raw Interrupt Status</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Reset</name>
+                  <description>The watchdog has not timed out.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Set</name>
+                  <description>A watchdog time-out event has occurred.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- WDTMIS: Watchdog Masked Interrupt Status Register -->
+        <register>
+          <name>WDTMIS</name>
+          <description>Watchdog Masked Interrupt Status Register.</description>
+          <addressOffset>0x00000014</addressOffset>
+          <size>32</size>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          
+          <fields>
+            <!-- WDTMIS: Watchdog Masked Interrupt Status -->
+            <field>
+              <name>WDTMIS</name>
+              <description>Watchdog Masked Interrupt Status.</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Reset</name>
+                  <description>The watchdog has not timed out or the watchdog timer interrupt is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Set</name>
+                  <description>A watchdog time-out event has been signalled to the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- WDTTEST: Watchdog Test Register -->
+        <register>
+          <name>WDTTEST</name>
+          <description>Watchdog Test Register.</description>
+          <addressOffset>0x00000418</addressOffset>
+          <size>32</size>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00001000</resetMask>
+          
+          <fields>
+            <!-- STALL: Watchdog Stall Enable -->
+            <field>
+              <name>STALL</name>
+              <description>Watchdog Stall Enable.</description>
+              <bitRange>[8:8]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disabled</name>
+                  <description>If the microcontroller is stopped with a debugger, the watchdog timer stops counting. Once the microcontroller is restarted, the watchdog timer resumes counting.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enabled</name>
+                  <description>The watchdog timer continues counting if the microcontroller is stopped with a debugger.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- WDTLOCK: Watchdog Lock Register -->
+        <register>
+          <name>WDTLOCK</name>
+          <description>Watchdog Lock Register.</description>
+          <addressOffset>0x00000C00</addressOffset>
+          <size>32</size>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+          
+          <fields>
+            <field>
+              <name>WDTLOCK</name>
+              <description>Watchdog Lock</description>
+              <bitRange>[0:0]</bitRange>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>Unlocked</name>
+                  <description>Watchdog registers are unlocked for write access.</description>
+                  <value>0x00000000</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Locked</name>
+                  <description>Watchdog registers are locked for write access.</description>
+                  <value>0x00000001</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+    
+    <!-- Watchdog timer 1 -->
+    <peripheral derivedFrom="WDT0">
+        <name>WDT1</name>
+        <baseAddress>0x40001000</baseAddress>
+    </peripheral>
+    
+
+    <!-- System Control -->
+    <peripheral>
+      <name>SYSCTL</name>
+      <version>1.0</version>
+      <description>System control configures the overall operation of the device and provides information about the device.</description>
+      <baseAddress>0x400FE000</baseAddress>
+      
+      <size>32</size>
+      <access>read-write</access>
+      
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x000001A4</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>SYSCTL</name>
+        <description>System Control interrupt.</description>
+        <value>28</value>
+      </interrupt>
+      
+      
+      <registers>
+        <!-- DID0: Device Identification 0 Register -->
+        <register>
+          <name>DID0</name>
+          <description>This register identifies the version of the microcontroller.</description>
+          <addressOffset>0x00000000</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x10040000</resetValue>
+          <resetMask>0xFFFF0000</resetMask>
+          <fields>
+            <!-- VER: Write Complete -->
+            <field>
+              <name>VER</name>
+              <description>DID0 Version.</description>
+              <bitRange>[30:28]</bitRange>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DID0VER</name>
+                  <description>Second version of the DID0 register format.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+  </peripherals>
+    
+
+</device>

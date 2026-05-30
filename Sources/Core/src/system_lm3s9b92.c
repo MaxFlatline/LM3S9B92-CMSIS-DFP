@@ -486,79 +486,79 @@ void SystemCoreClockUpdate (void)
     uint32_t rcc, rcc2;
     uint32_t sysdiv, minsysdiv;
     
-    /* Determine clock frequency according to clock register values */
-    rcc  = LM3S_SYSCTL->RCC;
-    rcc2 = LM3S_SYSCTL->RCC2;
+//    /* Determine clock frequency according to clock register values */
+//    rcc  = LM3S_SYSCTL->RCC;
+//    rcc2 = LM3S_SYSCTL->RCC2;
     
     
     
-    if ((rcc2 & LM3S_SYSCTL_RCC2_USERCC2_Msk) == LM3S_SYSCTL_RCC2_USERCC2_Msk) {
-        /* RCC2 is used */
-        if((rcc2 & LM3S_SYSCTL_RCC2_BYPASS2_Msk) == LM3S_SYSCTL_RCC2_BYPASS2_Msk) {
-            /* PLL is bypassed */
-            SystemCoreClock = getOscClk (((rcc & LM3S_SYSCTL_RCC_XTAL_Msk)>>LM3S_SYSCTL_RCC_XTAL_Pos),((rcc2 & LM3S_SYSCTL_RCC2_OSCSRC2_Msk)>>LM3S_SYSCTL_RCC2_OSCSRC2_Pos));
-            if((rcc & LM3S_SYSCTL_RCC_USESYSDIV_Msk) == LM3S_SYSCTL_RCC_USESYSDIV_Msk) {
-                sysdiv = (rcc & LM3S_SYSCTL_RCC2_SYSDIV2_Msk)>>LM3S_SYSCTL_RCC2_SYSDIV2_Pos;
-                /* SYSDIV2 is used */
-                if(sysdiv > 0) {
-                    /* SYSDIV2 is greater than /2 */
-                    SystemCoreClock = VCO_PREDDIV2_CLK / (sysdiv + 1);
-                }
-                else {
-                    /* SYSDIV is 0 - Reserved*/
-                    SystemCoreClock = 0;
-                }
-            }
-        }
-        else {
-            /* PLL is used */
-            /* SYSDIV is forced to be used when PLL is selected as the source */
-            sysdiv = (rcc & LM3S_SYSCTL_RCC2_SYSDIV2_Msk)>>LM3S_SYSCTL_RCC2_SYSDIV2_Pos;
-            /* SYSDIV2 is used */
-            if(sysdiv > 1) {
-                /* SYSDIV2 is greater than /2 */
-                SystemCoreClock = VCO_PREDDIV2_CLK / (sysdiv + 1);
-            }
-            else {
-                /* SYSDIV2 is less than 2 - Reserved*/
-                SystemCoreClock = 0;
-            }
-        }
-    }
-    else {
-        /* RCC2 is unused */
-        if((rcc & LM3S_SYSCTL_RCC_BYPASS_Msk) == LM3S_SYSCTL_RCC_BYPASS_Msk) {
-            /* PLL is bypassed */
-            SystemCoreClock = getOscClk (((rcc & LM3S_SYSCTL_RCC_XTAL_Msk)>>LM3S_SYSCTL_RCC_XTAL_Pos),((rcc & LM3S_SYSCTL_RCC_OSCSRC_Msk)>>LM3S_SYSCTL_RCC_OSCSRC_Pos));
-            if((rcc & LM3S_SYSCTL_RCC_USESYSDIV_Msk) == LM3S_SYSCTL_RCC_USESYSDIV_Msk) {
-                sysdiv = (rcc & LM3S_SYSCTL_RCC_SYSDIV_Msk)>>LM3S_SYSCTL_RCC_SYSDIV_Pos;
-                /* SYSDIV is used */
-                if(sysdiv > 0) {
-                    /* SYSDIV is greater than /2 */
-                    SystemCoreClock = VCO_PREDDIV2_CLK / (sysdiv + 1);
-                }
-                else {
-                    /* SYSDIV is 0 - Reserved*/
-                    SystemCoreClock = 0;
-                }
-            }
-        }
-        else {
-            /* PLL is used */
-            /* SYSDIV is forced to be used when PLL is selected as the source */
-            sysdiv = (rcc & LM3S_SYSCTL_RCC_SYSDIV_Msk)>>LM3S_SYSCTL_RCC_SYSDIV_Pos;
-            /* SYSDIV is used */
-            if(sysdiv > 1) {
-                /* SYSDIV is greater than /2 */
-                SystemCoreClock = VCO_PREDDIV2_CLK / (sysdiv + 1);
-            }
-            else {
-                /* SYSDIV is less than 2 - Reserved*/
-                SystemCoreClock = 0;
-            }
-            
-        }
-    }
+//    if ((rcc2 & LM3S_SYSCTL_RCC2_USERCC2_Msk) == LM3S_SYSCTL_RCC2_USERCC2_Msk) {
+//        /* RCC2 is used */
+//        if((rcc2 & LM3S_SYSCTL_RCC2_BYPASS2_Msk) == LM3S_SYSCTL_RCC2_BYPASS2_Msk) {
+//            /* PLL is bypassed */
+//            SystemCoreClock = getOscClk (((rcc & LM3S_SYSCTL_RCC_XTAL_Msk)>>LM3S_SYSCTL_RCC_XTAL_Pos),((rcc2 & LM3S_SYSCTL_RCC2_OSCSRC2_Msk)>>LM3S_SYSCTL_RCC2_OSCSRC2_Pos));
+//            if((rcc & LM3S_SYSCTL_RCC_USESYSDIV_Msk) == LM3S_SYSCTL_RCC_USESYSDIV_Msk) {
+//                sysdiv = (rcc & LM3S_SYSCTL_RCC2_SYSDIV2_Msk)>>LM3S_SYSCTL_RCC2_SYSDIV2_Pos;
+//                /* SYSDIV2 is used */
+//                if(sysdiv > 0) {
+//                    /* SYSDIV2 is greater than /2 */
+//                    SystemCoreClock = VCO_PREDDIV2_CLK / (sysdiv + 1);
+//                }
+//                else {
+//                    /* SYSDIV is 0 - Reserved*/
+//                    SystemCoreClock = 0;
+//                }
+//            }
+//        }
+//        else {
+//            /* PLL is used */
+//            /* SYSDIV is forced to be used when PLL is selected as the source */
+////            sysdiv = (rcc & LM3S_SYSCTL_RCC2_SYSDIV2_Msk)>>LM3S_SYSCTL_RCC2_SYSDIV2_Pos;
+//            /* SYSDIV2 is used */
+//            if(sysdiv > 1) {
+//                /* SYSDIV2 is greater than /2 */
+//                SystemCoreClock = VCO_PREDDIV2_CLK / (sysdiv + 1);
+//            }
+//            else {
+//                /* SYSDIV2 is less than 2 - Reserved*/
+//                SystemCoreClock = 0;
+//            }
+//        }
+//    }
+//    else {
+////        /* RCC2 is unused */
+////        if((rcc & LM3S_SYSCTL_RCC_BYPASS_Msk) == LM3S_SYSCTL_RCC_BYPASS_Msk) {
+////            /* PLL is bypassed */
+////            SystemCoreClock = getOscClk (((rcc & LM3S_SYSCTL_RCC_XTAL_Msk)>>LM3S_SYSCTL_RCC_XTAL_Pos),((rcc & LM3S_SYSCTL_RCC_OSCSRC_Msk)>>LM3S_SYSCTL_RCC_OSCSRC_Pos));
+////            if((rcc & LM3S_SYSCTL_RCC_USESYSDIV_Msk) == LM3S_SYSCTL_RCC_USESYSDIV_Msk) {
+////                sysdiv = (rcc & LM3S_SYSCTL_RCC_SYSDIV_Msk)>>LM3S_SYSCTL_RCC_SYSDIV_Pos;
+////                /* SYSDIV is used */
+////                if(sysdiv > 0) {
+////                    /* SYSDIV is greater than /2 */
+////                    SystemCoreClock = VCO_PREDDIV2_CLK / (sysdiv + 1);
+////                }
+////                else {
+////                    /* SYSDIV is 0 - Reserved*/
+////                    SystemCoreClock = 0;
+////                }
+//            }
+//        }
+//        else {
+//            /* PLL is used */
+//            /* SYSDIV is forced to be used when PLL is selected as the source */
+////            sysdiv = (rcc & LM3S_SYSCTL_RCC_SYSDIV_Msk)>>LM3S_SYSCTL_RCC_SYSDIV_Pos;
+//            /* SYSDIV is used */
+//            if(sysdiv > 1) {
+//                /* SYSDIV is greater than /2 */
+//                SystemCoreClock = VCO_PREDDIV2_CLK / (sysdiv + 1);
+//            }
+//            else {
+//                /* SYSDIV is less than 2 - Reserved*/
+//                SystemCoreClock = 0;
+//            }
+//            
+//        }
+//    }
 }
 
 
@@ -574,27 +574,27 @@ void SystemInit (void)
 #if(CLOCK_SETUP)
     uint32_t i;
 
-    LM3S_SYSCTL->RCC2 = 0x07802810;    /* set default value */
-    LM3S_SYSCTL->RCC  = 0x078E3AD1;    /* set default value */
+//    LM3S_SYSCTL->RCC2 = 0x07802810;    /* set default value */
+//    LM3S_SYSCTL->RCC  = 0x078E3AD1;    /* set default value */
 
-    LM3S_SYSCTL->RCC  = (RCC_Val  | (1UL<<11) | (1UL<<13)) & ~(1UL<<22); /* set value with BYPASS, PWRDN set, USESYSDIV reset */
-    LM3S_SYSCTL->RCC2 = (RCC2_Val | (1UL<<11) | (1UL<<13));              /* set value with BYPASS, PWRDN set */
-    for (i = 0; i < 1000; i++);   /* wait a while */
+//    LM3S_SYSCTL->RCC  = (RCC_Val  | (1UL<<11) | (1UL<<13)) & ~(1UL<<22); /* set value with BYPASS, PWRDN set, USESYSDIV reset */
+//    LM3S_SYSCTL->RCC2 = (RCC2_Val | (1UL<<11) | (1UL<<13));              /* set value with BYPASS, PWRDN set */
+//    for (i = 0; i < 1000; i++);   /* wait a while */
 
-    LM3S_SYSCTL->RCC  = (RCC_Val  | (1UL<<11)) & ~(1UL<<22);             /* set value with BYPASS, USESYSDIV reset */
-    LM3S_SYSCTL->RCC2 = (RCC2_Val | (1UL<<11));                          /* set value with BYPASS */
-    for (i = 0; i < 1000; i++);   /* wait a while */
+//    LM3S_SYSCTL->RCC  = (RCC_Val  | (1UL<<11)) & ~(1UL<<22);             /* set value with BYPASS, USESYSDIV reset */
+//    LM3S_SYSCTL->RCC2 = (RCC2_Val | (1UL<<11));                          /* set value with BYPASS */
+//    for (i = 0; i < 1000; i++);   /* wait a while */
 
-    LM3S_SYSCTL->RCC  = (RCC_Val  | (1<<11));                            /* set value with BYPASS */
+//    LM3S_SYSCTL->RCC  = (RCC_Val  | (1<<11));                            /* set value with BYPASS */
 
-    if ( (((RCC_Val  & (1UL<<13)) == 0) && ((RCC2_Val & (1UL<<31)) == 0)) ||
-         (((RCC2_Val & (1UL<<13)) == 0) && ((RCC2_Val & (1UL<<31)) != 0))   ) {
-      while ((LM3S_SYSCTL->RIS & (1UL<<6)) != (1UL<<6));                 /* wait until PLL is locked */
-    }
+//    if ( (((RCC_Val  & (1UL<<13)) == 0) && ((RCC2_Val & (1UL<<31)) == 0)) ||
+//         (((RCC2_Val & (1UL<<13)) == 0) && ((RCC2_Val & (1UL<<31)) != 0))   ) {
+//      while ((LM3S_SYSCTL->RIS & (1UL<<6)) != (1UL<<6));                 /* wait until PLL is locked */
+//    }
 
-    LM3S_SYSCTL->RCC  = (RCC_Val);                                       /* set value */
-    LM3S_SYSCTL->RCC2 = (RCC2_Val);                                      /* set value */
-    for (i = 0; i < 10000; i++);   /* wait a while */
+//    LM3S_SYSCTL->RCC  = (RCC_Val);                                       /* set value */
+//    LM3S_SYSCTL->RCC2 = (RCC2_Val);                                      /* set value */
+//    for (i = 0; i < 10000; i++);   /* wait a while */
 
 #endif
     SystemCoreClockUpdate();
