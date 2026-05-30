@@ -115,13 +115,10 @@
           <resetMask>0x000000ff</resetMask>
           <fields>
             <field>
-              <name>DATA%s</name>
-              <description>Pin%s data.</description>
-              <bitOffset>0</bitOffset>
+              <name>DATA7</name>
+              <description>Pin7 data.</description>
+              <bitOffset>7</bitOffset>
               <bitWidth>1</bitWidth>
-              <dim>8</dim>
-              <dimIncrement>1</dimIncrement>
-              <dimIndex>0-7</dimIndex>
 
               <enumeratedValues>
                 <name>OutputPinWrite</name>
@@ -152,6 +149,41 @@
                 </enumeratedValue>
               </enumeratedValues>
             </field>
+            <field derivedFrom="DATA7">
+              <name>DATA6</name>
+              <description>Pin6 data.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="DATA7">
+              <name>DATA5</name>
+              <description>Pin5 data.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="DATA7">
+              <name>DATA4</name>
+              <description>Pin4 data.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="DATA7">
+              <name>DATA3</name>
+              <description>Pin3 data.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="DATA7">
+              <name>DATA2</name>
+              <description>Pin2 data.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="DATA7">
+              <name>DATA1</name>
+              <description>Pin1 data.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="DATA7">
+              <name>DATA0</name>
+              <description>Pin0 data.</description>
+              <bitOffset>0</bitOffset>
+            </field>
           </fields>
         </register>
       <!-- DIR: GPIO Digital Direction Register -->
@@ -164,13 +196,10 @@
           <resetMask>0x000000ff</resetMask>
           <fields>
             <field>
-              <name>DIR%s</name>
-              <description>Pin%s Data Direction.</description>
-              <bitOffset>0</bitOffset>
+              <name>DIR7</name>
+              <description>Pin7 Data Direction.</description>
+              <bitOffset>7</bitOffset>
               <bitWidth>1</bitWidth>
-              <dim>8</dim>
-              <dimIncrement>1</dimIncrement>
-              <dimIndex>0-7</dimIndex>
 
               <enumeratedValues>
                 <name>PinDirectionSet</name>
@@ -201,6 +230,41 @@
                 </enumeratedValue>
               </enumeratedValues>
             </field>
+            <field derivedFrom="DIR7">
+              <name>DIR6</name>
+              <description>Pin6 Data Direction.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="DIR7">
+              <name>DIR5</name>
+              <description>Pin5 Data Direction.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="DIR7">
+              <name>DIR4</name>
+              <description>Pin4 Data Direction.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="DIR7">
+              <name>DIR3</name>
+              <description>Pin3 Data Direction.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="DIR7">
+              <name>DIR2</name>
+              <description>Pin2 Data Direction.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="DIR7">
+              <name>DIR1</name>
+              <description>Pin1 Data Direction.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="DIR7">
+              <name>DIR0</name>
+              <description>Pin0 Data Direction.</description>
+              <bitOffset>0</bitOffset>
+            </field>
           </fields>
         </register>
       <!-- IS: GPIO Interrupt Sense Register -->
@@ -213,13 +277,10 @@
           <resetMask>0x000000ff</resetMask>
           <fields>
             <field>
-              <name>IS%s</name>
-              <description>Pin%s Interrupt Sense.</description>
-              <bitOffset>0</bitOffset>
+              <name>IS7</name>
+              <description>Pin7 Interrupt Sense.</description>
+              <bitOffset>7</bitOffset>
               <bitWidth>1</bitWidth>
-              <dim>8</dim>
-              <dimIncrement>1</dimIncrement>
-              <dimIndex>0-7</dimIndex>
 
               <enumeratedValues>
                 <name>PinDirectionSet</name>
@@ -250,6 +311,41 @@
                 </enumeratedValue>
               </enumeratedValues>
             </field>
+            <field derivedFrom="IS7">
+              <name>IS6</name>
+              <description>Pin6 Interrupt Sense.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="IS7">
+              <name>IS5</name>
+              <description>Pin5 Interrupt Sense.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="IS7">
+              <name>IS4</name>
+              <description>Pin4 Interrupt Sense.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="IS7">
+              <name>IS3</name>
+              <description>Pin3 Interrupt Sense.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="IS7">
+              <name>IS2</name>
+              <description>Pin2 Interrupt Sense.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="IS7">
+              <name>IS1</name>
+              <description>Pin1 Interrupt Sense.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="IS7">
+              <name>IS0</name>
+              <description>Pin0 Interrupt Sense.</description>
+              <bitOffset>0</bitOffset>
+            </field>
           </fields>
         </register>
       <!-- IBE: GPIO Interrupt Both Edges Register -->
@@ -262,13 +358,10 @@
           <resetMask>0x000000ff</resetMask>
           <fields>
             <field>
-              <name>IBE%s</name>
-              <description>Pin%s Interrupt Both Edges.</description>
-              <bitOffset>0</bitOffset>
+              <name>IBE7</name>
+              <description>Pin7 Interrupt Both Edges.</description>
+              <bitOffset>7</bitOffset>
               <bitWidth>1</bitWidth>
-              <dim>8</dim>
-              <dimIncrement>1</dimIncrement>
-              <dimIndex>0-7</dimIndex>
 
               <enumeratedValues>
                 <name>PinInterruptEdgeSensitivitySet</name>
@@ -285,6 +378,41 @@
                 </enumeratedValue>
               </enumeratedValues>
             </field>
+            <field derivedFrom="IBE7">
+              <name>IBE6</name>
+              <description>Pin6 Interrupt Both Edges.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="IBE7">
+              <name>IBE5</name>
+              <description>Pin5 Interrupt Both Edges.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="IBE7">
+              <name>IBE4</name>
+              <description>Pin4 Interrupt Both Edges.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="IBE7">
+              <name>IBE3</name>
+              <description>Pin3 Interrupt Both Edges.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="IBE7">
+              <name>IBE2</name>
+              <description>Pin2 Interrupt Both Edges.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="IBE7">
+              <name>IBE1</name>
+              <description>Pin1 Interrupt Both Edges.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="IBE7">
+              <name>IBE0</name>
+              <description>Pin0 Interrupt Both Edges.</description>
+              <bitOffset>0</bitOffset>
+            </field>
           </fields>
         </register>
       <!-- IEV: GPIO Interrupt Event Register -->
@@ -297,30 +425,60 @@
           <resetMask>0x000000ff</resetMask>
           <fields>
             <field>
-              <name>IEV%s</name>
-              <description>Pin%s Interrupt Event.</description>
-              <bitOffset>0</bitOffset>
+              <name>IEV7</name>
+              <description>Pin7 Interrupt Event.</description>
+              <bitOffset>7</bitOffset>
               <bitWidth>1</bitWidth>
-              <dim>8</dim>
-              <dimIncrement>1</dimIncrement>
-              <dimIndex>0-7</dimIndex>
 
               <enumeratedValues>
                 <name>PinInterruptEventSelect</name>
                 <usage>read-write</usage>
                 <enumeratedValue>
                   <name>PIN_IRQ_TRIG_RISING_EDGE</name>
-                  <description>A rising edge or a High level on the corresponding pin triggers
-an interrupt.</description>
+                  <description>A rising edge or a High level on the corresponding pin triggers an interrupt.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>PIN_IRQ_TRIG_FALLING_EDGE</name>
-                  <description>A falling edge or a Low level on the corresponding pin triggers
-an interrupt.</description>
+                  <description>A falling edge or a Low level on the corresponding pin triggers an interrupt.</description>
                   <value>0</value>
                 </enumeratedValue>
               </enumeratedValues>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV6</name>
+              <description>Pin6 Interrupt Event.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV5</name>
+              <description>Pin5 Interrupt Event.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV4</name>
+              <description>Pin4 Interrupt Event.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV3</name>
+              <description>Pin3 Interrupt Event.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV2</name>
+              <description>Pin2 Interrupt Event.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV1</name>
+              <description>Pin1 Interrupt Event.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="IEV7">
+              <name>IEV0</name>
+              <description>Pin0 Interrupt Event.</description>
+              <bitOffset>0</bitOffset>
             </field>
           </fields>
         </register>
@@ -334,21 +492,17 @@ an interrupt.</description>
           <resetMask>0x000000ff</resetMask>
           <fields>
             <field>
-              <name>IME%s</name>
-              <description>Pin%s Interrupt Mask Enable.</description>
-              <bitOffset>0</bitOffset>
+              <name>IME7</name>
+              <description>Pin7 Interrupt Mask Enable.</description>
+              <bitOffset>7</bitOffset>
               <bitWidth>1</bitWidth>
-              <dim>8</dim>
-              <dimIncrement>1</dimIncrement>
-              <dimIndex>0-7</dimIndex>
 
               <enumeratedValues>
                 <name>PinInterruptMask</name>
                 <usage>read-write</usage>
                 <enumeratedValue>
                   <name>PIN_IRQ_UNMASKED_PIN</name>
-                  <description>The interrupt from the corresponding pin is sent to the interrupt
-controller.</description>
+                  <description>The interrupt from the corresponding pin is sent to the interrupt controller.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
@@ -357,6 +511,41 @@ controller.</description>
                   <value>0</value>
                 </enumeratedValue>
               </enumeratedValues>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME6</name>
+              <description>Pin6 Interrupt Mask Enable.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME5</name>
+              <description>Pin5 Interrupt Mask Enable.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME4</name>
+              <description>Pin4 Interrupt Mask Enable.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME3</name>
+              <description>Pin3 Interrupt Mask Enable.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME2</name>
+              <description>Pin2 Interrupt Mask Enable.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME1</name>
+              <description>Pin1 Interrupt Mask Enable.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="IME7">
+              <name>IME0</name>
+              <description>Pin0 Interrupt Mask Enable.</description>
+              <bitOffset>0</bitOffset>
             </field>
           </fields>
         </register>
@@ -370,13 +559,10 @@ controller.</description>
           <resetMask>0x000000ff</resetMask>
           <fields>
             <field>
-              <name>RIS%s</name>
-              <description>Pin%s Interrupt Raw Status.</description>
-              <bitOffset>0</bitOffset>
+              <name>RIS7</name>
+              <description>Pin7 Interrupt Raw Status.</description>
+              <bitOffset>7</bitOffset>
               <bitWidth>1</bitWidth>
-              <dim>8</dim>
-              <dimIncrement>1</dimIncrement>
-              <dimIndex>0-7</dimIndex>
 
               <enumeratedValues>
                 <name>PinInterruptRawInterruptStatus</name>
@@ -388,11 +574,45 @@ controller.</description>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>PIN_IRQ_PIN_RAW_STATUS_FALSE</name>
-                  <description>An interrupt condition has not occurred on the corresponding
-pin.</description>
+                  <description>An interrupt condition has not occurred on the corresponding pin.</description>
                   <value>0</value>
                 </enumeratedValue>
               </enumeratedValues>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS6</name>
+              <description>Pin6 Interrupt Raw Status.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS5</name>
+              <description>Pin5 Interrupt Raw Status.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS4</name>
+              <description>Pin4 Interrupt Raw Status.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS3</name>
+              <description>Pin3 Interrupt Raw Status.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS2</name>
+              <description>Pin2 Interrupt Raw Status.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS1</name>
+              <description>Pin1 Interrupt Raw Status.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="RIS7">
+              <name>RIS0</name>
+              <description>Pin0 Interrupt Raw Status.</description>
+              <bitOffset>0</bitOffset>
             </field>
           </fields>
         </register>
@@ -406,13 +626,10 @@ pin.</description>
           <resetMask>0x000000ff</resetMask>
           <fields>
             <field>
-              <name>MIS%s</name>
-              <description>Pin%s Masked Interrupt Status.</description>
-              <bitOffset>0</bitOffset>
+              <name>MIS7</name>
+              <description>Pin7 Masked Interrupt Status.</description>
+              <bitOffset>7</bitOffset>
               <bitWidth>1</bitWidth>
-              <dim>8</dim>
-              <dimIncrement>1</dimIncrement>
-              <dimIndex>0-7</dimIndex>
 
               <enumeratedValues>
                 <name>PinInterruptMaskedStatus</name>
@@ -428,6 +645,41 @@ pin.</description>
                   <value>0</value>
                 </enumeratedValue>
               </enumeratedValues>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS6</name>
+              <description>Pin6 Masked Interrupt Status.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS5</name>
+              <description>Pin5 Masked Interrupt Status.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS4</name>
+              <description>Pin4 Masked Interrupt Status.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS3</name>
+              <description>Pin3 Masked Interrupt Status.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS2</name>
+              <description>Pin2 Masked Interrupt Status.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS1</name>
+              <description>Pin1 Masked Interrupt Status.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <field derivedFrom="MIS7">
+              <name>MIS0</name>
+              <description>Pin0 Masked Interrupt Status.</description>
+              <bitOffset>0</bitOffset>
             </field>
           </fields>
         </register>
@@ -462,37 +714,37 @@ pin.</description>
                 </enumeratedValue>
               </enumeratedValues>
             </field>
-            <field derivedFrom"IC7">
+            <field derivedFrom="IC7">
               <name>IC6</name>
               <description>Pin6 Interrupt Clear.</description>
               <bitOffset>6</bitOffset>
             </field>
-            <field derivedFrom"IC7">
+            <field derivedFrom="IC7">
               <name>IC5</name>
               <description>Pin5 Interrupt Clear.</description>
               <bitOffset>5</bitOffset>
             </field>
-            <field derivedFrom"IC7">
+            <field derivedFrom="IC7">
               <name>IC4</name>
               <description>Pin4 Interrupt Clear.</description>
               <bitOffset>4</bitOffset>
             </field>
-            <field derivedFrom"IC7">
+            <field derivedFrom="IC7">
               <name>IC3</name>
               <description>Pin3 Interrupt Clear.</description>
               <bitOffset>3</bitOffset>
             </field>
-            <field derivedFrom"IC7">
+            <field derivedFrom="IC7">
               <name>IC2</name>
               <description>Pin2 Interrupt Clear.</description>
               <bitOffset>2</bitOffset>
             </field>
-            <field derivedFrom"IC7">
+            <field derivedFrom="IC7">
               <name>IC1</name>
               <description>Pin1 Interrupt Clear.</description>
               <bitOffset>1</bitOffset>
             </field>
-            <field derivedFrom"IC7">
+            <field derivedFrom="IC7">
               <name>IC0</name>
               <description>Pin0 Interrupt Clear.</description>
               <bitOffset>0</bitOffset>
@@ -865,37 +1117,37 @@ pin.</description>
                 </enumeratedValue>
               </enumeratedValues>
             </field>
-            <field = derivedFrom="PUE7">
+            <field derivedFrom="PUE7">
               <name>PUE6</name>
               <description>Pad6 Weak Pull-Up Enable.</description>
               <bitOffset>6</bitOffset>
             </field>
-            <field = derivedFrom="PUE7">
+            <field derivedFrom="PUE7">
               <name>PUE5</name>
               <description>Pad5 Weak Pull-Up Enable.</description>
               <bitOffset>5</bitOffset>
             </field>
-            <field = derivedFrom="PUE7">
+            <field derivedFrom="PUE7">
               <name>PUE4</name>
               <description>Pad4 Weak Pull-Up Enable.</description>
               <bitOffset>4</bitOffset>
             </field>
-            <field = derivedFrom="PUE7">
+            <field derivedFrom="PUE7">
               <name>PUE3</name>
               <description>Pad3 Weak Pull-Up Enable.</description>
               <bitOffset>3</bitOffset>
             </field>
-            <field = derivedFrom="PUE7">
+            <field derivedFrom="PUE7">
               <name>PUE2</name>
               <description>Pad2 Weak Pull-Up Enable.</description>
               <bitOffset>2</bitOffset>
             </field>
-            <field = derivedFrom="PUE7">
+            <field derivedFrom="PUE7">
               <name>PUE1</name>
               <description>Pad1 Weak Pull-Up Enable.</description>
               <bitOffset>1</bitOffset>
             </field>
-            <field = derivedFrom="PUE7">
+            <field derivedFrom="PUE7">
               <name>PUE0</name>
               <description>Pad0 Weak Pull-Up Enable.</description>
               <bitOffset>0</bitOffset>
