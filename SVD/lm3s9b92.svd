@@ -2156,6 +2156,7 @@ by the other GPIO configuration registers.</description>
       <version>1.0</version>
       <description>System control configures the overall operation of the device and provides information about the device.</description>
       <baseAddress>0x400FE000</baseAddress>
+      <groupName>System Control</groupName>
       
       <size>32</size>
       <access>read-write</access>
@@ -2174,29 +2175,1670 @@ by the other GPIO configuration registers.</description>
       
       
       <registers>
-        <!-- DID0: Device Identification 0 Register -->
+      <!-- DID0: Device Identification 0 Register -->
         <register>
           <name>DID0</name>
-          <description>This register identifies the version of the microcontroller.</description>
+          <description>Device Identification 0.</description>
           <addressOffset>0x00000000</addressOffset>
           <size>32</size>
           <access>read-only</access>
           <resetValue>0x10040000</resetValue>
           <resetMask>0xFFFF0000</resetMask>
           <fields>
-            <!-- VER: Write Complete -->
+            <!-- VER: Version field -->
             <field>
               <name>VER</name>
               <description>DID0 Version.</description>
-              <bitRange>[30:28]</bitRange>
-              <access>read-only</access>
+              <bitOffset>28</bitOffset>
+              <bitWidth>3</bitWidth>
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>DID0VER</name>
+                  <name>SECOND_DID0_VERSION</name>
                   <description>Second version of the DID0 register format.</description>
                   <value>0x1</value>
                 </enumeratedValue>
               </enumeratedValues>
+            </field>
+            <!-- CLASS: Device Class -->
+            <field>
+              <name>CLASS</name>
+              <description>Device Class.</description>
+              <bitRange>[23:16]</bitRange>
+            </field>
+            <!-- MAJOR: Major Revision -->
+            <field>
+              <name>MAJOR</name>
+              <description>Major Revision.</description>
+              <bitRange>[15:8]</bitRange>
+            </field>
+            <!-- MINOR: Major Revision -->
+            <field>
+              <name>MINOR</name>
+              <description>Minor Revision.</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PBORCTL: Brown-Out Reset Control Register -->
+        <register>
+          <name>PBORCTL</name>
+          <description>Brown-Out Reset Control.</description>
+          <addressOffset>0x00000030</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000002</resetValue>
+          <resetMask>0x00000002</resetMask>
+          <fields>
+            <!-- BORIOR: BOR Interrupt or Reset field -->
+            <field>
+              <name>BORIOR</name>
+              <description>BOR Interrupt or Reset.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>BORIOR_ON</name>
+                  <description>A Brown Out Event causes a reset of the microcontroller.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>BORIOR_OFF</name>
+                  <description>A Brown Out Event causes an interrupt to be generated to the interrupt controller.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- RIS: Raw Interrupt Status Register -->
+        <register>
+          <name>RIS</name>
+          <description>Raw Interrupt Status.</description>
+          <addressOffset>0x00000050</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000001C2</resetMask>
+          <fields>
+            <!-- MOSCPUPRIS: MOSC Power Up Raw Interrupt Status field -->
+            <field>
+              <name>MOSCPUPRIS</name>
+              <description>MOSC Power Up Raw Interrupt Status.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MOSCPUPI_READY</name>
+                  <description>Sufficient time has passed for the MOSC to reach the expected frequency. The value for this power-up time is indicated by TMOSC_SETTLE.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MOSCPUPI_BUSY</name>
+                  <description>Sufficient time has not passed for the MOSC to reach the expected frequency.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- USBPLLLRIS: USB PLL Lock Raw Interrupt Status field -->
+            <field>
+              <name>USBPLLLRIS</name>
+              <description>USB PLL Lock Raw Interrupt Status.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>USBPLLLI_READY</name>
+                  <description>The USB PLL timer has reached TREADY indicating that sufficient time has passed for the USB PLL to lock.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>USBPLLLI_BUSY</name>
+                  <description>The USB PLL timer has not reached TREADY.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PLLLRIS: PLL Lock Raw Interrupt Status field -->
+            <field>
+              <name>PLLLRIS</name>
+              <description>PLL Lock Raw Interrupt Status.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>PLLLI_READY</name>
+                  <description>The PLL timer has reached TREADY indicating that sufficient time has passed for the PLL to lock.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PLLLI_BUSY</name>
+                  <description>The PLL timer has not reached TREADY.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- BORRIS: Brown-Out Reset Raw Interrupt Status field -->
+            <field>
+              <name>BORRIS</name>
+              <description>Brown-Out Reset Raw Interrupt Status.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>BORRI_ACTIVE</name>
+                  <description>A brown-out condition is currently active.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>BORRI_INACTIVE</name>
+                  <description>A brown-out condition is not currently active.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- IMC: Interrupt Mask Control Register -->
+        <register>
+          <name>IMC</name>
+          <description>Interrupt Mask Control.</description>
+          <addressOffset>0x00000054</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000001C2</resetMask>
+          <fields>
+            <!-- MOSCPUPIM: MOSC Power Up Interrupt Mask field -->
+            <field>
+              <name>MOSCPUPIM</name>
+              <description>MOSC Power Up Interrupt Mask.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MOSCPUPI_ENABLED</name>
+                  <description>An interrupt is sent to the interrupt controller when the MOSCPUPRIS bit in the RIS register is set.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MOSCPUPI_SUPPRESSED</name>
+                  <description>The MOSCPUPRIS interrupt is suppressed and not sent to the interrupt controller.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- USBPLLLIM: USB PLL Lock Interrupt Mask field -->
+            <field>
+              <name>USBPLLLIM</name>
+              <description>USB PLL Lock Interrupt Mask.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>USBPLLLI_ENABLED</name>
+                  <description>An interrupt is sent to the interrupt controller when the USBPLLLRIS bit in the RIS register is set.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>USBPLLLI_SUPPRESSED</name>
+                  <description>The USBPLLLRIS interrupt is suppressed and not sent to the interrupt controller.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PLLLIM: PLL Lock Interrupt Mask field -->
+            <field>
+              <name>PLLLIM</name>
+              <description>PLL Lock Interrupt Mask.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>PLLLI_ENABLED</name>
+                  <description>An interrupt is sent to the interrupt controller when the PLLLRIS bit in the RIS register is set.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PLLLI_SUPPRESSED</name>
+                  <description>The PLLLRIS interrupt is suppressed and not sent to the interrupt controller.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- BORIM: Brown-Out Reset Interrupt Mask field -->
+            <field>
+              <name>BORIM</name>
+              <description>Brown-Out Reset Interrupt Mask.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>BORI_ENABLED</name>
+                  <description>An interrupt is sent to the interrupt controller when the BORRIS bit in the RIS register is set.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>BORI_SUPPRESSED</name>
+                  <description>The BORRIS interrupt is suppressed and not sent to the interrupt controller.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- MISC: Masked Interrupt Status and Clear Register -->
+        <register>
+          <name>MISC</name>
+          <description>Masked Interrupt Status and Clear.</description>
+          <addressOffset>0x00000058</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <modifiedWriteValues>oneToClear</modifiedWriteValues>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000001C2</resetMask>
+          <fields>
+            <!-- MOSCPUPMIS: MOSC Power Up Masked Interrupt Status field -->
+            <field>
+              <name>MOSCPUPMIS</name>
+              <description>MOSC Power Up Masked Interrupt Status.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>MOSCPUPMI_READY</name>
+                  <description>When read, a 1 indicates that an unmasked interrupt was signaled because sufficient time has passed for the MOSC PLL to lock.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MOSCPUPMI_BUSY</name>
+                  <description>When read, a 0 indicates that sufficient time has not passed for the MOSC PLL to lock.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>MOSCPUPI_CLEAR</name>
+                  <description>Writing a 1 to this bit clears it and also the MOSCPUPRIS bit in the RIS register.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- USBPLLLMIS: USB PLL Lock Masked Interrupt Status field -->
+            <field>
+              <name>USBPLLLMIS</name>
+              <description>USB PLL Lock Masked Interrupt Status.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>USBPLLLMI_READY</name>
+                  <description>When read, a 1 indicates that an unmasked interrupt was signaled because sufficient time has passed for the USB PLL to lock.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>USBPLLLMI_BUSY</name>
+                  <description>When read, a 0 indicates that sufficient time has not passed for the USB PLL to lock.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>USBPLLLI_CLEAR</name>
+                  <description>Writing a 1 to this bit clears it and also the USBPLLLRIS bit in the RIS register.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PLLLMIS: PLL Lock Raw Interrupt Status field -->
+            <field>
+              <name>PLLLMIS</name>
+              <description>PLL Lock Raw Interrupt Status.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PLLLMI_READY</name>
+                  <description>When read, a 1 indicates that an unmasked interrupt was signaled because sufficient time has passed for the PLL to lock.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PLLLMI_BUSY</name>
+                  <description>When read, a 0 indicates that sufficient time has not passed for the PLL to lock.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PLLLI_CLEAR</name>
+                  <description>Writing a 1 to this bit clears it and also the PLLLRIS bit in the RIS register.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- BORMIS: BOR Masked Interrupt Status field -->
+            <field>
+              <name>BORMIS</name>
+              <description>BOR Masked Interrupt Status.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>BORMI_TRIGGERED</name>
+                  <description>When read, a 1 indicates that an unmasked interrupt was signaled because of a brown-out condition.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>BORMI_NOT_TRIGGERED</name>
+                  <description>When read, a 0 indicates that a brown-out condition has not occurred.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>BORI_CLEAR</name>
+                  <description>Writing a 1 to this bit clears it and also the PLLLRIS bit in the RIS register.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- RESC: Reset Cause Register -->
+        <register>
+          <name>RESC</name>
+          <description>Reset Cause.</description>
+          <addressOffset>0x0000005C</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <modifiedWriteValues>zeroToClear</modifiedWriteValues>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000001C2</resetMask>
+          <fields>
+            <!-- MOSCFAIL: MOSC Failure Reset field -->
+            <field>
+              <name>MOSCFAIL</name>
+              <description>MOSC Failure Reset.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>MOSCFAIL_TRIGGERED</name>
+                  <description>When read, this bit indicates that the MOSC circuit was enabled for clock validation and failed, generating a reset event.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MOSCFAIL_NOT_TRIGGERED</name>
+                  <description>When read, this bit indicates that a MOSC failure has not generated a reset since the previous power-on reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>MOSCFAIL_CLEAR</name>
+                  <description>Writing a 0 to this bit clears it.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- WDT1: Watchdog Timer 1 Reset field -->
+            <field>
+              <name>WDT1</name>
+              <description>Watchdog Timer 1 Reset.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>WDT1RST_TRIGGERED</name>
+                  <description>When read, this bit indicates that Watchdog Timer 1 timed out and generated a reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>WDT1RST_NOT_TRIGGERED</name>
+                  <description>When read, this bit indicates that Watchdog Timer 1 has not generated a reset since the previous power-on reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>WDT1RST_CLEAR</name>
+                  <description>Writing a 0 to this bit clears it.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SW: Software Reset field -->
+            <field>
+              <name>SW</name>
+              <description>Software Reset.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>SWRST_TRIGGERED</name>
+                  <description>When read, this bit indicates that a software reset has caused a reset event.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SWRST_NOT_TRIGGERED</name>
+                  <description>When read, this bit indicates that a software reset has not generated a reset since the previous power-on reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>SWRST_CLEAR</name>
+                  <description>Writing a 0 to this bit clears it.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- WDT0: Watchdog Timer 0 Reset field -->
+            <field>
+              <name>WDT0</name>
+              <description>Watchdog Timer 0 Reset.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>WDT0RST_TRIGGERED</name>
+                  <description>When read, this bit indicates that Watchdog Timer 0 timed out and generated a reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>WDT1RST_NOT_TRIGGERED</name>
+                  <description>When read, this bit indicates that Watchdog Timer 0 has not generated a reset since the previous power-on reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>WDT0RST_CLEAR</name>
+                  <description>Writing a 0 to this bit clears it.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- BOR: Brown-Out Reset field -->
+            <field>
+              <name>BOR</name>
+              <description>Brown-Out Reset.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>BORRST_TRIGGERED</name>
+                  <description>When read, this bit indicates that a brown-out reset has caused a reset event.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>BORRST_NOT_TRIGGERED</name>
+                  <description>When read, this bit indicates that a brown-out reset has not generated a reset since the previous power-on reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>BORRST_CLEAR</name>
+                  <description>Writing a 0 to this bit clears it.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- POR: Power-On Reset field -->
+            <field>
+              <name>POR</name>
+              <description>Power-On Reset.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PORRST_TRIGGERED</name>
+                  <description>When read, this bit indicates that a power-on reset has caused a reset event.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PORRST_NOT_TRIGGERED</name>
+                  <description>When read, this bit indicates that a power-on reset has not generated a reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PORRST_CLEAR</name>
+                  <description>Writing a 0 to this bit clears it.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- EXT: External Reset field -->
+            <field>
+              <name>EXT</name>
+              <description>External Reset.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>EXTRST_TRIGGERED</name>
+                  <description>When read, this bit indicates that an external reset (RST assertion) has caused a reset event.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>EXTRST_NOT_TRIGGERED</name>
+                  <description>When read, this bit indicates that an external reset (RST assertion) has not caused a reset event since the previous power-on reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>EXTRST_CLEAR</name>
+                  <description>Writing a 0 to this bit clears it.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- RCC: Run-Mode Clock Configuration Register -->
+        <register>
+          <name>RCC</name>
+          <description>Run-Mode Clock Configuration.</description>
+          <addressOffset>0x00000060</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x078E3AD1</resetValue>
+          <resetMask>0xFDE2FF3</resetMask>
+          <fields>
+            <!-- ACG: Auto Clock Gating field -->
+            <field>
+              <name>ACG</name>
+              <description>Auto Clock Gating.</description>
+              <bitOffset>27</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>ACG_ENABLE</name>
+                  <description>The SCGCn or DCGCn registers are used to control the clocks distributed to the peripherals when the microcontroller is in a sleep mode. The SCGCn and DCGCn registers allow unused peripherals to consume less power when the microcontroller is in a sleep mode.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>ACG_DISABLE</name>
+                  <description>The Run-Mode Clock Gating Control (RCGCn) registers are used when the microcontroller enters a sleep mode.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SYSDIV: System Clock Divisor field -->
+            <field>
+              <name>SYSDIV</name>
+              <description>System Clock Divisor.</description>
+              <bitOffset>23</bitOffset>
+              <bitWidth>4</bitWidth>
+              <enumeratedValues>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>SYSDIV_1</name>
+                  <description>Clock source frequency/2.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_2</name>
+                  <description>Clock source frequency/2.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_3</name>
+                  <description>Clock source frequency/3.</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_4</name>
+                  <description>Clock source frequency/4.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_5</name>
+                  <description>Clock source frequency/5.</description>
+                  <value>0x4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_6</name>
+                  <description>Clock source frequency/6.</description>
+                  <value>0x5</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_7</name>
+                  <description>Clock source frequency/7.</description>
+                  <value>0x6</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_8</name>
+                  <description>Clock source frequency/8.</description>
+                  <value>0x7</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_9</name>
+                  <description>Clock source frequency/9.</description>
+                  <value>0x8</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_10</name>
+                  <description>Clock source frequency/10.</description>
+                  <value>0x9</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_11</name>
+                  <description>Clock source frequency/11.</description>
+                  <value>0xA</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_12</name>
+                  <description>Clock source frequency/12.</description>
+                  <value>0xB</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_13</name>
+                  <description>Clock source frequency/13.</description>
+                  <value>0xC</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_14</name>
+                  <description>Clock source frequency/14.</description>
+                  <value>0xD</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_15</name>
+                  <description>Clock source frequency/15.</description>
+                  <value>0xE</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV_16</name>
+                  <description>Clock source frequency/16.</description>
+                  <value>0xF</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- USESYSDIV: Enable System Clock Divider field -->
+            <field>
+              <name>USESYSDIV</name>
+              <description>Enable System Clock Divider.</description>
+              <bitOffset>22</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>USESYSDIV_ENABLED</name>
+                  <description>The system clock divider is the source for the system clock. The system clock divider is forced to be used when the PLL is selected as the source. If the USERCC2 bit in the RCC2 register is set, then the SYSDIV2 field in the RCC2 register is used as the system clock divider rather than the SYSDIV field in this register.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>USESYSDIV_DISABLED</name>
+                  <description>The system clock is used undivided.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- USEPWMDIV: Enable PWM Clock Divisor field -->
+            <field>
+              <name>USEPWMDIV</name>
+              <description>Enable PWM Clock Divisor.</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>PWMDIV_USED</name>
+                  <description>The PWM clock divider is the source for the PWM clock.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PWMDIV_UNUSED</name>
+                  <description>The system clock is the source for the PWM clock.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWMDIV: PWM Unit Clock Divisor field -->
+            <field>
+              <name>PWMDIV</name>
+              <description>PWM Unit Clock Divisor.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>3</bitWidth>
+              <enumeratedValues>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>PWMDIV_2</name>
+                  <description>PWM frequency/2.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PWMDIV_4</name>
+                  <description>PWM frequency/4.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PWMDIV_8</name>
+                  <description>PWM frequency/8.</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PWMDIV_16</name>
+                  <description>PWM frequency/16.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PWMDIV_32</name>
+                  <description>PWM frequency/32.</description>
+                  <value>0x4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PWMDIV_64</name>
+                  <description>PWM frequency/64.</description>
+                  <value>0x5</value>
+                  <isDefault>true</isDefault>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWRDN: PLL Power Down field -->
+            <field>
+              <name>PWRDN</name>
+              <description>PLL Power Down.</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>PLL_POWERED_DOWN</name>
+                  <description>The PLL is powered down. Care must be taken to ensure that another clock source is functioning and that the BYPASS bit is set before setting this bit.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PLL_POWERED_UP</name>
+                  <description>The PLL is operating normally.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- BYPASS: PLL Bypass field -->
+            <field>
+              <name>BYPASS</name>
+              <description>PLL Bypass.</description>
+              <bitOffset>11</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PLL_BYPASS_ENABLED</name>
+                  <description>The system clock is derived from the OSC source and divided by the divisor specified by SYSDIV.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PLL_BYPASS_DISABLED</name>
+                  <description>The system clock is the PLL output clock divided by the divisor specified by SYSDIV.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- XTAL: Crystal Value field -->
+            <field>
+              <name>XTAL</name>
+              <description>Crystal Value.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>5</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>XTAL_NOPLL_1MHZ</name>
+                  <description>1.000 MHz</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_NOPLL_1_8432MHZ</name>
+                  <description>1.8432 MHz</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_NOPLL_2MHZ</name>
+                  <description>2.000 MHz</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_NOPLL_2_4576MHZ</name>
+                  <description>2.4576 MHz</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_3_579545MHZ</name>
+                  <description>3.579545 MHz</description>
+                  <value>0x4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_3_6864MHZ</name>
+                  <description>3.6864 MHz</description>
+                  <value>0x5</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_4MHZ_USB</name>
+                  <description>4 MHz (USB)</description>
+                  <value>0x6</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_4_096MHZ</name>
+                  <description>4.096 MHz</description>
+                  <value>0x7</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_4_9152MHZ</name>
+                  <description>4.9152 MHz</description>
+                  <value>0x8</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_5MHZ_USB</name>
+                  <description>5 MHz (USB)</description>
+                  <value>0x9</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_5_12MHZ</name>
+                  <description>5.12 MHz</description>
+                  <value>0xA</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_6MHZ_USB_DEFAULT</name>
+                  <description>6 MHz (reset value)(USB)</description>
+                  <value>0xB</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_6_144MHZ</name>
+                  <description>6.144 MHz</description>
+                  <value>0xC</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_7_3728MHZ</name>
+                  <description>7.3728 MHz</description>
+                  <value>0xD</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_8MHZ_USB</name>
+                  <description>8 MHz (USB)</description>
+                  <value>0xE</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_8_192MHZ</name>
+                  <description>8.192 MHz</description>
+                  <value>0xF</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_10MHZ_USB</name>
+                  <description>10 MHz (USB)</description>
+                  <value>0x10</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_12MHZ_USB</name>
+                  <description>12 MHz (USB)</description>
+                  <value>0x11</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_12.288MHZ</name>
+                  <description>12_288 MHz</description>
+                  <value>0x12</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_13_56MHZ</name>
+                  <description>13.56 MHz</description>
+                  <value>0x13</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_14_31818MHZ</name>
+                  <description>14.31818 MHz</description>
+                  <value>0x14</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_16MHZ_USB</name>
+                  <description>16 MHz (USB)</description>
+                  <value>0x15</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>XTAL_16_384MHZ</name>
+                  <description>16.384 MHz</description>
+                  <value>0x16</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- OSCSRC: Oscillator Source field -->
+            <field>
+              <name>OSCSRC</name>
+              <description>Oscillator Source.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>2</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>OSCSRC_MOSC</name>
+                  <description>Main oscillator.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OSCSRC_PIOSC</name>
+                  <description>Precision internal oscillator (default).</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OSCSRC_PIOSC_DIV4</name>
+                  <description>Precision internal oscillator / 4.</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OSCSRC_30KHZ</name>
+                  <description>30-kHz internal oscillator.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- IOSCDIS: Precision Internal Oscillator Disable field -->
+            <field>
+              <name>IOSCDIS</name>
+              <description>Precision Internal Oscillator Disable.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>IOSC_DISABLED</name>
+                  <description>The precision internal oscillator (PIOSC) is disabled.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>IOSC_ENABLED</name>
+                  <description>The precision internal oscillator is enabled.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MOSCDIS: Main Oscillator Disable field -->
+            <field>
+              <name>MOSCDIS</name>
+              <description>Main Oscillator Disable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MOSC_DISABLED</name>
+                  <description>The main oscillator is disabled (default).</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MOSC_ENABLED</name>
+                  <description>The main oscillator is enabled.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- PLLCFG: XTAL to PLL Translation Register -->
+        <register>
+          <name>PLLCFG</name>
+          <description>XTAL to PLL Translation.</description>
+          <addressOffset>0x00000064</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000000</resetMask>
+          <fields>
+            <!-- F: PLL F Value field -->
+            <field>
+              <name>F</name>
+              <description>PLL F Value.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>9</bitWidth>
+            </field>
+            <!-- R: PLL R Value field -->
+            <field>
+              <name>R</name>
+              <description>PLL R Value.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>5</bitWidth>
+            </field>
+          </fields>
+        </register>
+      <!-- GPIOHBCTL: GPIO High-Performance Bus Control Register -->
+        <register>
+          <name>GPIOHBCTL</name>
+          <description>GPIO High-Performance Bus Control.</description>
+          <addressOffset>0x0000006C</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0xffffffff</resetMask>
+          <fields>
+            <!-- PORTJ: Port J Advanced High-Performance Bus field -->
+            <field>
+              <name>PORTJ</name>
+              <description>Port J Advanced High-Performance Bus.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>PORT_AHB</name>
+                  <description>Advanced High-Performance Bus (AHB)</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PORT_APB</name>
+                  <description>Advanced Peripheral Bus (APB). This bus is the legacy bus.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PORTH: Port H Advanced High-Performance Bus field -->
+            <field derivedFrom="PORTJ">
+              <name>PORTH</name>
+              <description>Port H Advanced High-Performance Bus.</description>
+              <bitOffset>7</bitOffset>
+            </field>
+            <!-- PORTG: Port G Advanced High-Performance Bus field -->
+            <field derivedFrom="PORTJ">
+              <name>PORTG</name>
+              <description>Port G Advanced High-Performance Bus.</description>
+              <bitOffset>6</bitOffset>
+            </field>
+            <!-- PORTF: Port F Advanced High-Performance Bus field -->
+            <field derivedFrom="PORTJ">
+              <name>PORTF</name>
+              <description>Port F Advanced High-Performance Bus.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+            <!-- PORTE: Port E Advanced High-Performance Bus field -->
+            <field derivedFrom="PORTJ">
+              <name>PORTE</name>
+              <description>Port E Advanced High-Performance Bus.</description>
+              <bitOffset>4</bitOffset>
+            </field>
+            <!-- PORTD: Port D Advanced High-Performance Bus field -->
+            <field derivedFrom="PORTJ">
+              <name>PORTD</name>
+              <description>Port D Advanced High-Performance Bus.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+            <!-- PORTC: Port C Advanced High-Performance Bus field -->
+            <field derivedFrom="PORTJ">
+              <name>PORTC</name>
+              <description>Port C Advanced High-Performance Bus.</description>
+              <bitOffset>2</bitOffset>
+            </field>
+            <!-- PORTB: Port B Advanced High-Performance Bus field -->
+            <field derivedFrom="PORTJ">
+              <name>PORTB</name>
+              <description>Port B Advanced High-Performance Bus.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+            <!-- PORTA: Port A Advanced High-Performance Bus field -->
+            <field derivedFrom="PORTJ">
+              <name>PORTA</name>
+              <description>Port A Advanced High-Performance Bus.</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+      <!-- RCC2: Run-Mode Clock Configuration 2 Register -->
+        <register>
+          <name>RCC2</name>
+          <description>Run-Mode Clock Configuration 2.</description>
+          <addressOffset>0x00000070</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x07C06810</resetValue>
+          <resetMask>0xDFC06870</resetMask>
+          <fields>
+            <!-- USERCC2: Use RCC2 field -->
+            <field>
+              <name>USERCC2</name>
+              <description>Use RCC2.</description>
+              <bitOffset>31</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>RCC2_ENABLE</name>
+                  <description>The RCC2 register fields override the RCC register fields.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCC2_DISABLE</name>
+                  <description>The RCC register fields are used, and the fields in RCC2 are ignored.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DIV400: Divide PLL as 400 MHz vs. 200 MHz field -->
+            <field>
+              <name>DIV400</name>
+              <description>Divide PLL as 400 MHz vs. 200 MHz.</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>USE_400MHZ_PLL</name>
+                  <description>Append the SYSDIV2LSB bit to the SYSDIV2 field to create a 7 bit divisor using the 400 MHz PLL output.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>USE_200MHZ_PLL</name>
+                  <description>Use SYSDIV2 as is and apply to 200 MHz predivided PLL output. See Table 6-6 on page 111 for programming guidelines.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SYSDIV2: System Clock Divisor 2 field -->
+            <field>
+              <name>SYSDIV2</name>
+              <description>System Clock Divisor 2.</description>
+              <bitOffset>23</bitOffset>
+              <bitWidth>6</bitWidth>
+              <enumeratedValues>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>DIV_1</name>
+                  <description>Clock source frequency/2.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_2</name>
+                  <description>Clock source frequency/2.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_3</name>
+                  <description>Clock source frequency/3.</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_4</name>
+                  <description>Clock source frequency/4.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_5</name>
+                  <description>Clock source frequency/5.</description>
+                  <value>0x4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_6</name>
+                  <description>Clock source frequency/6.</description>
+                  <value>0x5</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_7</name>
+                  <description>Clock source frequency/7.</description>
+                  <value>0x6</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_8</name>
+                  <description>Clock source frequency/8.</description>
+                  <value>0x7</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_9</name>
+                  <description>Clock source frequency/9.</description>
+                  <value>0x8</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_10</name>
+                  <description>Clock source frequency/10.</description>
+                  <value>0x9</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_11</name>
+                  <description>Clock source frequency/11.</description>
+                  <value>0xA</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_12</name>
+                  <description>Clock source frequency/12.</description>
+                  <value>0xB</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_13</name>
+                  <description>Clock source frequency/13.</description>
+                  <value>0xC</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_14</name>
+                  <description>Clock source frequency/14.</description>
+                  <value>0xD</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_15</name>
+                  <description>Clock source frequency/15.</description>
+                  <value>0xE</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_16</name>
+                  <description>Clock source frequency/16.</description>
+                  <value>0xF</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_17</name>
+                  <description>Clock source frequency/17.</description>
+                  <value>0x10</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_18</name>
+                  <description>Clock source frequency/18.</description>
+                  <value>0x11</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_19</name>
+                  <description>Clock source frequency/19.</description>
+                  <value>0x12</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_20</name>
+                  <description>Clock source frequency/20.</description>
+                  <value>0x13</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_21</name>
+                  <description>Clock source frequency/21.</description>
+                  <value>0x14</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_22</name>
+                  <description>Clock source frequency/22.</description>
+                  <value>0x15</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_23</name>
+                  <description>Clock source frequency/23.</description>
+                  <value>0x16</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_24</name>
+                  <description>Clock source frequency/24.</description>
+                  <value>0x17</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_25</name>
+                  <description>Clock source frequency/25.</description>
+                  <value>0x18</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_26</name>
+                  <description>Clock source frequency/26.</description>
+                  <value>0x19</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_27</name>
+                  <description>Clock source frequency/27.</description>
+                  <value>0x1A</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_28</name>
+                  <description>Clock source frequency/28.</description>
+                  <value>0x1B</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_29</name>
+                  <description>Clock source frequency/29.</description>
+                  <value>0x1C</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_30</name>
+                  <description>Clock source frequency/30.</description>
+                  <value>0x1D</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_31</name>
+                  <description>Clock source frequency/31.</description>
+                  <value>0x1E</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_32</name>
+                  <description>Clock source frequency/32.</description>
+                  <value>0x1F</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_33</name>
+                  <description>Clock source frequency/33.</description>
+                  <value>0x20</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_34</name>
+                  <description>Clock source frequency/34.</description>
+                  <value>0x21</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_35</name>
+                  <description>Clock source frequency/35.</description>
+                  <value>0x22</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_36</name>
+                  <description>Clock source frequency/36.</description>
+                  <value>0x23</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_37</name>
+                  <description>Clock source frequency/37.</description>
+                  <value>0x24</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_38</name>
+                  <description>Clock source frequency/38.</description>
+                  <value>0x25</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_39</name>
+                  <description>Clock source frequency/39.</description>
+                  <value>0x26</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_40</name>
+                  <description>Clock source frequency/40.</description>
+                  <value>0x27</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_41</name>
+                  <description>Clock source frequency/41.</description>
+                  <value>0x28</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_42</name>
+                  <description>Clock source frequency/42.</description>
+                  <value>0x29</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_43</name>
+                  <description>Clock source frequency/43.</description>
+                  <value>0x2A</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_44</name>
+                  <description>Clock source frequency/44.</description>
+                  <value>0x2B</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_45</name>
+                  <description>Clock source frequency/45.</description>
+                  <value>0x2C</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_46</name>
+                  <description>Clock source frequency/46.</description>
+                  <value>0x2D</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_47</name>
+                  <description>Clock source frequency/47.</description>
+                  <value>0x2E</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_48</name>
+                  <description>Clock source frequency/48.</description>
+                  <value>0x2F</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_49</name>
+                  <description>Clock source frequency/49.</description>
+                  <value>0x30</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_50</name>
+                  <description>Clock source frequency/50.</description>
+                  <value>0x31</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_51</name>
+                  <description>Clock source frequency/51.</description>
+                  <value>0x32</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_52</name>
+                  <description>Clock source frequency/52.</description>
+                  <value>0x33</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_53</name>
+                  <description>Clock source frequency/53.</description>
+                  <value>0x34</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_54</name>
+                  <description>Clock source frequency/54.</description>
+                  <value>0x35</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_55</name>
+                  <description>Clock source frequency/55.</description>
+                  <value>0x36</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_56</name>
+                  <description>Clock source frequency/56.</description>
+                  <value>0x37</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_57</name>
+                  <description>Clock source frequency/57.</description>
+                  <value>0x38</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_58</name>
+                  <description>Clock source frequency/58.</description>
+                  <value>0x39</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_59</name>
+                  <description>Clock source frequency/59.</description>
+                  <value>0x3A</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_60</name>
+                  <description>Clock source frequency/60.</description>
+                  <value>0x3B</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_61</name>
+                  <description>Clock source frequency/61.</description>
+                  <value>0x3C</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_62</name>
+                  <description>Clock source frequency/62.</description>
+                  <value>0x3D</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_63</name>
+                  <description>Clock source frequency/63.</description>
+                  <value>0x3E</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DIV_64</name>
+                  <description>Clock source frequency/64.</description>
+                  <value>0x3F</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SYSDIV2LSB: Additional LSB for SYSDIV2 field -->
+            <field>
+              <name>SYSDIV2LSB</name>
+              <description>When DIV400 is set, this bit becomes the LSB of SYSDIV2. If DIV400 is clear, this bit is not used. See Table 6-6 on page 111 for programming guidelines.</description>
+              <bitOffset>22</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SYSDIV2LSB_SET</name>
+                  <description>SYSDIV2LSB is set. Divisor is equal (SYSDIV2*2 + 1).</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSDIV2LSB_RESET</name>
+                  <description>SYSDIV2LSB is reset. Divisor is equal (SYSDIV2*2).</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- USBPWRDN: Power-Down USB PLL field -->
+            <field>
+              <name>USBPWRDN</name>
+              <description>Power-Down USB PLL.</description>
+              <bitOffset>14</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>USBPLL_POWERED_DOWN</name>
+                  <description>The USB PLL is powered down.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>USBPLL_POWERED_UP</name>
+                  <description>The USB PLL operates normally.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWRDN2: PWM Unit Clock Divisor field -->
+            <field>
+              <name>PWRDN2</name>
+              <description>Power-Down PLL 2.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>3</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>PLL2_POWERED_DOWN</name>
+                  <description>The PLL2 is powered down.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PLL2_POWERED_UP</name>
+                  <description>The PLL2 operates normally.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWRDN: PLL Power Down field -->
+            <field>
+              <name>PWRDN</name>
+              <description>PLL Power Down.</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>PLL_POWERED_DOWN</name>
+                  <description>The PLL is powered down. Care must be taken to ensure that another clock source is functioning and that the BYPASS bit is set before setting this bit.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PLL_POWERED_UP</name>
+                  <description>The PLL is operating normally.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- BYPASS2: PLL Bypass 2 field -->
+            <field>
+              <name>BYPASS2</name>
+              <description>PLL Bypass 2.</description>
+              <bitOffset>11</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PLL_BYPASS2_ENABLED</name>
+                  <description>The system clock is derived from the OSC source and divided by the divisor specified by SYSDIV2.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PLL_BYPASS2_DISABLED</name>
+                  <description>The system clock is the PLL output clock divided by the divisor specified by SYSDIV2.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- OSCSRC: Oscillator Source field -->
+            <field derivedFrom="SYSCTL.RCC.OSCSRC">
+              <name>OSCSRC2</name>
+              <description>Oscillator Source 2.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>3</bitWidth>
+            </field>
+          </fields>
+        </register>
+      <!-- MOSCCTL: Main Oscillator Control Register -->
+        <register>
+          <name>MOSCCTL</name>
+          <description>Main Oscillator Control.</description>
+          <addressOffset>0x0000007C</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0xffffffff</resetMask>
+          <fields>
+            <!-- CVAL: Clock Validation for MOSC field -->
+            <field>
+              <name>CVAL</name>
+              <description>Clock Validation for MOSC.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>CVAL_ENABLED</name>
+                  <description>The MOSC monitor circuit is enabled.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>CVAL_DISABLED</name>
+                  <description>The MOSC monitor circuit is disabled.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DSLPCLKCFG: Main Oscillator Control Register -->
+        <register>
+          <name>DSLPCLKCFG</name>
+          <description>Deep Sleep Clock Configuration.</description>
+          <addressOffset>0x00000144</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x07800000</resetValue>
+          <resetMask>0xffffffff</resetMask>
+          <fields>
+            <!-- DSDIVORIDE: Divider Override field -->
+            <field derivedFrom="SYSCTL.RCC2.SYSDIV2">
+              <name>DSDIVORIDE</name>
+              <description>Divider Override.</description>
+              <bitOffset>23</bitOffset>
+              <bitWidth>6</bitWidth> 
+            </field>
+            <!-- DSOSCSRC: Deep-Sleep Clock Source field -->
+            <field derivedFrom="SYSCTL.RCC.OSCSRC">
+              <name>DSOSCSRC</name>
+              <description>Deep-Sleep Clock Source.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>3</bitWidth> 
             </field>
           </fields>
         </register>

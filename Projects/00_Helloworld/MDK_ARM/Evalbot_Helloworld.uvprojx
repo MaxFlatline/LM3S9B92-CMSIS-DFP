@@ -660,9 +660,6 @@
           <GroupName>::CMSIS Driver</GroupName>
         </Group>
         <Group>
-          <GroupName>::CMSIS Driver Validation</GroupName>
-        </Group>
-        <Group>
           <GroupName>::CMSIS-Compiler</GroupName>
         </Group>
         <Group>
@@ -678,7 +675,7 @@
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pArmCC>6240000::V6.24::ARMCLANG</pArmCC>
-      <pCCUsed>6210000::V6.21::ARMCLANG</pCCUsed>
+      <pCCUsed>6240000::V6.24::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -1290,6 +1287,57 @@
               <FileName>GPIO_LM3S9B92.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Sources\CMSIS_Drivers\GPIO\GPIO_LM3S9B92.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <uC99>2</uC99>
+                    <uGnu>2</uGnu>
+                    <useXO>2</useXO>
+                    <v6Lang>0</v6Lang>
+                    <v6LangP>0</v6LangP>
+                    <vShortEn>2</vShortEn>
+                    <vShortWch>2</vShortWch>
+                    <v6Lto>2</v6Lto>
+                    <v6WtE>2</v6WtE>
+                    <v6Rtti>2</v6Rtti>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
             </File>
           </Files>
         </Group>
@@ -1422,6 +1470,57 @@
               <FileName>I2C_LM3S9B92.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Sources\CMSIS_Drivers\I2C\I2C_LM3S9B92.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <uC99>2</uC99>
+                    <uGnu>2</uGnu>
+                    <useXO>2</useXO>
+                    <v6Lang>0</v6Lang>
+                    <v6LangP>0</v6LangP>
+                    <vShortEn>2</vShortEn>
+                    <vShortWch>2</vShortWch>
+                    <v6Lto>2</v6Lto>
+                    <v6WtE>2</v6WtE>
+                    <v6Rtti>2</v6Rtti>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
             </File>
             <File>
               <FileName>I2C_LM3S9B92_Config.h</FileName>
@@ -1565,9 +1664,6 @@
         </Group>
         <Group>
           <GroupName>::CMSIS Driver</GroupName>
-        </Group>
-        <Group>
-          <GroupName>::CMSIS Driver Validation</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS-Compiler</GroupName>
@@ -2182,9 +2278,6 @@
           <GroupName>::CMSIS Driver</GroupName>
         </Group>
         <Group>
-          <GroupName>::CMSIS Driver Validation</GroupName>
-        </Group>
-        <Group>
           <GroupName>::CMSIS-Compiler</GroupName>
         </Group>
         <Group>
@@ -2257,23 +2350,7 @@
       </api>
     </apis>
     <components>
-      <component Cclass="CMSIS Driver Validation" Cgroup="Framework" Cvendor="ARM" Cversion="2.0.0" condition="CMSIS Core with RTOS and STDOUT">
-        <package name="CMSIS-Driver_Validation" schemaVersion="1.7.31" url="https://www.keil.com/pack/" vendor="ARM" version="3.1.0-dev"/>
-        <targetInfos>
-          <targetInfo name="Evalbot_Debug"/>
-          <targetInfo name="Evalbot_Debug_RAM"/>
-          <targetInfo name="Evalbot_Release"/>
-        </targetInfos>
-      </component>
-      <component Cclass="CMSIS Driver Validation" Cgroup="I2C" Cvendor="ARM" Cversion="1.4.0" condition="CMSIS Driver Validation I2C">
-        <package name="CMSIS-Driver_Validation" schemaVersion="1.7.31" url="https://www.keil.com/pack/" vendor="ARM" version="3.1.0-dev"/>
-        <targetInfos>
-          <targetInfo name="Evalbot_Debug"/>
-          <targetInfo name="Evalbot_Debug_RAM"/>
-          <targetInfo name="Evalbot_Release"/>
-        </targetInfos>
-      </component>
-      <component Capiversion="1.0.0" Cclass="CMSIS Driver" Cgroup="GPIO" Csub="Custom" Cvendor="ARM" Cversion="1.0.0" custom="1">
+      <component Capiversion="1.0.0" Cclass="CMSIS Driver" Cgroup="GPIO" Csub="Custom" Cvendor="ARM" Cversion="1.0.0" custom="1" ymlID="CMSIS Driver:GPIO:Custom">
         <package name="CMSIS" schemaVersion="1.7.40" url="https://www.keil.com/pack/" vendor="ARM" version="6.2.0"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
@@ -2281,7 +2358,7 @@
           <targetInfo name="Evalbot_Release"/>
         </targetInfos>
       </component>
-      <component Capiversion="2.4.0" Cclass="CMSIS Driver" Cgroup="I2C" Csub="Custom" Cvendor="ARM" Cversion="1.0.0" custom="1">
+      <component Capiversion="2.4.0" Cclass="CMSIS Driver" Cgroup="I2C" Csub="Custom" Cvendor="ARM" Cversion="1.0.0" custom="1" ymlID="CMSIS Driver:I2C:Custom">
         <package name="CMSIS" schemaVersion="1.7.40" url="https://www.keil.com/pack/" vendor="ARM" version="6.2.0"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
@@ -2289,7 +2366,7 @@
           <targetInfo name="Evalbot_Release"/>
         </targetInfos>
       </component>
-      <component Capiversion="2.3.0" Cclass="CMSIS Driver" Cgroup="SPI" Csub="Custom" Cvendor="ARM" Cversion="1.0.0" custom="1">
+      <component Capiversion="2.3.0" Cclass="CMSIS Driver" Cgroup="SPI" Csub="Custom" Cvendor="ARM" Cversion="1.0.0" custom="1" ymlID="CMSIS Driver:SPI:Custom">
         <package name="CMSIS" schemaVersion="1.7.40" url="https://www.keil.com/pack/" vendor="ARM" version="6.2.0"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
@@ -2297,7 +2374,7 @@
           <targetInfo name="Evalbot_Release"/>
         </targetInfos>
       </component>
-      <component Capiversion="2.4.0" Cclass="CMSIS Driver" Cgroup="USART" Csub="Custom" Cvendor="ARM" Cversion="1.0.0" custom="1">
+      <component Capiversion="2.4.0" Cclass="CMSIS Driver" Cgroup="USART" Csub="Custom" Cvendor="ARM" Cversion="1.0.0" custom="1" ymlID="CMSIS Driver:USART:Custom">
         <package name="CMSIS" schemaVersion="1.7.40" url="https://www.keil.com/pack/" vendor="ARM" version="6.2.0"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
@@ -2305,7 +2382,7 @@
           <targetInfo name="Evalbot_Release"/>
         </targetInfos>
       </component>
-      <component Cclass="CMSIS-Compiler" Cgroup="CORE" Cvendor="ARM" Cversion="1.1.0" condition="ARMCC CortexDevice">
+      <component Cclass="CMSIS-Compiler" Cgroup="CORE" Cvendor="ARM" Cversion="1.1.0" condition="ARMCC CortexDevice" ymlID="CMSIS-Compiler:CORE">
         <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
@@ -2313,7 +2390,7 @@
           <targetInfo name="Evalbot_Release"/>
         </targetInfos>
       </component>
-      <component Capiversion="1.1.0" Cclass="CMSIS-Compiler" Cgroup="STDOUT" Csub="Event Recorder" Cvendor="ARM" Cversion="1.1.0" condition="CORE EVR">
+      <component Capiversion="1.1.0" Cclass="CMSIS-Compiler" Cgroup="STDOUT" Csub="Event Recorder" Cvendor="ARM" Cversion="1.1.0" condition="CORE EVR" ymlID="CMSIS-Compiler:STDOUT:Event Recorder">
         <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
@@ -2321,7 +2398,7 @@
           <targetInfo name="Evalbot_Release"/>
         </targetInfos>
       </component>
-      <component Cclass="CMSIS-View" Cgroup="Event Recorder" Cvariant="DAP" Cvendor="ARM" Cversion="1.6.0" condition="EventRecorder">
+      <component Cclass="CMSIS-View" Cgroup="Event Recorder" Cvariant="DAP" Cvendor="ARM" Cversion="1.6.0" condition="EventRecorder" ymlID="CMSIS-View:Event Recorder&amp;DAP">
         <package name="CMSIS-View" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="1.2.0"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug">
@@ -2344,7 +2421,7 @@
           </targetInfo>
         </targetInfos>
       </component>
-      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="6.1.1" condition="ARMv6_7_8-M Device">
+      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="6.1.1" condition="ARMv6_7_8-M Device" ymlID="CMSIS:CORE">
         <package name="CMSIS" schemaVersion="1.7.40" url="https://www.keil.com/pack/" vendor="ARM" version="6.2.0"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
@@ -2352,7 +2429,7 @@
           <targetInfo name="Evalbot_Release"/>
         </targetInfos>
       </component>
-      <component Capiversion="1.0.1" Cclass="CMSIS" Cgroup="OS Tick" Csub="SysTick" Cvendor="ARM" Cversion="1.0.5" condition="OS Tick SysTick">
+      <component Capiversion="1.0.1" Cclass="CMSIS" Cgroup="OS Tick" Csub="SysTick" Cvendor="ARM" Cversion="1.0.5" condition="OS Tick SysTick" ymlID="CMSIS:OS Tick:SysTick">
         <package name="CMSIS" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="6.1.0"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
@@ -2360,7 +2437,7 @@
           <targetInfo name="Evalbot_Release"/>
         </targetInfos>
       </component>
-      <component Capiversion="2.3.0" Cclass="CMSIS" Cgroup="RTOS2" Csub="Keil RTX5" Cvariant="Source" Cvendor="ARM" Cversion="5.9.0" condition="RTX5">
+      <component Capiversion="2.3.0" Cclass="CMSIS" Cgroup="RTOS2" Csub="Keil RTX5" Cvariant="Source" Cvendor="ARM" Cversion="5.9.0" condition="RTX5" ymlID="CMSIS:RTOS2:Keil RTX5&amp;Source">
         <package name="CMSIS-RTX" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
@@ -2368,7 +2445,7 @@
           <targetInfo name="Evalbot_Release"/>
         </targetInfos>
       </component>
-      <component Cclass="Test" Cgroup="Unity" Cvariant="Classic" Cvendor="Arm-Packs" Cversion="2.5.0">
+      <component Cclass="Test" Cgroup="Unity" Cvariant="Classic" Cvendor="Arm-Packs" Cversion="2.5.0" ymlID="Test:Unity&amp;Classic">
         <package name="Unity" schemaVersion="1.6" url="https://github.com/MDK-Packs/Pack/raw/master/Unity/" vendor="Arm-Packs" version="1.0.0"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
@@ -2409,14 +2486,10 @@
         </targetInfos>
       </file>
       <file attr="config" category="header" name="Config\DV_Config.h" version="2.0.0">
-        <instance index="0">RTE\CMSIS_Driver_Validation\DV_Config.h</instance>
+        <instance index="0" removed="1">RTE\CMSIS_Driver_Validation\DV_Config.h</instance>
         <component Cclass="CMSIS Driver Validation" Cgroup="Framework" Cvendor="ARM" Cversion="2.0.0" condition="CMSIS Core with RTOS and STDOUT"/>
         <package name="CMSIS-Driver_Validation" schemaVersion="1.7.31" url="https://www.keil.com/pack/" vendor="ARM" version="3.1.0-dev"/>
-        <targetInfos>
-          <targetInfo name="Evalbot_Debug"/>
-          <targetInfo name="Evalbot_Debug_RAM"/>
-          <targetInfo name="Evalbot_Release"/>
-        </targetInfos>
+        <targetInfos/>
       </file>
       <file attr="config" category="header" name="Config\DV_GPIO_Config.h" version="1.0.0">
         <instance index="0" removed="1">RTE\CMSIS_Driver_Validation\DV_GPIO_Config.h</instance>
@@ -2425,14 +2498,10 @@
         <targetInfos/>
       </file>
       <file attr="config" category="header" name="Config\DV_I2C_Config.h" version="1.0.0">
-        <instance index="0">RTE\CMSIS_Driver_Validation\DV_I2C_Config.h</instance>
+        <instance index="0" removed="1">RTE\CMSIS_Driver_Validation\DV_I2C_Config.h</instance>
         <component Cclass="CMSIS Driver Validation" Cgroup="I2C" Cvendor="ARM" Cversion="1.4.0" condition="CMSIS Driver Validation I2C"/>
         <package name="CMSIS-Driver_Validation" schemaVersion="1.7.31" url="https://www.keil.com/pack/" vendor="ARM" version="3.1.0-dev"/>
-        <targetInfos>
-          <targetInfo name="Evalbot_Debug"/>
-          <targetInfo name="Evalbot_Debug_RAM"/>
-          <targetInfo name="Evalbot_Release"/>
-        </targetInfos>
+        <targetInfos/>
       </file>
       <file attr="config" category="header" name="Config\DV_SPI_Config.h" version="1.1.0">
         <instance index="0" removed="1">RTE\CMSIS_Driver_Validation\DV_SPI_Config.h</instance>
