@@ -698,8 +698,8 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:LM3S9B92$SVD\lm3s9b92.svd</SFDFile>
-          <bCustSvd>0</bCustSvd>
+          <SFDFile>E:\Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\SVD\lm3s9b92.SFR</SFDFile>
+          <bCustSvd>1</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
           <IncludePath></IncludePath>

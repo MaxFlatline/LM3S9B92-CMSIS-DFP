@@ -3842,6 +3842,421 @@ by the other GPIO configuration registers.</description>
             </field>
           </fields>
         </register>
+      <!-- PIOSCCAL: Precision Internal Oscillator Calibration Register -->
+        <register>
+          <name>PIOSCCAL</name>
+          <description>Precision Internal Oscillator Calibration.</description>
+          <addressOffset>0x00000150</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x8000017f</resetMask>
+          <fields>
+            <!-- UTEN: Use User Trim Value field -->
+            <field>
+              <name>UTEN</name>
+              <description>Use User Trim Value.</description>
+              <bitOffset>31</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>USER_TRIM_USED</name>
+                  <description>The trim value in bits[6:0] of this register are used for any update trim operation.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>USER_TRIM_UNUSED</name>
+                  <description>The factory calibration value is used for an update trim operation.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UPDATE: Update Trim field -->
+            <field>
+              <name>UPDATE</name>
+              <description>Update Trim.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>UPDATE_TRIM</name>
+                  <description>Updates the PIOSC trim value with the UT bit or the DT bit in the PIOSCSTAT register. Used with UTEN.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>KEEP_TRIM</name>
+                  <description>No action.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UT: User Trim Value field -->
+            <field>
+              <name>UT</name>
+              <description>User Trim Value.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>7</bitWidth>
+            </field>
+          </fields>
+        </register>
+      <!-- I2SMCLKCFG: I2S MCLK Configuration Register -->
+        <register>
+          <name>I2SMCLKCFG</name>
+          <description>I2S MCLK Configuration.</description>
+          <addressOffset>0x00000170</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0xBFFFBFFF</resetMask>
+          <fields>
+            <!-- RXEN: RX Clock Enable field -->
+            <field>
+              <name>RXEN</name>
+              <description>RX Clock Enable.</description>
+              <bitOffset>31</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>I2S_RX_CLOCK_ENABLED</name>
+                  <description>The I2S receive clock generator is enabled.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>I2S_RX_CLOCK_DISABLED</name>
+                  <description>The I2S receive clock generator is disabled.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RXI: RX Clock Integer Input field -->
+            <field>
+              <name>RXI</name>
+              <description>RX Clock Integer Input.</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>10</bitWidth>
+            </field>
+            <!-- RXF: RX Clock Fractional Input field -->
+            <field>
+              <name>RXF</name>
+              <description>RX Clock Fractional Input.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>4</bitWidth>
+            </field>
+            <!-- TXEN: TX Clock Enable field -->
+            <field>
+              <name>TXEN</name>
+              <description>TX Clock Enable.</description>
+              <bitOffset>15</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>I2S_TX_CLOCK_ENABLED</name>
+                  <description>The I2S transmit clock generator is enabled.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>I2S_TX_CLOCK_DISABLED</name>
+                  <description>The I2S transmit clock generator is disabled.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TXI: TX Clock Integer Input field -->
+            <field>
+              <name>TXI</name>
+              <description>TX Clock Integer Input.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>10</bitWidth>
+            </field>
+            <!-- TXF: TX Clock Fractional Input field -->
+            <field>
+              <name>TXF</name>
+              <description>TX Clock Fractional Input.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>4</bitWidth>
+            </field>
+          </fields>
+        </register>
+      <!-- DID1: Device Identification 1 Register -->
+        <register>
+          <name>DID1</name>
+          <description>Device Identification 1.</description>
+          <addressOffset>0x00000004</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x106A4004</resetValue>
+          <resetMask>0xFFFFE0FF</resetMask>
+          
+          <fields>
+            <!-- VER: DID1 Version field -->
+            <field>
+              <name>VER</name>
+              <description>DID1 Version.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>4</bitWidth>
+
+              <writeConstraint>
+                <useEnumeratedValues>true</useEnumeratedValues>
+              </writeConstraint>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DID1_VER</name>
+                  <description>Second version of the DID1 register format.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- FAM: Family field -->
+            <field>
+              <name>FAM</name>
+              <description>Family.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>4</bitWidth>
+
+              <writeConstraint>
+                <useEnumeratedValues>true</useEnumeratedValues>
+              </writeConstraint>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DID1_FAM</name>
+                  <description>Stellaris family of microcontollers, that is, all devices with external part numbers starting with LM3S.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PARTNO: Part Number field -->
+            <field>
+              <name>PARTNO</name>
+              <description>Part Number.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>8</bitWidth>
+
+              <writeConstraint>
+                <useEnumeratedValues>true</useEnumeratedValues>
+              </writeConstraint>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DID1_PARTNO</name>
+                  <description>LM3S9B92.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PINCOUNT: Package Pin Count field -->
+            <field>
+              <name>PINCOUNT</name>
+              <description>Package Pin Count.</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>3</bitWidth>
+
+              <writeConstraint>
+                <useEnumeratedValues>true</useEnumeratedValues>
+              </writeConstraint>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DID1_PINCOUNT</name>
+                  <description>100-pin package.</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TEMP: Part Number field -->
+            <field>
+              <name>TEMP</name>
+              <description>Part Number.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>3</bitWidth>
+
+              <writeConstraint>
+                <useEnumeratedValues>true</useEnumeratedValues>
+              </writeConstraint>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DID1_TEMP_RANGE_EXT</name>
+                  <description>Extended temperature range (-40 C to 105 C).</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DID1_TEMP_RANGE_IND</name>
+                  <description>Industrial temperature range (-40 C to 85 C).</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DID1_TEMP_RANGE_COM</name>
+                  <description>Commercial temperature range (0 C to 70 C).</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PKG: Package Type field -->
+            <field>
+              <name>PKG</name>
+              <description>Package Type.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>2</bitWidth>
+
+              <writeConstraint>
+                <useEnumeratedValues>true</useEnumeratedValues>
+              </writeConstraint>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DID1_PKG_BGA</name>
+                  <description>BGA package.</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DID1_PKG_LQFP</name>
+                  <description>LQFP package.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DID1_PKG_SOIC</name>
+                  <description>SOIC package.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ROHS: RoHS-Compliance field -->
+            <field>
+              <name>ROHS</name>
+              <description>RoHS-Compliance.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DID1_ROHS_COMP</name>
+                  <description>This bit specifies whether the device is RoHS-compliant. A 1 indicates the part is RoHS-compliant.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DID1_ROHS_NONCOMP</name>
+                  <description>This bit specifies whether the device is RoHS-compliant. A 0 indicates the part is not RoHS-compliant.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- QUAL: Qualification Status field -->
+            <field>
+              <name>QUAL</name>
+              <description>Qualification Status.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>2</bitWidth>
+
+              <writeConstraint>
+                <useEnumeratedValues>true</useEnumeratedValues>
+              </writeConstraint>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DID1_QUAL_FULL</name>
+                  <description>Fully Qualified.</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DID1_QUAL_PILOT</name>
+                  <description>Pilot Production (unqualified).</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DID1_QUAL_ENGI</name>
+                  <description>Engineering Sample (unqualified).</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DC0: Device Capadilities 0 Register -->
+        <register>
+          <name>DC0</name>
+          <description>Device Capabilities 0.</description>
+          <addressOffset>0x00000008</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x017F007F</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+          
+          <fields>
+            <!-- SRAMSZ: SRAM Size field -->
+            <field>
+              <name>VER</name>
+              <description>SRAM Size.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>16</bitWidth>
+            </field>
+            <!-- FLASHSZ: Flash Size -->
+            <field>
+              <name>FLASHSZ</name>
+              <description>Flash Size.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>16</bitWidth>
+            </field>
+          </fields>
+        </register>
+      <!-- DC1: Device Capadilities 1 Register -->
+        <register>
+          <name>DC1</name>
+          <description>Device Capabilities 1.</description>
+          <addressOffset>0x00000010</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+          
+          <fields>
+            <!-- WDT1: Watchdog Timer 1 Present field -->
+            <field>
+              <name>WDT1</name>
+              <description>Watchdog Timer 1 Present.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_WDT1_PRESENT</name>
+                  <description>When set, indicates that watchdog timer 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_WDT1_NOT_PRESENT</name>
+                  <description>When reset, indicates that watchdog timer 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CAN1: CAN Module 1 Present field -->
+            <field>
+              <name>CAN1</name>
+              <description>CAN Module 1 Present.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_CAN1_PRESENT</name>
+                  <description>When set, indicates that CAN unit 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_CAN1_NOT_PRESENT</name>
+                  <description>When reset, indicates that CAN unit 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
       </registers>
     </peripheral>
   </peripherals>
