@@ -4255,6 +4255,664 @@ by the other GPIO configuration registers.</description>
                 </enumeratedValue>
               </enumeratedValues>
             </field>
+            <!-- CAN0: CAN Module 0 Present field -->
+            <field>
+              <name>CAN0</name>
+              <description>CAN Module 0 Present.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_CAN0_PRESENT</name>
+                  <description>When set, indicates that CAN unit 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_CAN0_NOT_PRESENT</name>
+                  <description>When reset, indicates that CAN unit 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM: PWM Module Present field -->
+            <field>
+              <name>PWM</name>
+              <description>PWM Module Present.</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_PWM_PRESENT</name>
+                  <description>When set, indicates that PWM module is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_PWM_NOT_PRESENT</name>
+                  <description>When reset, indicates that PWM module is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1: ADC Module 1 Present field -->
+            <field>
+              <name>ADC1</name>
+              <description>ADC Module 1 Present.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_ADC1_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_ADC1_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0: ADC Module 0 Present field -->
+            <field>
+              <name>ADC0</name>
+              <description>ADC Module 0 Present.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_ADC0_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_ADC0_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MINSYSDIV: System Clock Divider field -->
+            <field>
+              <name>MINSYSDIV</name>
+              <description>System Clock Divider.</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>4</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_MINSYSDIV_400MHZ_DIV_5_MIN</name>
+                  <description>Divide VCO (400MHZ) by 5 minimum.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_MINSYSDIV_400MHZ_DIV_6_MIN</name>
+                  <description>Divide VCO (400MHZ) by 2*2 + 2 = 6 minimum.</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_MINSYSDIV_50_MHZ_DIV_4</name>
+                  <description>Specifies a 50-MHz CPU clock with a PLL divider of 4.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_MINSYSDIV_25_MHZ_DIV_8</name>
+                  <description>Specifies a 25-MHz clock with a PLL divider of 8.</description>
+                  <value>0x7</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_MINSYSDIV_20_MHZ_DIV_10</name>
+                  <description>Specifies a 20-MHz clock with a PLL divider of 10.</description>
+                  <value>0x9</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MAXADC1SPD: Max ADC1 Speed field -->
+            <field>
+              <name>MAXADC1SPD</name>
+              <description>Max ADC1 Speed.</description>
+              <bitOffset>10</bitOffset>
+              <bitWidth>2</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_MAXADC1SPD_1M</name>
+                  <description>1M samples/second.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MAXADC0SPD: Max ADC0 Speed field -->
+            <field>
+              <name>MAXADC0SPD</name>
+              <description>Max ADC0 Speed.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>2</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_MAXADC0SPD_1M</name>
+                  <description>1M samples/second.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MPU: MPU Module Present field -->
+            <field>
+              <name>MPU</name>
+              <description>MPU Module Present.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_MPU_PRESENT</name>
+                  <description>When set, indicates that MPU is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_MPU_NOT_PRESENT</name>
+                  <description>When reset, indicates that MPU is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TEMPSNS: Temp Sensor Present field -->
+            <field>
+              <name>TEMPSNS</name>
+              <description>Temp Sensor Present.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_TEMPSNS_PRESENT</name>
+                  <description>When set, indicates that temp sensor is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_TEMPSNS_NOT_PRESENT</name>
+                  <description>When reset, indicates that temp sensor is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PLL: PLL Present field -->
+            <field>
+              <name>PLL</name>
+              <description>PLL Present.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_PLL_PRESENT</name>
+                  <description>When set, indicates that PLL is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_PLL_NOT_PRESENT</name>
+                  <description>When reset, indicates that PLL is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- WDT0: Watchdog Timer 0 Present field -->
+            <field>
+              <name>WDT0</name>
+              <description>Watchdog Timer 0 Present.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_WDT0_PRESENT</name>
+                  <description>When set, indicates that watchdog timer 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_WDT0_NOT_PRESENT</name>
+                  <description>When reset, indicates that watchdog timer 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SWO: SWO Module Present field -->
+            <field>
+              <name>SWO</name>
+              <description>SWO Module Present.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_SWO_PRESENT</name>
+                  <description>When set, indicates that SWO module is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_SWO_NOT_PRESENT</name>
+                  <description>When reset, indicates that SWO module is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SWD: SWD Present field -->
+            <field>
+              <name>SWD</name>
+              <description>SWD Present.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_SWD_PRESENT</name>
+                  <description>When set, indicates that SWD is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_SWD_NOT_PRESENT</name>
+                  <description>When reset, indicates that SWD is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- JTAG: JTAG Present field -->
+            <field>
+              <name>JTAG</name>
+              <description>JTAG Present.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC1_JTAG_PRESENT</name>
+                  <description>When set, indicates that JTAG is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC1_JTAG_NOT_PRESENT</name>
+                  <description>When reset, indicates that JTAG is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DC2: Device Capadilities 2 Register -->
+        <register>
+          <name>DC2</name>
+          <description>Device Capabilities 2.</description>
+          <addressOffset>0x00000014</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+          
+          <fields>
+            <!-- EPI0: EPI Module 0 Present field -->
+            <field>
+              <name>EPI0</name>
+              <description>EPI Module 0 Present.</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_EPI0_PRESENT</name>
+                  <description>When set, indicates that EPI module 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_EPI0_NOT_PRESENT</name>
+                  <description>When reset, indicates that EPI module 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2S0: I2S Module 0 Present field -->
+            <field>
+              <name>I2S0</name>
+              <description>I2S Module 0 Present.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_I2S0_PRESENT</name>
+                  <description>When set, indicates that I2S module 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_I2S0_NOT_PRESENT</name>
+                  <description>When reset, indicates that I2S module 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP2: Analog Comparator 2 Present field -->
+            <field>
+              <name>COMP2</name>
+              <description>Analog Comparator 2 Present.</description>
+              <bitOffset>26</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_COMP2_PRESENT</name>
+                  <description>When set, indicates that analog comparator 2 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_COMP2_NOT_PRESENT</name>
+                  <description>When reset, indicates that analog comparator 2 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP1: Analog Comparator 1 Present field -->
+            <field>
+              <name>COMP1</name>
+              <description>Analog Comparator 1 Present.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_COMP1_PRESENT</name>
+                  <description>When set, indicates that analog comparator 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_COMP1_NOT_PRESENT</name>
+                  <description>When reset, indicates that analog comparator 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP0: Analog Comparator 0 Present field -->
+            <field>
+              <name>COMP0</name>
+              <description>Analog Comparator 0 Present.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_COMP0_PRESENT</name>
+                  <description>When set, indicates that analog comparator 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_COMP0_NOT_PRESENT</name>
+                  <description>When reset, indicates that analog comparator 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER3: Timer Module 3 Present field -->
+            <field>
+              <name>TIMER3</name>
+              <description>Analog Comparator 3 Present.</description>
+              <bitOffset>19</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_TIMER3_PRESENT</name>
+                  <description>When set, indicates that General-Purpose Timer module 3 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_TIMER3_NOT_PRESENT</name>
+                  <description>When reset, indicates that General-Purpose Timer module 3 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER2: Timer Module 2 Present field -->
+            <field>
+              <name>TIMER2</name>
+              <description>Analog Comparator 2 Present.</description>
+              <bitOffset>18</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_TIMER2_PRESENT</name>
+                  <description>When set, indicates that General-Purpose Timer module 2 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_TIMER2_NOT_PRESENT</name>
+                  <description>When reset, indicates that General-Purpose Timer module 2 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER1: Timer Module 1 Present field -->
+            <field>
+              <name>TIMER1</name>
+              <description>Analog Comparator 1 Present.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_TIMER1_PRESENT</name>
+                  <description>When set, indicates that General-Purpose Timer module 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_TIMER1_NOT_PRESENT</name>
+                  <description>When reset, indicates that General-Purpose Timer module 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER0: Timer Module 0 Present field -->
+            <field>
+              <name>TIMER0</name>
+              <description>Analog Comparator 0 Present.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_TIMER0_PRESENT</name>
+                  <description>When set, indicates that General-Purpose Timer module 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_TIMER0_NOT_PRESENT</name>
+                  <description>When reset, indicates that General-Purpose Timer module 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2C1: I2C Module 1 Present field -->
+            <field>
+              <name>I2C1</name>
+              <description>I2C Module 1 Present.</description>
+              <bitOffset>14</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_I2C1_PRESENT</name>
+                  <description>When set, indicates that I2C module 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_I2C1_NOT_PRESENT</name>
+                  <description>When reset, indicates that I2C module 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2C0: I2C Module 0 Present field -->
+            <field>
+              <name>I2C0</name>
+              <description>I2C Module 0 Present.</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_I2C0_PRESENT</name>
+                  <description>When set, indicates that I2C module 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_I2C0_NOT_PRESENT</name>
+                  <description>When reset, indicates that I2C module 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- QEI1: QEI Module 1 Present field -->
+            <field>
+              <name>QEI1</name>
+              <description>QEI Module 1 Present.</description>
+              <bitOffset>9</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_QEI1_PRESENT</name>
+                  <description>When set, indicates that QEI module 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_QEI1_NOT_PRESENT</name>
+                  <description>When reset, indicates that QEI module 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- QEI0: QEI Module 0 Present field -->
+            <field>
+              <name>QEI0</name>
+              <description>QEI Module 0 Present.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_QEI0_PRESENT</name>
+                  <description>When set, indicates that QEI module 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_QEI0_NOT_PRESENT</name>
+                  <description>When reset, indicates that QEI module 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SSI1: SSI Module 1 Present field -->
+            <field>
+              <name>SSI1</name>
+              <description>SSI Module 1 Present.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_SSI1_PRESENT</name>
+                  <description>When set, indicates that SSI module 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_SSI1_NOT_PRESENT</name>
+                  <description>When reset, indicates that SSI module 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SSI0: SSI Module 0 Present field -->
+            <field>
+              <name>SSI0</name>
+              <description>SSI Module 0 Present.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_SSI0_PRESENT</name>
+                  <description>When set, indicates that SSI module 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_SSI0_NOT_PRESENT</name>
+                  <description>When reset, indicates that SSI module 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART2: UART Module 2 Present field -->
+            <field>
+              <name>UART2</name>
+              <description>UART Module 2 Present.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_UART2_PRESENT</name>
+                  <description>When set, indicates that UART module 2 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_UART2_NOT_PRESENT</name>
+                  <description>When reset, indicates that UART module 2 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART1: UART Module 1 Present field -->
+            <field>
+              <name>UART1</name>
+              <description>UART Module 1 Present.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_UART1_PRESENT</name>
+                  <description>When set, indicates that UART module 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_UART1_NOT_PRESENT</name>
+                  <description>When reset, indicates that UART module 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART0: UART Module 0 Present field -->
+            <field>
+              <name>UART0</name>
+              <description>UART Module 0 Present.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC2_UART0_PRESENT</name>
+                  <description>When set, indicates that UART module 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC2_UART0_NOT_PRESENT</name>
+                  <description>When reset, indicates that UART module 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
           </fields>
         </register>
       </registers>
