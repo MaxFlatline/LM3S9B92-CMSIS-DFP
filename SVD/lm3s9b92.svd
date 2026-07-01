@@ -4915,6 +4915,1293 @@ by the other GPIO configuration registers.</description>
             </field>
           </fields>
         </register>
+      <!-- DC3: Device Capadilities 3 Register -->
+        <register>
+          <name>DC3</name>
+          <description>Device Capabilities 3.</description>
+          <addressOffset>0x00000018</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0xBFFFFFFF</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+          
+          <fields>
+            <!-- ICLK32KHZ: 32KHz Input Clock Available field -->
+            <field>
+              <name>ICLK32KHZ</name>
+              <description>32KHz Input Clock Available.</description>
+              <bitOffset>31</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_ICLK32KHZ_PRESENT</name>
+                  <description>When set, indicates an even CCP pin is present and can be used as a 32-KHz input clock.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_ICLK32KHZ_NOT_PRESENT</name>
+                  <description>When reset, indicates an even CCP pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CCP5: CCP5 Pin Present field -->
+            <field>
+              <name>CCP5</name>
+              <description>CCP5 Pin Present.</description>
+              <bitOffset>29</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_CCP5_PRESENT</name>
+                  <description>When set, indicates that Capture/Compare/PWM pin 5 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_CCP5_NOT_PRESENT</name>
+                  <description>When reset, indicates that Capture/Compare/PWM pin 5 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CCP4: CCP4 Pin Present field -->
+            <field>
+              <name>CCP4</name>
+              <description>CCP4 Pin Present.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_CCP4_PRESENT</name>
+                  <description>When set, indicates that Capture/Compare/PWM pin 4 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_CCP4_NOT_PRESENT</name>
+                  <description>When reset, indicates that Capture/Compare/PWM pin 4 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CCP3: CCP3 Pin Present field -->
+            <field>
+              <name>CCP3</name>
+              <description>CCP3 Pin Present.</description>
+              <bitOffset>27</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_CCP3_PRESENT</name>
+                  <description>When set, indicates that Capture/Compare/PWM pin 3 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_CCP3_NOT_PRESENT</name>
+                  <description>When reset, indicates that Capture/Compare/PWM pin 3 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CCP2: CCP2 Pin Present field -->
+            <field>
+              <name>CCP2</name>
+              <description>CCP2 Pin Present.</description>
+              <bitOffset>26</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_CCP2_PRESENT</name>
+                  <description>When set, indicates that Capture/Compare/PWM pin 2 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_CCP2_NOT_PRESENT</name>
+                  <description>When reset, indicates that Capture/Compare/PWM pin 2 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CCP1: CCP1 Pin Present field -->
+            <field>
+              <name>CCP1</name>
+              <description>CCP1 Pin Present.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_CCP1_PRESENT</name>
+                  <description>When set, indicates that Capture/Compare/PWM pin 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_CCP1_NOT_PRESENT</name>
+                  <description>When reset, indicates that Capture/Compare/PWM pin 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CCP0: CCP0 Pin Present field -->
+            <field>
+              <name>CCP0</name>
+              <description>CCP0 Pin Present.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_CCP0_PRESENT</name>
+                  <description>When set, indicates that Capture/Compare/PWM pin 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_CCP0_NOT_PRESENT</name>
+                  <description>When reset, indicates that Capture/Compare/PWM pin 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN7: ADC Module 0 AIN7 Pin Present field -->
+            <field>
+              <name>ADC0AIN7</name>
+              <description>ADC0AIN7 Pin Present.</description>
+              <bitOffset>23</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN7_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 7 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN7_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 7 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN6: ADC Module 0 AIN6 Pin Present field -->
+            <field>
+              <name>ADC0AIN6</name>
+              <description>ADC0AIN6 Pin Present.</description>
+              <bitOffset>22</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN6_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 6 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN6_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 6 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN5: ADC Module 0 AIN5 Pin Present field -->
+            <field>
+              <name>ADC0AIN5</name>
+              <description>ADC0AIN5 Pin Present.</description>
+              <bitOffset>21</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN5_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 5 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN5_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 5 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN4: ADC Module 0 AIN4 Pin Present field -->
+            <field>
+              <name>ADC0AIN4</name>
+              <description>ADC0AIN4 Pin Present.</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN4_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 4 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN4_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 4 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN3: ADC Module 0 AIN3 Pin Present field -->
+            <field>
+              <name>ADC0AIN3</name>
+              <description>ADC0AIN3 Pin Present.</description>
+              <bitOffset>19</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN3_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 3 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN3_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 3 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN2: ADC Module 0 AIN2 Pin Present field -->
+            <field>
+              <name>ADC0AIN2</name>
+              <description>ADC0AIN2 Pin Present.</description>
+              <bitOffset>18</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN2_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 2 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN2_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 2 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN1: ADC Module 0 AIN1 Pin Present field -->
+            <field>
+              <name>ADC0AIN1</name>
+              <description>ADC0AIN1 Pin Present.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN1_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN1_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN6: ADC Module 0 AIN0 Pin Present field -->
+            <field>
+              <name>ADC0AIN0</name>
+              <description>ADC0AIN0 Pin Present.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN0_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_ADC0AIN0_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWMFAULT: PWM Fault Pin Present field -->
+            <field>
+              <name>PWMFAULT</name>
+              <description>PWM Fault Pin Present.</description>
+              <bitOffset>15</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_PWMFAULT_PRESENT</name>
+                  <description>When set, indicates that a PWM Fault pin is present. See DC5 for specific Fault pins on this device.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_PWMFAULT_NOT_PRESENT</name>
+                  <description>When reset, indicates that a PWM Fault pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- C2O: C2o Pin Present field -->
+            <field>
+              <name>C2O</name>
+              <description>C2o Pin Present.</description>
+              <bitOffset>14</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_C2O_PRESENT</name>
+                  <description>When set, indicates that the analog comparator 2 output pin is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_C2O_NOT_PRESENT</name>
+                  <description>When reset, indicates that the analog comparator 2 output pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- C2PLUS: C2+ Pin Present field -->
+            <field>
+              <name>C2PLUS</name>
+              <description>C2+ Pin Present.</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_C2PLUS_PRESENT</name>
+                  <description>When set, indicates that the analog comparator 2 (+) input pin is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_C2PLUS_NOT_PRESENT</name>
+                  <description>When reset, indicates that the analog comparator 2 (+) input pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- C2MINUS: C2- Pin Present field -->
+            <field>
+              <name>C2MINUS</name>
+              <description>C2- Pin Present.</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_C2MINUS_PRESENT</name>
+                  <description>When set, indicates that the analog comparator 2 (-) input pin is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_C2MINUS_NOT_PRESENT</name>
+                  <description>When reset, indicates that the analog comparator 2 (-) input pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- C1O: C1o Pin Present field -->
+            <field>
+              <name>C1O</name>
+              <description>C1o Pin Present.</description>
+              <bitOffset>11</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_C1O_PRESENT</name>
+                  <description>When set, indicates that the analog comparator 1 output pin is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_C1O_NOT_PRESENT</name>
+                  <description>When reset, indicates that the analog comparator 1 output pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- C1PLUS: C1+ Pin Present field -->
+            <field>
+              <name>C1PLUS</name>
+              <description>C1+ Pin Present.</description>
+              <bitOffset>10</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_C1PLUS_PRESENT</name>
+                  <description>When set, indicates that the analog comparator 1 (+) input pin is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_C1PLUS_NOT_PRESENT</name>
+                  <description>When reset, indicates that the analog comparator 1 (+) input pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- C1MINUS: C1- Pin Present field -->
+            <field>
+              <name>C1MINUS</name>
+              <description>C1- Pin Present.</description>
+              <bitOffset>9</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_C1MINUS_PRESENT</name>
+                  <description>When set, indicates that the analog comparator 1 (-) input pin is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_C1MINUS_NOT_PRESENT</name>
+                  <description>When reset, indicates that the analog comparator 1 (-) input pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- C0O: C0o Pin Present field -->
+            <field>
+              <name>C0O</name>
+              <description>C0o Pin Present.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_C0O_PRESENT</name>
+                  <description>When set, indicates that the analog comparator 0 output pin is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_C0O_NOT_PRESENT</name>
+                  <description>When reset, indicates that the analog comparator 0 output pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- C0PLUS: C0+ Pin Present field -->
+            <field>
+              <name>C0PLUS</name>
+              <description>C0+ Pin Present.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_C0PLUS_PRESENT</name>
+                  <description>When set, indicates that the analog comparator 0 (+) input pin is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_C0PLUS_NOT_PRESENT</name>
+                  <description>When reset, indicates that the analog comparator 0 (+) input pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- C0MINUS: C0- Pin Present field -->
+            <field>
+              <name>C0MINUS</name>
+              <description>C0- Pin Present.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_C0MINUS_PRESENT</name>
+                  <description>When set, indicates that the analog comparator 0 (-) input pin is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_C0MINUS_NOT_PRESENT</name>
+                  <description>When reset, indicates that the analog comparator 0 (-) input pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM5: PWM5 Pin Present field -->
+            <field>
+              <name>PWM5</name>
+              <description>PWM5 Pin Present.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_PWM5_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 5 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_PWM5_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 5 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM4: PWM4 Pin Present field -->
+            <field>
+              <name>PWM4</name>
+              <description>PWM4 Pin Present.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_PWM4_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 4 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_PWM4_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 4 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM3: PWM3 Pin Present field -->
+            <field>
+              <name>PWM3</name>
+              <description>PWM3 Pin Present.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_PWM3_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 3 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_PWM3_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 3 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM2: PWM2 Pin Present field -->
+            <field>
+              <name>PWM2</name>
+              <description>PWM2 Pin Present.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_PWM2_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 2 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_PWM2_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 2 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM1: PWM1 Pin Present field -->
+            <field>
+              <name>PWM1</name>
+              <description>PWM1 Pin Present.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_PWM1_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_PWM1_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM0: PWM0 Pin Present field -->
+            <field>
+              <name>PWM0</name>
+              <description>PWM0 Pin Present.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC3_PWM0_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC3_PWM0_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DC4: Device Capadilities 4 Register -->
+        <register>
+          <name>DC4</name>
+          <description>Device Capabilities 4.</description>
+          <addressOffset>0x0000001C</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x5000F1FF</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+          
+          <fields>
+            <!-- EPHY0: Ethernet PHY Layer 0 Present field -->
+            <field>
+              <name>EPHY0</name>
+              <description>Ethernet PHY Layer 0 Present.</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_EPHY0_PRESENT</name>
+                  <description>When set, indicates that Ethernet PHY layer 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_EPHY0_NOT_PRESENT</name>
+                  <description>When reset, indicates that Ethernet PHY layer 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- EMAC0: Ethernet MAC Layer 0 Present field -->
+            <field>
+              <name>EMAC0</name>
+              <description>Ethernet MAC Layer 0 Present.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_EMAC0_PRESENT</name>
+                  <description>When set, indicates that Ethernet MAC layer 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_EMAC0_NOT_PRESENT</name>
+                  <description>When reset, indicates that Ethernet MAC layer 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CCP7: CCP7 Pin Present field -->
+            <field>
+              <name>CCP7</name>
+              <description>CCP7 Pin Present.</description>
+              <bitOffset>15</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_CCP7_PRESENT</name>
+                  <description>When set, indicates that Capture/Compare/PWM pin 7 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_CCP7_NOT_PRESENT</name>
+                  <description>When reset, indicates that Capture/Compare/PWM pin 7 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CCP6: CCP6 Pin Present field -->
+            <field>
+              <name>CCP6</name>
+              <description>CCP6 Pin Present.</description>
+              <bitOffset>14</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_CCP6_PRESENT</name>
+                  <description>When set, indicates that Capture/Compare/PWM pin 6 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_CCP6_NOT_PRESENT</name>
+                  <description>When reset, indicates that Capture/Compare/PWM pin 6 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UDMA: Micro-DMA Module Present field -->
+            <field>
+              <name>UDMA</name>
+              <description>Micro-DMA Module Present.</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_UDMA_PRESENT</name>
+                  <description>When set, indicates that the micro-DMA module is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_UDMA_NOT_PRESENT</name>
+                  <description>When reset, indicates that the micro-DMA module is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ROM: Internal Code ROM Present field -->
+            <field>
+              <name>ROM</name>
+              <description>Internal Code ROM Present.</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_ROM_PRESENT</name>
+                  <description>When set, indicates that internal code ROM is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_ROM_NOT_PRESENT</name>
+                  <description>When reset, indicates that internal code ROM is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOJ: GPIO Port J Present field -->
+            <field>
+              <name>GPIOJ</name>
+              <description>GPIO Port J Present.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_GPIOJ_PRESENT</name>
+                  <description>When set, indicates that GPIO Port J is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_GPIOJ_NOT_PRESENT</name>
+                  <description>When reset, indicates that GPIO Port J is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOH: GPIO Port H Present field -->
+            <field>
+              <name>GPIOH</name>
+              <description>GPIO Port H Present.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_GPIOH_PRESENT</name>
+                  <description>When set, indicates that GPIO Port H is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_GPIOH_NOT_PRESENT</name>
+                  <description>When reset, indicates that GPIO Port H is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOG: GPIO Port G Present field -->
+            <field>
+              <name>GPIOG</name>
+              <description>GPIO Port G Present.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_GPIOG_PRESENT</name>
+                  <description>When set, indicates that GPIO Port G is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_GPIOG_NOT_PRESENT</name>
+                  <description>When reset, indicates that GPIO Port G is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOF: GPIO Port F Present field -->
+            <field>
+              <name>GPIOF</name>
+              <description>GPIO Port F Present.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_GPIOF_PRESENT</name>
+                  <description>When set, indicates that GPIO Port F is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_GPIOF_NOT_PRESENT</name>
+                  <description>When reset, indicates that GPIO Port F is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOE: GPIO Port E Present field -->
+            <field>
+              <name>GPIOE</name>
+              <description>GPIO Port E Present.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_GPIOE_PRESENT</name>
+                  <description>When set, indicates that GPIO Port E is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_GPIOE_NOT_PRESENT</name>
+                  <description>When reset, indicates that GPIO Port E is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOD: GPIO Port D Present field -->
+            <field>
+              <name>GPIOD</name>
+              <description>GPIO Port D Present.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_GPIOD_PRESENT</name>
+                  <description>When set, indicates that GPIO Port D is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_GPIOD_NOT_PRESENT</name>
+                  <description>When reset, indicates that GPIO Port D is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOC: GPIO Port C Present field -->
+            <field>
+              <name>GPIOC</name>
+              <description>GPIO Port C Present.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_GPIOC_PRESENT</name>
+                  <description>When set, indicates that GPIO Port C is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_GPIOC_NOT_PRESENT</name>
+                  <description>When reset, indicates that GPIO Port C is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOB: GPIO Port B Present field -->
+            <field>
+              <name>GPIOB</name>
+              <description>GPIO Port B Present.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_GPIOB_PRESENT</name>
+                  <description>When set, indicates that GPIO Port B is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_GPIOB_NOT_PRESENT</name>
+                  <description>When reset, indicates that GPIO Port B is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOA: GPIO Port A Present field -->
+            <field>
+              <name>GPIOA</name>
+              <description>GPIO Port A Present.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC4_GPIOA_PRESENT</name>
+                  <description>When set, indicates that GPIO Port A is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC4_GPIOA_NOT_PRESENT</name>
+                  <description>When reset, indicates that GPIO Port A is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DC5: Device Capadilities 5 Register -->
+        <register>
+          <name>DC5</name>
+          <description>Device Capabilities 5.</description>
+          <addressOffset>0x00000020</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x0F3000FF</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+          
+          <fields>
+            <!-- PWMFAULT3: PWM Fault 3 Pin Present field -->
+            <field>
+              <name>PWMFAULT3</name>
+              <description>PWM Fault 3 Pin Present.</description>
+              <bitOffset>27</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWMFAULT3_PRESENT</name>
+                  <description>When set, indicates that the PWM Fault 3 pin is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWMFAULT3_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM Fault 3 pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWMFAULT2: PWM Fault 2 Pin Present field -->
+            <field>
+              <name>PWMFAULT2</name>
+              <description>PWM Fault 2 Pin Present.</description>
+              <bitOffset>26</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWMFAULT2_PRESENT</name>
+                  <description>When set, indicates that the PWM Fault 2 pin is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWMFAULT2_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM Fault 2 pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWMFAULT1: PWM Fault 1 Pin Present field -->
+            <field>
+              <name>PWMFAULT1</name>
+              <description>PWM Fault 1 Pin Present.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWMFAULT1_PRESENT</name>
+                  <description>When set, indicates that the PWM Fault 1 pin is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWMFAULT1_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM Fault 1 pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWMFAULT0: PWM Fault 0 Pin Present field -->
+            <field>
+              <name>PWMFAULT0</name>
+              <description>PWM Fault 0 Pin Present.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWMFAULT0_PRESENT</name>
+                  <description>When set, indicates that the PWM Fault 0 pin is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWMFAULT0_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM Fault 0 pin is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWMEFLT: PWM Extended Fault Active field -->
+            <field>
+              <name>PWMEFLT</name>
+              <description>PWM Extended Fault Active.</description>
+              <bitOffset>21</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWMEFLT_ACTIVE</name>
+                  <description>When set, indicates that the PWM Extended Fault feature is active.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWMEFLT_NOT_ACTIVE</name>
+                  <description>When reset, indicates that the PWM Extended Fault feature is not active.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWMESYNC: PWM Extended SYNC Active field -->
+            <field>
+              <name>PWMESYNC</name>
+              <description>PWM Extended SYNC Active.</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWMESYNC_ACTIVE</name>
+                  <description>When set, indicates that the PWM Extended SYNC feature is active.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWMESYNC_NOT_ACTIVE</name>
+                  <description>When reset, indicates that the PWM Extended SYNC feature is not active.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM7: PWM7 Pin Present field -->
+            <field>
+              <name>PWM7</name>
+              <description>PWM7 Pin Present.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWM7_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 7 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWM7_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 7 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM6: PWM6 Pin Present field -->
+            <field>
+              <name>PWM6</name>
+              <description>PWM6 Pin Present.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWM6_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 6 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWM6_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 6 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM5: PWM5 Pin Present field -->
+            <field>
+              <name>PWM5</name>
+              <description>PWM5 Pin Present.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWM5_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 5 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWM5_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 5 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM4: PWM4 Pin Present field -->
+            <field>
+              <name>PWM4</name>
+              <description>PWM4 Pin Present.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWM4_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 4 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWM4_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 4 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM3: PWM3 Pin Present field -->
+            <field>
+              <name>PWM3</name>
+              <description>PWM3 Pin Present.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWM3_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 3 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWM3_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 3 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM2: PWM2 Pin Present field -->
+            <field>
+              <name>PWM2</name>
+              <description>PWM2 Pin Present.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWM2_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 2 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWM2_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 2 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM1: PWM1 Pin Present field -->
+            <field>
+              <name>PWM1</name>
+              <description>PWM1 Pin Present.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWM1_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWM1_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM0: PWM0 Pin Present field -->
+            <field>
+              <name>PWM0</name>
+              <description>PWM0 Pin Present.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_PWM0_PRESENT</name>
+                  <description>When set, indicates that the PWM pin 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_PWM0_NOT_PRESENT</name>
+                  <description>When reset, indicates that the PWM pin 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DC6: Device Capadilities 5 Register -->
+        <register>
+          <name>DC6</name>
+          <description>Device Capabilities 6.</description>
+          <addressOffset>0x00000024</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000013</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+          
+          <fields>
+            <!-- USB0PHY: USB0PHY Pin Present field -->
+            <field>
+              <name>USB0PHY</name>
+              <description>USB Module 0 PHY Present.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC5_USB0PHY_PRESENT</name>
+                  <description>When set, indicates that the USB module 0 PHY is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC5_USB0PHY_NOT_PRESENT</name>
+                  <description>When reset, indicates that the USB module 0 PHY is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- USB0: USB Module 0 Present field -->
+            <field>
+              <name>USB0</name>
+              <description>USB Module 0 Present.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>2</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC6_USB0_OTG</name>
+                  <description>Thie field indicates that USB module 0 is present and specifies its capability.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
       </registers>
     </peripheral>
   </peripherals>
