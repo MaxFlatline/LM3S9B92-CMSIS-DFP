@@ -15,10 +15,6 @@
  */
 #define CMSIS_device_header "lm3s9b92.h"
 
-/* ARM::CMSIS Driver Validation:Framework@2.0.0 */
-#define RTE_CMSIS_DV_PACK_VER   "3.1.0"
-/* ARM::CMSIS Driver Validation:I2C@1.4.0 */
-#define RTE_CMSIS_DV_I2C        /* Driver Validation I2C enabled */
 /* ARM::CMSIS-Compiler:STDOUT:Event Recorder@1.1.0 */
 #define RTE_CMSIS_Compiler_STDOUT                /* CMSIS-Compiler STDOUT */
 #define RTE_CMSIS_Compiler_STDOUT_Event_Recorder /* CMSIS-Compiler STDOUT: Event Recorder */
