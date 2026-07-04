@@ -7854,6 +7854,585 @@ by the other GPIO configuration registers.</description>
             </field>
           </fields>
         </register>
+      <!-- RCGC0: Run Mode Clock Gating Control Register 0 -->
+        <register>
+          <name>RCGC0</name>
+          <description>Run Mode Clock Gating Control Register 0.</description>
+          <addressOffset>0x00000100</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000040</resetValue>
+          <resetMask>0x13130F08</resetMask>
+          
+          <fields>
+            <!-- WDT1: WDT1 Clock Gating Control field -->
+            <field>
+              <name>WDT1</name>
+              <description>This bit controls the clock gating for the Watchdog Timer module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_WDT1_ACTIVE</name>
+                  <description>When set, indicates that Watchdog Timer module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_WDT1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Watchdog Timer module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CAN1: CAN1 Clock Gating Control field -->
+            <field>
+              <name>CAN1</name>
+              <description>This bit controls the clock gating for CAN module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_CAN1_ACTIVE</name>
+                  <description>When set, indicates that CAN module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_CAN1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that CAN module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CAN0: CAN0 Clock Gating Control field -->
+            <field>
+              <name>CAN0</name>
+              <description>This bit controls the clock gating for CAN module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_CAN0_ACTIVE</name>
+                  <description>When set, indicates that CAN module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_CAN0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that CAN module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM: PWM Clock Gating Control field -->
+            <field>
+              <name>PWM</name>
+              <description>This bit controls the clock gating for the PWM module. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_PWM_ACTIVE</name>
+                  <description>When set, indicates that PWM module receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_PWM_NOT_ACTIVE</name>
+                  <description>When reset, indicates that PWM module does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1: ADC1 Clock Gating Control field -->
+            <field>
+              <name>ADC1</name>
+              <description>This bit controls the clock gating for SAR ADC module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_ADC1_ACTIVE</name>
+                  <description>When set, indicates that ADC module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_ADC1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that ADC module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0: ADC0 Clock Gating Control field -->
+            <field>
+              <name>ADC0</name>
+              <description>This bit controls the clock gating for SAR ADC module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_ADC0_ACTIVE</name>
+                  <description>When set, indicates that ADC module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_ADC0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that ADC module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MAXADC1SPD: ADC1 Sample Speed field -->
+            <field>
+              <name>MAXADC1SPD</name>
+              <description>This field sets the rate at which ADC module 1 samples data. You cannot set the rate higher than the maximum rate. You can set the sample rate by setting the MAXADC1SPD bit as follows (all other encodings are reserved):</description>
+              <bitOffset>10</bitOffset>
+              <bitWidth>2</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC1SPD_1M</name>
+                  <description>1M samples/second.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC1SPD_500K</name>
+                  <description>500K samples/second.</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC1SPD_250K</name>
+                  <description>250K samples/second.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC1SPD_125K</name>
+                  <description>125K samples/second.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MAXADC0SPD: ADC0 Sample Speed field -->
+            <field>
+              <name>MAXADC0SPD</name>
+              <description>This field sets the rate at which ADC module 0 samples data. You cannot set the rate higher than the maximum rate. You can set the sample rate by setting the MAXADC0SPD bit as follows (all other encodings are reserved):</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>2</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC0SPD_1M</name>
+                  <description>1M samples/second.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC0SPD_500K</name>
+                  <description>500K samples/second.</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC0SPD_250K</name>
+                  <description>250K samples/second.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC0SPD_125K</name>
+                  <description>125K samples/second.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- WDT0: WDT0 Clock Gating Control field -->
+            <field>
+              <name>WDT0</name>
+              <description>This bit controls the clock gating for the Watchdog Timer module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_WDT0_ACTIVE</name>
+                  <description>When set, indicates that Watchdog Timer module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_WDT0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Watchdog Timer module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- SCGC0: Sleep Mode Clock Gating Control Register 0 -->
+        <register>
+          <name>SCGC0</name>
+          <description>Sleep Mode Clock Gating Control Register 0.</description>
+          <addressOffset>0x00000110</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000040</resetValue>
+          <resetMask>0x13130F08</resetMask>
+          
+          <fields>
+            <!-- WDT1: WDT1 Clock Gating Control field -->
+            <field>
+              <name>WDT1</name>
+              <description>This bit controls the clock gating for the Watchdog Timer module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_WDT1_ACTIVE</name>
+                  <description>When set, indicates that Watchdog Timer module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_WDT1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Watchdog Timer module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CAN1: CAN1 Clock Gating Control field -->
+            <field>
+              <name>CAN1</name>
+              <description>This bit controls the clock gating for CAN module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_CAN1_ACTIVE</name>
+                  <description>When set, indicates that CAN module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_CAN1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that CAN module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CAN0: CAN0 Clock Gating Control field -->
+            <field>
+              <name>CAN0</name>
+              <description>This bit controls the clock gating for CAN module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_CAN0_ACTIVE</name>
+                  <description>When set, indicates that CAN module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_CAN0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that CAN module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM: PWM Clock Gating Control field -->
+            <field>
+              <name>PWM</name>
+              <description>This bit controls the clock gating for the PWM module. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_PWM_ACTIVE</name>
+                  <description>When set, indicates that PWM module receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_PWM_NOT_ACTIVE</name>
+                  <description>When reset, indicates that PWM module does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1: ADC1 Clock Gating Control field -->
+            <field>
+              <name>ADC1</name>
+              <description>This bit controls the clock gating for SAR ADC module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_ADC1_ACTIVE</name>
+                  <description>When set, indicates that ADC module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_ADC1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that ADC module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0: ADC0 Clock Gating Control field -->
+            <field>
+              <name>ADC0</name>
+              <description>This bit controls the clock gating for SAR ADC module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_ADC0_ACTIVE</name>
+                  <description>When set, indicates that ADC module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_ADC0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that ADC module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MAXADC1SPD: ADC1 Sample Speed field -->
+            <field>
+              <name>MAXADC1SPD</name>
+              <description>This field sets the rate at which ADC module 1 samples data. You cannot set the rate higher than the maximum rate. You can set the sample rate by setting the MAXADC1SPD bit as follows (all other encodings are reserved):</description>
+              <bitOffset>10</bitOffset>
+              <bitWidth>2</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC1SPD_1M</name>
+                  <description>1M samples/second.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC1SPD_500K</name>
+                  <description>500K samples/second.</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC1SPD_250K</name>
+                  <description>250K samples/second.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC1SPD_125K</name>
+                  <description>125K samples/second.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MAXADC0SPD: ADC0 Sample Speed field -->
+            <field>
+              <name>MAXADC0SPD</name>
+              <description>This field sets the rate at which ADC module 0 samples data. You cannot set the rate higher than the maximum rate. You can set the sample rate by setting the MAXADC0SPD bit as follows (all other encodings are reserved):</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>2</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC0SPD_1M</name>
+                  <description>1M samples/second.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC0SPD_500K</name>
+                  <description>500K samples/second.</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC0SPD_250K</name>
+                  <description>250K samples/second.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_MAXADC0SPD_125K</name>
+                  <description>125K samples/second.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- WDT0: WDT0 Clock Gating Control field -->
+            <field>
+              <name>WDT0</name>
+              <description>This bit controls the clock gating for the Watchdog Timer module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_WDT0_ACTIVE</name>
+                  <description>When set, indicates that Watchdog Timer module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_WDT0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Watchdog Timer module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DCGC0: Deep Sleep Mode Clock Gating Control Register 0 -->
+        <register>
+          <name>DCGC0</name>
+          <description>Deep Sleep Mode Clock Gating Control Register 0.</description>
+          <addressOffset>0x00000120</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000040</resetValue>
+          <resetMask>0x13130008</resetMask>
+          
+          <fields>
+            <!-- WDT1: WDT1 Clock Gating Control field -->
+            <field>
+              <name>WDT1</name>
+              <description>This bit controls the clock gating for the Watchdog Timer module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_WDT1_ACTIVE</name>
+                  <description>When set, indicates that Watchdog Timer module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_WDT1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Watchdog Timer module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CAN1: CAN1 Clock Gating Control field -->
+            <field>
+              <name>CAN1</name>
+              <description>This bit controls the clock gating for CAN module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_CAN1_ACTIVE</name>
+                  <description>When set, indicates that CAN module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_CAN1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that CAN module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CAN0: CAN0 Clock Gating Control field -->
+            <field>
+              <name>CAN0</name>
+              <description>This bit controls the clock gating for CAN module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_CAN0_ACTIVE</name>
+                  <description>When set, indicates that CAN module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_CAN0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that CAN module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM: PWM Clock Gating Control field -->
+            <field>
+              <name>PWM</name>
+              <description>This bit controls the clock gating for the PWM module. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_PWM_ACTIVE</name>
+                  <description>When set, indicates that PWM module receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_PWM_NOT_ACTIVE</name>
+                  <description>When reset, indicates that PWM module does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1: ADC1 Clock Gating Control field -->
+            <field>
+              <name>ADC1</name>
+              <description>This bit controls the clock gating for SAR ADC module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_ADC1_ACTIVE</name>
+                  <description>When set, indicates that ADC module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_ADC1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that ADC module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0: ADC0 Clock Gating Control field -->
+            <field>
+              <name>ADC0</name>
+              <description>This bit controls the clock gating for SAR ADC module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_ADC0_ACTIVE</name>
+                  <description>When set, indicates that ADC module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_ADC0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that ADC module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- WDT0: WDT0 Clock Gating Control field -->
+            <field>
+              <name>WDT0</name>
+              <description>This bit controls the clock gating for the Watchdog Timer module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC0_WDT0_ACTIVE</name>
+                  <description>When set, indicates that Watchdog Timer module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC0_WDT0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Watchdog Timer module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
       </registers>
     </peripheral>
   </peripherals>
