@@ -86,6 +86,7 @@
       <description>Register map for GPIO PORT A peripheral.</description>
       <groupName>GPIO</groupName>
       <headerStructName>GPIO</headerStructName>
+      <disableCondition>((SYSCTL->RCGC2->GPIOA == 0)||(SYSCTL->SCGC2->GPIOA == 0)||(SYSCTL->DCGC2->GPIOA == 0))</disableCondition>
       <baseAddress>0x40004000</baseAddress>
       <size>32</size>
       <access>read-write</access>
@@ -1799,6 +1800,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port B -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOB</name>
+      <disableCondition>((SYSCTL->RCGC2->GPIOB == 0)||(SYSCTL->SCGC2->GPIOB == 0)||(SYSCTL->DCGC2->GPIOB == 0))</disableCondition>
       <baseAddress>0x40005000</baseAddress>
       <interrupt>
         <name>GPIOB</name>
@@ -1810,6 +1812,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port C -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOC</name>
+      <disableCondition>((SYSCTL->RCGC2->GPIOC == 0)||(SYSCTL->SCGC2->GPIOC == 0)||(SYSCTL->DCGC2->GPIOC == 0))</disableCondition>
       <baseAddress>0x40006000</baseAddress>
       <interrupt>
         <name>GPIOC</name>
@@ -1821,6 +1824,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port D -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOD</name>
+      <disableCondition>((SYSCTL->RCGC2->GPIOD == 0)||(SYSCTL->SCGC2->GPIOD == 0)||(SYSCTL->DCGC2->GPIOD == 0))</disableCondition>
       <baseAddress>0x40007000</baseAddress>
       <interrupt>
         <name>GPIOD</name>
@@ -1832,6 +1836,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port E -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOE</name>
+      <disableCondition>((SYSCTL->RCGC2->GPIOE == 0)||(SYSCTL->SCGC2->GPIOE == 0)||(SYSCTL->DCGC2->GPIOE == 0))</disableCondition>
       <baseAddress>0x40024000</baseAddress>
       <interrupt>
         <name>GPIOE</name>
@@ -1843,6 +1848,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port F -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOF</name>
+      <disableCondition>((SYSCTL->RCGC2->GPIOF == 0)||(SYSCTL->SCGC2->GPIOF == 0)||(SYSCTL->DCGC2->GPIOF == 0))</disableCondition>
       <baseAddress>0x40025000</baseAddress>
       <interrupt>
         <name>GPIOF</name>
@@ -1854,6 +1860,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port G -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOG</name>
+      <disableCondition>((SYSCTL->RCGC2->GPIOF == 0)||(SYSCTL->SCGC2->GPIOF == 0)||(SYSCTL->DCGC2->GPIOF == 0))</disableCondition>
       <baseAddress>0x40026000</baseAddress>
       <interrupt>
         <name>GPIOG</name>
@@ -1865,6 +1872,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port H -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOH</name>
+      <disableCondition>((SYSCTL->RCGC2->GPIOF == 0)||(SYSCTL->SCGC2->GPIOF == 0)||(SYSCTL->DCGC2->GPIOF == 0))</disableCondition>
       <baseAddress>0x40027000</baseAddress>
       <interrupt>
         <name>GPIOH</name>
@@ -1876,6 +1884,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port J -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOJ</name>
+      <disableCondition>((SYSCTL->RCGC2->GPIOJ == 0)||(SYSCTL->SCGC2->GPIOJ == 0)||(SYSCTL->DCGC2->GPIOJ == 0))</disableCondition>
       <baseAddress>0x4003D000</baseAddress>
       <interrupt>
         <name>GPIOJ</name>
@@ -1891,6 +1900,7 @@ by the other GPIO configuration registers.</description>
       <description>Watchdog timer 0, with 32-bit down counter.</description>
       <groupName>WDT</groupName>
       <headerStructName>WDT</headerStructName>
+      <disableCondition>((SYSCTL->RCGC0->WDT0 == 0)||(SYSCTL->SCGC0->WDT0 == 0)||(SYSCTL->DCGC0->WDT0 == 0))</disableCondition>
       <baseAddress>0x40000000</baseAddress>
       
       <size>32</size>
@@ -2146,6 +2156,7 @@ by the other GPIO configuration registers.</description>
     <!-- Watchdog timer 1 -->
     <peripheral derivedFrom="WDT0">
         <name>WDT1</name>
+        <disableCondition>((SYSCTL->RCGC0->WDT1 == 0)||(SYSCTL->SCGC0->WDT1 == 0)||(SYSCTL->DCGC0->WDT1 == 0))</disableCondition>
         <baseAddress>0x40001000</baseAddress>
     </peripheral>
     
@@ -7860,7 +7871,7 @@ by the other GPIO configuration registers.</description>
           <description>Run Mode Clock Gating Control Register 0.</description>
           <addressOffset>0x00000100</addressOffset>
           <size>32</size>
-          <access>read-only</access>
+          <access>read-write</access>
           <resetValue>0x00000040</resetValue>
           <resetMask>0x13130F08</resetMask>
           
@@ -7868,7 +7879,7 @@ by the other GPIO configuration registers.</description>
             <!-- WDT1: WDT1 Clock Gating Control field -->
             <field>
               <name>WDT1</name>
-              <description>This bit controls the clock gating for the Watchdog Timer module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>WDT1 Clock Gating Control. This bit controls the clock gating for the Watchdog Timer module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>28</bitOffset>
               <bitWidth>1</bitWidth>
               
@@ -7888,7 +7899,7 @@ by the other GPIO configuration registers.</description>
             <!-- CAN1: CAN1 Clock Gating Control field -->
             <field>
               <name>CAN1</name>
-              <description>This bit controls the clock gating for CAN module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>CAN1 Clock Gating Control. This bit controls the clock gating for CAN module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>25</bitOffset>
               <bitWidth>1</bitWidth>
               
@@ -7908,7 +7919,7 @@ by the other GPIO configuration registers.</description>
             <!-- CAN0: CAN0 Clock Gating Control field -->
             <field>
               <name>CAN0</name>
-              <description>This bit controls the clock gating for CAN module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>CAN1 Clock Gating Control. This bit controls the clock gating for CAN module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>24</bitOffset>
               <bitWidth>1</bitWidth>
               
@@ -7928,7 +7939,7 @@ by the other GPIO configuration registers.</description>
             <!-- PWM: PWM Clock Gating Control field -->
             <field>
               <name>PWM</name>
-              <description>This bit controls the clock gating for the PWM module. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>PWM Clock Gating Control. This bit controls the clock gating for the PWM module. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>20</bitOffset>
               <bitWidth>1</bitWidth>
               
@@ -7948,7 +7959,7 @@ by the other GPIO configuration registers.</description>
             <!-- ADC1: ADC1 Clock Gating Control field -->
             <field>
               <name>ADC1</name>
-              <description>This bit controls the clock gating for SAR ADC module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>ADC1 Clock Gating Control. This bit controls the clock gating for SAR ADC module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>17</bitOffset>
               <bitWidth>1</bitWidth>
               
@@ -7968,7 +7979,7 @@ by the other GPIO configuration registers.</description>
             <!-- ADC0: ADC0 Clock Gating Control field -->
             <field>
               <name>ADC0</name>
-              <description>This bit controls the clock gating for SAR ADC module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>ADC0 Clock Gating Control. This bit controls the clock gating for SAR ADC module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>16</bitOffset>
               <bitWidth>1</bitWidth>
               
@@ -7988,7 +7999,7 @@ by the other GPIO configuration registers.</description>
             <!-- MAXADC1SPD: ADC1 Sample Speed field -->
             <field>
               <name>MAXADC1SPD</name>
-              <description>This field sets the rate at which ADC module 1 samples data. You cannot set the rate higher than the maximum rate. You can set the sample rate by setting the MAXADC1SPD bit as follows (all other encodings are reserved):</description>
+              <description>ADC1 Sample Speed. This field sets the rate at which ADC module 1 samples data. You cannot set the rate higher than the maximum rate. You can set the sample rate by setting the MAXADC1SPD bit as follows (all other encodings are reserved):</description>
               <bitOffset>10</bitOffset>
               <bitWidth>2</bitWidth>
               
@@ -8018,7 +8029,7 @@ by the other GPIO configuration registers.</description>
             <!-- MAXADC0SPD: ADC0 Sample Speed field -->
             <field>
               <name>MAXADC0SPD</name>
-              <description>This field sets the rate at which ADC module 0 samples data. You cannot set the rate higher than the maximum rate. You can set the sample rate by setting the MAXADC0SPD bit as follows (all other encodings are reserved):</description>
+              <description>ADC0 Sample Speed. This field sets the rate at which ADC module 0 samples data. You cannot set the rate higher than the maximum rate. You can set the sample rate by setting the MAXADC0SPD bit as follows (all other encodings are reserved):</description>
               <bitOffset>8</bitOffset>
               <bitWidth>2</bitWidth>
               
@@ -8048,7 +8059,7 @@ by the other GPIO configuration registers.</description>
             <!-- WDT0: WDT0 Clock Gating Control field -->
             <field>
               <name>WDT0</name>
-              <description>This bit controls the clock gating for the Watchdog Timer module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>WDT0 Clock Gating Control. This bit controls the clock gating for the Watchdog Timer module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>0</bitOffset>
               <bitWidth>1</bitWidth>
               
@@ -8073,7 +8084,7 @@ by the other GPIO configuration registers.</description>
           <description>Sleep Mode Clock Gating Control Register 0.</description>
           <addressOffset>0x00000110</addressOffset>
           <size>32</size>
-          <access>read-only</access>
+          <access>read-write</access>
           <resetValue>0x00000040</resetValue>
           <resetMask>0x13130F08</resetMask>
           
@@ -8081,18 +8092,18 @@ by the other GPIO configuration registers.</description>
             <!-- WDT1: WDT1 Clock Gating Control field -->
             <field>
               <name>WDT1</name>
-              <description>This bit controls the clock gating for the Watchdog Timer module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>WDT1 Clock Gating Control. This bit controls the clock gating for the Watchdog Timer module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>28</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_WDT1_ACTIVE</name>
+                  <name>SCGC0_WDT1_ACTIVE</name>
                   <description>When set, indicates that Watchdog Timer module 1 receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_WDT1_NOT_ACTIVE</name>
+                  <name>SCGC0_WDT1_NOT_ACTIVE</name>
                   <description>When reset, indicates that Watchdog Timer module 1 does not receive clock and functions.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8101,18 +8112,18 @@ by the other GPIO configuration registers.</description>
             <!-- CAN1: CAN1 Clock Gating Control field -->
             <field>
               <name>CAN1</name>
-              <description>This bit controls the clock gating for CAN module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>CAN0 Clock Gating Control. This bit controls the clock gating for CAN module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>25</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_CAN1_ACTIVE</name>
+                  <name>SCGC0_CAN1_ACTIVE</name>
                   <description>When set, indicates that CAN module 1 receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_CAN1_NOT_ACTIVE</name>
+                  <name>SCGC0_CAN1_NOT_ACTIVE</name>
                   <description>When reset, indicates that CAN module 1 does not receive clock and functions.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8121,18 +8132,18 @@ by the other GPIO configuration registers.</description>
             <!-- CAN0: CAN0 Clock Gating Control field -->
             <field>
               <name>CAN0</name>
-              <description>This bit controls the clock gating for CAN module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>CAN1 Clock Gating Control. This bit controls the clock gating for CAN module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>24</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_CAN0_ACTIVE</name>
+                  <name>SCGC0_CAN0_ACTIVE</name>
                   <description>When set, indicates that CAN module 0 receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_CAN0_NOT_ACTIVE</name>
+                  <name>SCGC0_CAN0_NOT_ACTIVE</name>
                   <description>When reset, indicates that CAN module 0 does not receive clock and functions.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8141,18 +8152,18 @@ by the other GPIO configuration registers.</description>
             <!-- PWM: PWM Clock Gating Control field -->
             <field>
               <name>PWM</name>
-              <description>This bit controls the clock gating for the PWM module. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>PWM Clock Gating Control. This bit controls the clock gating for the PWM module. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>20</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_PWM_ACTIVE</name>
+                  <name>SCGC0_PWM_ACTIVE</name>
                   <description>When set, indicates that PWM module receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_PWM_NOT_ACTIVE</name>
+                  <name>SCGC0_PWM_NOT_ACTIVE</name>
                   <description>When reset, indicates that PWM module does not receive clock and functions.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8161,18 +8172,18 @@ by the other GPIO configuration registers.</description>
             <!-- ADC1: ADC1 Clock Gating Control field -->
             <field>
               <name>ADC1</name>
-              <description>This bit controls the clock gating for SAR ADC module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>ADC1 Clock Gating Control. This bit controls the clock gating for SAR ADC module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>17</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_ADC1_ACTIVE</name>
+                  <name>SCGC0_ADC1_ACTIVE</name>
                   <description>When set, indicates that ADC module 1 receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_ADC1_NOT_ACTIVE</name>
+                  <name>SCGC0_ADC1_NOT_ACTIVE</name>
                   <description>When reset, indicates that ADC module 1 does not receive clock and functions.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8181,18 +8192,18 @@ by the other GPIO configuration registers.</description>
             <!-- ADC0: ADC0 Clock Gating Control field -->
             <field>
               <name>ADC0</name>
-              <description>This bit controls the clock gating for SAR ADC module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>ADC0 Clock Gating Control. This bit controls the clock gating for SAR ADC module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>16</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_ADC0_ACTIVE</name>
+                  <name>SCGC0_ADC0_ACTIVE</name>
                   <description>When set, indicates that ADC module 0 receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_ADC0_NOT_ACTIVE</name>
+                  <name>SCGC0_ADC0_NOT_ACTIVE</name>
                   <description>When reset, indicates that ADC module 0 does not receive clock and functions.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8201,28 +8212,28 @@ by the other GPIO configuration registers.</description>
             <!-- MAXADC1SPD: ADC1 Sample Speed field -->
             <field>
               <name>MAXADC1SPD</name>
-              <description>This field sets the rate at which ADC module 1 samples data. You cannot set the rate higher than the maximum rate. You can set the sample rate by setting the MAXADC1SPD bit as follows (all other encodings are reserved):</description>
+              <description>ADC1 Sample Speed. This field sets the rate at which ADC module 1 samples data. You cannot set the rate higher than the maximum rate. You can set the sample rate by setting the MAXADC1SPD bit as follows (all other encodings are reserved):</description>
               <bitOffset>10</bitOffset>
               <bitWidth>2</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_MAXADC1SPD_1M</name>
+                  <name>SCGC0_MAXADC1SPD_1M</name>
                   <description>1M samples/second.</description>
                   <value>0x3</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_MAXADC1SPD_500K</name>
+                  <name>SCGC0_MAXADC1SPD_500K</name>
                   <description>500K samples/second.</description>
                   <value>0x2</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_MAXADC1SPD_250K</name>
+                  <name>SCGC0_MAXADC1SPD_250K</name>
                   <description>250K samples/second.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_MAXADC1SPD_125K</name>
+                  <name>SCGC0_MAXADC1SPD_125K</name>
                   <description>125K samples/second.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8231,28 +8242,28 @@ by the other GPIO configuration registers.</description>
             <!-- MAXADC0SPD: ADC0 Sample Speed field -->
             <field>
               <name>MAXADC0SPD</name>
-              <description>This field sets the rate at which ADC module 0 samples data. You cannot set the rate higher than the maximum rate. You can set the sample rate by setting the MAXADC0SPD bit as follows (all other encodings are reserved):</description>
+              <description>ADC0 Sample Speed. This field sets the rate at which ADC module 0 samples data. You cannot set the rate higher than the maximum rate. You can set the sample rate by setting the MAXADC0SPD bit as follows (all other encodings are reserved):</description>
               <bitOffset>8</bitOffset>
               <bitWidth>2</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_MAXADC0SPD_1M</name>
+                  <name>SCGC0_MAXADC0SPD_1M</name>
                   <description>1M samples/second.</description>
                   <value>0x3</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_MAXADC0SPD_500K</name>
+                  <name>SCGC0_MAXADC0SPD_500K</name>
                   <description>500K samples/second.</description>
                   <value>0x2</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_MAXADC0SPD_250K</name>
+                  <name>SCGC0_MAXADC0SPD_250K</name>
                   <description>250K samples/second.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_MAXADC0SPD_125K</name>
+                  <name>SCGC0_MAXADC0SPD_125K</name>
                   <description>125K samples/second.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8261,18 +8272,18 @@ by the other GPIO configuration registers.</description>
             <!-- WDT0: WDT0 Clock Gating Control field -->
             <field>
               <name>WDT0</name>
-              <description>This bit controls the clock gating for the Watchdog Timer module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>WDT0 Clock Gating Control. This bit controls the clock gating for the Watchdog Timer module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>0</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_WDT0_ACTIVE</name>
+                  <name>SCGC0_WDT0_ACTIVE</name>
                   <description>When set, indicates that Watchdog Timer module 0 receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_WDT0_NOT_ACTIVE</name>
+                  <name>SCGC0_WDT0_NOT_ACTIVE</name>
                   <description>When reset, indicates that Watchdog Timer module 0 does not receive clock and functions.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8286,7 +8297,7 @@ by the other GPIO configuration registers.</description>
           <description>Deep Sleep Mode Clock Gating Control Register 0.</description>
           <addressOffset>0x00000120</addressOffset>
           <size>32</size>
-          <access>read-only</access>
+          <access>read-write</access>
           <resetValue>0x00000040</resetValue>
           <resetMask>0x13130008</resetMask>
           
@@ -8294,18 +8305,18 @@ by the other GPIO configuration registers.</description>
             <!-- WDT1: WDT1 Clock Gating Control field -->
             <field>
               <name>WDT1</name>
-              <description>This bit controls the clock gating for the Watchdog Timer module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>WDT1 Clock Gating Control. This bit controls the clock gating for the Watchdog Timer module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>28</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_WDT1_ACTIVE</name>
+                  <name>DCGC0_WDT1_ACTIVE</name>
                   <description>When set, indicates that Watchdog Timer module 1 receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_WDT1_NOT_ACTIVE</name>
+                  <name>DCGC0_WDT1_NOT_ACTIVE</name>
                   <description>When reset, indicates that Watchdog Timer module 1 does not receive clock and functions.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8314,18 +8325,18 @@ by the other GPIO configuration registers.</description>
             <!-- CAN1: CAN1 Clock Gating Control field -->
             <field>
               <name>CAN1</name>
-              <description>This bit controls the clock gating for CAN module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>CAN1 Clock Gating Control. This bit controls the clock gating for CAN module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>25</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_CAN1_ACTIVE</name>
+                  <name>DCGC0_CAN1_ACTIVE</name>
                   <description>When set, indicates that CAN module 1 receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_CAN1_NOT_ACTIVE</name>
+                  <name>DCGC0_CAN1_NOT_ACTIVE</name>
                   <description>When reset, indicates that CAN module 1 does not receive clock and functions.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8334,18 +8345,18 @@ by the other GPIO configuration registers.</description>
             <!-- CAN0: CAN0 Clock Gating Control field -->
             <field>
               <name>CAN0</name>
-              <description>This bit controls the clock gating for CAN module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>CAN0 Clock Gating Control. This bit controls the clock gating for CAN module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>24</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_CAN0_ACTIVE</name>
+                  <name>DCGC0_CAN0_ACTIVE</name>
                   <description>When set, indicates that CAN module 0 receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_CAN0_NOT_ACTIVE</name>
+                  <name>DCGC0_CAN0_NOT_ACTIVE</name>
                   <description>When reset, indicates that CAN module 0 does not receive clock and functions.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8354,18 +8365,18 @@ by the other GPIO configuration registers.</description>
             <!-- PWM: PWM Clock Gating Control field -->
             <field>
               <name>PWM</name>
-              <description>This bit controls the clock gating for the PWM module. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>PWM Clock Gating Control. This bit controls the clock gating for the PWM module. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>20</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_PWM_ACTIVE</name>
+                  <name>DCGC0_PWM_ACTIVE</name>
                   <description>When set, indicates that PWM module receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_PWM_NOT_ACTIVE</name>
+                  <name>DCGC0_PWM_NOT_ACTIVE</name>
                   <description>When reset, indicates that PWM module does not receive clock and functions.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8374,18 +8385,18 @@ by the other GPIO configuration registers.</description>
             <!-- ADC1: ADC1 Clock Gating Control field -->
             <field>
               <name>ADC1</name>
-              <description>This bit controls the clock gating for SAR ADC module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>ADC1 Clock Gating Control. This bit controls the clock gating for SAR ADC module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>17</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_ADC1_ACTIVE</name>
+                  <name>DCGC0_ADC1_ACTIVE</name>
                   <description>When set, indicates that ADC module 1 receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_ADC1_NOT_ACTIVE</name>
+                  <name>DCGC0_ADC1_NOT_ACTIVE</name>
                   <description>When reset, indicates that ADC module 1 does not receive clock and functions.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8394,18 +8405,18 @@ by the other GPIO configuration registers.</description>
             <!-- ADC0: ADC0 Clock Gating Control field -->
             <field>
               <name>ADC0</name>
-              <description>This bit controls the clock gating for SAR ADC module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>ADC0 Clock Gating Control. This bit controls the clock gating for SAR ADC module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>16</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_ADC0_ACTIVE</name>
+                  <name>DCGC0_ADC0_ACTIVE</name>
                   <description>When set, indicates that ADC module 0 receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_ADC0_NOT_ACTIVE</name>
+                  <name>DCGC0_ADC0_NOT_ACTIVE</name>
                   <description>When reset, indicates that ADC module 0 does not receive clock and functions.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -8414,19 +8425,2756 @@ by the other GPIO configuration registers.</description>
             <!-- WDT0: WDT0 Clock Gating Control field -->
             <field>
               <name>WDT0</name>
-              <description>This bit controls the clock gating for the Watchdog Timer module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <description>WDT0 Clock Gating Control. This bit controls the clock gating for the Watchdog Timer module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
               <bitOffset>0</bitOffset>
               <bitWidth>1</bitWidth>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>RCGC0_WDT0_ACTIVE</name>
+                  <name>DCGC0_WDT0_ACTIVE</name>
                   <description>When set, indicates that Watchdog Timer module 0 receives clock and functions.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>RCGC0_WDT0_NOT_ACTIVE</name>
+                  <name>DCGC0_WDT0_NOT_ACTIVE</name>
                   <description>When reset, indicates that Watchdog Timer module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- RCGC1: Run Mode Clock Gating Control Register 1 -->
+        <register>
+          <name>RCGC1</name>
+          <description>Run Mode Clock Gating Control Register 1.</description>
+          <addressOffset>0x00000104</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x570F5337</resetMask>
+          
+          <fields>
+            <!-- EPI0: EPI0 Clock Gating Control field -->
+            <field>
+              <name>EPI0</name>
+              <description>EPI0 Clock Gating. This bit controls the clock gating for EPI module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_EPI0_ACTIVE</name>
+                  <description>When set, indicates that EPI module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_EPI0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that EPI module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2S0: I2S0 Clock Gating Control field -->
+            <field>
+              <name>I2S0</name>
+              <description>I2S0 Clock Gating. This bit controls the clock gating for I2S module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_I2S0_ACTIVE</name>
+                  <description>When set, indicates that I2S module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_I2S0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that I2S module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP2: COMP2 Clock Gating Control field -->
+            <field>
+              <name>COMP2</name>
+              <description>Analog Comparator 2 Clock Gating. This bit controls the clock gating for analog comparator 2. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>26</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_COMP2_ACTIVE</name>
+                  <description>When set, indicates that analog comparator module 2 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_COMP2_NOT_ACTIVE</name>
+                  <description>When reset, indicates that analog comparator module 2 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP1: COMP1 Clock Gating Control field -->
+            <field>
+              <name>COMP1</name>
+              <description>Analog Comparator 1 Clock Gating. This bit controls the clock gating for analog comparator 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_COMP1_ACTIVE</name>
+                  <description>When set, indicates that analog comparator module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_COMP1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that analog comparator module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP0: COMP0 Clock Gating Control field -->
+            <field>
+              <name>COMP0</name>
+              <description>Analog Comparator 0 Clock Gating. This bit controls the clock gating for analog comparator 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_COMP0_ACTIVE</name>
+                  <description>When set, indicates that analog comparator module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_COMP0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that analog comparator module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER3: TIMER3 Clock Gating Control field -->
+            <field>
+              <name>TIMER3</name>
+              <description>Timer 3 Clock Gating Control. This bit controls the clock gating for General-Purpose Timer module 3. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>19</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_TIMER3_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 3 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_TIMER3_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 3 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER2: TIMER2 Clock Gating Control field -->
+            <field>
+              <name>TIMER2</name>
+              <description>Timer 2 Clock Gating Control. This bit controls the clock gating for General-Purpose Timer module 2. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>18</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_TIMER2_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 2 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_TIMER2_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 2 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER1: TIMER1 Clock Gating Control field -->
+            <field>
+              <name>TIMER1</name>
+              <description>Timer 1 Clock Gating Control. This bit controls the clock gating for General-Purpose Timer module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_TIMER1_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_TIMER1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER0: TIMER0 Clock Gating Control field -->
+            <field>
+              <name>TIMER0</name>
+              <description>Timer 0 Clock Gating Control. This bit controls the clock gating for General-Purpose Timer module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_TIMER0_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_TIMER0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2C1: I2C1 Clock Gating Control field -->
+            <field>
+              <name>I2C1</name>
+              <description>I2C1 Clock Gating Control. This bit controls the clock gating for I2C module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>14</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_I2C1_ACTIVE</name>
+                  <description>When set, indicates that I2C module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_I2C1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that I2C module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2C0: I2C0 Clock Gating Control field -->
+            <field>
+              <name>I2C0</name>
+              <description>I2C0 Clock Gating Control. This bit controls the clock gating for I2C module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_I2C0_ACTIVE</name>
+                  <description>When set, indicates that I2C module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_I2C0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that I2C module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- QEI1: QEI1 Clock Gating Control field -->
+            <field>
+              <name>QEI1</name>
+              <description>QEI1 Clock Gating Control. This bit controls the clock gating for QEI module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>9</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_QEI1_ACTIVE</name>
+                  <description>When set, indicates that QEI module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_QEI1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that QEI module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- QEI0: QEI0 Clock Gating Control field -->
+            <field>
+              <name>QEI0</name>
+              <description>QEI0 Clock Gating Control. This bit controls the clock gating for QEI module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_QEI0_ACTIVE</name>
+                  <description>When set, indicates that QEI module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_QEI0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that QEI module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SSI1: SSI1 Clock Gating Control field -->
+            <field>
+              <name>SSI1</name>
+              <description>SSI1 Clock Gating Control. This bit controls the clock gating for SSI module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_SSI1_ACTIVE</name>
+                  <description>When set, indicates that SSI module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_SSI1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that SSI module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SSI0: SSI0 Clock Gating Control field -->
+            <field>
+              <name>SSI0</name>
+              <description>SSI0 Clock Gating Control. This bit controls the clock gating for SSI module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_SSI0_ACTIVE</name>
+                  <description>When set, indicates that SSI module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_SSI0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that SSI module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART2: UART2 Clock Gating Control field -->
+            <field>
+              <name>UART2</name>
+              <description>UART2 Clock Gating Control. This bit controls the clock gating for UART module 2. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_UART2_ACTIVE</name>
+                  <description>When set, indicates that UART module 2 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_UART2_NOT_ACTIVE</name>
+                  <description>When reset, indicates that UART module 2 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART1: UART1 Clock Gating Control field -->
+            <field>
+              <name>UART1</name>
+              <description>UART1 Clock Gating Control. This bit controls the clock gating for UART module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_UART1_ACTIVE</name>
+                  <description>When set, indicates that UART module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_UART1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that UART module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART0: UART0 Clock Gating Control field -->
+            <field>
+              <name>UART0</name>
+              <description>UART0 Clock Gating Control. This bit controls the clock gating for UART module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_UART0_ACTIVE</name>
+                  <description>When set, indicates that UART module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC1_UART0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that UART module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- SCGC1: Sleep Mode Clock Gating Control Register 1 -->
+        <register>
+          <name>SCGC1</name>
+          <description>Sleep Mode Clock Gating Control Register 1.</description>
+          <addressOffset>0x00000114</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x570F5337</resetMask>
+          
+          <fields>
+            <!-- EPI0: EPI0 Clock Gating Control field -->
+            <field>
+              <name>EPI0</name>
+              <description>EPI0 Clock Gating. This bit controls the clock gating for EPI module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_EPI0_ACTIVE</name>
+                  <description>When set, indicates that EPI module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_EPI0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that EPI module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2S0: I2S0 Clock Gating Control field -->
+            <field>
+              <name>I2S0</name>
+              <description>I2S0 Clock Gating. This bit controls the clock gating for I2S module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_I2S0_ACTIVE</name>
+                  <description>When set, indicates that I2S module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_I2S0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that I2S module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP2: COMP2 Clock Gating Control field -->
+            <field>
+              <name>COMP2</name>
+              <description>COMP2 Clock Gating. This bit controls the clock gating for analog comparator 2. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>26</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_COMP2_ACTIVE</name>
+                  <description>When set, indicates that analog comparator module 2 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_COMP2_NOT_ACTIVE</name>
+                  <description>When reset, indicates that analog comparator module 2 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP1: COMP1 Clock Gating Control field -->
+            <field>
+              <name>COMP1</name>
+              <description>COMP1 Clock Gating. This bit controls the clock gating for analog comparator 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC1_COMP1_ACTIVE</name>
+                  <description>When set, indicates that analog comparator module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_COMP1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that analog comparator module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP0: COMP0 Clock Gating Control field -->
+            <field>
+              <name>COMP0</name>
+              <description>COMP0 Clock Gating. This bit controls the clock gating for analog comparator 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_COMP0_ACTIVE</name>
+                  <description>When set, indicates that analog comparator module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_COMP0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that analog comparator module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER3: TIMER3 Clock Gating Control field -->
+            <field>
+              <name>TIMER3</name>
+              <description>TIMER3 Clock Gating. This bit controls the clock gating for General-Purpose Timer module 3. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>19</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_TIMER3_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 3 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_TIMER3_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 3 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER2: TIMER2 Clock Gating Control field -->
+            <field>
+              <name>TIMER2</name>
+              <description>TIMER2 Clock Gating. This bit controls the clock gating for General-Purpose Timer module 2. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>18</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_TIMER2_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 2 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_TIMER2_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 2 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER1: TIMER1 Clock Gating Control field -->
+            <field>
+              <name>TIMER1</name>
+              <description>TIMER1 Clock Gating. This bit controls the clock gating for General-Purpose Timer module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_TIMER1_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_TIMER1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER0: TIMER0 Clock Gating Control field -->
+            <field>
+              <name>TIMER0</name>
+              <description>TIMER0 Clock Gating. This bit controls the clock gating for General-Purpose Timer module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_TIMER0_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_TIMER0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2C1: I2C1 Clock Gating Control field -->
+            <field>
+              <name>I2C1</name>
+              <description>I2C1 Clock Gating. This bit controls the clock gating for I2C module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>14</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_I2C1_ACTIVE</name>
+                  <description>When set, indicates that I2C module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_I2C1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that I2C module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2C0: I2C0 Clock Gating Control field -->
+            <field>
+              <name>I2C0</name>
+              <description>I2C0 Clock Gating. This bit controls the clock gating for I2C module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_I2C0_ACTIVE</name>
+                  <description>When set, indicates that I2C module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_I2C0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that I2C module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- QEI1: QEI1 Clock Gating Control field -->
+            <field>
+              <name>QEI1</name>
+              <description>QEI1 Clock Gating. This bit controls the clock gating for QEI module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>9</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_QEI1_ACTIVE</name>
+                  <description>When set, indicates that QEI module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_QEI1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that QEI module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- QEI0: QEI0 Clock Gating Control field -->
+            <field>
+              <name>QEI0</name>
+              <description>QEI0 Clock Gating. This bit controls the clock gating for QEI module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_QEI0_ACTIVE</name>
+                  <description>When set, indicates that QEI module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_QEI0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that QEI module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SSI1: SSI1 Clock Gating Control field -->
+            <field>
+              <name>SSI1</name>
+              <description>SSI1 Clock Gating. This bit controls the clock gating for SSI module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_SSI1_ACTIVE</name>
+                  <description>When set, indicates that SSI module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_SSI1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that SSI module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SSI0: SSI0 Clock Gating Control field -->
+            <field>
+              <name>SSI0</name>
+              <description>SSI0 Clock Gating. This bit controls the clock gating for SSI module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_SSI0_ACTIVE</name>
+                  <description>When set, indicates that SSI module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_SSI0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that SSI module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART2: UART2 Clock Gating Control field -->
+            <field>
+              <name>UART2</name>
+              <description>UART2 Clock Gating. This bit controls the clock gating for UART module 2. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_UART2_ACTIVE</name>
+                  <description>When set, indicates that UART module 2 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_UART2_NOT_ACTIVE</name>
+                  <description>When reset, indicates that UART module 2 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART1: UART1 Clock Gating Control field -->
+            <field>
+              <name>UART1</name>
+              <description>UART1 Clock Gating. This bit controls the clock gating for UART module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_UART1_ACTIVE</name>
+                  <description>When set, indicates that UART module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_UART1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that UART module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART0: UART0 Clock Gating Control field -->
+            <field>
+              <name>UART0</name>
+              <description>UART0 Clock Gating. This bit controls the clock gating for UART module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC1_UART0_ACTIVE</name>
+                  <description>When set, indicates that UART module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC1_UART0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that UART module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DCGC1: Deep Sleep Mode Clock Gating Control Register 1 -->
+        <register>
+          <name>DCGC1</name>
+          <description>Deep Sleep Mode Clock Gating Control Register 1.</description>
+          <addressOffset>0x00000124</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x570F5337</resetMask>
+          
+          <fields>
+            <!-- EPI0: EPI0 Clock Gating Control field -->
+            <field>
+              <name>EPI0</name>
+              <description>EPI0 Clock Gating. This bit controls the clock gating for EPI module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_EPI0_ACTIVE</name>
+                  <description>When set, indicates that EPI module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_EPI0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that EPI module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2S0: I2S0 Clock Gating Control field -->
+            <field>
+              <name>I2S0</name>
+              <description>I2S0 Clock Gating. This bit controls the clock gating for I2S module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_I2S0_ACTIVE</name>
+                  <description>When set, indicates that I2S module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_I2S0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that I2S module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP2: COMP2 Clock Gating Control field -->
+            <field>
+              <name>COMP2</name>
+              <description>COMP2 Clock Gating. This bit controls the clock gating for analog comparator 2. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>26</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_COMP2_ACTIVE</name>
+                  <description>When set, indicates that analog comparator module 2 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_COMP2_NOT_ACTIVE</name>
+                  <description>When reset, indicates that analog comparator module 2 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP1: COMP1 Clock Gating Control field -->
+            <field>
+              <name>COMP1</name>
+              <description>COMP1 Clock Gating. This bit controls the clock gating for analog comparator 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_COMP1_ACTIVE</name>
+                  <description>When set, indicates that analog comparator module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_COMP1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that analog comparator module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP0: COMP0 Clock Gating Control field -->
+            <field>
+              <name>COMP0</name>
+              <description>COMP0 Clock Gating. This bit controls the clock gating for analog comparator 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_COMP0_ACTIVE</name>
+                  <description>When set, indicates that analog comparator module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_COMP0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that analog comparator module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER3: TIMER3 Clock Gating Control field -->
+            <field>
+              <name>TIMER3</name>
+              <description>TIMER3 Clock Gating. This bit controls the clock gating for General-Purpose Timer module 3. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>19</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_TIMER3_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 3 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_TIMER3_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 3 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER2: TIMER2 Clock Gating Control field -->
+            <field>
+              <name>TIMER2</name>
+              <description>TIMER2 Clock Gating. This bit controls the clock gating for General-Purpose Timer module 2. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>18</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_TIMER2_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 2 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_TIMER2_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 2 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER1: TIMER1 Clock Gating Control field -->
+            <field>
+              <name>TIMER1</name>
+              <description>TIMER1 Clock Gating. This bit controls the clock gating for General-Purpose Timer module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_TIMER1_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_TIMER1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER0: TIMER0 Clock Gating Control field -->
+            <field>
+              <name>TIMER0</name>
+              <description>TIMER0 Clock Gating. This bit controls the clock gating for General-Purpose Timer module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_TIMER0_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_TIMER0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2C1: I2C1 Clock Gating Control field -->
+            <field>
+              <name>I2C1</name>
+              <description>I2C1 Clock Gating. This bit controls the clock gating for I2C module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>14</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_I2C1_ACTIVE</name>
+                  <description>When set, indicates that I2C module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_I2C1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that I2C module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2C0: I2C0 Clock Gating Control field -->
+            <field>
+              <name>I2C0</name>
+              <description>I2C0 Clock Gating. This bit controls the clock gating for I2C module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_I2C0_ACTIVE</name>
+                  <description>When set, indicates that I2C module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_I2C0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that I2C module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- QEI1: QEI1 Clock Gating Control field -->
+            <field>
+              <name>QEI1</name>
+              <description>QEI1 Clock Gating. This bit controls the clock gating for QEI module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>9</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_QEI1_ACTIVE</name>
+                  <description>When set, indicates that QEI module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_QEI1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that QEI module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- QEI0: QEI0 Clock Gating Control field -->
+            <field>
+              <name>QEI0</name>
+              <description>QEI0 Clock Gating. This bit controls the clock gating for QEI module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_QEI0_ACTIVE</name>
+                  <description>When set, indicates that QEI module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_QEI0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that QEI module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SSI1: SSI1 Clock Gating Control field -->
+            <field>
+              <name>SSI1</name>
+              <description>SSI1 Clock Gating. This bit controls the clock gating for SSI module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_SSI1_ACTIVE</name>
+                  <description>When set, indicates that SSI module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_SSI1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that SSI module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SSI0: SSI0 Clock Gating Control field -->
+            <field>
+              <name>SSI0</name>
+              <description>SSI0 Clock Gating. This bit controls the clock gating for SSI module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_SSI0_ACTIVE</name>
+                  <description>When set, indicates that SSI module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_SSI0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that SSI module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART2: UART2 Clock Gating Control field -->
+            <field>
+              <name>UART2</name>
+              <description>UART2 Clock Gating. This bit controls the clock gating for UART module 2. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_UART2_ACTIVE</name>
+                  <description>When set, indicates that UART module 2 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_UART2_NOT_ACTIVE</name>
+                  <description>When reset, indicates that UART module 2 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART1: UART1 Clock Gating Control field -->
+            <field>
+              <name>UART1</name>
+              <description>UART1 Clock Gating. This bit controls the clock gating for UART module 1. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_UART1_ACTIVE</name>
+                  <description>When set, indicates that UART module 1 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_UART1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that UART module 1 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART0: UART0 Clock Gating Control field -->
+            <field>
+              <name>UART0</name>
+              <description>UART0 Clock Gating. This bit controls the clock gating for UART module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC1_UART0_ACTIVE</name>
+                  <description>When set, indicates that UART module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC1_UART0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that UART module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- RCGC2: Run Mode Clock Gating Control Register 2 -->
+        <register>
+          <name>RCGC2</name>
+          <description>Run Mode Clock Gating Control Register 2.</description>
+          <addressOffset>0x00000108</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x500121FF</resetMask>
+          
+          <fields>
+            <!-- EPHY0: EPHY0 Clock Gating Control field -->
+            <field>
+              <name>EPHY0</name>
+              <description>PHY0 Clock Gating Control. This bit controls the clock gating for Ethernet PHY layer 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC2_EPHY0_ACTIVE</name>
+                  <description>When set, indicates that Ethernet PHY layer 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC2_EPHY0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Ethernet PHY layer 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- EMAC0: EMAC0 Clock Gating Control field -->
+            <field>
+              <name>EMAC0</name>
+              <description>MAC0 Clock Gating Control. This bit controls the clock gating for Ethernet MAC layer 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC2_EMAC0_ACTIVE</name>
+                  <description>When set, indicates that Ethernet MAC layer 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC2_EMAC0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Ethernet MAC layer 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- USB0: USB0 Clock Gating Control field -->
+            <field>
+              <name>USB0</name>
+              <description>USB0 Clock Gating Control. This bit controls the clock gating for USB module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC2_USB0_ACTIVE</name>
+                  <description>When set, indicates that USB module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC2_USB0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that USB module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UDMA: UDMA Clock Gating Control field -->
+            <field>
+              <name>UDMA</name>
+              <description>Micro-DMA Clock Gating Control. This bit controls the clock gating for micro-DMA. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC2_UDMA_ACTIVE</name>
+                  <description>When set, indicates that micro-DMA receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC2_UDMA_NOT_ACTIVE</name>
+                  <description>When reset, indicates that micro-DMA does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOJ: GPIOJ Clock Gating Control field -->
+            <field>
+              <name>GPIOJ</name>
+              <description>Port J Clock Gating Control. This bit controls the clock gating for Port J. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOJ_ACTIVE</name>
+                  <description>When set, indicates that Port J receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOJ_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port J does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOH: GPIOH Clock Gating Control field -->
+            <field>
+              <name>GPIOH</name>
+              <description>Port H Clock Gating Control. This bit controls the clock gating for Port H. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOH_ACTIVE</name>
+                  <description>When set, indicates that Port H receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOH_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port H does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOG: GPIOG Clock Gating Control field -->
+            <field>
+              <name>GPIOG</name>
+              <description>Port G Clock Gating Control. This bit controls the clock gating for Port G. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOG_ACTIVE</name>
+                  <description>When set, indicates that Port G receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOG_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port G does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOF: GPIOF Clock Gating Control field -->
+            <field>
+              <name>GPIOF</name>
+              <description>Port F Clock Gating Control. This bit controls the clock gating for Port F. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOF_ACTIVE</name>
+                  <description>When set, indicates that Port F receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOF_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port F does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOE: GPIOE Clock Gating Control field -->
+            <field>
+              <name>GPIOE</name>
+              <description>Port E Clock Gating Control. This bit controls the clock gating for Port E. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOE_ACTIVE</name>
+                  <description>When set, indicates that Port E receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOE_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port E does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOD: GPIOD Clock Gating Control field -->
+            <field>
+              <name>GPIOD</name>
+              <description>Port D Clock Gating Control. This bit controls the clock gating for Port D. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOD_ACTIVE</name>
+                  <description>When set, indicates that Port D receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOD_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port D does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOC: GPIOC Clock Gating Control field -->
+            <field>
+              <name>GPIOC</name>
+              <description>Port C Clock Gating Control. This bit controls the clock gating for Port C. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOC_ACTIVE</name>
+                  <description>When set, indicates that Port C receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOC_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port C does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOB: GPIOBJ Clock Gating Control field -->
+            <field>
+              <name>GPIOB</name>
+              <description>Port B Clock Gating Control. This bit controls the clock gating for Port B. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOB_ACTIVE</name>
+                  <description>When set, indicates that Port B receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOB_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port B does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOA: GPIOA Clock Gating Control field -->
+            <field>
+              <name>GPIOA</name>
+              <description>Port A Clock Gating Control. This bit controls the clock gating for Port A. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOA_ACTIVE</name>
+                  <description>When set, indicates that Port A receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RCGC2_GPIOA_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port A does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- SCGC2: Sleep Mode Clock Gating Control Register 2 -->
+        <register>
+          <name>SCGC2</name>
+          <description>Sleep Mode Clock Gating Control Register 2.</description>
+          <addressOffset>0x00000118</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x500121FF</resetMask>
+          
+          <fields>
+            <!-- EPHY0: EPHY0 Clock Gating Control field -->
+            <field>
+              <name>EPHY0</name>
+              <description>PHY0 Clock Gating Control. This bit controls the clock gating for Ethernet PHY layer 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC2_EPHY0_ACTIVE</name>
+                  <description>When set, indicates that Ethernet PHY layer 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC2_EPHY0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Ethernet PHY layer 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- EMAC0: EMAC0 Clock Gating Control field -->
+            <field>
+              <name>EMAC0</name>
+              <description>MAC0 Clock Gating Control. This bit controls the clock gating for Ethernet MAC layer 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC2_EMAC0_ACTIVE</name>
+                  <description>When set, indicates that Ethernet MAC layer 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC2_EMAC0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Ethernet MAC layer 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- USB0: USB0 Clock Gating Control field -->
+            <field>
+              <name>USB0</name>
+              <description>USB0 Clock Gating Control. This bit controls the clock gating for USB module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC2_USB0_ACTIVE</name>
+                  <description>When set, indicates that USB module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC2_USB0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that USB module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UDMA: UDMA Clock Gating Control field -->
+            <field>
+              <name>UDMA</name>
+              <description>Micro-DMA Clock Gating Control. This bit controls the clock gating for micro-DMA. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC2_UDMA_ACTIVE</name>
+                  <description>When set, indicates that micro-DMA receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC2_UDMA_NOT_ACTIVE</name>
+                  <description>When reset, indicates that micro-DMA does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOJ: GPIOJ Clock Gating Control field -->
+            <field>
+              <name>GPIOJ</name>
+              <description>Port J Clock Gating Control. This bit controls the clock gating for Port J. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOJ_ACTIVE</name>
+                  <description>When set, indicates that Port J receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOJ_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port J does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOH: GPIOH Clock Gating Control field -->
+            <field>
+              <name>GPIOH</name>
+              <description>Port H Clock Gating Control. This bit controls the clock gating for Port H. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOH_ACTIVE</name>
+                  <description>When set, indicates that Port H receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOH_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port H does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOG: GPIOG Clock Gating Control field -->
+            <field>
+              <name>GPIOG</name>
+              <description>Port G Clock Gating Control. This bit controls the clock gating for Port G. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOG_ACTIVE</name>
+                  <description>When set, indicates that Port G receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOG_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port G does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOF: GPIOF Clock Gating Control field -->
+            <field>
+              <name>GPIOF</name>
+              <description>Port F Clock Gating Control. This bit controls the clock gating for Port F. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOF_ACTIVE</name>
+                  <description>When set, indicates that Port F receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOF_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port F does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOE: GPIOE Clock Gating Control field -->
+            <field>
+              <name>GPIOE</name>
+              <description>Port E Clock Gating Control. This bit controls the clock gating for Port E. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOE_ACTIVE</name>
+                  <description>When set, indicates that Port E receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOE_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port E does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOD: GPIOD Clock Gating Control field -->
+            <field>
+              <name>GPIOD</name>
+              <description>Port D Clock Gating Control. This bit controls the clock gating for Port D. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOD_ACTIVE</name>
+                  <description>When set, indicates that Port D receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOD_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port D does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOC: GPIOC Clock Gating Control field -->
+            <field>
+              <name>GPIOC</name>
+              <description>Port C Clock Gating Control. This bit controls the clock gating for Port C. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOC_ACTIVE</name>
+                  <description>When set, indicates that Port C receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOC_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port C does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOB: GPIOBJ Clock Gating Control field -->
+            <field>
+              <name>GPIOB</name>
+              <description>Port B Clock Gating Control. This bit controls the clock gating for Port B. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOB_ACTIVE</name>
+                  <description>When set, indicates that Port B receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOB_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port B does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOA: GPIOA Clock Gating Control field -->
+            <field>
+              <name>GPIOA</name>
+              <description>Port A Clock Gating Control. This bit controls the clock gating for Port A. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOA_ACTIVE</name>
+                  <description>When set, indicates that Port A receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SCGC2_GPIOA_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port A does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DCGC2: Deep Sleep Mode Clock Gating Control Register 2 -->
+        <register>
+          <name>DCGC2</name>
+          <description>Deep Sleep Mode Clock Gating Control Register 2.</description>
+          <addressOffset>0x00000128</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x500121FF</resetMask>
+          
+          <fields>
+            <!-- EPHY0: EPHY0 Clock Gating Control field -->
+            <field>
+              <name>EPHY0</name>
+              <description>PHY0 Clock Gating Control. This bit controls the clock gating for Ethernet PHY layer 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC2_EPHY0_ACTIVE</name>
+                  <description>When set, indicates that Ethernet PHY layer 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC2_EPHY0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Ethernet PHY layer 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- EMAC0: EMAC0 Clock Gating Control field -->
+            <field>
+              <name>EMAC0</name>
+              <description>MAC0 Clock Gating Control. This bit controls the clock gating for Ethernet MAC layer 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC2_EMAC0_ACTIVE</name>
+                  <description>When set, indicates that Ethernet MAC layer 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC2_EMAC0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Ethernet MAC layer 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- USB0: USB0 Clock Gating Control field -->
+            <field>
+              <name>USB0</name>
+              <description>USB0 Clock Gating Control. This bit controls the clock gating for USB module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC2_USB0_ACTIVE</name>
+                  <description>When set, indicates that USB module 0 receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC2_USB0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that USB module 0 does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UDMA: UDMA Clock Gating Control field -->
+            <field>
+              <name>UDMA</name>
+              <description>Micro-DMA Clock Gating Control. This bit controls the clock gating for micro-DMA. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC2_UDMA_ACTIVE</name>
+                  <description>When set, indicates that micro-DMA receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC2_UDMA_NOT_ACTIVE</name>
+                  <description>When reset, indicates that micro-DMA does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOJ: GPIOJ Clock Gating Control field -->
+            <field>
+              <name>GPIOJ</name>
+              <description>Port J Clock Gating Control. This bit controls the clock gating for Port J. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOJ_ACTIVE</name>
+                  <description>When set, indicates that Port J receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOJ_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port J does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOH: GPIOH Clock Gating Control field -->
+            <field>
+              <name>GPIOH</name>
+              <description>Port H Clock Gating Control. This bit controls the clock gating for Port H. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOH_ACTIVE</name>
+                  <description>When set, indicates that Port H receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOH_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port H does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOG: GPIOG Clock Gating Control field -->
+            <field>
+              <name>GPIOG</name>
+              <description>Port G Clock Gating Control. This bit controls the clock gating for Port G. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOG_ACTIVE</name>
+                  <description>When set, indicates that Port G receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOG_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port G does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOF: GPIOF Clock Gating Control field -->
+            <field>
+              <name>GPIOF</name>
+              <description>Port F Clock Gating Control. This bit controls the clock gating for Port F. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOF_ACTIVE</name>
+                  <description>When set, indicates that Port F receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOF_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port F does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOE: GPIOE Clock Gating Control field -->
+            <field>
+              <name>GPIOE</name>
+              <description>Port E Clock Gating Control. This bit controls the clock gating for Port E. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOE_ACTIVE</name>
+                  <description>When set, indicates that Port E receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOE_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port E does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOD: GPIOD Clock Gating Control field -->
+            <field>
+              <name>GPIOD</name>
+              <description>Port D Clock Gating Control. This bit controls the clock gating for Port D. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOD_ACTIVE</name>
+                  <description>When set, indicates that Port D receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOD_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port D does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOC: GPIOC Clock Gating Control field -->
+            <field>
+              <name>GPIOC</name>
+              <description>Port C Clock Gating Control. This bit controls the clock gating for Port C. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOC_ACTIVE</name>
+                  <description>When set, indicates that Port C receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOC_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port C does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOB: GPIOBJ Clock Gating Control field -->
+            <field>
+              <name>GPIOB</name>
+              <description>Port B Clock Gating Control. This bit controls the clock gating for Port B. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOB_ACTIVE</name>
+                  <description>When set, indicates that Port B receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOB_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port B does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOA: GPIOA Clock Gating Control field -->
+            <field>
+              <name>GPIOA</name>
+              <description>Port A Clock Gating Control. This bit controls the clock gating for Port A. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOA_ACTIVE</name>
+                  <description>When set, indicates that Port A receives clock and functions.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCGC2_GPIOA_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Port A does not receive clock and functions.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- SRCR0: Software Reset Control Register 0 -->
+        <register>
+          <name>SRCR0</name>
+          <description>Software Reset Control 0.</description>
+          <addressOffset>0x00000040</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x13130008</resetMask>
+          
+          <fields>
+            <!-- WDT1: WDT1 Reset Control field -->
+            <field>
+              <name>WDT1</name>
+              <description>WDT1 Reset Control. When this bit is set, Watchdog Timer module 1 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR0_WDT1_RST_ACTIVE</name>
+                  <description>When set, indicates that Watchdog Timer module 1 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR0_WDT1_RST_INACTIVE</name>
+                  <description>When reset, indicates that Watchdog Timer module 1 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CAN1: CAN1 Reset Control field -->
+            <field>
+              <name>CAN1</name>
+              <description>CAN1 Reset Control. When this bit is set, CAN module 1 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR0_CAN1_RST_ACTIVE</name>
+                  <description>When set, indicates that CAN module 1 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR0_CAN1_RST_INACTIVE</name>
+                  <description>When reset, indicates that CAN module 1 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- CAN0: CAN0 Reset Control field -->
+            <field>
+              <name>CAN0</name>
+              <description>CAN0 Reset Control. When this bit is set, CAN module 0 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR0_CAN0_RST_ACTIVE</name>
+                  <description>When set, indicates that CAN module 0 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR0_CAN0_RST_INACTIVE</name>
+                  <description>When reset, indicates that CAN module 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- PWM: PWM Reset Control field -->
+            <field>
+              <name>PWM</name>
+              <description>PWM Reset Control. When this bit is set, PWM module is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR0_PWM_RST_ACTIVE</name>
+                  <description>When set, indicates that PWM module is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR0_PWM_RST_INACTIVE</name>
+                  <description>When reset, indicates that PWM module is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1: ADC1 Reset Control field -->
+            <field>
+              <name>ADC1</name>
+              <description>ADC1 Reset Control. When this bit is set, ADC module 1 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR0_ADC1_RST_ACTIVE</name>
+                  <description>When set, indicates that ADC module 1 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR0_ADC1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that ADC module 1 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0: ADC0 Clock Gating Control field -->
+            <field>
+              <name>ADC0</name>
+              <description>ADC0 Reset Control. This bit controls the clock gating for SAR ADC module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR0_ADC0_RST_ACTIVE</name>
+                  <description>When set, indicates that ADC module 0 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR0_ADC0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that ADC module 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- WDT0: WDT0 Clock Gating Control field -->
+            <field>
+              <name>WDT0</name>
+              <description>WDT0 Reset Control. This bit controls the clock gating for the Watchdog Timer module 0. If set, the module receives a clock and functions. Otherwise, the module is unclocked and disabled. If the module is unclocked, a read or write to the module generates a bus fault.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR0_WDT0_RST_ACTIVE</name>
+                  <description>When set, indicates that Watchdog Timer module 0 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR0_WDT0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that Watchdog Timer module 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- SRCR1: Software Reset Control Register 1 -->
+        <register>
+          <name>SRCR1</name>
+          <description>Deep Sleep Mode Clock Gating Control Register 1.</description>
+          <addressOffset>0x00000044</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x570F5337</resetMask>
+          
+          <fields>
+            <!-- EPI0: EPI0 Clock Gating Control field -->
+            <field>
+              <name>EPI0</name>
+              <description>EPI0 Reset Control. When this bit is set, EPI module 0 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_EPI0_RST_ACTIVE</name>
+                  <description>When set, indicates that EPI module 0 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_EPI0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that EPI module 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2S0: I2S0 Clock Gating Control field -->
+            <field>
+              <name>I2S0</name>
+              <description>I2S0 Reset Control. When this bit is set, I2S module 0 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_I2S0_RST_ACTIVE</name>
+                  <description>When set, indicates that I2S module 0 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_I2S0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that I2S module 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP2: COMP2 Clock Gating Control field -->
+            <field>
+              <name>COMP2</name>
+              <description>COMP2 Reset Control. When this bit is set, Analog Comparator module 2 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>26</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_COMP2_RST_ACTIVE</name>
+                  <description>When set, indicates that analog comparator module 2 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_COMP2_NOT_ACTIVE</name>
+                  <description>When reset, indicates that analog comparator module 2 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP1: COMP1 Clock Gating Control field -->
+            <field>
+              <name>COMP1</name>
+              <description>COMP1 Reset Control. When this bit is set, Analog Comparator module 1 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_COMP1_RST_ACTIVE</name>
+                  <description>When set, indicates that analog comparator module 1 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_COMP1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that analog comparator module 1 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- COMP0: COMP0 Clock Gating Control field -->
+            <field>
+              <name>COMP0</name>
+              <description>COMP0 Reset Control. When this bit is set, Analog Comparator module 0 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_COMP0_RST_ACTIVE</name>
+                  <description>When set, indicates that analog comparator module 0 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_COMP0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that analog comparator module 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER3: TIMER3 Clock Gating Control field -->
+            <field>
+              <name>TIMER3</name>
+              <description>TIMER3 Reset Control. Timer 3 Reset Control. When this bit is set, General-Purpose Timer module 3 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>19</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_TIMER3_RST_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 3 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_TIMER3_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 3 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER2: TIMER2 Clock Gating Control field -->
+            <field>
+              <name>TIMER2</name>
+              <description>TIMER2 Reset Control. Timer 2 Reset Control. When this bit is set, General-Purpose Timer module 3 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>18</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_TIMER2_RST_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 2 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_TIMER2_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 2 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER1: TIMER1 Clock Gating Control field -->
+            <field>
+              <name>TIMER1</name>
+              <description>TIMER1 Reset Control. Timer 1 Reset Control. When this bit is set, General-Purpose Timer module 3 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_TIMER1_RST_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 1 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_TIMER1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 1 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TIMER0: TIMER0 Clock Gating Control field -->
+            <field>
+              <name>TIMER0</name>
+              <description>TIMER0 Reset Control. Timer 0 Reset Control. When this bit is set, General-Purpose Timer module 3 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_TIMER0_RST_ACTIVE</name>
+                  <description>When set, indicates that General-Purpose Timer module 0 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_TIMER0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that General-Purpose Timer module 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2C1: I2C1 Clock Gating Control field -->
+            <field>
+              <name>I2C1</name>
+              <description>I2C1 Reset Control. When this bit is set, I2C module 1 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>14</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_I2C1_RST_ACTIVE</name>
+                  <description>When set, indicates that I2C module 1 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_I2C1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that I2C module 1 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- I2C0: I2C0 Clock Gating Control field -->
+            <field>
+              <name>I2C0</name>
+              <description>I2C0 Reset Control. When this bit is set, I2C module 0 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_I2C0_RST_ACTIVE</name>
+                  <description>When set, indicates that I2C module 0 is not reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_I2C0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that I2C module 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- QEI1: QEI1 Clock Gating Control field -->
+            <field>
+              <name>QEI1</name>
+              <description>QEI1 Reset Control. When this bit is set, QEI module 1 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>9</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_QEI1_RST_ACTIVE</name>
+                  <description>When set, indicates that QEI module 1 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_QEI1_NOT_ACTIVE</name>
+                  <description>When reset, indicates that QEI module 1 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- QEI0: QEI0 Clock Gating Control field -->
+            <field>
+              <name>QEI0</name>
+              <description>QEI0 Reset Control. When this bit is set, QEI module 0 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_QEI0_RST_ACTIVE</name>
+                  <description>When set, indicates that QEI module 0 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_QEI0_NOT_ACTIVE</name>
+                  <description>When reset, indicates that QEI module 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SSI1: SSI1 Clock Gating Control field -->
+            <field>
+              <name>SSI1</name>
+              <description>SSI1 Reset Control. When this bit is set, SSI module 1 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_SSI1_RST_ACTIVE</name>
+                  <description>When set, indicates that SSI module 1 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_SSI1_RST_INACTIVE</name>
+                  <description>When reset, indicates that SSI module 1 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SSI0: SSI0 Clock Gating Control field -->
+            <field>
+              <name>SSI0</name>
+              <description>SSI0 Reset Control. When this bit is set, SSI module 1 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_SSI0_RST_ACTIVE</name>
+                  <description>When set, indicates that SSI module 0 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_SSI0_RST_INACTIVE</name>
+                  <description>When reset, indicates that SSI module 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART2: UART2 Clock Gating Control field -->
+            <field>
+              <name>UART2</name>
+              <description>UART2 Reset Control. When this bit is set, UART module 2 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_UART2_RST_ACTIVE</name>
+                  <description>When set, indicates that UART module 2 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_UART2_RST_INACTIVE</name>
+                  <description>When reset, indicates that UART module 2 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART1: UART1 Clock Gating Control field -->
+            <field>
+              <name>UART1</name>
+              <description>UART1 Reset Control. When this bit is set, UART module 1 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_UART1_RST_ACTIVE</name>
+                  <description>When set, indicates that UART module 1 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_UART1_RST_INACTIVE</name>
+                  <description>When reset, indicates that UART module 1 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UART0: UART0 Clock Gating Control field -->
+            <field>
+              <name>UART0</name>
+              <description>UART0 Reset Control. When this bit is set, UART module 0 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR1_UART0_RST_ACTIVE</name>
+                  <description>When set, indicates that UART module 0 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR1_UART0_RST_INACTIVE</name>
+                  <description>When reset, indicates that UART module 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- SRCR2: Software Reset Control 2 -->
+        <register>
+          <name>SRCR2</name>
+          <description>Software Reset Control 2.</description>
+          <addressOffset>0x00000048</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x500121FF</resetMask>
+          
+          <fields>
+            <!-- EPHY0: EPHY0 Clock Gating Control field -->
+            <field>
+              <name>EPHY0</name>
+              <description>PHY0 Reset Control. When this bit is set, Ethernet PHY layer 0 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR2_EPHY0_RST_ACTIVE</name>
+                  <description>When set, indicates that Ethernet PHY layer 0 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR2_EPHY0_RST_INACTIVE</name>
+                  <description>When reset, indicates that Ethernet PHY layer 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- EMAC0: EMAC0 Clock Gating Control field -->
+            <field>
+              <name>EMAC0</name>
+              <description>MAC0 Reset Control. When this bit is set, Ethernet MAC layer 0 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR2_EMAC0_RST_ACTIVE</name>
+                  <description>When set, indicates that Ethernet MAC layer 0 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR2_EMAC0_RST_INACTIVE</name>
+                  <description>When reset, indicates that Ethernet MAC layer 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- USB0: USB0 Clock Gating Control field -->
+            <field>
+              <name>USB0</name>
+              <description>USB0 Reset Control. When this bit is set, USB module 0 is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR2_USB0_RST_ACTIVE</name>
+                  <description>When set, indicates that USB module 0 is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR2_USB0_RST_INACTIVE</name>
+                  <description>When reset, indicates that USB module 0 is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- UDMA: UDMA Clock Gating Control field -->
+            <field>
+              <name>UDMA</name>
+              <description>Micro-DMA Reset Control. When this bit is set, uDMA module is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR2_UDMA_RST_ACTIVE</name>
+                  <description>When set, indicates that micro-DMA is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR2_UDMA_RST_INACTIVE</name>
+                  <description>When reset, indicates that micro-DMA is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOJ: GPIOJ Clock Gating Control field -->
+            <field>
+              <name>GPIOJ</name>
+              <description>Port J Reset Control. When this bit is set, Port J module is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOJ_RST_ACTIVE</name>
+                  <description>When set, indicates that Port J is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOJ_RST_INACTIVE</name>
+                  <description>When reset, indicates that Port J is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOH: GPIOH Clock Gating Control field -->
+            <field>
+              <name>GPIOH</name>
+              <description>Port H Reset Control. When this bit is set, Port H module is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOH_RST_ACTIVE</name>
+                  <description>When set, indicates that Port H is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOH_RST_INACTIVE</name>
+                  <description>When reset, indicates that Port H is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOG: GPIOG Clock Gating Control field -->
+            <field>
+              <name>GPIOG</name>
+              <description>Port G Reset Control. When this bit is set, Port G module is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOG_RST_ACTIVE</name>
+                  <description>When set, indicates that Port G is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOG_RST_INACTIVE</name>
+                  <description>When reset, indicates that Port G is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOF: GPIOF Clock Gating Control field -->
+            <field>
+              <name>GPIOF</name>
+              <description>Port F Reset Control. When this bit is set, Port F module is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOF_RST_ACTIVE</name>
+                  <description>When set, indicates that Port F is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOF_RST_INACTIVE</name>
+                  <description>When reset, indicates that Port F is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOE: GPIOE Clock Gating Control field -->
+            <field>
+              <name>GPIOE</name>
+              <description>Port E Reset Control. When this bit is set, Port E module is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOE_RST_ACTIVE</name>
+                  <description>When set, indicates that Port E is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOE_RST_INACTIVE</name>
+                  <description>When reset, indicates that Port E is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOD: GPIOD Clock Gating Control field -->
+            <field>
+              <name>GPIOD</name>
+              <description>Port D Reset Control. When this bit is set, Port D module is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOD_RST_ACTIVE</name>
+                  <description>When set, indicates that Port D is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOD_RST_INACTIVE</name>
+                  <description>When reset, indicates that Port D is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOC: GPIOC Clock Gating Control field -->
+            <field>
+              <name>GPIOC</name>
+              <description>Port C Reset Control. When this bit is set, Port C module is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOC_RST_ACTIVE</name>
+                  <description>When set, indicates that Port C is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOC_RST_INACTIVE</name>
+                  <description>When reset, indicates that Port C is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOB: GPIOBJ Clock Gating Control field -->
+            <field>
+              <name>GPIOB</name>
+              <description>Port B Reset Control. When this bit is set, Port B module is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOB_RST_ACTIVE</name>
+                  <description>When set, indicates that Port B is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOB_RST_INACTIVE</name>
+                  <description>When reset, indicates that Port B is not reset.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- GPIOA: GPIOA Clock Gating Control field -->
+            <field>
+              <name>GPIOA</name>
+              <description>Port A Reset Control. When this bit is set, Port A module is reset. All internal data is lost and the registers are returned to their reset states. This bit must be manually cleared after being set.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOA_RST_ACTIVE</name>
+                  <description>When set, indicates that Port A is reset.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SRCR2_GPIOA_RST_INACTIVE</name>
+                  <description>When reset, indicates that Port A is not reset.</description>
                   <value>0x0</value>
                 </enumeratedValue>
               </enumeratedValues>
