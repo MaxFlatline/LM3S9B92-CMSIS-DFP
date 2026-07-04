@@ -6174,12 +6174,12 @@ by the other GPIO configuration registers.</description>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>DC5_USB0PHY_PRESENT</name>
+                  <name>DC6_USB0PHY_PRESENT</name>
                   <description>When set, indicates that the USB module 0 PHY is present.</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>DC5_USB0PHY_NOT_PRESENT</name>
+                  <name>DC6_USB0PHY_NOT_PRESENT</name>
                   <description>When reset, indicates that the USB module 0 PHY is not present.</description>
                   <value>0x0</value>
                 </enumeratedValue>
@@ -6197,6 +6197,1658 @@ by the other GPIO configuration registers.</description>
                   <name>DC6_USB0_OTG</name>
                   <description>Thie field indicates that USB module 0 is present and specifies its capability.</description>
                   <value>0x3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DC7: Device Capadilities 7 Register -->
+        <register>
+          <name>DC7</name>
+          <description>Device Capabilities 7.</description>
+          <addressOffset>0x00000028</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0xFFFFFFFF</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+          
+          <fields>
+            <!-- DMACH30: SW field -->
+            <field>
+              <name>DMACH30</name>
+              <description>SW.</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH30_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 30 is available for software transfers.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH30_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 30 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH29: I2S0_TX / CAN1_TX field -->
+            <field>
+              <name>DMACH29</name>
+              <description>I2S0_TX / CAN1_TX.</description>
+              <bitOffset>29</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH29_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 29 is available and connected to the transmit path of I2S module 0. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of CAN module 1 transmit.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH29_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 29 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH28: I2S0_RX / CAN1_RX field -->
+            <field>
+              <name>DMACH28</name>
+              <description>I2S0_RX / CAN1_RX.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH28_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 28 is available and connected to the receive path of I2S module 0. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of CAN module 1 receive.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH28_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 28 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH27: CAN1_TX / ADC1_SS3 field -->
+            <field>
+              <name>DMACH27</name>
+              <description>CAN1_TX / ADC1_SS3.</description>
+              <bitOffset>27</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH27_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 27 is available and connected to the transmit path of CAN module 1. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of ADC module 1 Sample Sequencer 3.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH27_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 27 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH26: CAN1_RX / ADC1_SS2 field -->
+            <field>
+              <name>DMACH</name>
+              <description>CAN1_RX / ADC1_SS2.</description>
+              <bitOffset>26</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH26_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 26 is available and connected to the receive path of CAN module 1. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of ADC module 1 Sample Sequencer 2.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH26_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 26 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH25: SSI1_TX / ADC1_SS1 field -->
+            <field>
+              <name>DMACH25</name>
+              <description>SSI1_TX / ADC1_SS1.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH25_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 25 is available and connected to the transmit path of SSI module 1. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of ADC module 1 Sample Sequencer 1.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH25_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 25 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH24: SSI1_RX / ADC1_SS0 field -->
+            <field>
+              <name>DMACH24</name>
+              <description>SSI1_RX / ADC1_SS0.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH24_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 24 is available and connected to the receive path of SSI module 1. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of ADC module 1 Sample Sequencer 0.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH24_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 24 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH23: UART1_TX / CAN2_TX field -->
+            <field>
+              <name>DMACH23</name>
+              <description>UART1_TX / CAN2_TX.</description>
+              <bitOffset>23</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH23_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 23 is available and connected to the transmit path of UART module 1. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of CAN module 2 transmit.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH23_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 23 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH22: UART1_RX / CAN2_RX field -->
+            <field>
+              <name>DMACH22</name>
+              <description>UART1_RX / CAN2_RX.</description>
+              <bitOffset>22</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH22_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 22 is available and connected to the receive path of UART module 1. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of CAN module 2 receive.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH22_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 22 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH21: Timer1B / EPI0_WFIFO field -->
+            <field>
+              <name>DMACH21</name>
+              <description>Timer1B / EPI0_WFIFO.</description>
+              <bitOffset>21</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH21_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 21 is available and connected to Timer 1B.If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of EPI module write FIFO (WRIFO).</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH21_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 21 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH20: Timer1A / EPI0_NBRFIFO field -->
+            <field>
+              <name>DMACH20</name>
+              <description>Timer1A / EPI0_NBRFIFO.</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH20_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 20 is available and connected to Timer 1A. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of EPI module 0 non-blocking read FIFO (NBRFIFO).</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH20_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 20 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH19: Timer0B / Timer1B field -->
+            <field>
+              <name>DMACH19</name>
+              <description>Timer0B / Timer1B.</description>
+              <bitOffset>19</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH19_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 19 is available and connected to Timer 0B. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of Timer 1B.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH19_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 19 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH18: Timer0A / Timer1A field -->
+            <field>
+              <name>DMACH18</name>
+              <description>Timer0A / Timer1A.</description>
+              <bitOffset>18</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH18_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 18 is available and connected to Timer 0A. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of Timer 1A.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH18_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 18 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH17: ADC0_SS3 field -->
+            <field>
+              <name>DMACH17</name>
+              <description>ADC0_SS3.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH17_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 17 is available and connected to ADC module 0 Sample Sequencer 3.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH17_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 17 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH16: ADC0_SS2 field -->
+            <field>
+              <name>DMACH16</name>
+              <description>ADC0_SS2.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH16_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 16 is available and connected to ADC module 0 Sample Sequencer 2.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH16_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 16 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH15: ADC0_SS1 / Timer2B field -->
+            <field>
+              <name>DMACH15</name>
+              <description>ADC0_SS1 / Timer2B.</description>
+              <bitOffset>15</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH15_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 15 is available and connected to ADC module 0 Sample Sequencer 1. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of Timer 2B.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH15_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 15 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH14: ADC0_SS0 / Timer2A field -->
+            <field>
+              <name>DMACH14</name>
+              <description>ADC0_SS0 / Timer2A.</description>
+              <bitOffset>14</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH14_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 14 is available and connected to ADC module 0 Sample Sequencer 0. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of Timer 2A.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH14_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 14 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH13: CAN0_TX / UART2_TX field -->
+            <field>
+              <name>DMACH13</name>
+              <description>CAN0_TX / UART2_TX.</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH13_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 13 is available and connected to the transmit path of CAN module 0. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of UART module 2 transmit.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH13_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 13 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH12: CAN0_RX / UART2_RX field -->
+            <field>
+              <name>DMACH12</name>
+              <description>CAN0_RX / UART2_RX.</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH12_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 12 is available and connected to the receive path of CAN module 0. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of UART module 2 receive.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH12_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 12 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH11: SSI0_TX / SSI1_TX field -->
+            <field>
+              <name>DMACH11</name>
+              <description>SSI0_TX / SSI1_TX.</description>
+              <bitOffset>11</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH11_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 11 is available and connected to the transmit path of SSI module 0. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of SSI module 1 transmit.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH11_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 11 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH10: SSI0_RX / SSI1_RX field -->
+            <field>
+              <name>DMACH10</name>
+              <description>SSI0_RX / SSI1_RX.</description>
+              <bitOffset>10</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH10_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 10 is available and connected to the receive path of SSI module 0. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of SSI module 1 receive.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH10_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 10 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH9: UART0_TX / UART1_TX field -->
+            <field>
+              <name>DMACH9</name>
+              <description>UART0_TX / UART1_TX.</description>
+              <bitOffset>9</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH9_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 9 is available and connected to the transmit path of UART module 0. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the seondary channel assignment of UART module 1 transmit.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH9_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 9 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH8: UART0_RX / UART1_RX field -->
+            <field>
+              <name>DMACH8</name>
+              <description>UART0_RX / UART1_RX.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH8_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 8 is available and connected to the receive path of UART module 0. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of UART module 1 receive.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH8_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 8 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH7: ETH_TX / Timer2B field -->
+            <field>
+              <name>DMACH7</name>
+              <description>ETH_TX / Timer2B.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH7_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 7 is available and connected to the transmit path of the Ethernet module. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of Timer 2B.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH7_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 7 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH6: ETH_RX / Timer2A field -->
+            <field>
+              <name>DMACH6</name>
+              <description>ETH_RX / Timer2A.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH6_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 6 is available and connected to the receive path of the Ethernet module. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of Timer 2A.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH6_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 6 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH5: USB_EP3_TX / Timer2B field -->
+            <field>
+              <name>DMACH5</name>
+              <description>USB_EP3_TX / Timer2B.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH5_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 5 is available and connected to the transmit path of USB endpoint 3. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of Timer 2B.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH5_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 5 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH4: USB_EP3_RX / Timer2A field -->
+            <field>
+              <name>DMACH4</name>
+              <description>USB_EP3_RX / Timer2A.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH4_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 4 is available and connected to the receive path of USB endpoint 3. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of Timer 2A.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH4_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 4 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH3: USB_EP2_TX / Timer3B field -->
+            <field>
+              <name>DMACH3</name>
+              <description>USB_EP2_TX / Timer3B.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH3_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 3 is available and connected to the transmit path of USB endpoint 2. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of Timer 3B.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH3_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 3 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH2: USB_EP2_RX / Timer3A field -->
+            <field>
+              <name>DMACH2</name>
+              <description>USB_EP2_RX / Timer3A.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH2_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 2 is available and connected to the receive path of USB endpoint 2. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of Timer 3A.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH2_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 2 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH1: USB_EP1_TX / UART2_TX field -->
+            <field>
+              <name>DMACH1</name>
+              <description>USB_EP1_TX / UART2_TX.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH1_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 1 is available and connected to the transmit path of USB endpoint 1. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of UART module 2 transmit.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH1_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 1 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DMACH0: USB_EP1_RX / UART2_RX field -->
+            <field>
+              <name>DMACH0</name>
+              <description>USB_EP1_RX / UART2_RX.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC7_DMACH0_AVAILIABLE</name>
+                  <description>When set, indicates uDMA channel 0 is available and connected to the receive path of USB endpoint 1. If the corresponding bit in the DMACHASGN register is set, the channel is connected instead to the secondary channel assignment of UART module 2 receive.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC7_DMACH0_NOT_AVAILIABLE</name>
+                  <description>When reset, indicates uDMA channel 0 is not available for software transfers.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DC8: Device Capadilities 8 Register -->
+        <register>
+          <name>DC8</name>
+          <description>Device Capabilities 8.</description>
+          <addressOffset>0x0000002C</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0xFFFFFFFF</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+          
+          <fields>
+            <!-- ADC1AIN15: ADC Module 1 AIN15 Pin Present field -->
+            <field>
+              <name>ADC1AIN15</name>
+              <description>ADC Module 1 AIN15 Pin Present.</description>
+              <bitOffset>31</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN15_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 15 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN15_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 15 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN14: ADC Module 1 AIN14 Pin Present field -->
+            <field>
+              <name>ADC1AIN14</name>
+              <description>ADC Module 1 AIN14 Pin Present.</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN14_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 14 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN14_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 14 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN13: ADC Module 1 AIN13 Pin Present field -->
+            <field>
+              <name>ADC1AIN13</name>
+              <description>ADC Module 1 AIN13 Pin Present.</description>
+              <bitOffset>29</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN13_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 13 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN13_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 13 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN12: ADC Module 1 AIN12 Pin Present field -->
+            <field>
+              <name>ADC1AIN12</name>
+              <description>ADC Module 1 AIN12 Pin Present.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN12_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 12 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN12_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 12 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN11: ADC Module 1 AIN11 Pin Present field -->
+            <field>
+              <name>ADC1AIN11</name>
+              <description>ADC Module 1 AIN11 Pin Present.</description>
+              <bitOffset>27</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN11_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 11 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN11_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 11 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN10: ADC Module 1 AIN10 Pin Present field -->
+            <field>
+              <name>ADC1AIN10</name>
+              <description>ADC Module 1 AIN10 Pin Present.</description>
+              <bitOffset>26</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN10_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 10 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN10_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 10 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN9: ADC Module 1 AIN9 Pin Present field -->
+            <field>
+              <name>ADC1AIN9</name>
+              <description>ADC Module 1 AIN9 Pin Present.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN9_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 9 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN9_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 9 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN8: ADC Module 1 AIN8 Pin Present field -->
+            <field>
+              <name>ADC1AIN8</name>
+              <description>ADC Module 1 AIN8 Pin Present.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN8_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 8 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN8_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 8 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN7: ADC Module 1 AIN7 Pin Present field -->
+            <field>
+              <name>ADC1AIN7</name>
+              <description>ADC Module 1 AIN7 Pin Present.</description>
+              <bitOffset>23</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN7_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 7 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN7_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 7 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN6: ADC Module 1 AIN6 Pin Present field -->
+            <field>
+              <name>ADC1AIN6</name>
+              <description>ADC Module 1 AIN6 Pin Present.</description>
+              <bitOffset>22</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN6_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 6 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN6_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 6 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN5: ADC Module 1 AIN5 Pin Present field -->
+            <field>
+              <name>ADC1AIN5</name>
+              <description>ADC Module 1 AIN5 Pin Present.</description>
+              <bitOffset>21</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN5_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 5 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN5_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 5 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN4: ADC Module 1 AIN4 Pin Present field -->
+            <field>
+              <name>ADC1AIN4</name>
+              <description>ADC Module 1 AIN4 Pin Present.</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN4_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 4 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN4_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 4 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN3: ADC Module 1 AIN3 Pin Present field -->
+            <field>
+              <name>ADC1AIN3</name>
+              <description>ADC Module 1 AIN3 Pin Present.</description>
+              <bitOffset>19</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN3_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 3 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN3_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 3 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN2: ADC Module 1 AIN2 Pin Present field -->
+            <field>
+              <name>ADC1AIN2</name>
+              <description>ADC Module 1 AIN2 Pin Present.</description>
+              <bitOffset>18</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN2_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 2 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN2_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 2 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN1: ADC Module 1 AIN1 Pin Present field -->
+            <field>
+              <name>ADC1AIN1</name>
+              <description>ADC Module 1 AIN1 Pin Present.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN1_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN1_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1AIN0: ADC Module 1 AIN0 Pin Present field -->
+            <field>
+              <name>ADC1AIN0</name>
+              <description>ADC Module 1 AIN0 Pin Present.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN0_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 input pin 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC1AIN0_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 input pin 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN15: ADC Module 0 AIN15 Pin Present field -->
+            <field>
+              <name>ADC0AIN15</name>
+              <description>ADC Module 0 AIN15 Pin Present.</description>
+              <bitOffset>15</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN15_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 15 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN15_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 15 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN14: ADC Module 0 AIN14 Pin Present field -->
+            <field>
+              <name>ADC0AIN14</name>
+              <description>ADC Module 0 AIN14 Pin Present.</description>
+              <bitOffset>14</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN14_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 14 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN14_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 14 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN13: ADC Module 0 AIN13 Pin Present field -->
+            <field>
+              <name>ADC0AIN13</name>
+              <description>ADC Module 0 AIN13 Pin Present.</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN13_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 13 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN13_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 13 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN12: ADC Module 0 AIN12 Pin Present field -->
+            <field>
+              <name>ADC0AIN12</name>
+              <description>ADC Module 0 AIN12 Pin Present.</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN12_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 12 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN12_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 12 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN11: ADC Module 0 AIN11 Pin Present field -->
+            <field>
+              <name>ADC0AIN11</name>
+              <description>ADC Module 0 AIN11 Pin Present.</description>
+              <bitOffset>11</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN11_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 11 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN11_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 11 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN10: ADC Module 0 AIN10 Pin Present field -->
+            <field>
+              <name>ADC0AIN10</name>
+              <description>ADC Module 0 AIN10 Pin Present.</description>
+              <bitOffset>10</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN10_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 10 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN10_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 10 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN9: ADC Module 0 AIN9 Pin Present field -->
+            <field>
+              <name>ADC0AIN9</name>
+              <description>ADC Module 0 AIN9 Pin Present.</description>
+              <bitOffset>9</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN9_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 9 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN9_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 9 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN8: ADC Module 0 AIN8 Pin Present field -->
+            <field>
+              <name>ADC0AIN8</name>
+              <description>ADC Module 0 AIN8 Pin Present.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN8_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 8 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN8_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 8 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN7: ADC Module 0 AIN7 Pin Present field -->
+            <field>
+              <name>ADC0AIN7</name>
+              <description>ADC Module 0 AIN7 Pin Present.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN7_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 7 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN7_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 7 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN6: ADC Module 0 AIN6 Pin Present field -->
+            <field>
+              <name>ADC0AIN6</name>
+              <description>ADC Module 0 AIN6 Pin Present.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN6_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 6 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN6_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 6 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN1: ADC Module 0 AIN5 Pin Present field -->
+            <field>
+              <name>ADC0AIN5</name>
+              <description>ADC Module 0 AIN5 Pin Present.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN5_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 5 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN5_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 5 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN4: ADC Module 0 AIN4 Pin Present field -->
+            <field>
+              <name>ADC0AIN4</name>
+              <description>ADC Module 0 AIN4 Pin Present.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN4_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 4 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN4_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 4 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN3: ADC Module 0 AIN3 Pin Present field -->
+            <field>
+              <name>ADC0AIN3</name>
+              <description>ADC Module 0 AIN3 Pin Present.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN3_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 3 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN3_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 3 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN2: ADC Module 0 AIN2 Pin Present field -->
+            <field>
+              <name>ADC0AIN2</name>
+              <description>ADC Module 0 AIN2 Pin Present.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN2_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 2 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN2_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 2 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN1: ADC Module 0 AIN1 Pin Present field -->
+            <field>
+              <name>ADC0AIN1</name>
+              <description>ADC Module 0 AIN1 Pin Present.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN1_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN1_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0AIN0: ADC Module 0 AIN0 Pin Present field -->
+            <field>
+              <name>ADC0AIN0</name>
+              <description>ADC Module 0 AIN0 Pin Present.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN0_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 input pin 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC8_ADC0AIN0_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 input pin 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DC8: Device Capadilities 9 Register -->
+        <register>
+          <name>DC9</name>
+          <description>Device Capabilities 9.</description>
+          <addressOffset>0x00000190</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00FF00FF</resetValue>
+          <resetMask>0x00FF00FF</resetMask>
+          
+          <fields>
+            <!-- ADC1DC7: ADC1 DC7 Present field -->
+            <field>
+              <name>ADC1DC7</name>
+              <description>ADC1 DC7 Present.</description>
+              <bitOffset>23</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC7_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 Digital Comparator 7 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC7_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 Digital Comparator 7 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1DC6: ADC1 DC6 Present field -->
+            <field>
+              <name>ADC1DC6</name>
+              <description>ADC1 DC6 Present.</description>
+              <bitOffset>22</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC6_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 Digital Comparator 6 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC6_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 Digital Comparator 6 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1DC5: ADC1 DC5 Present field -->
+            <field>
+              <name>ADC1DC5</name>
+              <description>ADC1 DC5 Present.</description>
+              <bitOffset>21</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC5_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 Digital Comparator 5 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC5_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 Digital Comparator 5 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1DC4: ADC1 DC4 Present field -->
+            <field>
+              <name>ADC1DC4</name>
+              <description>ADC1 DC4 Present.</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC4_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 Digital Comparator 4 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC4_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 Digital Comparator 4 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1DC3: ADC1 DC3 Present field -->
+            <field>
+              <name>ADC1DC3</name>
+              <description>ADC1 DC3 Present.</description>
+              <bitOffset>19</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC3_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 Digital Comparator 3 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC3_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 Digital Comparator 3 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1DC2: ADC1 DC2 Present field -->
+            <field>
+              <name>ADC1DC2</name>
+              <description>ADC1 DC2 Present.</description>
+              <bitOffset>18</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC2_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 Digital Comparator 2 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC2_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 Digital Comparator 2 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1DC1: ADC1 DC1 Present field -->
+            <field>
+              <name>ADC1DC1</name>
+              <description>ADC1 DC1 Present.</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC1_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 Digital Comparator 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC1_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 Digital Comparator 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC1DC0: ADC1 DC0 Present field -->
+            <field>
+              <name>ADC1DC0</name>
+              <description>ADC1 DC0 Present.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC0_PRESENT</name>
+                  <description>When set, indicates that ADC module 1 Digital Comparator 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC1DC0_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 1 Digital Comparator 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0DC7: ADC0 DC7 Present field -->
+            <field>
+              <name>ADC0DC7</name>
+              <description>ADC0 DC7 Present.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC7_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 Digital Comparator 7 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC7_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 Digital Comparator 7 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0DC6: ADC0 DC6 Present field -->
+            <field>
+              <name>ADC0DC6</name>
+              <description>ADC0 DC6 Present.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC6_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 Digital Comparator 6 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC6_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 Digital Comparator 6 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0DC5: ADC0 DC5 Present field -->
+            <field>
+              <name>ADC0DC5</name>
+              <description>ADC0 DC5 Present.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC5_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 Digital Comparator 5 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC5_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 Digital Comparator 5 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0DC4: ADC0 DC4 Present field -->
+            <field>
+              <name>ADC0DC4</name>
+              <description>ADC0 DC4 Present.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC4_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 Digital Comparator 4 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC4_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 Digital Comparator 4 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0DC3: ADC0 DC3 Present field -->
+            <field>
+              <name>ADC0DC3</name>
+              <description>ADC0 DC3 Present.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC3_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 Digital Comparator 3 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC3_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 Digital Comparator 3 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0DC2: ADC0 DC2 Present field -->
+            <field>
+              <name>ADC0DC2</name>
+              <description>ADC0 DC2 Present.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC2_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 Digital Comparator 2 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC2_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 Digital Comparator 2 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0DC1: ADC0 DC1 Present field -->
+            <field>
+              <name>ADC0DC1</name>
+              <description>ADC0 DC1 Present.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC1_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 Digital Comparator 1 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC1_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 Digital Comparator 1 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- ADC0DC0: ADC0 DC0 Present field -->
+            <field>
+              <name>ADC0DC0</name>
+              <description>ADC0 DC0 Present.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC0_PRESENT</name>
+                  <description>When set, indicates that ADC module 0 Digital Comparator 0 is present.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DC9_ADC0DC0_NOT_PRESENT</name>
+                  <description>When reset, indicates that ADC module 0 Digital Comparator 0 is not present.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- NVMSTAT: Non-Volatile Memory Information Register -->
+        <register>
+          <name>NVMSTAT</name>
+          <description>Non-Volatile Memory Information.</description>
+          <addressOffset>0x000001A0</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000001</resetValue>
+          <resetMask>0x00000001</resetMask>
+          
+          <fields>
+            <!-- FWB: 32 Word Flash Write Buffer Active field -->
+            <field>
+              <name>FWB</name>
+              <description>32 Word Flash Write Buffer Active.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>NVMSTAT_FWB_ACTIVE</name>
+                  <description>When set, indicates that the 32 word Flash memory write buffer feature is active.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NVMSTAT_FWB_NOT_ACTIVE</name>
+                  <description>When reset, indicates that the 32 word Flash memory write buffer feature is not active.</description>
+                  <value>0x0</value>
                 </enumeratedValue>
               </enumeratedValues>
             </field>
