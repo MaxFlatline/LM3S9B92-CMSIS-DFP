@@ -86,7 +86,7 @@
       <description>Register map for GPIO PORT A peripheral.</description>
       <groupName>GPIO</groupName>
       <headerStructName>GPIO</headerStructName>
-      <disableCondition>((SYSCTL->RCGC2->GPIOA == 0)||(SYSCTL->SCGC2->GPIOA == 0)||(SYSCTL->DCGC2->GPIOA == 0))</disableCondition>
+      <disableCondition>(SYSCTL->RCGC2->GPIOA == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC2->GPIOA == 0) &amp;&amp; (SYSCTL->DCGC2->GPIOA == 0)))</disableCondition>
       <baseAddress>0x40004000</baseAddress>
       <size>32</size>
       <access>read-write</access>
@@ -1800,7 +1800,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port B -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOB</name>
-      <disableCondition>((SYSCTL->RCGC2->GPIOB == 0)||(SYSCTL->SCGC2->GPIOB == 0)||(SYSCTL->DCGC2->GPIOB == 0))</disableCondition>
+      <disableCondition>(SYSCTL->RCGC2->GPIOB == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC2->GPIOB == 0) &amp;&amp; (SYSCTL->DCGC2->GPIOB == 0)))</disableCondition>
       <baseAddress>0x40005000</baseAddress>
       <interrupt>
         <name>GPIOB</name>
@@ -1812,7 +1812,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port C -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOC</name>
-      <disableCondition>((SYSCTL->RCGC2->GPIOC == 0)||(SYSCTL->SCGC2->GPIOC == 0)||(SYSCTL->DCGC2->GPIOC == 0))</disableCondition>
+      <disableCondition>(SYSCTL->RCGC2->GPIOC == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC2->GPIOC == 0) &amp;&amp; (SYSCTL->DCGC2->GPIOC == 0)))</disableCondition>
       <baseAddress>0x40006000</baseAddress>
       <interrupt>
         <name>GPIOC</name>
@@ -1824,7 +1824,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port D -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOD</name>
-      <disableCondition>((SYSCTL->RCGC2->GPIOD == 0)||(SYSCTL->SCGC2->GPIOD == 0)||(SYSCTL->DCGC2->GPIOD == 0))</disableCondition>
+      <disableCondition>(SYSCTL->RCGC2->GPIOD == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC2->GPIOD == 0) &amp;&amp; (SYSCTL->DCGC2->GPIOD == 0)))</disableCondition>
       <baseAddress>0x40007000</baseAddress>
       <interrupt>
         <name>GPIOD</name>
@@ -1836,7 +1836,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port E -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOE</name>
-      <disableCondition>((SYSCTL->RCGC2->GPIOE == 0)||(SYSCTL->SCGC2->GPIOE == 0)||(SYSCTL->DCGC2->GPIOE == 0))</disableCondition>
+      <disableCondition>(SYSCTL->RCGC2->GPIOE == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC2->GPIOE == 0) &amp;&amp; (SYSCTL->DCGC2->GPIOE == 0)))</disableCondition>
       <baseAddress>0x40024000</baseAddress>
       <interrupt>
         <name>GPIOE</name>
@@ -1848,7 +1848,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port F -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOF</name>
-      <disableCondition>((SYSCTL->RCGC2->GPIOF == 0)||(SYSCTL->SCGC2->GPIOF == 0)||(SYSCTL->DCGC2->GPIOF == 0))</disableCondition>
+      <disableCondition>(SYSCTL->RCGC2->GPIOF == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC2->GPIOF == 0) &amp;&amp; (SYSCTL->DCGC2->GPIOF == 0)))</disableCondition>
       <baseAddress>0x40025000</baseAddress>
       <interrupt>
         <name>GPIOF</name>
@@ -1860,7 +1860,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port G -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOG</name>
-      <disableCondition>((SYSCTL->RCGC2->GPIOF == 0)||(SYSCTL->SCGC2->GPIOF == 0)||(SYSCTL->DCGC2->GPIOF == 0))</disableCondition>
+      <disableCondition>(SYSCTL->RCGC2->GPIOG == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC2->GPIOG == 0) &amp;&amp; (SYSCTL->DCGC2->GPIOG == 0)))</disableCondition>
       <baseAddress>0x40026000</baseAddress>
       <interrupt>
         <name>GPIOG</name>
@@ -1872,7 +1872,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port H -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOH</name>
-      <disableCondition>((SYSCTL->RCGC2->GPIOF == 0)||(SYSCTL->SCGC2->GPIOF == 0)||(SYSCTL->DCGC2->GPIOF == 0))</disableCondition>
+      <disableCondition>(SYSCTL->RCGC2->GPIOH == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC2->GPIOH == 0) &amp;&amp; (SYSCTL->DCGC2->GPIOH == 0)))</disableCondition>
       <baseAddress>0x40027000</baseAddress>
       <interrupt>
         <name>GPIOH</name>
@@ -1884,7 +1884,7 @@ by the other GPIO configuration registers.</description>
     <!-- General purpose input output port J -->
     <peripheral derivedFrom="GPIOA">
       <name>GPIOJ</name>
-      <disableCondition>((SYSCTL->RCGC2->GPIOJ == 0)||(SYSCTL->SCGC2->GPIOJ == 0)||(SYSCTL->DCGC2->GPIOJ == 0))</disableCondition>
+      <disableCondition>(SYSCTL->RCGC2->GPIOJ == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC2->GPIOJ == 0) &amp;&amp; (SYSCTL->DCGC2->GPIOJ == 0)))</disableCondition>
       <baseAddress>0x4003D000</baseAddress>
       <interrupt>
         <name>GPIOJ</name>
@@ -1900,7 +1900,7 @@ by the other GPIO configuration registers.</description>
       <description>Watchdog timer 0, with 32-bit down counter.</description>
       <groupName>WDT</groupName>
       <headerStructName>WDT</headerStructName>
-      <disableCondition>((SYSCTL->RCGC0->WDT0 == 0)||(SYSCTL->SCGC0->WDT0 == 0)||(SYSCTL->DCGC0->WDT0 == 0))</disableCondition>
+      <disableCondition>(SYSCTL->RCGC0->WDT0 == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC0->WDT0 == 0) &amp;&amp; (SYSCTL->DCGC0->WDT0 == 0)))</disableCondition>
       <baseAddress>0x40000000</baseAddress>
       
       <size>32</size>
@@ -2156,11 +2156,10 @@ by the other GPIO configuration registers.</description>
     <!-- Watchdog timer 1 -->
     <peripheral derivedFrom="WDT0">
         <name>WDT1</name>
-        <disableCondition>((SYSCTL->RCGC0->WDT1 == 0)||(SYSCTL->SCGC0->WDT1 == 0)||(SYSCTL->DCGC0->WDT1 == 0))</disableCondition>
+        <disableCondition>(SYSCTL->RCGC0->WDT1 == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC0->WDT1 == 0) &amp;&amp; (SYSCTL->DCGC0->WDT1 == 0)))</disableCondition>
         <baseAddress>0x40001000</baseAddress>
     </peripheral>
     
-
     <!-- System Control -->
     <peripheral>
       <name>SYSCTL</name>
@@ -3110,7 +3109,7 @@ by the other GPIO configuration registers.</description>
                   <value>0x11</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>XTAL_12.288MHZ</name>
+                  <name>XTAL_12_288MHZ</name>
                   <description>12_288 MHz</description>
                   <value>0x12</value>
                 </enumeratedValue>
@@ -3699,12 +3698,12 @@ by the other GPIO configuration registers.</description>
               <enumeratedValues>
                 <enumeratedValue>
                   <name>SYSDIV2LSB_SET</name>
-                  <description>SYSDIV2LSB is set. Divisor is equal (SYSDIV2*2 + 1).</description>
+                  <description>SYSDIV2LSB is set. Divisor is equal (SYSDIV2*2).</description>
                   <value>0x1</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SYSDIV2LSB_RESET</name>
-                  <description>SYSDIV2LSB is reset. Divisor is equal (SYSDIV2*2).</description>
+                  <description>SYSDIV2LSB is reset. Divisor is equal (SYSDIV2*2 - 1).</description>
                   <value>0x0</value>
                 </enumeratedValue>
               </enumeratedValues>
