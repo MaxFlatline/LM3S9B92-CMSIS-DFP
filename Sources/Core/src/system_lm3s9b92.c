@@ -24,13 +24,13 @@
  */
  
 #include <stdint.h>
+
 #include "lm3s9b92.h"
 
-
-/*----------------------------------------------------------------------------
-  DEFINES
+/*------------------------------------------------------------------------------
+ *  DEFINES
  *----------------------------------------------------------------------------*/
-//-------- <<< Use Configuration Wizard in Context Menu >>> ------------------
+//------------- <<< Use Configuration Wizard in Context Menu >>> ---------------
 //
 // This file can be used by the Keil uVision configuration wizard to set
 // the following system clock configuration values.  Or the value of the
@@ -53,12 +53,25 @@
 //
 //  <h> Run-Mode Clock Configuration (RCC)
 
-//      <o> SYSDIV: System Clock Divisor <2-16>
+//      <q> ACG: Auto Clock Gating
+//          <i> Check this box to use the Sleep-Mode Clock
+//          <i> Gating Control (SCGCn) registers and Deep-Sleep-Mode Clock
+//          <i> Gating Control (DCGCn) registers if the microcontroller enters a
+//          <i> Sleep or Deep-Sleep mode (respectively).
+//
+// The following controls whether the SCGCn and DCGCn are used.  If the
+// value is 1, the SCGCn and DCGCn registers allow unused
+// peripherals to consume less power when the microcontroller is
+// in a sleep mode.  If the value is 0, then RCGCn are used in all modes.
+//
+#define CFG_RCC_ACG 0
+
+//      <o> SYSDIV: System Clock Divisor <0-15>
 //          <i> Specifies the divisor used to generate the system clock from
 //          <i> either the PLL output of 200 MHz, or the chosen oscillator.
 //
 // The following value is the system clock divisor.  This will be applied if
-// USESYSDIV (see below) is enabled.  The valid range of dividers is 2-16.
+// USESYSDIV (see below) is enabled.  The valid range of dividers is 0-15.
 //
 #define CFG_RCC_SYSDIV 4
 
@@ -99,7 +112,7 @@
 // the system clock.  The value of the divider is determined by the table
 // above.
 //
-#define CFG_RCC_PWMDIV 0
+#define CFG_RCC_PWMDIV 3
 
 //      <q> PWRDN: PLL Power Down
 //          <i> Check this box to disable the PLL.  You must also choose
@@ -155,8 +168,8 @@
 
 //      <o> OSCSRC: Oscillator Source
 //              <0=> 0: MOSC Main oscillator
-//              <1=> 1: IOSC Internal oscillator (default)
-//              <2=> 2: IOSC/4 Internal oscillator / 4 (this is necessary if used as input to PLL)
+//              <1=> 1: PIOSC Internal oscillator (default)
+//              <2=> 2: PIOSC/4 Internal oscillator / 4 (this is necessary if used as input to PLL)
 //              <3=> 3: 30kHz 30-KHz internal oscillator
 //          <i> Chooses the oscillator that is used for the system clock,
 //          <i> or the PLL input.
@@ -164,15 +177,15 @@
 // The following value chooses the oscillator source according to the table in
 // the comments above.
 //
-#define CFG_RCC_OSCSRC 0
+#define CFG_RCC_OSCSRC 1
 
-//      <q> IOSCDIS: Internal Oscillator Disable
+//      <q> PIOSCDIS: Precision Internal Oscillator Disable
 //          <i> Check this box to turn off the internal oscillator
 //
 // Set the following value to 1 to turn off the internal oscillator.  This
 // value can be set to 1 if you are not using the internal oscillator.
 //
-#define CFG_RCC_IOSCDIS 1
+#define CFG_RCC_PIOSCDIS 1
 
 //      <q> MOSCDIS: Main Oscillator Disable
 //          <i> Check this box to turn off the main oscillator
@@ -199,14 +212,40 @@
 //
 #define CFG_RCC2_USERCC2 1
 
-//      <o> SYSDIV2: System Clock Divisor <2-64>
+//      <q> DIV400: Divide PLL as 400 MHz vs. 200 MHz
+//          <i> This bit, along with the SYSDIV2LSB bit, allows additional
+//          <i> frequency choices.
+//
+// Set the following value to 1 to use the 400MHz PLL value and an additional
+//  bit for SYSDIV2.
+//
+#define CFG_RCC2_DIV400 1
+
+//      <o> SYSDIV2: System Clock Divisor <0-63>
 //          <i> Specifies the divisor used to generate the system clock from
 //          <i> either the PLL output of 200 MHz, or the oscillator.
 //
 // The following value is the system clock divisor.  This will be applied if
-// USESYSDIV in RCC is enabled.  The valid range of dividers is 2-64.
+// USESYSDIV in RCC is enabled.  The valid range of dividers is 0-63.
 //
-#define CFG_RCC_SYSDIV2 4
+#define CFG_RCC2_SYSDIV2 4
+
+//      <q> SYSDIV2LSB: Additional LSB for SYSDIV2
+//          <i> When DIV400 is set, this bit becomes the LSB of SYSDIV2.
+//          <i> If DIV400 is clear, this bit is not used. 
+//
+// This bit can only be set or cleared when DIV400 is set.
+//
+#define CFG_RCC2_SYSDIV2LSB 1
+
+//      <q> USBPWRDN: Power-Down USB PLL
+//          <i> Check this box to disable the USB PLL.
+//
+// If the following value is 1, then the USB PLL is powered down.  Keep this
+// value as 1 if you do not need to use the PLL. If you are using the USB PLL,
+// then this value must be set to 0.
+//
+#define CFG_RCC2_USBPWRDN 0
 
 //      <q> PWRDN2: Power Down PLL
 //          <i> Check this box to disable the PLL.  You must also choose
@@ -217,7 +256,7 @@
 // must also be set to 1.  If you are using the PLL, then this value must be
 // set to 0.
 //
-#define CFG_RCC_PWRDN2 0
+#define CFG_RCC2_PWRDN2 0
 
 //      <q> BYPASS2: Bypass PLL
 //          <i> Check this box to not use the PLL for the System Clock
@@ -226,12 +265,12 @@
 // system clock.  You must set this to 1 if PWRDN2 (above) is set to 1.  Set
 // this to 0 if you are using the PLL.
 //
-#define CFG_RCC_BYPASS2 0
+#define CFG_RCC2_BYPASS2 0
 
 //      <o> OSCSRC2: Oscillator Source
 //              <0=> 0: MOSC Main oscillator
-//              <1=> 1: IOSC Internal oscillator (default)
-//              <2=> 2: IOSC/4 Internal oscillator / 4 (this is necessary if used as input to PLL)
+//              <1=> 1: PIOSC Precision Internal oscillator (default)
+//              <2=> 2: PIOSC/4 Precision Internal oscillator / 4 (this is necessary if used as input to PLL)
 //              <3=> 3: 30kHz 30-kHz internal oscillator
 //              <7=> 7: 32kHz 32.768-kHz external oscillator
 //          <i> The oscillator that is used for the system clock, or the PLL input.
@@ -239,461 +278,631 @@
 // The following value chooses the oscillator source according to the table in
 // the comments above.
 //
-#define CFG_RCC_OSCSRC2 0
+#define CFG_RCC2_OSCSRC2 0
 
 //  </h>
 //
 //  </e>
 
-//-------- <<< end of configuration section >>> ------------------------------
+//------------------ <<< end of configuration section >>> ----------------------
 
-//
-// The following macros are used to program the RCC and RCC2 registers in
-// the SystemInit() function.  Edit the macros above to change these values.
-//
-#define RCC_Val                                                               \
-(                                                                             \
-    ((CFG_RCC_SYSDIV - 1)   << 23) |                                          \
-    (CFG_RCC_USESYSDIV      << 22) |                                          \
-    (CFG_RCC_USEPWMDIV      << 20) |                                          \
-    (CFG_RCC_PWMDIV         << 17) |                                          \
-    (CFG_RCC_PWRDN          << 13) |                                          \
-    (CFG_RCC_BYPASS         << 11) |                                          \
-    (CFG_RCC_XTAL           << 6)  |                                          \
-    (CFG_RCC_OSCSRC         << 4)  |                                          \
-    (CFG_RCC_IOSCDIS        << 1)  |                                          \
-    (CFG_RCC_MOSCDIS        << 1)\
-)
-
-#define RCC2_Val                                                              \
-(                                                                             \
-    (CFG_RCC2_USERCC2      << 31) |                                           \
-    ((CFG_RCC_SYSDIV2 - 1)  << 23) |                                          \
-    (CFG_RCC_PWRDN2         << 13) |                                          \
-    (CFG_RCC_BYPASS2        << 11) |                                          \
-    (CFG_RCC_OSCSRC2        << 4)\
-)
-
-
-/*----------------------------------------------------------------------------
-  Define clocks
+/*------------------------------------------------------------------------------
+ *  Define clocks
  *----------------------------------------------------------------------------*/
-#define XTAL_PIOSC_16MHZ           (16000000UL)
-#define XTAL_INT30KHZ                 (30000UL)
+#define MOSC_VALUE_1MHZ_PLLOFF                                       (1000000UL)
+#define MOSC_VALUE_1_8432MHZ_PLLOFF                                  (1843200UL)
+#define MOSC_VALUE_2MHZ_PLLOFF                                       (2000000UL)
+#define MOSC_VALUE_2_4576MHZ_PLLOFF                                  (2457600UL)
+#define MOSC_VALUE_3_579545MHZ                                       (3579545UL)
+#define MOSC_VALUE_3_6864MHZ                                         (3686400UL)
+#define MOSC_VALUE_4MHZ                                              (4000000UL)
+#define MOSC_VALUE_4_096MHZ                                          (4096000UL)
+#define MOSC_VALUE_4_9152MHZ                                         (4915200UL)
+#define MOSC_VALUE_5MHZ                                              (5000000UL)
+#define MOSC_VALUE_5_12MHZ                                           (5120000UL)
+#define MOSC_VALUE_6MHZ_USB                                          (6000000UL)
+#define MOSC_VALUE_6_144MHZ                                          (6144000UL)
+#define MOSC_VALUE_7_3728MHZ                                         (7372800UL)
+#define MOSC_VALUE_8MHZ_USB                                          (8000000UL)
+#define MOSC_VALUE_8_192MHZ                                          (8192000UL)
+#define MOSC_VALUE_10MHZ_USB                                        (10000000UL)
+#define MOSC_VALUE_12MHZ_USB                                        (12000000UL)
+#define MOSC_VALUE_12_288MHZ                                        (12288000UL)
+#define MOSC_VALUE_13_56MHZ                                         (13560000UL)
+#define MOSC_VALUE_14_31818MHZ                                      (14318180UL)
+#define MOSC_VALUE_16MHZ_USB                                        (16000000UL)
+#define MOSC_VALUE_16_384MHZ                                        (16384000UL)
 
-#define XTAL_EXT_1MHZ_PLLOFF        (1000000UL)
-#define XTAL_EXT_1_8432MHZ_PLLOFF   (1843200UL)
-#define XTAL_EXT_2MHZ_PLLOFF        (2000000UL)
-#define XTAL_EXT_2_4576MHZ_PLLOFF   (2457600UL)
-#define XTAL_EXT_3_579545MHZ        (3579545UL)
-#define XTAL_EXT_3_6864MHZ          (3686400UL)
-#define XTAL_EXT_4MHZ               (4000000UL)
-#define XTAL_EXT_4_096MHZ           (4096000UL)
-#define XTAL_EXT_4_9152MHZ          (4915200UL)
-#define XTAL_EXT_5MHZ               (5000000UL)
-#define XTAL_EXT_5_12MHZ            (5120000UL)
-#define XTAL_EXT_6MHZ_USB           (6000000UL)
-#define XTAL_EXT_6_144MHZ           (6144000UL)
-#define XTAL_EXT_7_3728MHZ          (7372800UL)
-#define XTAL_EXT_8MHZ_USB           (8000000UL)
-#define XTAL_EXT_8_192MHZ           (8192000UL)
-#define XTAL_EXT_10MHZ_USB         (10000000UL)
-#define XTAL_EXT_12MHZ_USB         (12000000UL)
-#define XTAL_EXT_12_288MHZ         (12288000UL)
-#define XTAL_EXT_13_56MHZ          (13560000UL)
-#define XTAL_EXT_14_31818MHZ       (14318180UL)
-#define XTAL_EXT_16MHZ_USB         (16000000UL)
-#define XTAL_EXT_16_384MHZ         (16384000UL)
+#define PIOSC_VALUE_16MHZ                                           (16000000UL)
 
-#define XTAL_EXT_32768HZ              (32768UL)
+#define IOSC_VALUE_30KHZ                                               (30000UL)
 
+#define HOSC_VALUE_32768HZ                                             (32768UL)
 
+#define VCO_VALUE_400MHZ                                           (400000000UL)
+#define VCO_PREDDIV2_VALUE_200MHZ                                  (200000000UL)
 
-#define VCO_CLK                   (400000000UL)
-#define VCO_PREDDIV2_CLK          (200000000UL)
+#define SYS_CLK_MAX                                                 (80000000UL)
 
-#define ADC_CLK                    (VCO_CLK/25)
+/*------------------------------------------------------------------------------
+ *  Clock Sources Macros
+ *----------------------------------------------------------------------------*/
+#define OSCSRC_MOSC                                               (0x00000000UL)
+#define OSCSRC_PIOSC                                              (0x00000001UL)
+#define OSCSRC_PIOSC_DIV4                                         (0x00000002UL)
+#define OSCSRC_30KHZ                                              (0x00000003UL)
 
+/*------------------------------------------------------------------------------
+ *  Divisor Constraint Macros
+ *----------------------------------------------------------------------------*/
+#define MINSYSDIV_VCO400_DIV_5                                    (0x00000001UL)
+#define MINSYSDIV_VCO400_DIV_6                                    (0x00000002UL)
+#define MINSYSDIV_50MHZ_DIV4                                      (0x00000003UL)
+#define MINSYSDIV_25MHZ_DIV8                                      (0x00000007UL)
+#define MINSYSDIV_20MHZ_DIV10                                     (0x00000009UL)
 
-#define MINSYSDIV_VCO400_DIV_5   (0x00000001UL)
-#define MINSYSDIV_VCO400_DIV_6   (0x00000002UL)
-#define MINSYSDIV_50MHZ_DIV4     (0x00000003UL)
-#define MINSYSDIV_25MHZ_DIV8     (0x00000007UL)
-#define MINSYSDIV_20MHZ_DIV10    (0x00000009UL)
+/*------------------------------------------------------------------------------
+ *  XTAL Types Macros
+ *----------------------------------------------------------------------------*/
+#define XTAL_NOPLL_1MHZ                                           (0x00000000UL)
+#define XTAL_NOPLL_1_8432MHZ                                      (0x00000001UL)
+#define XTAL_NOPLL_2MHZ                                           (0x00000002UL)
+#define XTAL_NOPLL_2_4576MHZ                                      (0x00000003UL)
+#define XTAL_3_579545MHZ                                          (0x00000004UL)
+#define XTAL_3_6864MHZ                                            (0x00000005UL)
+#define XTAL_4MHZ_USB                                             (0x00000006UL)
+#define XTAL_4_096MHZ                                             (0x00000007UL)
+#define XTAL_4_9152MHZ                                            (0x00000008UL)
+#define XTAL_5MHZ_USB                                             (0x00000009UL)
+#define XTAL_5_12MHZ                                              (0x0000000AUL)
+#define XTAL_6MHZ_USB_DEFAULT                                     (0x0000000BUL)
+#define XTAL_6_144MHZ                                             (0x0000000CUL)
+#define XTAL_7_3728MHZ                                            (0x0000000DUL)
+#define XTAL_8MHZ_USB                                             (0x0000000EUL)
+#define XTAL_8_192MHZ                                             (0x0000000FUL)
+#define XTAL_10MHZ_USB                                            (0x00000010UL)
+#define XTAL_12MHZ_USB                                            (0x00000011UL)
+#define XTAL_12_288MHZ                                            (0x00000012UL)
+#define XTAL_13_56MHZ                                             (0x00000013UL)
+#define XTAL_14_31818MHZ                                          (0x00000014UL)
+#define XTAL_16MHZ_USB                                            (0x00000015UL)
+#define XTAL_16_384MHZ                                            (0x00000016UL)
 
- /* Determine clock frequency according to clock register values */
-  #if (RCC2_Val & (1UL<<31))                              /* is rcc2 used ? */
-    #if (RCC2_Val & (1UL<<11))                           /* check BYPASS */
-              #if   (((RCC2_Val>>4) & 0x07) == 0x0)
-                #if   (((RCC_Val>>6) & 0x1F) == 0x0)
-                      #define __CORE_CLK_PRE  XTAL_1MHZ_PLLOFF
-                #elif (((RCC_Val>>6) & 0x1F) == 0x1)
-                      #define __CORE_CLK_PRE  XTAL_1_8432MHZ_PLLOFF
-                #elif (((RCC_Val>>6) & 0x1F) == 0x2)
-                      #define __CORE_CLK_PRE  XTAL_2MHZ_PLLOFF
-                #elif (((RCC_Val>>6) & 0x1F) == 0x3)
-                      #define __CORE_CLK_PRE  XTAL_2_4576MHZ_PLLOFF
-                #elif (((RCC_Val>>6) & 0x1F) == 0x4)
-                      #define __CORE_CLK_PRE  XTAL_3_579545MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x5)
-                      #define __CORE_CLK_PRE  XTAL_3_6864MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x6)
-                      #define __CORE_CLK_PRE  XTAL_4MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x7)
-                      #define __CORE_CLK_PRE  XTAL_4_096MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x8)
-                      #define __CORE_CLK_PRE  XTAL_4_9152MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x9)
-                      #define __CORE_CLK_PRE  XTAL_5MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0xA)
-                      #define __CORE_CLK_PRE  XTAL_5_12MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0xB)
-                      #define __CORE_CLK_PRE  XTAL_6MHZ_USB
-                #elif (((RCC_Val>>6) & 0x1F) == 0xC)
-                      #define __CORE_CLK_PRE  XTAL_6_144MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0xD)
-                      #define __CORE_CLK_PRE  XTAL_7_3728MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0xE)
-                      #define __CORE_CLK_PRE  XTAL_8MHZ_USB
-                #elif (((RCC_Val>>6) & 0x1F) == 0xF)
-                      #define __CORE_CLK_PRE  XTAL_8_192MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x10)
-                      #define __CORE_CLK_PRE  XTAL_10MHZ_USB
-                #elif (((RCC_Val>>6) & 0x1F) == 0x11)
-                      #define __CORE_CLK_PRE  XTAL_12MHZ_USB
-                #elif (((RCC_Val>>6) & 0x1F) == 0x12)
-                      #define __CORE_CLK_PRE  XTAL_12_288MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x13)
-                      #define __CORE_CLK_PRE  XTAL_13_56MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x14)
-                      #define __CORE_CLK_PRE  XTAL_14_31818MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x15)
-                      #define __CORE_CLK_PRE  XTAL_16MHZ_USB
-                #else
-                      #define __CORE_CLK_PRE  XTAL_16_384MHZ
-                #endif
-              #elif (((RCC2_Val>>4) & 0x07) == 0x1)
-                  #define __CORE_CLK_PRE  XTALI
-              #elif (((RCC2_Val>>4) & 0x07) == 0x2)
-                  #define __CORE_CLK_PRE  (XTALI/4)
-              #else
-                  #define __CORE_CLK_PRE  XTAL30K
-              #endif
+/*------------------------------------------------------------------------------
+ *  Service macros
+ *----------------------------------------------------------------------------*/
+#define PLL_LOCK_TIMEOUT                                              (100000UL)
+#define PLL_LOCK_DELAY                                                 (10000UL)
+/*------------------------------------------------------------------------------
+ *  Clock calculator
+ *----------------------------------------------------------------------------*/
+#if (CFG_RCC2_USERCC2)
+    #if (CFG_RCC2_BYPASS2)
+        #if (CFG_RCC2_OSCSRC2 == OSCSRC_MOSC)
+            #if (CFG_RCC_XTAL == XTAL_NOPLL_1MHZ)
+                #define __SYS_CLK_PRE XTAL_1MHZ_PLLOFF
+            #elif (CFG_RCC_XTAL == XTAL_NOPLL_1_8432MHZ)
+                #define __SYS_CLK_PRE XTAL_1_8432MHZ_PLLOFF
+            #elif (CFG_RCC_XTAL == XTAL_NOPLL_2MHZ)
+                #define __SYS_CLK_PRE XTAL_2MHZ_PLLOFF
+            #elif (CFG_RCC_XTAL == XTAL_NOPLL_2_4576MHZ)
+                #define __SYS_CLK_PRE XTAL_2_4576MHZ_PLLOFF
+            #elif (CFG_RCC_XTAL == XTAL_3_579545MHZ)
+              #define __SYS_CLK_PRE XTAL_3_579545MHZ
+            #elif (CFG_RCC_XTAL == XTAL_3_6864MHZ)
+                #define __SYS_CLK_PRE XTAL_3_6864MHZ
+            #elif (CFG_RCC_XTAL == XTAL_4MHZ_USB)
+                #define __SYS_CLK_PRE XTAL_4MHZ
+            #elif (CFG_RCC_XTAL == XTAL_4_096MHZ)
+                #define __SYS_CLK_PRE XTAL_4_096MHZ
+            #elif (CFG_RCC_XTAL == XTAL_4_9152MHZ)
+                #define __SYS_CLK_PRE XTAL_4_9152MHZ
+            #elif (CFG_RCC_XTAL == XTAL_5MHZ_USB)
+                #define __SYS_CLK_PRE XTAL_5MHZ
+            #elif (CFG_RCC_XTAL == XTAL_5_12MHZ)
+                #define __SYS_CLK_PRE XTAL_5_12MHZ
+            #elif (CFG_RCC_XTAL == XTAL_6MHZ_USB_DEFAULT)
+                #define __SYS_CLK_PRE XTAL_6MHZ_USB
+            #elif (CFG_RCC_XTAL == XTAL_6_144MHZ)
+                #define __SYS_CLK_PRE XTAL_6_144MHZ
+            #elif (CFG_RCC_XTAL == XTAL_7_3728MHZ)
+                #define __SYS_CLK_PRE XTAL_7_3728MHZ
+            #elif (CFG_RCC_XTAL == XTAL_8MHZ_USB)
+                #define __SYS_CLK_PRE XTAL_8MHZ_USB
+            #elif (CFG_RCC_XTAL == XTAL_8_192MHZ)
+                #define __SYS_CLK_PRE XTAL_8_192MHZ
+            #elif (CFG_RCC_XTAL == XTAL_10MHZ_USB)
+                #define __SYS_CLK_PRE  XTAL_10MHZ_USB
+            #elif (CFG_RCC_XTAL == XTAL_12MHZ_USB)
+                #define __SYS_CLK_PRE XTAL_12MHZ_USB
+            #elif (CFG_RCC_XTAL == XTAL_12_288MHZ)
+                #define __SYS_CLK_PRE XTAL_12_288MHZ
+            #elif (CFG_RCC_XTAL == XTAL_13_56MHZ)
+                #define __SYS_CLK_PRE XTAL_13_56MHZ
+            #elif (CFG_RCC_XTAL == XTAL_14_31818MHZ)
+                #define __SYS_CLK_PRE XTAL_14_31818MHZ
+            #elif (CFG_RCC_XTAL == XTAL_16MHZ_USB)
+                #define __SYS_CLK_PRE XTAL_16MHZ_USB
+            #elif (CFG_RCC_XTAL == XTAL_16_384MHZ)
+                #define __SYS_CLK_PRE XTAL_16_384MHZ
+            #else
+                #error "Incorrect XTAL setting!"
+            #endif
+        #elif (CFG_RCC2_OSCSRC2 == OSCSRC_PIOSC)
+            #define __SYS_CLK_PRE PIOSC_VALUE_16MHZ
+        #elif (CFG_RCC2_OSCSRC2 == OSCSRC_PIOSC_DIV4)
+            #define __SYS_CLK_PRE (PIOSC_VALUE_16MHZ/4)
+        #elif (CFG_RCC2_OSCSRC2 == OSCSRC_30KHZ)
+            #define __SYS_CLK_PRE XTAL_INT30KHZ
+        #else
+            #error "Incorrect Clock setting!"
+        #endif
+        #if(CFG_RCC_USESYSDIV)
+            #define __SYS_CLK (__SYS_CLK_PRE / (CFG_RCC2_SYSDIV2 + 1))
+        #else
+            #define __SYS_CLK (__SYS_CLK_PRE)
+        #endif
+    #elif (CFG_RCC2_PWRDN2 == 0)
+        #if (CFG_RCC2_OSCSRC2 != OSCSRC_MOSC) && (CFG_RCC2_OSCSRC2 != OSCSRC_PIOSC)
+            #error "PLL can ONLY be driven by MOSC or PIOSC!"
+        #endif
+        #if ((CFG_RCC2_OSCSRC2 == OSCSRC_MOSC)&&(CFG_RCC_XTAL <= XTAL_NOPLL_2_4576MHZ))
+            #error "Incorrect XTAL selected!"
+        #endif
+        #if (CFG_RCC_USESYSDIV != 1)
+            #error "Hardware forces USESYSDIV to 1 when PLL is enabled! Please check USESYSDIV box in Wizard."
+        #endif
+        #if(CFG_RCC2_DIV400)
+            #define __SYS_CLK (VCO_VALUE_400MHZ / ((CFG_RCC2_SYSDIV2 << 1) + CFG_RCC2_SYSDIV2LSB + 1))
+        #else
+            #define __SYS_CLK (VCO_PREDDIV2_VALUE_200MHZ / (CFG_RCC2_SYSDIV2 + 1)) 
+        #endif
     #else
-      #define __CORE_CLK_PRE   PLL_CLK
+        #error "PLL is powered down (CFG_RCC2_PWRDN2 is 1)! Cannot use PLL when BYPASS2=0."
     #endif
-    #if (RCC_Val & (1UL<<22))                            /* check USESYSDIV */
-      #if (RCC2_Val & (1UL<<11))
-        #define __CORE_CLK  (__CORE_CLK_PRE / (((RCC2_Val>>23) & (0x3F)) + 1))
-      #else
-        #define __CORE_CLK  (__CORE_CLK_PRE / (((RCC2_Val>>23) & (0x3F)) + 1) / 2)
-      #endif
-    #else
-      #define __CORE_CLK  __CORE_CLK_PRE
+    #if (CFG_RCC2_OSCSRC2 == OSCSRC_PIOSC) || (CFG_RCC2_OSCSRC2 == OSCSRC_PIOSC_DIV4)
+        #if (CFG_RCC_PIOSCDIS == 1)
+            #error "Conflict in Wizard: PIOSC is selected as clock source, but CFG_RCC_PIOSCDIS is enabled!"
+        #endif
     #endif
-  #else
-    #if (RCC_Val & (1UL<<11))                           /* check BYPASS */
-              #if   (((RCC_Val>>4) & 0x03) == 0x0)
-                #if   (((RCC_Val>>6) & 0x1F) == 0x0)
-                      #define __CORE_CLK_PRE  XTAL_1MHZ_PLLOFF
-                #elif (((RCC_Val>>6) & 0x1F) == 0x1)
-                      #define __CORE_CLK_PRE  XTAL_1_8432MHZ_PLLOFF
-                #elif (((RCC_Val>>6) & 0x1F) == 0x2)
-                      #define __CORE_CLK_PRE  XTAL_2MHZ_PLLOFF
-                #elif (((RCC_Val>>6) & 0x1F) == 0x3)
-                      #define __CORE_CLK_PRE  XTAL_2_4576MHZ_PLLOFF
-                #elif (((RCC_Val>>6) & 0x1F) == 0x4)
-                      #define __CORE_CLK_PRE  XTAL_3_579545MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x5)
-                      #define __CORE_CLK_PRE  XTAL_3_6864MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x6)
-                      #define __CORE_CLK_PRE  XTAL_4MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x7)
-                      #define __CORE_CLK_PRE  XTAL_4_096MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x8)
-                      #define __CORE_CLK_PRE  XTAL_4_9152MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x9)
-                      #define __CORE_CLK_PRE  XTAL_5MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0xA)
-                      #define __CORE_CLK_PRE  XTAL_5_12MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0xB)
-                      #define __CORE_CLK_PRE  XTAL_6MHZ_USB
-                #elif (((RCC_Val>>6) & 0x1F) == 0xC)
-                      #define __CORE_CLK_PRE  XTAL_6_144MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0xD)
-                      #define __CORE_CLK_PRE  XTAL_7_3728MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0xE)
-                      #define __CORE_CLK_PRE  XTAL_8MHZ_USB
-                #elif (((RCC_Val>>6) & 0x1F) == 0xF)
-                      #define __CORE_CLK_PRE  XTAL_8_192MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x10)
-                      #define __CORE_CLK_PRE  XTAL_10MHZ_USB
-                #elif (((RCC_Val>>6) & 0x1F) == 0x11)
-                      #define __CORE_CLK_PRE  XTAL_12MHZ_USB
-                #elif (((RCC_Val>>6) & 0x1F) == 0x12)
-                      #define __CORE_CLK_PRE  XTAL_12_288MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x13)
-                      #define __CORE_CLK_PRE  XTAL_13_56MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x14)
-                      #define __CORE_CLK_PRE  XTAL_14_31818MHZ
-                #elif (((RCC_Val>>6) & 0x1F) == 0x15)
-                      #define __CORE_CLK_PRE  XTAL_16MHZ_USB
-                #else
-                      #define __CORE_CLK_PRE  XTAL_16_384MHZ
-                #endif
-              #elif (((RCC_Val>>4) & 0x03) == 0x1)
-                  #define __CORE_CLK_PRE  XTALI
-              #elif (((RCC_Val>>4) & 0x03) == 0x2)
-                  #define __CORE_CLK_PRE  (XTALI/4)
-              #else
-                  #define __CORE_CLK_PRE  XTAL30K
-              #endif
-    #else
-      #define __CORE_CLK_PRE   PLL_CLK
-    #endif
-    #if (RCC_Val & (1UL<<22))                            /* check USESYSDIV */
-      #if (RCC_Val & (1UL<<11))                          /* check BYPASS */
-        #define __CORE_CLK  (__CORE_CLK_PRE / (((RCC_Val>>23) & (0x0F)) + 1))
-      #else
-        #define __CORE_CLK  (__CORE_CLK_PRE / (((RCC_Val>>23) & (0x0F)) + 1) / 2)
-      #endif
-    #else
-      #define __CORE_CLK  __CORE_CLK_PRE
-    #endif
-  #endif
 
-/*---------------------------------------------------------------------------
-  System Core Clock Variable
- *---------------------------------------------------------------------------*/
+    #if (CFG_RCC2_OSCSRC2 == OSCSRC_MOSC)
+        #if (CFG_RCC_MOSCDIS == 1)
+            #error "Conflict in Wizard: MOSC (Crystal) is selected as clock source, but CFG_RCC_MOSCDIS is enabled!"
+        #endif
+    #endif
+#else
+    #if (CFG_RCC_BYPASS)
+        #if (CFG_RCC_OSCSRC == OSCSRC_MOSC)
+            #if (CFG_RCC_XTAL == XTAL_NOPLL_1MHZ)
+                #define __SYS_CLK_PRE XTAL_1MHZ_PLLOFF
+            #elif (CFG_RCC_XTAL == XTAL_NOPLL_1_8432MHZ)
+                #define __SYS_CLK_PRE XTAL_1_8432MHZ_PLLOFF
+            #elif (CFG_RCC_XTAL == XTAL_NOPLL_2MHZ)
+                #define __SYS_CLK_PRE XTAL_2MHZ_PLLOFF
+            #elif (CFG_RCC_XTAL == XTAL_NOPLL_2_4576MHZ)
+                #define __SYS_CLK_PRE XTAL_2_4576MHZ_PLLOFF
+            #elif (CFG_RCC_XTAL == XTAL_3_579545MHZ)
+                #define __SYS_CLK_PRE XTAL_3_579545MHZ
+            #elif (CFG_RCC_XTAL == XTAL_3_6864MHZ)
+                #define __SYS_CLK_PRE XTAL_3_6864MHZ
+            #elif (CFG_RCC_XTAL == XTAL_4MHZ_USB)
+                #define __SYS_CLK_PRE XTAL_4MHZ
+            #elif (CFG_RCC_XTAL == XTAL_4_096MHZ)
+                #define __SYS_CLK_PRE XTAL_4_096MHZ
+            #elif (CFG_RCC_XTAL == XTAL_4_9152MHZ)
+                #define __SYS_CLK_PRE XTAL_4_9152MHZ
+            #elif (CFG_RCC_XTAL == XTAL_5MHZ_USB)
+                #define __SYS_CLK_PRE XTAL_5MHZ
+            #elif (CFG_RCC_XTAL == XTAL_5_12MHZ)
+                #define __SYS_CLK_PRE XTAL_5_12MHZ
+            #elif (CFG_RCC_XTAL == XTAL_6MHZ_USB_DEFAULT)
+                #define __SYS_CLK_PRE XTAL_6MHZ_USB
+            #elif (CFG_RCC_XTAL == XTAL_6_144MHZ)
+                #define __SYS_CLK_PRE XTAL_6_144MHZ
+            #elif (CFG_RCC_XTAL == XTAL_7_3728MHZ)
+                #define __SYS_CLK_PRE XTAL_7_3728MHZ
+            #elif (CFG_RCC_XTAL == XTAL_8MHZ_USB)
+                #define __SYS_CLK_PRE XTAL_8MHZ_USB
+            #elif (CFG_RCC_XTAL == XTAL_8_192MHZ)
+                #define __SYS_CLK_PRE XTAL_8_192MHZ
+            #elif (CFG_RCC_XTAL == XTAL_10MHZ_USB)
+                #define __SYS_CLK_PRE XTAL_10MHZ_USB
+            #elif (CFG_RCC_XTAL == XTAL_12MHZ_USB)
+                #define __SYS_CLK_PRE XTAL_12MHZ_USB
+            #elif (CFG_RCC_XTAL == XTAL_12_288MHZ)
+                #define __SYS_CLK_PRE XTAL_12_288MHZ
+            #elif (CFG_RCC_XTAL == XTAL_13_56MHZ)
+                #define __SYS_CLK_PRE XTAL_13_56MHZ
+            #elif (CFG_RCC_XTAL == XTAL_14_31818MHZ)
+                #define __SYS_CLK_PRE XTAL_14_31818MHZ
+            #elif (CFG_RCC_XTAL == XTAL_16MHZ_USB)
+                #define __SYS_CLK_PRE XTAL_16MHZ_USB
+            #elif (CFG_RCC_XTAL == XTAL_16_384MHZ)
+                #define __SYS_CLK_PRE XTAL_16_384MHZ
+            #else
+                #error "Incorrect XTAL setting!"
+            #endif
+        #elif (CFG_RCC_OSCSRC == OSCSRC_PIOSC)
+            #define __SYS_CLK_PRE PIOSC_VALUE_16MHZ
+        #elif (CFG_RCC_OSCSRC == OSCSRC_PIOSC_DIV4)
+            #define __SYS_CLK_PRE (PIOSC_VALUE_16MHZ / 4)
+        #elif (CFG_RCC_OSCSRC == OSCSRC_30KHZ)
+            #define __SYS_CLK_PRE XTAL_INT30KHZ
+        #else
+            #error "Incorrect Clock setting!"
+        #endif
+        #if (CFG_RCC_USESYSDIV)
+            #define __SYS_CLK  (__SYS_CLK_PRE / (CFG_RCC_SYSDIV + 1))
+        #else
+            #define __SYS_CLK  (__SYS_CLK_PRE)
+        #endif
+    #elif (CFG_RCC_PWRDN == 0)
+        #if (CFG_RCC_OSCSRC != OSCSRC_MOSC) && (CFG_RCC_OSCSRC != OSCSRC_PIOSC)
+            #error "PLL can ONLY be driven by MOSC or PIOSC!"
+        #endif
+        #if ((CFG_RCC_OSCSRC == OSCSRC_MOSC)&&(CFG_RCC_XTAL <= XTAL_NOPLL_2_4576MHZ))
+            #error "Incorrect XTAL selected!"
+        #endif
+        #if (CFG_RCC_USESYSDIV != 1)
+            #error "Hardware forces USESYSDIV to 1 when PLL is enabled! Please check USESYSDIV box in Wizard."
+        #endif
+        #define __SYS_CLK  (VCO_PREDDIV2_VALUE_200MHZ / (CFG_RCC_SYSDIV + 1))
+    #else
+        #error "Incorrect XTAL selected!"
+    #endif
+     #if (CFG_RCC_OSCSRC == OSCSRC_PIOSC) || (CFG_RCC_OSCSRC == OSCSRC_PIOSC_DIV4)
+        #if (CFG_RCC_PIOSCDIS == 1)
+            #error "Conflict in Wizard: PIOSC is selected as clock source, but CFG_RCC_IOSCDIS is enabled (1)!"
+        #endif
+    #endif
+
+    #if (CFG_RCC_OSCSRC == OSCSRC_MOSC)
+        #if (CFG_RCC_MOSCDIS == 1)
+            #error "Conflict in Wizard: MOSC (Crystal) is selected as clock source, but CFG_RCC_MOSCDIS is enabled (1)!"
+        #endif
+    #endif
+#endif
+
+#if (__SYS_CLK  > SYS_CLK_MAX)
+    #error "System Clock frequency exceeds the maximum allowed limit of 80 MHz for LM3S9B92!"
+#endif
+
+/*------------------------------------------------------------------------------
+ *  System Core Clock Variable
+ *----------------------------------------------------------------------------*/
 uint32_t SystemCoreClock;  /* System Clock Frequency (Core Clock)*/
 
-/*---------------------------------------------------------------------------
-  Static Core Clock functions
- *---------------------------------------------------------------------------*/
-__INLINE static uint32_t getOscClk (uint32_t xtal, uint32_t oscSrc);
+/*------------------------------------------------------------------------------
+ *  Static Core Clock functions
+ *----------------------------------------------------------------------------*/
+__STATIC_INLINE uint32_t getOscClk (uint32_t xtal, uint32_t oscSrc);
+__STATIC_INLINE uint32_t GetMinSysDiv(uint32_t minsysdiv);
 
-/*---------------------------------------------------------------------------
-  System Core Clock function
- *---------------------------------------------------------------------------*/
-void SystemCoreClockUpdate (void)
-{
-/* ToDo: Add code to calculate the system frequency based upon the current
-         register settings.
-         This function can be used to retrieve the system core clock frequeny
-         after user changed register sittings. */
-
-
+/*------------------------------------------------------------------------------
+ *  System Core Clock function
+ *----------------------------------------------------------------------------*/
+void SystemCoreClockUpdate (void) {
     uint32_t rcc, rcc2;
     uint32_t sysdiv, minsysdiv;
+    uint32_t TempClock;
     
-//    /* Determine clock frequency according to clock register values */
-//    rcc  = LM3S_SYSCTL->RCC;
-//    rcc2 = LM3S_SYSCTL->RCC2;
+    rcc  = SYSCTL->RCC;
+    rcc2 = SYSCTL->RCC2;
+    minsysdiv = ((SYSCTL->DC1 & SYSCTL_DC1_MINSYSDIV_Msk) >> SYSCTL_DC1_MINSYSDIV_Pos);
     
     
-    
-//    if ((rcc2 & LM3S_SYSCTL_RCC2_USERCC2_Msk) == LM3S_SYSCTL_RCC2_USERCC2_Msk) {
-//        /* RCC2 is used */
-//        if((rcc2 & LM3S_SYSCTL_RCC2_BYPASS2_Msk) == LM3S_SYSCTL_RCC2_BYPASS2_Msk) {
-//            /* PLL is bypassed */
-//            SystemCoreClock = getOscClk (((rcc & LM3S_SYSCTL_RCC_XTAL_Msk)>>LM3S_SYSCTL_RCC_XTAL_Pos),((rcc2 & LM3S_SYSCTL_RCC2_OSCSRC2_Msk)>>LM3S_SYSCTL_RCC2_OSCSRC2_Pos));
-//            if((rcc & LM3S_SYSCTL_RCC_USESYSDIV_Msk) == LM3S_SYSCTL_RCC_USESYSDIV_Msk) {
-//                sysdiv = (rcc & LM3S_SYSCTL_RCC2_SYSDIV2_Msk)>>LM3S_SYSCTL_RCC2_SYSDIV2_Pos;
-//                /* SYSDIV2 is used */
-//                if(sysdiv > 0) {
-//                    /* SYSDIV2 is greater than /2 */
-//                    SystemCoreClock = VCO_PREDDIV2_CLK / (sysdiv + 1);
-//                }
-//                else {
-//                    /* SYSDIV is 0 - Reserved*/
-//                    SystemCoreClock = 0;
-//                }
-//            }
-//        }
-//        else {
-//            /* PLL is used */
-//            /* SYSDIV is forced to be used when PLL is selected as the source */
-////            sysdiv = (rcc & LM3S_SYSCTL_RCC2_SYSDIV2_Msk)>>LM3S_SYSCTL_RCC2_SYSDIV2_Pos;
-//            /* SYSDIV2 is used */
-//            if(sysdiv > 1) {
-//                /* SYSDIV2 is greater than /2 */
-//                SystemCoreClock = VCO_PREDDIV2_CLK / (sysdiv + 1);
-//            }
-//            else {
-//                /* SYSDIV2 is less than 2 - Reserved*/
-//                SystemCoreClock = 0;
-//            }
-//        }
-//    }
-//    else {
-////        /* RCC2 is unused */
-////        if((rcc & LM3S_SYSCTL_RCC_BYPASS_Msk) == LM3S_SYSCTL_RCC_BYPASS_Msk) {
-////            /* PLL is bypassed */
-////            SystemCoreClock = getOscClk (((rcc & LM3S_SYSCTL_RCC_XTAL_Msk)>>LM3S_SYSCTL_RCC_XTAL_Pos),((rcc & LM3S_SYSCTL_RCC_OSCSRC_Msk)>>LM3S_SYSCTL_RCC_OSCSRC_Pos));
-////            if((rcc & LM3S_SYSCTL_RCC_USESYSDIV_Msk) == LM3S_SYSCTL_RCC_USESYSDIV_Msk) {
-////                sysdiv = (rcc & LM3S_SYSCTL_RCC_SYSDIV_Msk)>>LM3S_SYSCTL_RCC_SYSDIV_Pos;
-////                /* SYSDIV is used */
-////                if(sysdiv > 0) {
-////                    /* SYSDIV is greater than /2 */
-////                    SystemCoreClock = VCO_PREDDIV2_CLK / (sysdiv + 1);
-////                }
-////                else {
-////                    /* SYSDIV is 0 - Reserved*/
-////                    SystemCoreClock = 0;
-////                }
-//            }
-//        }
-//        else {
-//            /* PLL is used */
-//            /* SYSDIV is forced to be used when PLL is selected as the source */
-////            sysdiv = (rcc & LM3S_SYSCTL_RCC_SYSDIV_Msk)>>LM3S_SYSCTL_RCC_SYSDIV_Pos;
-//            /* SYSDIV is used */
-//            if(sysdiv > 1) {
-//                /* SYSDIV is greater than /2 */
-//                SystemCoreClock = VCO_PREDDIV2_CLK / (sysdiv + 1);
-//            }
-//            else {
-//                /* SYSDIV is less than 2 - Reserved*/
-//                SystemCoreClock = 0;
-//            }
-//            
-//        }
-//    }
+    if ((rcc2 & SYSCTL_RCC2_USERCC2_Msk) == SYSCTL_RCC2_USERCC2_Msk) {
+        if((rcc2 & SYSCTL_RCC2_BYPASS2_Msk) == SYSCTL_RCC2_BYPASS2_Msk) {
+            TempClock = getOscClk(((rcc & SYSCTL_RCC_XTAL_Msk) >> SYSCTL_RCC_XTAL_Pos), ((rcc2 & SYSCTL_RCC2_OSCSRC2_Msk) >> SYSCTL_RCC2_OSCSRC2_Pos));
+            if((rcc & SYSCTL_RCC_USESYSDIV_Msk) == SYSCTL_RCC_USESYSDIV_Msk) {
+                sysdiv = (rcc2 & SYSCTL_RCC2_SYSDIV2_Msk) >> SYSCTL_RCC2_SYSDIV2_Pos;
+                SystemCoreClock = TempClock / (sysdiv + 1);
+            }
+            else {
+                SystemCoreClock = TempClock;
+            }
+        }
+        else {
+            if((rcc2 & SYSCTL_RCC2_DIV400_Msk) == SYSCTL_RCC2_DIV400_Msk){
+                sysdiv = ((rcc2 & SYSCTL_RCC2_SYSDIV2_Msk) >> SYSCTL_RCC2_SYSDIV2_Pos);
+                sysdiv = (sysdiv << 1) + ((rcc2 & SYSCTL_RCC2_SYSDIV2LSB_Msk) >> SYSCTL_RCC2_SYSDIV2LSB_Pos) + 1;
+                if ((rcc & SYSCTL_RCC_USESYSDIV_Msk) == SYSCTL_RCC_USESYSDIV_Msk) {
+                    minsysdiv = GetMinSysDiv((SYSCTL->DID1 & SYSCTL_DC1_MINSYSDIV_Msk) >> SYSCTL_DC1_MINSYSDIV_Pos);
+                    if (sysdiv < minsysdiv) {
+                        sysdiv = minsysdiv;
+                    }
+                }
+                SystemCoreClock = VCO_VALUE_400MHZ / sysdiv;
+            }
+            else {
+                sysdiv = ((rcc2 & SYSCTL_RCC2_SYSDIV2_Msk) >> (SYSCTL_RCC2_SYSDIV2_Pos + 1)) + 1;
+                sysdiv = sysdiv << 1;
+                if ((rcc & SYSCTL_RCC_USESYSDIV_Msk) == SYSCTL_RCC_USESYSDIV_Msk) {
+                    minsysdiv = GetMinSysDiv((SYSCTL->DID1 & SYSCTL_DC1_MINSYSDIV_Msk) >> SYSCTL_DC1_MINSYSDIV_Pos);
+                    if (sysdiv < minsysdiv) {
+                        sysdiv = minsysdiv;
+                    }
+                }
+                SystemCoreClock = VCO_VALUE_400MHZ / sysdiv;
+            }
+        }
+    }
+    else {
+        if((rcc & SYSCTL_RCC_BYPASS_Msk) == SYSCTL_RCC_BYPASS_Msk) {
+            TempClock = getOscClk(((rcc & SYSCTL_RCC_XTAL_Msk) >> SYSCTL_RCC_XTAL_Pos),((rcc & SYSCTL_RCC_OSCSRC_Msk) >> SYSCTL_RCC_OSCSRC_Pos));
+            if((rcc & SYSCTL_RCC_USESYSDIV_Msk) == SYSCTL_RCC_USESYSDIV_Msk) {
+                sysdiv = (rcc & SYSCTL_RCC_SYSDIV_Msk) >> SYSCTL_RCC_SYSDIV_Pos;
+                SystemCoreClock = TempClock / (sysdiv + 1);
+            } else {
+                SystemCoreClock = TempClock;
+            }
+        }
+        else {
+            sysdiv = ((rcc & SYSCTL_RCC_SYSDIV_Msk) >> SYSCTL_RCC_SYSDIV_Pos) + 1;
+            sysdiv = sysdiv << 1;
+            if ((rcc & SYSCTL_RCC_USESYSDIV_Msk) == SYSCTL_RCC_USESYSDIV_Msk) {
+                minsysdiv = GetMinSysDiv((SYSCTL->DID1 & SYSCTL_DC1_MINSYSDIV_Msk) >> SYSCTL_DC1_MINSYSDIV_Pos);
+                if (sysdiv < minsysdiv) {
+                    sysdiv = minsysdiv;
+                }
+            }
+            SystemCoreClock = VCO_PREDDIV2_VALUE_200MHZ / sysdiv;
+        }
+    }
 }
 
-
 /*---------------------------------------------------------------------------
-  System initialization function
+    System initialization function
  *---------------------------------------------------------------------------*/
-void SystemInit (void)
-{
-/* ToDo: Add code to initialize the system.
-         Do not use global variables because this function is called before
-         reaching pre-main. RW section maybe overwritten afterwards. */
-
+void SystemInit (void) {
 #if(CLOCK_SETUP)
-    uint32_t i;
+    uint32_t rcc, rcc2, timeout;
 
-//    LM3S_SYSCTL->RCC2 = 0x07802810;    /* set default value */
-//    LM3S_SYSCTL->RCC  = 0x078E3AD1;    /* set default value */
+    rcc  = SYSCTL->RCC;
+    if(CFG_RCC2_USERCC2) {
+        rcc2 = SYSCTL->RCC2;
+        rcc &= ~(SYSCTL_RCC_XTAL_Msk      | SYSCTL_RCC_MOSCDIS_Msk | 
+                 SYSCTL_RCC_USEPWMDIV_Msk | SYSCTL_RCC_PWMDIV_Msk  | 
+                 SYSCTL_RCC_ACG_Msk);
+                 
+        rcc |= (CFG_RCC_XTAL       << SYSCTL_RCC_XTAL_Pos)       |
+               (CFG_RCC_USEPWMDIV  << SYSCTL_RCC_USEPWMDIV_Pos)  |
+               (CFG_RCC_PWMDIV     << SYSCTL_RCC_PWMDIV_Pos)     |
+               (CFG_RCC_ACG        << SYSCTL_RCC_ACG_Pos);
+        SYSCTL->RCC = rcc;
+        
+        rcc2 &= ~(SYSCTL_RCC2_OSCSRC2_Msk | SYSCTL_RCC2_SYSDIV2_Msk  | 
+                  SYSCTL_RCC2_DIV400_Msk  | SYSCTL_RCC2_PWRDN2_Msk   | 
+                  SYSCTL_RCC2_BYPASS2_Msk | SYSCTL_RCC2_USBPWRDN_Msk);
+              
+        rcc2 |=  (CFG_RCC2_OSCSRC2  << SYSCTL_RCC2_OSCSRC2_Pos)  |
+                 (CFG_RCC2_SYSDIV2  << SYSCTL_RCC2_SYSDIV2_Pos)  |
+                 (CFG_RCC2_PWRDN2   << SYSCTL_RCC2_PWRDN2_Pos)   |
+                 (CFG_RCC2_USBPWRDN << SYSCTL_RCC2_USBPWRDN_Pos) |
+                  SYSCTL_RCC2_BYPASS2_Msk;
+#if (CFG_RCC2_DIV400)
+        rcc2 |= SYSCTL_RCC2_DIV400_Msk;
+        rcc2 &= ~SYSCTL_RCC2_SYSDIV2LSB_Msk;
+        rcc2 |= (CFG_RCC2_SYSDIV2LSB << SYSCTL_RCC2_SYSDIV2LSB_Pos);
+#endif
+        rcc2 |= SYSCTL_RCC2_USERCC2_Msk;
+        SYSCTL->RCC2 = rcc2;
+        
+#if (CFG_RCC2_BYPASS2 == 0)
+        timeout = PLL_LOCK_TIMEOUT;
+        while (((SYSCTL->RIS & SYSCTL_RIS_PLLLRIS_Msk) == 0) && (timeout > 0)) {
+            timeout--;
+        }
 
-//    LM3S_SYSCTL->RCC  = (RCC_Val  | (1UL<<11) | (1UL<<13)) & ~(1UL<<22); /* set value with BYPASS, PWRDN set, USESYSDIV reset */
-//    LM3S_SYSCTL->RCC2 = (RCC2_Val | (1UL<<11) | (1UL<<13));              /* set value with BYPASS, PWRDN set */
-//    for (i = 0; i < 1000; i++);   /* wait a while */
+        if (timeout == 0) {
+            rcc2 = SYSCTL->RCC2;
+            rcc2 &= ~SYSCTL_RCC2_OSCSRC2_Msk;
+            rcc2 |= (OSCSRC_PIOSC << SYSCTL_RCC2_OSCSRC2_Pos);
+            rcc2 |= SYSCTL_RCC2_BYPASS2_Msk;
+            SYSCTL->RCC2 = rcc2;
+        } else {
+            SYSCTL->RCC2 &= ~SYSCTL_RCC2_BYPASS2_Msk;
+            for (volatile uint32_t delay = 0; delay < PLL_LOCK_DELAY; delay++){}
+#if (CFG_RCC_PIOSCDIS == 1)
+            if (CFG_RCC2_OSCSRC2 == OSCSRC_MOSC) {
+                SYSCTL->RCC |= SYSCTL_RCC_IOSCDIS_Msk;
+            }
+#endif
+#if (CFG_RCC_MOSCDIS == 1)
+            if ((CFG_RCC2_OSCSRC2 == OSCSRC_PIOSC) || (CFG_RCC2_OSCSRC2 == OSCSRC_PIOSC_DIV4)) {
+                SYSCTL->RCC |= SYSCTL_RCC_MOSCDIS_Msk;
+            }
+#endif
+        }
+#else
+#if (CFG_RCC_PIOSCDIS == 1)
+            if ((CFG_RCC2_OSCSRC2 == OSCSRC_MOSC) || (CFG_RCC2_OSCSRC2 == OSCSRC_30KHZ)) {
+                SYSCTL->RCC |= SYSCTL_RCC_IOSCDIS_Msk;
+            }
+#endif
+#if (CFG_RCC_MOSCDIS == 1)
+            if ((CFG_RCC2_OSCSRC2 == OSCSRC_PIOSC) || (CFG_RCC2_OSCSRC2 == OSCSRC_PIOSC_DIV4) || (CFG_RCC2_OSCSRC2 == OSCSRC_30KHZ)) {
+                SYSCTL->RCC |= SYSCTL_RCC_MOSCDIS_Msk;
+            }
+#endif
+#endif
+    }
+    else {
+        rcc &= ~(SYSCTL_RCC_XTAL_Msk      | SYSCTL_RCC_OSCSRC_Msk     |
+                 SYSCTL_RCC_SYSDIV_Msk    | SYSCTL_RCC_PWRDN_Msk      |
+                 SYSCTL_RCC_USESYSDIV_Msk | SYSCTL_RCC_BYPASS_Msk     |
+                 SYSCTL_RCC_IOSCDIS_Msk   | SYSCTL_RCC_MOSCDIS_Msk    |
+                 SYSCTL_RCC_USEPWMDIV_Msk | SYSCTL_RCC_PWMDIV_Msk     |
+                 SYSCTL_RCC_ACG_Msk);
 
-//    LM3S_SYSCTL->RCC  = (RCC_Val  | (1UL<<11)) & ~(1UL<<22);             /* set value with BYPASS, USESYSDIV reset */
-//    LM3S_SYSCTL->RCC2 = (RCC2_Val | (1UL<<11));                          /* set value with BYPASS */
-//    for (i = 0; i < 1000; i++);   /* wait a while */
+        rcc |=  (CFG_RCC_XTAL            << SYSCTL_RCC_XTAL_Pos)      |
+                (CFG_RCC_OSCSRC          << SYSCTL_RCC_OSCSRC_Pos)    |
+                (CFG_RCC_SYSDIV          << SYSCTL_RCC_SYSDIV_Pos)    |
+                (CFG_RCC_PWRDN           << SYSCTL_RCC_PWRDN_Pos)     |
+                (CFG_RCC_USESYSDIV       << SYSCTL_RCC_USESYSDIV_Pos) |
+                (CFG_RCC_USEPWMDIV       << SYSCTL_RCC_USEPWMDIV_Pos) |
+                (CFG_RCC_PWMDIV          << SYSCTL_RCC_PWMDIV_Pos)    |
+                (CFG_RCC_ACG             << SYSCTL_RCC_ACG_Pos)       |
+                SYSCTL_RCC_BYPASS_Msk;
+        SYSCTL->RCC = rcc;
+#if (CFG_RCC_BYPASS == 0)
+        timeout = PLL_LOCK_TIMEOUT;
+        while (((SYSCTL->RIS & SYSCTL_RIS_PLLLRIS_Msk) == 0) && (timeout > 0)) {
+            timeout--;
+        }
 
-//    LM3S_SYSCTL->RCC  = (RCC_Val  | (1<<11));                            /* set value with BYPASS */
-
-//    if ( (((RCC_Val  & (1UL<<13)) == 0) && ((RCC2_Val & (1UL<<31)) == 0)) ||
-//         (((RCC2_Val & (1UL<<13)) == 0) && ((RCC2_Val & (1UL<<31)) != 0))   ) {
-//      while ((LM3S_SYSCTL->RIS & (1UL<<6)) != (1UL<<6));                 /* wait until PLL is locked */
-//    }
-
-//    LM3S_SYSCTL->RCC  = (RCC_Val);                                       /* set value */
-//    LM3S_SYSCTL->RCC2 = (RCC2_Val);                                      /* set value */
-//    for (i = 0; i < 10000; i++);   /* wait a while */
-
+        if (timeout == 0) {
+            rcc = SYSCTL->RCC;
+            rcc &= ~SYSCTL_RCC_OSCSRC_Msk;
+            rcc |= (0x1UL << SYSCTL_RCC_OSCSRC_Pos);
+            rcc |= SYSCTL_RCC_BYPASS_Msk;
+            SYSCTL->RCC = rcc;
+        } else {
+            SYSCTL->RCC &= ~SYSCTL_RCC_BYPASS_Msk;
+            for (volatile uint32_t delay = 0; delay < PLL_LOCK_DELAY; delay++){}
+#if (CFG_RCC_PIOSCDIS == 1)
+            if (CFG_RCC_OSCSRC == OSCSRC_MOSC) {
+                SYSCTL->RCC |= SYSCTL_RCC_IOSCDIS_Msk;
+            }
+#endif
+#if (CFG_RCC_MOSCDIS == 1)
+            if ((CFG_RCC_OSCSRC == OSCSRC_PIOSC) || (CFG_RCC_OSCSRC == OSCSRC_PIOSC_DIV4)) {
+                SYSCTL->RCC |= SYSCTL_RCC_MOSCDIS_Msk;
+            }
+#endif
+        }
+#else
+#if (CFG_RCC_PIOSCDIS == 1)
+            if ((CFG_RCC_OSCSRC == OSCSRC_MOSC) || (CFG_RCC_OSCSRC == OSCSRC_30KHZ)) {
+                SYSCTL->RCC |= SYSCTL_RCC_IOSCDIS_Msk;
+            }
+#endif
+#if (CFG_RCC_MOSCDIS == 1)
+            if ((CFG_RCC_OSCSRC == OSCSRC_PIOSC) || (CFG_RCC_OSCSRC == OSCSRC_PIOSC_DIV4) || (CFG_RCC_OSCSRC == OSCSRC_30KHZ)) {
+                SYSCTL->RCC |= SYSCTL_RCC_MOSCDIS_Msk;
+            }
+#endif
+#endif
+    }
 #endif
     SystemCoreClockUpdate();
 }
 
-/*----------------------------------------------------------------------------
-  Get the OSC clock
+/*------------------------------------------------------------------------------
+ * Get the OSC clock
  *----------------------------------------------------------------------------*/
-__INLINE static uint32_t getOscClk (uint32_t xtal, uint32_t oscSrc) {
-    uint32_t oscClk = XTAL_INT30KHZ;
-    switch (oscSrc) {                        /* switch OSCSRC */
-        case 0:                              /* MOSC Main oscillator */
-        switch (xtal) {                      /* switch XTAL */
-            case 0x0:
-                oscClk = XTAL_EXT_1MHZ_PLLOFF;
+__STATIC_INLINE uint32_t getOscClk (uint32_t xtal, uint32_t oscSrc) {
+    uint32_t oscClk = IOSC_VALUE_30KHZ;
+    switch (oscSrc) {
+        case OSCSRC_MOSC:
+        switch (xtal) {
+            case XTAL_NOPLL_1MHZ:
+                oscClk = MOSC_VALUE_1MHZ_PLLOFF;
                 break;
-            case 0x1:
-                oscClk = XTAL_EXT_1_8432MHZ_PLLOFF;
+            case XTAL_NOPLL_1_8432MHZ:
+                oscClk = MOSC_VALUE_1_8432MHZ_PLLOFF;
                 break;
-            case 0x2:
-                oscClk = XTAL_EXT_2MHZ_PLLOFF;
+            case XTAL_NOPLL_2MHZ:
+                oscClk = MOSC_VALUE_2MHZ_PLLOFF;
                 break;
-            case 0x3:
-                oscClk = XTAL_EXT_2_4576MHZ_PLLOFF;
+            case XTAL_NOPLL_2_4576MHZ:
+                oscClk = MOSC_VALUE_2_4576MHZ_PLLOFF;
                 break;
-            case 0x4:
-                oscClk = XTAL_EXT_3_579545MHZ;
+            case XTAL_3_579545MHZ:
+                oscClk = MOSC_VALUE_3_579545MHZ;
                 break;
-            case 0x5:
-                oscClk = XTAL_EXT_3_6864MHZ;
+            case XTAL_3_6864MHZ:
+                oscClk = MOSC_VALUE_3_6864MHZ;
                 break;
-            case 0x6:
-                oscClk = XTAL_EXT_4MHZ;
+            case XTAL_4MHZ_USB:
+                oscClk = MOSC_VALUE_4MHZ;
                 break;
-            case 0x7:
-                oscClk = XTAL_EXT_4_096MHZ;
+            case XTAL_4_096MHZ:
+                oscClk = MOSC_VALUE_4_096MHZ;
                 break;
-            case 0x8:
-                oscClk = XTAL_EXT_4_9152MHZ;
+            case XTAL_4_9152MHZ:
+                oscClk = MOSC_VALUE_4_9152MHZ;
                 break;
-            case 0x9:
-                oscClk = XTAL_EXT_5MHZ;
+            case XTAL_5MHZ_USB:
+                oscClk = MOSC_VALUE_5MHZ;
                 break;
-            case 0xA:
-                oscClk = XTAL_EXT_5_12MHZ;
+            case XTAL_5_12MHZ:
+                oscClk = MOSC_VALUE_5_12MHZ;
                 break;
-            case 0xB:
-                oscClk = XTAL_EXT_6MHZ_USB;
+            case XTAL_6MHZ_USB_DEFAULT:
+                oscClk = MOSC_VALUE_6MHZ_USB;
                 break;
-            case 0xC:
-                oscClk = XTAL_EXT_6_144MHZ;
+            case XTAL_6_144MHZ:
+                oscClk = MOSC_VALUE_6_144MHZ;
                 break;
-            case 0xD:
-                oscClk = XTAL_EXT_7_3728MHZ;
+            case XTAL_7_3728MHZ:
+                oscClk = MOSC_VALUE_7_3728MHZ;
                 break;
-            case 0xE:
-                oscClk = XTAL_EXT_8MHZ_USB;
+            case XTAL_8MHZ_USB:
+                oscClk = MOSC_VALUE_8MHZ_USB;
                 break;
-            case 0xF:
-                oscClk = XTAL_EXT_8_192MHZ;
+            case XTAL_8_192MHZ:
+                oscClk = MOSC_VALUE_8_192MHZ;
                 break;
-            case 0x10:
-                oscClk = XTAL_EXT_10MHZ_USB;
+            case XTAL_10MHZ_USB:
+                oscClk = MOSC_VALUE_10MHZ_USB;
                 break;
-            case 0x11:
-                oscClk = XTAL_EXT_12MHZ_USB;
+            case XTAL_12MHZ_USB:
+                oscClk = MOSC_VALUE_12MHZ_USB;
                 break;
-            case 0x12:
-                oscClk = XTAL_EXT_12_288MHZ;
+            case XTAL_12_288MHZ:
+                oscClk = MOSC_VALUE_12_288MHZ;
                 break;
-            case 0x13:
-                oscClk = XTAL_EXT_13_56MHZ;
+            case XTAL_13_56MHZ:
+                oscClk = MOSC_VALUE_13_56MHZ;
                 break;
-            case 0x14:
-                oscClk = XTAL_EXT_14_31818MHZ;
+            case XTAL_14_31818MHZ:
+                oscClk = MOSC_VALUE_14_31818MHZ;
                 break;
-            case 0x15:
-                oscClk = XTAL_EXT_16MHZ_USB;
+            case XTAL_16MHZ_USB:
+                oscClk = MOSC_VALUE_16MHZ_USB;
                 break;
-            case 0x16:
-                oscClk = XTAL_EXT_16_384MHZ;
+            case XTAL_16_384MHZ:
+                oscClk = MOSC_VALUE_16_384MHZ;
                 break;
             default:
-                oscClk = 0;
+                oscClk = -1;
                 break;
         }
         break;
-            case 1:                         /* PIOSC Internal oscillator */
-            oscClk = XTAL_PIOSC_16MHZ;
+            case OSCSRC_PIOSC:
+            oscClk = PIOSC_VALUE_16MHZ;
         break;
-        case 2:                         /* PIOSC/4 Internal oscillator/4 */
-            oscClk = XTAL_PIOSC_16MHZ/4;
+        case OSCSRC_PIOSC_DIV4:
+            oscClk = PIOSC_VALUE_16MHZ/4;
             break;
-        case 3:                         /* 30kHz internal oscillator  */
-            oscClk = XTAL_INT30KHZ;
+        case OSCSRC_30KHZ:
+            oscClk = IOSC_VALUE_30KHZ;
             break;
         default:
-            oscClk = 0;
+            oscClk = -1;
             break;
     }
     return oscClk;
+}
+
+/*------------------------------------------------------------------------------
+ * Get the min PLL400 divisor
+ *----------------------------------------------------------------------------*/
+__STATIC_INLINE uint32_t GetMinSysDiv(uint32_t minsysdiv) {
+    switch (minsysdiv) {
+        case MINSYSDIV_VCO400_DIV_5:
+            return 5;
+        case MINSYSDIV_VCO400_DIV_6:
+            return 6;
+        case MINSYSDIV_50MHZ_DIV4:
+            return 8;
+        case MINSYSDIV_25MHZ_DIV8:
+            return 16;
+        case MINSYSDIV_20MHZ_DIV10:
+            return 20;
+        default:
+            return 5;
+    }
 }
