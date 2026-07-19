@@ -1893,6 +1893,420 @@ by the other GPIO configuration registers.</description>
       </interrupt>
     </peripheral>
     
+    <!-- I2C Master 0 -->
+    <peripheral>
+      <name>I2C_MASTER0</name>
+      <version>1.0</version>
+      <description>Inter-Integrated Circuit (I2C) Master Interface 0.</description>
+      <baseAddress>0x40020000</baseAddress>
+      <groupName>I2C Master</groupName>
+      <headerStructName>I2C_MASTER</headerStructName>
+      <disableCondition>(SYSCTL->RCGC1->I2C0 == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC1->I2C0 == 0) &amp;&amp; (SYSCTL->DCGC1->I2C0 == 0)))</disableCondition>
+      
+      <size>32</size>
+      <access>read-write</access>
+      
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x00000024</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>I2C0</name>
+        <description>Inter-Integrated Circuit 0 interrupt.</description>
+        <value>8</value>
+      </interrupt>
+      
+      <registers>
+      <!-- MSA: Master Slave Address Register -->
+        <register>
+          <name>MSA</name>
+          <description>This register consists of eight bits: seven address bits (A6-A0), and a Receive/Send bit, which determines if the next operation is a Receive (High), or Transmit (Low).</description>
+          <addressOffset>0x00000000</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000FF</resetMask>
+          
+          <fields>
+            <!-- SA: I2C Slave Address field -->
+            <field>
+              <name>SA</name>
+              <description>I2C Slave Address. This field specifies bits A6 through A0 of the slave address.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>7</bitWidth>
+              <access>read-write</access>
+            </field>
+            
+            <!-- R/S: Receive/Send field -->
+            <field>
+              <name>R_S</name>
+              <description>The R/S bit specifies if the next operation is a Receive (High) or Transmit (Low).</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MSA_RS_TRANSMIT</name>
+                  <description>I2C Master Transmit.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MSA_RS_RECEIVE</name>
+                  <description>I2C Master Receive.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- MC: Master Control Register -->
+        <register>
+          <name>MC</name>
+          <description>The status register consists of seven bits, which when read determine the state of the I2C bus controller.</description>
+          <addressOffset>0x00000004</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000007F</resetMask>
+          
+          <fields>
+            <!-- BUSBSY: Bus Busy field -->
+            <field>
+              <name>BUSBSY</name>
+              <description>Bus Busy.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MC_BUSBSY_BUSY</name>
+                  <description>The I2C bus is busy.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MC_BUSBSY_IDLE</name>
+                  <description>The I2C bus is idle.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- IDLE: I2C Idle field -->
+            <field>
+              <name>IDLE</name>
+              <description>I2C Idle.</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MC_IDLE_IS_IDLE</name>
+                  <description>The I2C controller is idle.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MC_IDLE_IS_NOT_IDLE</name>
+                  <description>The I2C controller is not idle.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- ARBLST: Arbitration Lost field -->
+            <field>
+              <name>ARBLST</name>
+              <description>Arbitration Lost.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MC_ARBLST_WONARB</name>
+                  <description>The I2C controller lost arbitration.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MC_ARBLST_LOSTARB</name>
+                  <description>The I2C controller won arbitration.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- DATACK: Acknowledge Data field -->
+            <field>
+              <name>DATACK</name>
+              <description>Acknowledge Data.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MC_DATACK_NACK</name>
+                  <description>The transmitted data was not acknowledged.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MC_DATACK_ACK</name>
+                  <description>The transmitted data was acknowledged.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- ADRACK: Acknowledge Address field -->
+            <field>
+              <name>ADRACK</name>
+              <description>Acknowledge Address.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MC_ADRACK_NACK</name>
+                  <description>The transmitted address was not acknowledged.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MC_ADRACK_ACK</name>
+                  <description>The transmitted address was acknowledged.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- ERROR: Error field -->
+            <field>
+              <name>ERROR</name>
+              <description>Error.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MC_ERROR_ERR</name>
+                  <description>An error occurred on the last operation.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MC_ERROR_OK</name>
+                  <description>No error was detected on the last operation.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- BUSY: I2C Busy field -->
+            <field>
+              <name>BUSY</name>
+              <description>I2C Busy.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MC_BUSY_ISBUSY</name>
+                  <description>The controller is busy.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MC_BUSY_ISIDLE</name>
+                  <description>The controller is idle.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- MS: Master Status Register -->
+        <register>
+          <name>MS</name>
+          <alternateRegister>MС</alternateRegister> 
+          <description>The control register consists of four bits: the RUN, START, STOP, and ACK bits. The START bit generates the START or REPEATED START condition.</description>
+          <addressOffset>0x00000004</addressOffset>
+          <size>32</size>
+          <access>write-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000000F</resetMask>
+          
+          <fields>
+            <!-- ACK: Data Acknowledge Enable field -->
+            <field>
+              <name>ACK</name>
+              <description>Data Acknowledge Enable.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>write-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MS_ACK_ACK</name>
+                  <description>The received data byte is acknowledged automatically by the master. See field decoding in Table 16-5 on page 708.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MS_ACK_NACK</name>
+                  <description>The received data byte is not acknowledged automatically by the master.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- STOP: Generate STOP field -->
+            <field>
+              <name>STOP</name>
+              <description>Generate STOP.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>write-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MS_STOP_ENABLE</name>
+                  <description>The controller generates the STOP condition. See field decoding in Table 16-5 on page 708.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MS_STOP_DISABLE</name>
+                  <description>The controller does not generate the STOP condition.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- START: Generate START field -->
+            <field>
+              <name>START</name>
+              <description>Generate START.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>write-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MS_START_ENABLE</name>
+                  <description>The controller generates the START or repeated START condition. See field decoding in Table 16-5 on page 708.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MS_START_DISABLE</name>
+                  <description>The controller does not generate the START condition.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- RUN: I2C Master Enabley field -->
+            <field>
+              <name>RUN</name>
+              <description>I2C Master Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>write-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MS_RUN_ENABLE</name>
+                  <description>The master is enabled to transmit or receive data. See field decoding in Table 16-5 on page 708.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MS_RUN_DISABLE</name>
+                  <description>The master is disabled.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- MDR: Master Status Register -->
+        <register>
+          <name>MDR</name>
+          <description>The control register consists of four bits: the RUN, START, STOP, and ACK bits. The START bit generates the START or REPEATED START condition.</description>
+          <addressOffset>0x00000008</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000FF</resetMask>
+          
+          <fields>
+            <!-- DATA: Data Transferred field -->
+            <field>
+              <name>DATA</name>
+              <description>Data Transferred.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>8</bitWidth>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+      <!-- MTPR: Master Timer Period Register -->
+        <register>
+          <name>MTPR</name>
+          <description>This register specifies the period of the SCL clock.</description>
+          <addressOffset>0x0000000C</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000007F</resetMask>
+          
+          <fields>
+            <!-- TPR: SCL Clock Period field -->
+            <field>
+              <name>TPR</name>
+              <description>SCL Clock Period.\nThis field specifies the period of the SCL clock.\nSCL_PRD = 2*(1 + TPR)*(SCL_LP + SCL_HP)*CLK_PRD\nwhere:\nSCL_PRD is the SCL line period (I2C clock).\nTPR is the Timer Period register value (range of 1 to 127).\nSCL_LP is the SCL Low period (fixed at 6).\nSCL_HP is the SCL High period (fixed at 4).\nCLK_PRD is the system clock period in ns.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>7</bitWidth>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+      <!-- MIMR: Master Interrupt Mask Register -->
+        <register>
+          <name>MIMR</name>
+          <description>This register controls whether a raw interrupt is promoted to a controller interrupt.</description>
+          <addressOffset>0x0000000C</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          
+          <fields>
+            <!-- IM: Interrupt Mask field -->
+            <field>
+              <name>IM</name>
+              <description>Interrupt Mask</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MIMR_IM_ENABLE</name>
+                  <description>The master interrupt is sent to the interrupt controller when the RIS bit in the I2CMRIS register is set.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MIMR_IM_DISABLE</name>
+                  <description>The RIS interrupt is suppressed and not sent to the interrupt controller.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+    
     <!-- Watchdog timer 0 -->
     <peripheral>
       <name>WDT0</name>
