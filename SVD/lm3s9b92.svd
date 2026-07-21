@@ -1919,9 +1919,9 @@ by the other GPIO configuration registers.</description>
       </interrupt>
       
       <registers>
-      <!-- MSA: Master Slave Address Register -->
+      <!-- SA: Slave Address Register -->
         <register>
-          <name>MSA</name>
+          <name>SA</name>
           <description>This register consists of eight bits: seven address bits (A6-A0), and a Receive/Send bit, which determines if the next operation is a Receive (High), or Transmit (Low).</description>
           <addressOffset>0x00000000</addressOffset>
           <size>32</size>
@@ -1948,12 +1948,12 @@ by the other GPIO configuration registers.</description>
               <access>read-write</access>
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>MSA_RS_TRANSMIT</name>
+                  <name>SA_RS_TRANSMIT</name>
                   <description>I2C Master Transmit.</description>
                   <value>0</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>MSA_RS_RECEIVE</name>
+                  <name>SA_RS_RECEIVE</name>
                   <description>I2C Master Receive.</description>
                   <value>1</value>
                 </enumeratedValue>
@@ -1961,9 +1961,9 @@ by the other GPIO configuration registers.</description>
             </field>
           </fields>
         </register>
-      <!-- MC: Master Control Register -->
+      <!-- STATUS: Status Register -->
         <register>
-          <name>MC</name>
+          <name>STATUS</name>
           <description>The status register consists of seven bits, which when read determine the state of the I2C bus controller.</description>
           <addressOffset>0x00000004</addressOffset>
           <size>32</size>
@@ -1982,12 +1982,12 @@ by the other GPIO configuration registers.</description>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>MC_BUSBSY_BUSY</name>
+                  <name>STATUS_BUSBSY_BUSY</name>
                   <description>The I2C bus is busy.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>MC_BUSBSY_IDLE</name>
+                  <name>STATUS_BUSBSY_IDLE</name>
                   <description>The I2C bus is idle.</description>
                   <value>0</value>
                 </enumeratedValue>
@@ -2004,12 +2004,12 @@ by the other GPIO configuration registers.</description>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>MC_IDLE_IS_IDLE</name>
+                  <name>STATUS_IDLE_IS_IDLE</name>
                   <description>The I2C controller is idle.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>MC_IDLE_IS_NOT_IDLE</name>
+                  <name>STATUS_IDLE_IS_NOT_IDLE</name>
                   <description>The I2C controller is not idle.</description>
                   <value>0</value>
                 </enumeratedValue>
@@ -2026,12 +2026,12 @@ by the other GPIO configuration registers.</description>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>MC_ARBLST_WONARB</name>
+                  <name>STATUS_ARBLST_WONARB</name>
                   <description>The I2C controller lost arbitration.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>MC_ARBLST_LOSTARB</name>
+                  <name>STATUS_ARBLST_LOSTARB</name>
                   <description>The I2C controller won arbitration.</description>
                   <value>0</value>
                 </enumeratedValue>
@@ -2048,12 +2048,12 @@ by the other GPIO configuration registers.</description>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>MC_DATACK_NACK</name>
+                  <name>STATUS_DATACK_NACK</name>
                   <description>The transmitted data was not acknowledged.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>MC_DATACK_ACK</name>
+                  <name>STATUS_DATACK_ACK</name>
                   <description>The transmitted data was acknowledged.</description>
                   <value>0</value>
                 </enumeratedValue>
@@ -2070,12 +2070,12 @@ by the other GPIO configuration registers.</description>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>MC_ADRACK_NACK</name>
+                  <name>STATUS_ADRACK_NACK</name>
                   <description>The transmitted address was not acknowledged.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>MC_ADRACK_ACK</name>
+                  <name>STATUS_ADRACK_ACK</name>
                   <description>The transmitted address was acknowledged.</description>
                   <value>0</value>
                 </enumeratedValue>
@@ -2092,12 +2092,12 @@ by the other GPIO configuration registers.</description>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>MC_ERROR_ERR</name>
+                  <name>STATUS_ERROR_ERR</name>
                   <description>An error occurred on the last operation.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>MC_ERROR_OK</name>
+                  <name>STATUS_ERROR_OK</name>
                   <description>No error was detected on the last operation.</description>
                   <value>0</value>
                 </enumeratedValue>
@@ -2114,12 +2114,12 @@ by the other GPIO configuration registers.</description>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>MC_BUSY_ISBUSY</name>
+                  <name>STATUS_BUSY_ISBUSY</name>
                   <description>The controller is busy.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>MC_BUSY_ISIDLE</name>
+                  <name>STATUS_BUSY_ISIDLE</name>
                   <description>The controller is idle.</description>
                   <value>0</value>
                 </enumeratedValue>
@@ -2127,10 +2127,10 @@ by the other GPIO configuration registers.</description>
             </field>
           </fields>
         </register>
-      <!-- MS: Master Status Register -->
+      <!-- CTRL: Control Register -->
         <register>
-          <name>MS</name>
-          <alternateRegister>MС</alternateRegister> 
+          <name>CTRL</name>
+          <alternateRegister>STATUS</alternateRegister> 
           <description>The control register consists of four bits: the RUN, START, STOP, and ACK bits. The START bit generates the START or REPEATED START condition.</description>
           <addressOffset>0x00000004</addressOffset>
           <size>32</size>
@@ -2149,12 +2149,12 @@ by the other GPIO configuration registers.</description>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>MS_ACK_ACK</name>
+                  <name>CTRL_ACK_ACK</name>
                   <description>The received data byte is acknowledged automatically by the master. See field decoding in Table 16-5 on page 708.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>MS_ACK_NACK</name>
+                  <name>CTRL_ACK_NACK</name>
                   <description>The received data byte is not acknowledged automatically by the master.</description>
                   <value>0</value>
                 </enumeratedValue>
@@ -2171,12 +2171,12 @@ by the other GPIO configuration registers.</description>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>MS_STOP_ENABLE</name>
+                  <name>CTRL_STOP_ENABLE</name>
                   <description>The controller generates the STOP condition. See field decoding in Table 16-5 on page 708.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>MS_STOP_DISABLE</name>
+                  <name>CTRL_STOP_DISABLE</name>
                   <description>The controller does not generate the STOP condition.</description>
                   <value>0</value>
                 </enumeratedValue>
@@ -2193,12 +2193,12 @@ by the other GPIO configuration registers.</description>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>MS_START_ENABLE</name>
+                  <name>CTRL_START_ENABLE</name>
                   <description>The controller generates the START or repeated START condition. See field decoding in Table 16-5 on page 708.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>MS_START_DISABLE</name>
+                  <name>CTRL_START_DISABLE</name>
                   <description>The controller does not generate the START condition.</description>
                   <value>0</value>
                 </enumeratedValue>
@@ -2215,12 +2215,12 @@ by the other GPIO configuration registers.</description>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>MS_RUN_ENABLE</name>
+                  <name>CTRL_RUN_ENABLE</name>
                   <description>The master is enabled to transmit or receive data. See field decoding in Table 16-5 on page 708.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>MS_RUN_DISABLE</name>
+                  <name>CTRL_RUN_DISABLE</name>
                   <description>The master is disabled.</description>
                   <value>0</value>
                 </enumeratedValue>
@@ -2228,10 +2228,10 @@ by the other GPIO configuration registers.</description>
             </field>
           </fields>
         </register>
-      <!-- MDR: Master Status Register -->
+      <!-- DR: Data Register -->
         <register>
-          <name>MDR</name>
-          <description>The control register consists of four bits: the RUN, START, STOP, and ACK bits. The START bit generates the START or REPEATED START condition.</description>
+          <name>DR</name>
+          <description>This register contains the data to be transmitted when in the Master Transmit state and the data received when in the Master Receive state.</description>
           <addressOffset>0x00000008</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -2249,9 +2249,9 @@ by the other GPIO configuration registers.</description>
             </field>
           </fields>
         </register>
-      <!-- MTPR: Master Timer Period Register -->
+      <!-- TPR: Timer Period Register -->
         <register>
-          <name>MTPR</name>
+          <name>TPR</name>
           <description>This register specifies the period of the SCL clock.</description>
           <addressOffset>0x0000000C</addressOffset>
           <size>32</size>
@@ -2270,11 +2270,11 @@ by the other GPIO configuration registers.</description>
             </field>
           </fields>
         </register>
-      <!-- MIMR: Master Interrupt Mask Register -->
+      <!-- IMR: Interrupt Mask Register -->
         <register>
-          <name>MIMR</name>
+          <name>IMR</name>
           <description>This register controls whether a raw interrupt is promoted to a controller interrupt.</description>
-          <addressOffset>0x0000000C</addressOffset>
+          <addressOffset>0x00000010</addressOffset>
           <size>32</size>
           <access>read-write</access>
           <resetValue>0x00000000</resetValue>
@@ -2291,12 +2291,12 @@ by the other GPIO configuration registers.</description>
               
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>MIMR_IM_ENABLE</name>
+                  <name>IMR_IM_ENABLE</name>
                   <description>The master interrupt is sent to the interrupt controller when the RIS bit in the I2CMRIS register is set.</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>MIMR_IM_DISABLE</name>
+                  <name>IMR_IM_DISABLE</name>
                   <description>The RIS interrupt is suppressed and not sent to the interrupt controller.</description>
                   <value>0</value>
                 </enumeratedValue>
@@ -2304,7 +2304,673 @@ by the other GPIO configuration registers.</description>
             </field>
           </fields>
         </register>
+      <!-- RIS: Raw Interrupt Status Register -->
+        <register>
+          <name>RIS</name>
+          <description>This register specifies whether an interrupt is pending.</description>
+          <addressOffset>0x00000014</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          
+          <fields>
+            <!-- RIS: Raw Interrupt Status field -->
+            <field>
+              <name>RIS</name>
+              <description>Raw Interrupt Status</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RIS_RIS_PENDING</name>
+                  <description>A master interrupt is pending.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RIS_RIS_OFF</name>
+                  <description>No interrupt.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- MIS: Masked Interrupt Status Register -->
+        <register>
+          <name>MIS</name>
+          <description>This register specifies whether an interrupt was signaled.</description>
+          <addressOffset>0x00000018</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          
+          <fields>
+            <!-- MIS: Masked Interrupt Status field -->
+            <field>
+              <name>MIS</name>
+              <description>Masked Interrupt Status</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MIS_MIS_PENDING</name>
+                  <description>An unmasked master interrupt was signaled is pending.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MIS_MIS_OFF</name>
+                  <description>An interrupt has not occurred or is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- IC: Interrupt Clea Register -->
+        <register>
+          <name>IC</name>
+          <description>This register specifies whether an interrupt was signaled.</description>
+          <addressOffset>0x0000001C</addressOffset>
+          <size>32</size>
+          <access>write-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          
+          <fields>
+            <!-- IC: Masked Interrupt Status field -->
+            <field>
+              <name>IC</name>
+              <description>Interrupt Clear</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>write-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>IC_IC_CLEAR</name>
+                  <description>Writing a 1 to this bit clears the RIS bit in the I2CMRIS register and the MIS bit in the I2CMMIS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- CR: Configuration Register -->
+        <register>
+          <name>CR</name>
+          <description>This register configures the mode (Master or Slave) and sets the interface for test mode loopback.</description>
+          <addressOffset>0x00000020</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000031</resetMask>
+          
+          <fields>
+            <!-- SFE: Slave Function Enable field -->
+            <field>
+              <name>SFE</name>
+              <description>I2C Slave Function Enable</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>CR_SFE_ON</name>
+                  <description>Slave mode is enabled.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>CR_SFE_OFF</name>
+                  <description>Slave mode is disabled.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MFE: Master Function Enable field -->
+            <field>
+              <name>MFE</name>
+              <description>I2C Master Function Enable</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>CR_MFE_ON</name>
+                  <description>Master mode is enabled.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>CR_MFE_OFF</name>
+                  <description>Master mode is disabled.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- LPBK: Loopback field -->
+            <field>
+              <name>LPBK</name>
+              <description>I2C Loopback</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>CR_LPBK_ON</name>
+                  <description>The controller in a test mode loopback configuration.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>CR_LPBK_OFF</name>
+                  <description>Normal operation.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
       </registers>
+    </peripheral>
+    
+    <!-- I2C Slave 0 -->
+    <peripheral>
+      <name>I2C_SLAVE0</name>
+      <version>1.0</version>
+      <description>Inter-Integrated Circuit (I2C) Slave Interface 0.</description>
+      <baseAddress>0x40020800</baseAddress>
+      <groupName>I2C Slave</groupName>
+      <headerStructName>I2C_SLAVE</headerStructName>
+      <disableCondition>(SYSCTL->RCGC1->I2C0 == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC1->I2C0 == 0) &amp;&amp; (SYSCTL->DCGC1->I2C0 == 0)))</disableCondition>
+      
+      <size>32</size>
+      <access>read-write</access>
+      
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0000002C</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>I2C0</name>
+        <description>Inter-Integrated Circuit 0 interrupt.</description>
+        <value>8</value>
+      </interrupt>
+      
+      <registers>
+      <!-- OA: Own Address Register -->
+        <register>
+          <name>OA</name>
+          <description>This register consists of seven address bits that identify the Stellaris I2C device on the I2C bus.</description>
+          <addressOffset>0x00000000</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000007F</resetMask>
+          
+          <fields>
+            <!-- OAR: Own Address field -->
+            <field>
+              <name>OAR</name>
+              <description>I2C Slave Own Address. This field specifies bits A6 through A0 of the slave address.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>7</bitWidth>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+      <!-- STATUS: Status Register -->
+        <register>
+          <name>STATUS</name>
+          <description>The read-only Status register consists of three bits: the FBR, RREQ, and TREQ bits. The First Byte Received (FBR) bit is set only after the Stellaris device detects its own slave address and receives the first data byte from the I2C master. The Receive Request (RREQ) bit indicates that the Stellaris I2C device has received a data byte from an I2C master. Read one data byte from the I2C Slave Data (I2CSDR) register to clear the RREQ bit. The Transmit Request (TREQ) bit indicates that the Stellaris I2C device is addressed as a Slave Transmitter. Write one data byte into the I2C Slave Data (I2CSDR) register to clear the TREQ bit.</description>
+          <addressOffset>0x00000004</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000007F</resetMask>
+          
+          <fields>
+            <!-- FBR: First Byte Received field -->
+            <field>
+              <name>FBR</name>
+              <description>First Byte Received. This bit is only valid when the RREQ bit is set and is automatically cleared when data has been read from the I2CSDR register. Note: This bit is not used for slave transmit operations.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>STATUS_FBR_SET</name>
+                  <description>The first byte following the slave`s own address has been received.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>STATUS_FBR_RESET</name>
+                  <description>The first byte has not been received.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- TREQ: Transmit Request field -->
+            <field>
+              <name>TREQ</name>
+              <description>Transmit Request.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>STATUS_TREQ_PEND</name>
+                  <description>The I2C controller has been addressed as a slave transmitter and is using clock stretching to delay the master until data has been written to the I2CSDR register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>STATUS_TREQ_OFF</name>
+                  <description>No outstanding transmit request..</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            
+            <!-- RREQ: Receive Request field -->
+            <field>
+              <name>RREQ</name>
+              <description>Receive Request.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>STATUS_RREQ_PEND</name>
+                  <description>The I2C controller has outstanding receive data from the I2C master and is using clock stretching to delay the master until the data has been read from the I2CSDR register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>STATUS_RREQ_OFF</name>
+                  <description>No outstanding receive data.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- CTRL: Control Register -->
+        <register>
+          <name>CTRL</name>
+          <alternateRegister>STATUS</alternateRegister> 
+          <description>The write-only Control register consists of one bit: the DA bit. The DA bit enables and disables the Stellaris I2C slave operation.</description>
+          <addressOffset>0x00000004</addressOffset>
+          <size>32</size>
+          <access>write-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000000F</resetMask>
+          
+          <fields>
+          <!-- DA: Device Active field -->
+            <field>
+              <name>DA</name>
+              <description>I2C Slave Device Active.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>CTRL_DA_ENABLE</name>
+                  <description>Enables the I2C slave operation.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>CTRL_DA_DISABLE</name>
+                  <description>Disables the I2C slave operation.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DR: Data Register -->
+        <register>
+          <name>DR</name>
+          <description>This register contains the data to be transmitted when in the Slave Transmit state, and the data received when in the Slave Receive state.</description>
+          <addressOffset>0x00000008</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000FF</resetMask>
+          
+          <fields>
+            <!-- DATA: Data Transferred field -->
+            <field>
+              <name>DATA</name>
+              <description>Data Transferred.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>8</bitWidth>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+      <!-- IMR: Interrupt Mask Register -->
+        <register>
+          <name>IMR</name>
+          <description>This register controls whether a raw interrupt is promoted to a controller interrupt.</description>
+          <addressOffset>0x000000C</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000007</resetMask>
+          
+          <fields>
+          <!-- STOPIM: Stop Condition Interrupt Mask field -->
+            <field>
+              <name>STOPIM</name>
+              <description>Stop Condition Interrupt Mask.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>IMR_STOPIM_ENABLE</name>
+                  <description>The STOP condition interrupt is sent to the interrupt controller when the STOPRIS bit in the I2CSRIS register is set.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>IMR_STOPIM_DISABLE</name>
+                  <description>The STOPRIS interrupt is suppressed and not sent to the interrupt controller.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- STARTIM: Start Condition Interrupt Mask field -->
+            <field>
+              <name>STARTIM</name>
+              <description>Start Condition Interrupt Mask.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>IMR_STARTIM_ENABLE</name>
+                  <description>The START condition interrupt is sent to the interrupt controller when the STARTRIS bit in the I2CSRIS register is set.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>IMR_STARTIM_DISABLE</name>
+                  <description>The STARTRIS interrupt is suppressed and not sent to the interrupt controller.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DATAIM: Interrupt Mask field -->
+            <field>
+              <name>DATAIM</name>
+              <description>Interrupt Mask</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>IMR_DATAIM_ENABLE</name>
+                  <description>The data received or data requested interrupt is sent to the interrupt controller when the DATARIS bit in the I2CSRIS register is set.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>IMR_DATAIM_DISABLE</name>
+                  <description>The DATARIS interrupt is suppressed and not sent to the interrupt controller.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- RIS: Raw Interrupt Status Register -->
+        <register>
+          <name>RIS</name>
+          <description>This register specifies whether an interrupt is pending.</description>
+          <addressOffset>0x00000010</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          
+          <fields>
+            <!-- STOPRIS: Stop Condition Raw Interrupt Status field -->
+            <field>
+              <name>STOPRIS</name>
+              <description>Stop Condition Raw Interrupt Status.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RIS_STOPRIS_PENDING</name>
+                  <description>A STOP condition interrupt is pending.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RIS_STOPRIS_OFF</name>
+                  <description>No interrupt.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- STARTRIS: Start Condition Raw Interrupt Status field -->
+            <field>
+              <name>STARTRIS</name>
+              <description>Start Condition Raw Interrupt Status.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RIS_STARTRIS_PENDING</name>
+                  <description>A START condition interrupt is pending.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RIS_STARTRIS_OFF</name>
+                  <description>No interrupt.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DATARIS: Data Raw Interrupt Status field -->
+            <field>
+              <name>DATARIS</name>
+              <description>Data Raw Interrupt Status.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RIS_DATARIS_PENDING</name>
+                  <description>A data received or data requested interrupt is pending.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RIS_DATARIS_OFF</name>
+                  <description>No interrupt.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- MIS: Masked Interrupt Status Register -->
+        <register>
+          <name>MIS</name>
+          <description>This register specifies whether an interrupt was signaled.</description>
+          <addressOffset>0x00000014</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000007</resetMask>
+          
+          <fields>
+            <!-- STOPMIS: Stop Condition Masked Interrupt Status field -->
+            <field>
+              <name>STOPMIS</name>
+              <description>Stop Condition Masked Interrupt Status.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MIS_STOPMIS_PENDING</name>
+                  <description>An unmasked STOP condition interrupt was signaled is pending.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MIS_STOPMIS_OFF</name>
+                  <description>An interrupt has not occurred or is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- STARTMIS: Start Condition Masked Interrupt Status field -->
+            <field>
+              <name>STARTMIS</name>
+              <description>Start Condition Masked Interrupt Status.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MIS_STARTMIS_PENDING</name>
+                  <description>An unmasked START condition interrupt was signaled is pending.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MIS_STARTMIS_OFF</name>
+                  <description>An interrupt has not occurred or is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DATAMIS: Data Masked Interrupt Status field -->
+            <field>
+              <name>DATAMIS</name>
+              <description>Data Masked Interrupt Status.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MIS_DATAMIS_PENDING</name>
+                  <description>An unmasked data received or data requested interrupt was signaled is pending.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MIS_DATAMIS_OFF</name>
+                  <description>An interrupt has not occurred or is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- IC: Interrupt Clea Register -->
+        <register>
+          <name>IC</name>
+          <description>This register clears the raw interrupt. A read of this register returns no  eaningful data.</description>
+          <addressOffset>0x00000018</addressOffset>
+          <size>32</size>
+          <access>write-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          
+          <fields>
+            <!-- STOPIC: Masked Interrupt Status field -->
+            <field>
+              <name>STOPIC</name>
+              <description>Stop Condition Interrupt Clear</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>write-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>IC_STOPIC_CLEAR</name>
+                  <description>Writing a 1 to this bit clears the STOPRIS bit in the I2CSRIS register and the STOPMIS bit in the I2CSMIS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- STARTIC: Masked Interrupt Status field -->
+            <field>
+              <name>STARTIC</name>
+              <description>Start Condition Interrupt Clear</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>write-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>IC_STARTIC_CLEAR</name>
+                  <description>Writing a 1 to this bit clears the RIS bit in the I2CMRIS register and the MIS bit in the I2CMMIS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DATAIC: Masked Interrupt Status field -->
+            <field>
+              <name>DATAIC</name>
+              <description>Masked Interrupt Status</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>write-only</access>
+              
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>IC_DATAIC_CLEAR</name>
+                  <description>Writing a 1 to this bit clears the RIS bit in the I2CMRIS register and the MIS bit in the I2CMMIS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+    
+    <!-- I2C Master 0 -->
+    <peripheral derivedFrom="I2C_MASTER0">
+      <name>I2C_MASTER1</name>
+      <disableCondition>(SYSCTL->RCGC1->I2C1 == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC1->I2C1 == 0) &amp;&amp; (SYSCTL->DCGC1->I2C1 == 0)))</disableCondition>
+      <baseAddress>0x40021000</baseAddress>
+      <interrupt>
+        <name>I2C1</name>
+        <description>Inter-Integrated Circuit 1 interrupt.</description>
+        <value>37</value>
+      </interrupt>
+    </peripheral>
+    
+    <!-- I2C Slave 0 -->
+    <peripheral derivedFrom="I2C_SLAVE0">
+      <name>I2C_SLAVE1</name>
+      <disableCondition>(SYSCTL->RCGC1->I2C1 == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC1->I2C1 == 0) &amp;&amp; (SYSCTL->DCGC1->I2C1 == 0)))</disableCondition>
+      <baseAddress>0x40021800</baseAddress>
+      <interrupt>
+        <name>I2C1</name>
+        <description>Inter-Integrated Circuit 1 interrupt.</description>
+        <value>37</value>
+      </interrupt>
     </peripheral>
     
     <!-- Watchdog timer 0 -->
