@@ -1,6 +1,5 @@
-/* -----------------------------------------------------------------------------
- * Copyright (c) 2013-2016 Arm Limited (or its affiliates). All 
- * rights reserved.
+/*
+ * Copyright (c) 2013-2020 Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -15,19 +14,12 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- *
- * $Date:        09. September 2016
- * $Revision:    V1.1.2
- *
- * Project:      RTE Device Configuration for STMicroelectronics STM32F1xx
- *
- * -------------------------------------------------------------------------- */
+ */
 
 //-------- <<< Use Configuration Wizard in Context Menu >>> --------------------
 
-#ifndef __RTE_DEVICE_H
-#define __RTE_DEVICE_H
+#ifndef __I2C_LM3S9B92_CONFIG_H
+#define __I2C_LM3S9B92_CONFIG_H
 
 // <e> I2C1 (Inter-integrated Circuit Interface 1)
 // <i> Configuration settings for Driver_I2C1 in component ::CMSIS Driver:I2C
@@ -36,25 +28,25 @@
 // <i> Use ROM-placed functions for I2C2 interface (accessable via MAP_)
 #define I2C1_ROM_SELECTED               0
 // <q> Use Stellaris Peripherial Library
-// <i> Use STELLARIS functions for I2C2 interface
+// <i> Use STELLARIS functions for I2C1 interface
 #define I2C1_STELLARIS_SELECTED               0
 //   <o> I2C1_SCL Pin <1=>PJ0 <2=>PG0 <3=>PA0 <4=>PA6
 #define RTE_I2C1_SCL_PORT_ID_DEF       1
 #if    (RTE_I2C1_SCL_PORT_ID_DEF == 1)
-#define RTE_I2C1_SCL_PORT_CLOCK_EN_Msk LM3S_SYSCTL_RCGC2_GPIOJ_Msk
-#define RTE_I2C1_SCL_PORT_DEF          LM3S_GPIOJ
+#define RTE_I2C1_SCL_PORT_CLOCK_EN_Msk SYSCTL_RCGC2_GPIOJ_Msk
+#define RTE_I2C1_SCL_PORT_DEF          GPIOJ
 #define RTE_I2C1_SCL_BIT_DEF           0
 #elif  (RTE_I2C1_SCL_PORT_ID_DEF == 2)
-#define RTE_I2C1_SCL_PORT_CLOCK_EN_Msk LM3S_SYSCTL_RCGC2_GPIOG_Msk
-#define RTE_I2C1_SCL_PORT_DEF          LM3S_GPIOG
+#define RTE_I2C1_SCL_PORT_CLOCK_EN_Msk SYSCTL_RCGC2_GPIOG_Msk
+#define RTE_I2C1_SCL_PORT_DEF          GPIOG
 #define RTE_I2C1_SCL_BIT_DEF           0
 #elif  (RTE_I2C1_SCL_PORT_ID_DEF == 3)
-#define RTE_I2C1_SCL_PORT_CLOCK_EN_Msk LM3S_SYSCTL_RCGC2_GPIOA_Msk
-#define RTE_I2C1_SCL_PORT_DEF          LM3S_GPIOA
+#define RTE_I2C1_SCL_PORT_CLOCK_EN_Msk SYSCTL_RCGC2_GPIOA_Msk
+#define RTE_I2C1_SCL_PORT_DEF          GPIOA
 #define RTE_I2C1_SCL_BIT_DEF           0
 #elif  (RTE_I2C1_SCL_PORT_ID_DEF == 4)
-#define RTE_I2C1_SCL_PORT_CLOCK_EN_Msk LM3S_SYSCTL_RCGC2_GPIOA_Msk
-#define RTE_I2C1_SCL_PORT_DEF          LM3S_GPIOA
+#define RTE_I2C1_SCL_PORT_CLOCK_EN_Msk SYSCTL_RCGC2_GPIOA_Msk
+#define RTE_I2C1_SCL_PORT_DEF          GPIOA
 #define RTE_I2C1_SCL_BIT_DEF           6
 #else
 #error "Invalid I2C1_SCL Pin Configuration!"
@@ -63,55 +55,71 @@
 //   <o> I2C1_SDA Pin <1=>PG1 <2=>PA1 <3=>PA7 <4=>PJ1
 #define RTE_I2C1_SDA_PORT_ID_DEF       4
 #if    (RTE_I2C1_SDA_PORT_ID_DEF == 1)
-#define RTE_I2C1_SDA_PORT_CLOCK_EN_Msk LM3S_SYSCTL_RCGC2_GPIOG_Msk
-#define RTE_I2C1_SDA_PORT_DEF          LM3S_GPIOG
+#define RTE_I2C1_SDA_PORT_CLOCK_EN_Msk SYSCTL_RCGC2_GPIOG_Msk
+#define RTE_I2C1_SDA_PORT_DEF          GPIOG
 #define RTE_I2C1_SDA_BIT_DEF           1
 #elif  (RTE_I2C1_SDA_PORT_ID_DEF == 2)
-#define RTE_I2C1_SDA_PORT_CLOCK_EN_Msk LM3S_SYSCTL_RCGC2_GPIOA_Msk
-#define RTE_I2C1_SDA_PORT_DEF          LM3S_GPIOA
+#define RTE_I2C1_SDA_PORT_CLOCK_EN_Msk SYSCTL_RCGC2_GPIOA_Msk
+#define RTE_I2C1_SDA_PORT_DEF          GPIOA
 #define RTE_I2C1_SDA_BIT_DEF           1
 #elif  (RTE_I2C1_SDA_PORT_ID_DEF == 3)
-#define RTE_I2C1_SDA_PORT_CLOCK_EN_Msk LM3S_SYSCTL_RCGC2_GPIOA_Msk
-#define RTE_I2C1_SDA_PORT_DEF          LM3S_GPIOA
+#define RTE_I2C1_SDA_PORT_CLOCK_EN_Msk SYSCTL_RCGC2_GPIOA_Msk
+#define RTE_I2C1_SDA_PORT_DEF          GPIOA
 #define RTE_I2C1_SDA_BIT_DEF           7
 #elif  (RTE_I2C1_SDA_PORT_ID_DEF == 4)
-#define RTE_I2C1_SDA_PORT_CLOCK_EN_Msk LM3S_SYSCTL_RCGC2_GPIOJ_Msk
-#define RTE_I2C1_SDA_PORT_DEF          LM3S_GPIOJ
+#define RTE_I2C1_SDA_PORT_CLOCK_EN_Msk SYSCTL_RCGC2_GPIOJ_Msk
+#define RTE_I2C1_SDA_PORT_DEF          GPIOJ
 #define RTE_I2C1_SDA_BIT_DEF           1
 #else
-#error "Invalid I2C1_SCL Pin Configuration!"
+#error "Invalid I2C1_SDA Pin Configuration!"
 #endif
 
-//   <e> DMA Rx
-//     <o1> Number <1=>1
-//     <i>  Selects DMA Number (only DMA1 can be used)
-//     <o2> Channel <7=>7
-//     <i>  Selects DMA Channel (only Channel 7 can be used)
-//     <o3> Priority <0=>Low <1=>Medium <2=>High <3=>Very High
-//     <i>  Selects DMA Priority
-//   </e>
+//   <h> uDMA Management
+//     <e> DMA Rx
+//       <o1> Number <1=>1
+//       <i>  Selects DMA Number (only DMA1 can be used)
+//       <o2> Channel <7=>7
+//       <i>  Selects DMA Channel (only Channel 7 can be used)
+//       <o3> Priority <0=>Low <1=>Medium <2=>High <3=>Very High
+//       <i>  Selects DMA Priority
+//     </e>
 #define RTE_I2C1_RX_DMA                 1
 #define RTE_I2C1_RX_DMA_NUMBER          1
 #define RTE_I2C1_RX_DMA_CHANNEL         7
 #define RTE_I2C1_RX_DMA_PRIORITY        0
 
-//   <e> DMA Tx
-//     <o1> Number <1=>1
-//     <i>  Selects DMA Number (only DMA1 can be used)
-//     <o2> Channel <6=>6
-//     <i>  Selects DMA Channel (only Channel 6 can be used)
-//     <o3> Priority <0=>Low <1=>Medium <2=>High <3=>Very High
-//     <i>  Selects DMA Priority
-//   </e>
+//     <e> DMA Tx
+//       <o1> Number <1=>1
+//       <i>  Selects DMA Number (only DMA1 can be used)
+//       <o2> Channel <6=>6
+//       <i>  Selects DMA Channel (only Channel 6 can be used)
+//       <o3> Priority <0=>Low <1=>Medium <2=>High <3=>Very High
+//       <i>  Selects DMA Priority
+//     </e>
 #define RTE_I2C1_TX_DMA                 1
 #define RTE_I2C1_TX_DMA_NUMBER          1
 #define RTE_I2C1_TX_DMA_CHANNEL         6
 #define RTE_I2C1_TX_DMA_PRIORITY        0
+//   </h>
 
+//   <h> Power and Clock Management
+//     <i> Settings for Sleep and Deep-Sleep modes.
+//     <i> Warning: Settings will work only with ACG (check SYS_LM3S9B92_Config.h)
+//     <q> Enable in SLEEP Mode (SCGC)
+//     <i> Allows clock for the I2C1 in Sleep Mode.
+#define RTE_I2C1_SLEEP_USER_SET         1
 
-
-
-
+//     <q> Enable in DEEP-SLEEP Mode (DCGC)
+//     <i> Allows clock for the I2C1 in Deep-Sleep Mode.
+#define RTE_I2C1_DEEPSLEEP_USER_SET     1
+//   </h>
 // </e>
 
-#endif  /* __RTE_DEVICE_H */
+
+
+//------------- <<< end of configuration section >>> ---------------------------
+
+
+
+
+#endif  /* __I2C_LM3S9B92_CONFIG_H */

@@ -15,31 +15,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#include "Driver_I2C.h"
 
+#include <stdbool.h>
+
+#ifdef   _RTE_
 #include "RTE_Components.h"
-#include CMSIS_device_header
-#include "I2C_LM3S9B92_Config.h"
-
-#if (I2C1_ROM_SELECTED==1)
-#include "rom_map.h"
+#ifdef    RTE_RTX_CONFIG_H
+#include  RTE_RTX_CONFIG_H
+#endif
 #endif
 
-#define ARM_I2C_DRV_VERSION    ARM_DRIVER_VERSION_MAJOR_MINOR(1, 0) /* driver version */
+#include CMSIS_device_header
+#include "I2C_LM3S9B92_Config.h"
+#include "SYS_LM3S9B92_Config.h"
 
-#define LM3S_I2C_NUM           2
+#include "Driver_I2C.h"
 
-typedef struct lm3s_i2c_s {
-    ARM_I2C_SignalEvent_t cb_event;
-}lm3s_i2c_t;
-
-lm3s_i2c_t I2C_Instance[LM3S_I2C_NUM];
-
-typedef enum I2C_Instance_e {
-    INST_I2C0 = 0x00U,
-    INST_I2C1 = 0x01U
-} I2C_Instance_t;
+#define ARM_I2C_DRV_VERSION    ARM_DRIVER_VERSION_MAJOR_MINOR(1, 0)
 
 /* Driver Version */
 static const ARM_DRIVER_VERSION DriverVersion = {
@@ -49,54 +41,71 @@ static const ARM_DRIVER_VERSION DriverVersion = {
 
 /* Driver Capabilities */
 static const ARM_I2C_CAPABILITIES DriverCapabilities = {
-    0  /* supports 10-bit addressing */
+    0,  /* supports 10-bit addressing */
+    0
 };
 
-//
-//  Functions
-//
+typedef struct LM3S_I2C_DrvInstance_s {
+    I2C_MASTER_Type      *master;
+    I2C_SLAVE_Type       *slave;
+    ARM_I2C_SignalEvent_t cbEvent;
+    ARM_I2C_STATUS        status;
+    bool                  isInitialized;
+} LM3S_I2C_DrvInstance_t;
 
-static ARM_DRIVER_VERSION ARM_I2C_GetVersion(void)
-{
+static LM3S_I2C_DrvInstance_t I2C0_Ctrl = {
+    I2C_MASTER0,
+    I2C_SLAVE0,
+    NULL,
+    {0},
+    false
+};
+
+static LM3S_I2C_DrvInstance_t I2C1_Ctrl = {
+    I2C_MASTER1,
+    I2C_SLAVE1,
+    NULL,
+    {0},
+    false
+};
+
+static ARM_DRIVER_VERSION LM3S_I2C_GetVersion(void) {
   return DriverVersion;
 }
 
-static ARM_I2C_CAPABILITIES ARM_I2C_GetCapabilities(void)
-{
+static ARM_I2C_CAPABILITIES LM3S_I2C_GetCapabilities(void) {
   return DriverCapabilities;
 }
 
-static int32_t ARM_I2C_Initialize(ARM_I2C_SignalEvent_t cb_event, I2C_Instance_t Inst){
-    int32_t Result;
-    
-    Result = ARM_DRIVER_OK;
-    
-    // Enable clock for I2C SDA pin (currently - in RUN MODE only)
-    if(!(LM3S_SYSCTL->RCGC2 & RTE_I2C1_SDA_PORT_CLOCK_EN_Msk)){
-        LM3S_SYSCTL->RCGC2 |= RTE_I2C1_SDA_PORT_CLOCK_EN_Msk;
+static int32_t LM3S_I2C_Initialize(LM3S_I2C_DrvInstance_t *i2c, ARM_I2C_SignalEvent_t cb_event) {
+    if (i2c->isInitialized) {
+        if (i2c->status.busy == 0U) {
+            i2c->cbEvent = cb_event;
+        }
+        return ARM_DRIVER_OK;
     }
+
+    i2c->cbEvent       = cb_event;
+    i2c->isInitialized = true;
     
-    // Enable clock for I2C SCL pin (currently - in RUN MODE only)
-    if(!(LM3S_SYSCTL->RCGC2 & RTE_I2C1_SCL_PORT_CLOCK_EN_Msk)){
-        LM3S_SYSCTL->RCGC2 |= RTE_I2C1_SCL_PORT_CLOCK_EN_Msk;
-    }
-    
-    // Register Callback
-    I2C_Instance[Inst].cb_event = cb_event;
-    
-    return Result;
+    i2c->status.busy             = 0U;
+    i2c->status.mode             = 0U;
+    i2c->status.direction        = 0U;
+    i2c->status.general_call     = 0U;
+    i2c->status.arbitration_lost = 0U;
+    i2c->status.bus_error        = 0U;
+
+    return ARM_DRIVER_OK;
+
+    return ARM_DRIVER_OK;
 }
 
-static int32_t ARM_I2C0_Initialize(ARM_I2C_SignalEvent_t cb_event){
-    int32_t Result;
-    Result = ARM_I2C_Initialize(cb_event, INST_I2C0);
-    return Result;
+static int32_t LM3S_I2C0_Initialize(ARM_I2C_SignalEvent_t cb_event){
+    return LM3S_I2C_Initialize(&I2C0_Ctrl, cb_event);
 }
 
-static int32_t ARM_I2C1_Initialize(ARM_I2C_SignalEvent_t cb_event){
-    int32_t Result;
-    Result = ARM_I2C_Initialize(cb_event, INST_I2C1);
-    return Result;
+static int32_t LM3S_I2C1_Initialize(ARM_I2C_SignalEvent_t cb_event){
+    return LM3S_I2C_Initialize(&I2C1_Ctrl, cb_event);
 }
 
 static int32_t ARM_I2C_Uninitialize(void)
@@ -113,6 +122,27 @@ static int32_t ARM_I2C1_Uninitialize(void)
 
 static int32_t ARM_I2C_PowerControl(ARM_POWER_STATE state)
 {
+    #if defined (SYS_USE_ACG) && (SYS_USE_ACG == 1)
+    SYSCTL->RCGC1 |= SYSCTL_RCGC1_I2C0_Msk;
+    SYSCTL->RCGC2 |= RTE_I2C1_SDA_PORT_CLOCK_EN_Msk;
+    SYSCTL->RCGC2 |= RTE_I2C1_SCL_PORT_CLOCK_EN_Msk;
+#if defined (RTE_I2C1_SLEEP_USER_SET) && (RTE_I2C1_SLEEP_USER_SET == 1)
+    SYSCTL->SCGC1 |= SYSCTL_RCGC1_I2C0_Msk;
+    SYSCTL->SCGC2 |= RTE_I2C1_SDA_PORT_CLOCK_EN_Msk;
+    SYSCTL->SCGC2 |= RTE_I2C1_SCL_PORT_CLOCK_EN_Msk;
+#endif
+#if defined (RTE_I2C1_DEEPSLEEP_USER_SET) && (RTE_I2C1_DEEPSLEEP_USER_SET == 1)
+    SYSCTL->DCGC1 |= SYSCTL_RCGC1_I2C0_Msk;
+    SYSCTL->DCGC2 |= RTE_I2C1_SDA_PORT_CLOCK_EN_Msk;
+    SYSCTL->DCGC2 |= RTE_I2C1_SCL_PORT_CLOCK_EN_Msk;
+#endif
+#elif defined (SYS_USE_ACG) && (SYS_USE_ACG == 0)
+    SYSCTL->RCGC1 |= SYSCTL_RCGC1_I2C0_Msk;
+    SYSCTL->RCGC2 |= RTE_I2C1_SDA_PORT_CLOCK_EN_Msk;
+    SYSCTL->RCGC2 |= RTE_I2C1_SCL_PORT_CLOCK_EN_Msk;
+#else
+    #error "Global system setting (ACG) is missing! Check SYS_LM3S9B92_Config.h"
+#endif
     switch (state)
     {
     case ARM_POWER_OFF:
@@ -337,9 +367,9 @@ static void ARM_I2C_SignalEvent(uint32_t event)
 extern \
 ARM_DRIVER_I2C Driver_I2C0;
 ARM_DRIVER_I2C Driver_I2C0 = {
-    ARM_I2C_GetVersion,
-    ARM_I2C_GetCapabilities,
-    ARM_I2C0_Initialize,
+    LM3S_I2C_GetVersion,
+    LM3S_I2C_GetCapabilities,
+    LM3S_I2C0_Initialize,
     ARM_I2C0_Uninitialize,
     ARM_I2C0_PowerControl,
     ARM_I2C0_MasterTransmit,
@@ -352,9 +382,9 @@ ARM_DRIVER_I2C Driver_I2C0 = {
 };
 
 ARM_DRIVER_I2C Driver_I2C1 = {
-    ARM_I2C_GetVersion,
-    ARM_I2C_GetCapabilities,
-    ARM_I2C1_Initialize,
+    LM3S_I2C_GetVersion,
+    LM3S_I2C_GetCapabilities,
+    LM3S_I2C1_Initialize,
     ARM_I2C1_Uninitialize,
     ARM_I2C1_PowerControl,
     ARM_I2C1_MasterTransmit,

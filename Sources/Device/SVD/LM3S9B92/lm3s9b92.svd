@@ -4807,12 +4807,12 @@ by the other GPIO configuration registers.</description>
                 </enumeratedValue>
               </enumeratedValues>
             </field>
-            <!-- PWRDN2: PWM Unit Clock Divisor field -->
+            <!-- PWRDN2: Power-Down PLL 2 field -->
             <field>
               <name>PWRDN2</name>
               <description>Power-Down PLL 2.</description>
-              <bitOffset>17</bitOffset>
-              <bitWidth>3</bitWidth>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
               <enumeratedValues>
                 <enumeratedValue>
                   <name>PLL2_POWERED_DOWN</name>
@@ -4822,25 +4822,6 @@ by the other GPIO configuration registers.</description>
                 <enumeratedValue>
                   <name>PLL2_POWERED_UP</name>
                   <description>The PLL2 operates normally.</description>
-                  <value>0x0</value>
-                </enumeratedValue>
-              </enumeratedValues>
-            </field>
-            <!-- PWRDN: PLL Power Down field -->
-            <field>
-              <name>PWRDN</name>
-              <description>PLL Power Down.</description>
-              <bitOffset>13</bitOffset>
-              <bitWidth>1</bitWidth>
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>PLL_POWERED_DOWN</name>
-                  <description>The PLL is powered down. Care must be taken to ensure that another clock source is functioning and that the BYPASS bit is set before setting this bit.</description>
-                  <value>0x1</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>PLL_POWERED_UP</name>
-                  <description>The PLL is operating normally.</description>
                   <value>0x0</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -4865,12 +4846,34 @@ by the other GPIO configuration registers.</description>
                 </enumeratedValue>
               </enumeratedValues>
             </field>
-            <!-- OSCSRC: Oscillator Source field -->
-            <field derivedFrom="SYSCTL.RCC.OSCSRC">
+            <!-- OSCSRC2: Oscillator Source 2 field -->
+            <field>
               <name>OSCSRC2</name>
               <description>Oscillator Source 2.</description>
               <bitOffset>4</bitOffset>
-              <bitWidth>3</bitWidth>
+              <bitWidth>2</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>OSCSRC2_MOSC</name>
+                  <description>Main oscillator.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OSCSRC2_PIOSC</name>
+                  <description>Precision internal oscillator (default).</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OSCSRC2_PIOSC_DIV4</name>
+                  <description>Precision internal oscillator / 4.</description>
+                  <value>0x2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OSCSRC2_30KHZ</name>
+                  <description>30-kHz internal oscillator.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+              </enumeratedValues>
             </field>
           </fields>
         </register>

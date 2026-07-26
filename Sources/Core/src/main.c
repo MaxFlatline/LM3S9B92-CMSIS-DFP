@@ -6,7 +6,7 @@
 #include "RTE_Components.h"             // Component selection
 #include CMSIS_device_header
 #include "cmsis_os2.h"                  // CMSIS:RTOS2
-//#include "cmsis_dv.h"
+#include "cmsis_dv.h"
 #include "unity_fixture.h"
 #include <stdio.h>
 #include "EventRecorder.h"              // CMSIS-View:Event Recorder&&DAP
@@ -108,7 +108,7 @@ void app_main (void *argument) {
     LEDdrv->Setup          (GPIO_PIN5, NULL);
     LEDdrv->SetOutput      (GPIO_PIN5, 1U);
     LEDdrv->SetDirection   (GPIO_PIN5, ARM_GPIO_OUTPUT);
-    //osThreadNew(cmsis_dv, NULL, NULL);
+    osThreadNew(cmsis_dv, NULL, NULL);
     
     for (;;) {
         LEDdrv->SetOutput      (GPIO_PIN4, 1U);
