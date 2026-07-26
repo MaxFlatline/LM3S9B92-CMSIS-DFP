@@ -15,13 +15,23 @@
  */
 #define CMSIS_device_header "lm3s9b92.h"
 
+/* ARM::CMSIS Driver Validation:Framework@2.0.0 */
+#define RTE_CMSIS_DV_PACK_VER   "3.1.0"
+/* ARM::CMSIS Driver Validation:I2C@1.4.0 */
+#define RTE_CMSIS_DV_I2C        /* Driver Validation I2C enabled */
+/* ARM::CMSIS-Compiler:OS Interface:CMSIS-RTOS2@2.1.0 */
+#define RTE_CMSIS_Compiler_OS_Interface       /* Compiler OS Interface */
+#define RTE_CMSIS_Compiler_OS_Interface_RTOS2 /* Compiler OS Interface: CMSIS-RTOS2 */
+/* Features */
+#define RTE_CMSIS_Compiler_OS_Interface_RTOS2_LOCKS     /* Implements _mutex functions */
+#define RTE_CMSIS_Compiler_OS_Interface_RTOS2_LIBSPACE  /* Implements per-thread static data management */
 /* ARM::CMSIS-Compiler:STDOUT:Event Recorder@1.1.0 */
 #define RTE_CMSIS_Compiler_STDOUT                /* CMSIS-Compiler STDOUT */
 #define RTE_CMSIS_Compiler_STDOUT_Event_Recorder /* CMSIS-Compiler STDOUT: Event Recorder */
 /* ARM::CMSIS-View:Event Recorder&DAP@1.6.0 */
 #define RTE_CMSIS_View_EventRecorder
 #define RTE_CMSIS_View_EventRecorder_DAP
-/* ARM::CMSIS:RTOS2:Keil RTX5&Source@5.9.0 */
+/* ARM::CMSIS:RTOS2:Keil RTX5&Source@5.9.1 */
 #define RTE_CMSIS_RTOS2                 /* CMSIS-RTOS2 */
 #define RTE_CMSIS_RTOS2_RTX5            /* CMSIS-RTOS2 Keil RTX5 */
 #define RTE_CMSIS_RTOS2_RTX5_SOURCE     /* CMSIS-RTOS2 Keil RTX5 Source */
