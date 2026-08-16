@@ -73,7 +73,7 @@
 // The following value is the system clock divisor.  This will be applied if
 // USESYSDIV (see below) is enabled.  The valid range of dividers is 0-15.
 //
-#define CFG_RCC_SYSDIV 1
+#define CFG_RCC_SYSDIV 2
 
 //      <q> USESYSDIV: Enable System Clock Divider
 //          <i> Check this box to use the System Clock Divider
@@ -112,7 +112,7 @@
 // the system clock.  The value of the divider is determined by the table
 // above.
 //
-#define CFG_RCC_PWMDIV 3
+#define CFG_RCC_PWMDIV 2
 
 //      <q> PWRDN: PLL Power Down
 //          <i> Check this box to disable the PLL.  You must also choose
@@ -132,7 +132,7 @@
 // system clock.  You must set this to 1 if PWRDN (above) is set to 1.  Set
 // this to 0 if you are using the PLL.
 //
-#define CFG_RCC_BYPASS 1
+#define CFG_RCC_BYPASS 0
 
 //      <o> XTAL: Crystal Value
 //              < 0=>  0: 1.0000 MHz  (can not be used with PLL)
@@ -185,7 +185,7 @@
 // Set the following value to 1 to turn off the internal oscillator.  This
 // value can be set to 1 if you are not using the internal oscillator.
 //
-#define CFG_RCC_PIOSCDIS 0
+#define CFG_RCC_PIOSCDIS 1
 
 //      <q> MOSCDIS: Main Oscillator Disable
 //          <i> Check this box to turn off the main oscillator
@@ -210,7 +210,7 @@
 // Set the following value to 1 to use the RCC2 register.  The RCC2 register
 // overrides some of the fields in the RCC register if it is used.
 //
-#define CFG_RCC2_USERCC2 0
+#define CFG_RCC2_USERCC2 1
 
 //      <q> DIV400: Divide PLL as 400 MHz vs. 200 MHz
 //          <i> This bit, along with the SYSDIV2LSB bit, allows additional
@@ -219,7 +219,7 @@
 // Set the following value to 1 to use the 400MHz PLL value and an additional
 //  bit for SYSDIV2.
 //
-#define CFG_RCC2_DIV400 0
+#define CFG_RCC2_DIV400 1
 
 //      <o> SYSDIV2: System Clock Divisor <0-63>
 //          <i> Specifies the divisor used to generate the system clock from
@@ -228,7 +228,7 @@
 // The following value is the system clock divisor.  This will be applied if
 // USESYSDIV in RCC is enabled.  The valid range of dividers is 0-63.
 //
-#define CFG_RCC2_SYSDIV2 3
+#define CFG_RCC2_SYSDIV2 2
 
 //      <q> SYSDIV2LSB: Additional LSB for SYSDIV2
 //          <i> When DIV400 is set, this bit becomes the LSB of SYSDIV2.
@@ -236,7 +236,7 @@
 //
 // This bit can only be set or cleared when DIV400 is set.
 //
-#define CFG_RCC2_SYSDIV2LSB 1
+#define CFG_RCC2_SYSDIV2LSB 0
 
 //      <q> USBPWRDN: Power-Down USB PLL
 //          <i> Check this box to disable the USB PLL.
@@ -245,7 +245,7 @@
 // value as 1 if you do not need to use the PLL. If you are using the USB PLL,
 // then this value must be set to 0.
 //
-#define CFG_RCC2_USBPWRDN 0
+#define CFG_RCC2_USBPWRDN 1
 
 //      <q> PWRDN2: Power Down PLL
 //          <i> Check this box to disable the PLL.  You must also choose
@@ -277,7 +277,7 @@
 // The following value chooses the oscillator source according to the table in
 // the comments above.
 //
-#define CFG_RCC2_OSCSRC2 1
+#define CFG_RCC2_OSCSRC2 0
 
 //  </h>
 //

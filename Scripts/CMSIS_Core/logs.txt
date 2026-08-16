@@ -1,0 +1,56 @@
+
+Arguments: E:\Keil_v5\ARM\cmsis-toolbox\bin\svdconv.exe \Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\Sources\Device\SVD\LM3S9B92\lm3s9b92.svd -o E:\Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\Sources\Device\Include\LM3S9B92 --generate=header --fields=macro
+
+
+*** INFO M347: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/Sources/Device/SVD/LM3S9B92/lm3s9b92.svd (Line 4305) 
+  Field 'R' (width < 6Bit) without any <enumeratedValue> found.
+
+*** INFO M347: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/Sources/Device/SVD/LM3S9B92/lm3s9b92.svd (Line 5035) 
+  Field 'RXF' (width < 6Bit) without any <enumeratedValue> found.
+
+*** INFO M347: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/Sources/Device/SVD/LM3S9B92/lm3s9b92.svd (Line 5069) 
+  Field 'TXF' (width < 6Bit) without any <enumeratedValue> found.
+
+*** INFO M304: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/Sources/Device/SVD/LM3S9B92/lm3s9b92.svd (Line 2502) 
+  Interrupt number overwrite: '8 : I2C0' (Line 1915)
+
+*** INFO M304: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/Sources/Device/SVD/LM3S9B92/lm3s9b92.svd (Line 2969) 
+  Interrupt number overwrite: '37 : I2C1' (Line 2957)
+
+
+Found 0 Error(s) and 0 Warning(s).
+
+Arguments: E:\Keil_v5\ARM\cmsis-toolbox\bin\svdconv.exe \Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\Sources\Device\SVD\LM3S9B92\lm3s9b92.svd -o E:\Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\Sources\Device\SVD\LM3S9B92 --generate sfr
+
+
+*** INFO M347: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/Sources/Device/SVD/LM3S9B92/lm3s9b92.svd (Line 4305) 
+  Field 'R' (width < 6Bit) without any <enumeratedValue> found.
+
+*** INFO M347: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/Sources/Device/SVD/LM3S9B92/lm3s9b92.svd (Line 5035) 
+  Field 'RXF' (width < 6Bit) without any <enumeratedValue> found.
+
+*** INFO M347: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/Sources/Device/SVD/LM3S9B92/lm3s9b92.svd (Line 5069) 
+  Field 'TXF' (width < 6Bit) without any <enumeratedValue> found.
+
+*** INFO M304: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/Sources/Device/SVD/LM3S9B92/lm3s9b92.svd (Line 2502) 
+  Interrupt number overwrite: '8 : I2C0' (Line 1915)
+
+*** INFO M304: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/Sources/Device/SVD/LM3S9B92/lm3s9b92.svd (Line 2969) 
+  Interrupt number overwrite: '37 : I2C1' (Line 2957)
+
+*** WARNING M227: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/Sources/Device/SVD/LM3S9B92/lm3s9b92.svd (Line 5127) 
+  SFD Code generation warning: Enumerated values list for field 'PARTNO' exceeds maximum of 256 elements. List will not be generated.
+
+*** INFO M125: E:/Workshop/Work_in_progress/36_EvalbotPack/LM3S9B92-CMSIS-DFP/Sources/Device/SVD/LM3S9B92/lm3s9b92.svd
+  SfrCC2 report:
+
+SfrCC2 PreProcessor V2.15.0.0
+Copyright (C) 2013 - 2020 ARM Ltd and ARM Germany GmbH. All rights reserved.
+
+SfrCC2 PreProcessing Complete.  0 Warning(s),  0 Error(s)
+
+SfrCC2 report end.
+
+
+
+Found 0 Error(s) and 1 Warning(s).
