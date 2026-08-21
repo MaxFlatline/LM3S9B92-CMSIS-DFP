@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2023 Arm Limited. All rights reserved.
+ * Copyright (c) 2013-2026 Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -17,7 +17,7 @@
  *
  * -----------------------------------------------------------------------------
  *
- * $Revision:   V5.6.0
+ * $Revision:   V5.6.1
  *
  * Project:     CMSIS-RTOS RTX
  * Title:       RTX Configuration definitions
@@ -44,7 +44,7 @@
 //   <i> Defines the combined global dynamic memory size.
 //   <i> Default: 32768
 #ifndef OS_DYNAMIC_MEM_SIZE
-#define OS_DYNAMIC_MEM_SIZE         10240
+#define OS_DYNAMIC_MEM_SIZE         32768
 #endif
  
 //   <o>Kernel Tick Frequency [Hz] <1-1000000>
@@ -228,7 +228,7 @@
 //   <o>Default Processor mode for Thread execution
 //     <0=> Unprivileged mode
 //     <1=> Privileged mode
-//   <i> Default: Unprivileged mode
+//   <i> Default: Privileged mode
 #ifndef OS_PRIVILEGE_MODE
 #define OS_PRIVILEGE_MODE           1
 #endif
@@ -426,7 +426,7 @@
 //   <e>Global Initialization
 //   <i> Initialize Event Recorder during 'osKernelInitialize'.
 #ifndef OS_EVR_INIT
-#define OS_EVR_INIT                 1
+#define OS_EVR_INIT                 0
 #endif
  
 //     <q>Start recording

@@ -6,7 +6,7 @@
 #include "RTE_Components.h"             // Component selection
 #include CMSIS_device_header
 #include "cmsis_os2.h"                  // CMSIS:RTOS2
-//#include "cmsis_dv.h"
+#include "cmsis_dv.h"
 #include "unity_fixture.h"
 #include <stdio.h>
 #include "EventRecorder.h"              // CMSIS-View:Event Recorder&&DAP
@@ -22,7 +22,137 @@ static void RunAllTests (void);
 /* GPIO driver instance */
 extern ARM_DRIVER_GPIO             Driver_GPIO5;
 static ARM_DRIVER_GPIO *LEDdrv =  &Driver_GPIO5;
+
+#define EEPROM_I2C_ADDR       0x50      /* EEPROM I2C address */
  
+/* I2C driver instance */
+extern ARM_DRIVER_I2C            Driver_I2C1;
+static ARM_DRIVER_I2C *I2Cdrv = &Driver_I2C1;
+ 
+static volatile uint32_t I2C_Event;
+ 
+/* I2C Signal Event function callback */
+void I2C_SignalEvent (uint32_t event) {
+ 
+  /* Save received events */
+  I2C_Event |= event;
+ 
+  /* Optionally, user can define specific actions for an event */
+ 
+  if (event & ARM_I2C_EVENT_TRANSFER_INCOMPLETE) {
+    /* Less data was transferred than requested */
+  }
+ 
+  if (event & ARM_I2C_EVENT_TRANSFER_DONE) {
+    /* Transfer or receive is finished */
+  }
+ 
+  if (event & ARM_I2C_EVENT_ADDRESS_NACK) {
+    /* Slave address was not acknowledged */
+  }
+ 
+  if (event & ARM_I2C_EVENT_ARBITRATION_LOST) {
+    /* Master lost bus arbitration */
+  }
+ 
+  if (event & ARM_I2C_EVENT_BUS_ERROR) {
+    /* Invalid start/stop position detected */
+  }
+ 
+  if (event & ARM_I2C_EVENT_BUS_CLEAR) {
+    /* Bus clear operation completed */
+  }
+ 
+  if (event & ARM_I2C_EVENT_GENERAL_CALL) {
+    /* Slave was addressed with a general call address */
+  }
+ 
+  if (event & ARM_I2C_EVENT_SLAVE_RECEIVE) {
+    /* Slave addressed as receiver but SlaveReceive operation is not started */
+  }
+ 
+  if (event & ARM_I2C_EVENT_SLAVE_TRANSMIT) {
+    /* Slave addressed as transmitter but SlaveTransmit operation is not started */
+  }
+}
+ 
+/* Read I2C connected EEPROM (event driven example) */
+int32_t EEPROM_Read_Event (uint16_t addr, uint8_t *buf, uint32_t len) {
+  uint8_t a[2];
+ 
+  a[0] = (uint8_t)(addr >> 8);
+  a[1] = (uint8_t)(addr & 0xFF);
+ 
+  /* Clear event flags before new transfer */
+  I2C_Event = 0U;
+ 
+  I2Cdrv->MasterTransmit (EEPROM_I2C_ADDR, a, 2, true);
+ 
+  /* Wait until transfer completed */
+  while ((I2C_Event & ARM_I2C_EVENT_TRANSFER_DONE) == 0U);
+  /* Check if all data transferred */
+  if ((I2C_Event & ARM_I2C_EVENT_TRANSFER_INCOMPLETE) != 0U) return -1;
+ 
+  /* Clear event flags before new transfer */
+  I2C_Event = 0U;
+ 
+  I2Cdrv->MasterReceive (EEPROM_I2C_ADDR, buf, len, false);
+ 
+  /* Wait until transfer completed */
+  while ((I2C_Event & ARM_I2C_EVENT_TRANSFER_DONE) == 0U);
+  /* Check if all data transferred */
+  if ((I2C_Event & ARM_I2C_EVENT_TRANSFER_INCOMPLETE) != 0U) return -1;
+ 
+  return 0;
+}
+ 
+/* Read I2C connected EEPROM (pooling example) */
+int32_t EEPROM_Read_Pool (uint16_t addr, uint8_t *buf, uint32_t len) {
+  uint8_t a[2];
+ 
+  a[0] = (uint8_t)(addr >> 8);
+  a[1] = (uint8_t)(addr & 0xFF);
+ 
+  I2Cdrv->MasterTransmit (EEPROM_I2C_ADDR, a, 2, true);
+ 
+  /* Wait until transfer completed */
+  while (I2Cdrv->GetStatus().busy);
+  /* Check if all data transferred */
+  if (I2Cdrv->GetDataCount () != len) return -1;
+ 
+  I2Cdrv->MasterReceive (EEPROM_I2C_ADDR, buf, len, false);
+ 
+  /* Wait until transfer completed */
+  while (I2Cdrv->GetStatus().busy);
+  /* Check if all data transferred */
+  if (I2Cdrv->GetDataCount () != len) return -1;
+ 
+  return 0;
+}
+ 
+/* Initialize I2C connected EEPROM */
+int32_t EEPROM_Initialize (bool pooling) {
+  int32_t status;
+  uint8_t val;
+ 
+  if (pooling == true) {
+    I2Cdrv->Initialize (NULL);
+  } else {
+    I2Cdrv->Initialize (I2C_SignalEvent);
+  }
+  I2Cdrv->PowerControl (ARM_POWER_FULL);
+  I2Cdrv->Control      (ARM_I2C_BUS_SPEED, ARM_I2C_BUS_SPEED_FAST);
+  I2Cdrv->Control      (ARM_I2C_BUS_CLEAR, 0);
+ 
+  /* Check if EEPROM can be accessed */
+  if (pooling == true) {
+    status = EEPROM_Read_Pool (0x00, &val, 1);
+  } else {
+    status = EEPROM_Read_Event (0x00, &val, 1);
+  }
+ 
+  return (status);
+}
 /* Pin mapping */
 #define GPIO_PIN0       0U
 #define GPIO_PIN1       1U
@@ -32,68 +162,6 @@ static ARM_DRIVER_GPIO *LEDdrv =  &Driver_GPIO5;
 #define GPIO_PIN5       5U
 #define GPIO_PIN6       6U
 #define GPIO_PIN7       7U
-// 
-///* GPIO Signal Event callback */
-//static void GPIO_SignalEvent (ARM_GPIO_Pin_t pin, uint32_t event) {
-// 
-//  switch (pin) {
-//    case GPIO_PIN1:
-//      /* Events on pin GPIO_PIN1 */
-//      if (event & ARM_GPIO_EVENT_RISING_EDGE) {
-//        /* Rising-edge detected */
-//      }
-//      if (event & ARM_GPIO_EVENT_FALLING_EDGE) {
-//        /* Falling-edge detected */
-//      }
-//      break;
-//  }
-//}
-// 
-///* Get GPIO Input 0 */
-//uint32_t GPIO_GetInput0 (void) {
-//  return (GPIOdrv->GetInput(GPIO_PIN0));
-//}
-// 
-///* Get GPIO Input 1 */
-//uint32_t GPIO_GetInput1 (void) {
-//  return (GPIOdrv->GetInput(GPIO_PIN1));
-//}
-// 
-///* Set GPIO Output Pin 2 */
-//void GPIO_SetOutput2 (uint32_t val) {
-//  GPIOdrv->SetOutput(GPIO_PIN2, val);
-//}
-// 
-///* Set GPIO Output Pin 3 */
-//void GPIO_SetOutput3 (uint32_t val) {
-//  GPIOdrv->SetOutput(GPIO_PIN3, val);
-//}
-// 
-///* Setup GPIO pins */
-//void GPIO_Setup (void) {
-// 
-//  /* Pin GPIO_PIN0: Input */
-//  GPIOdrv->Setup          (GPIO_PIN0, NULL);
-//  GPIOdrv->SetDirection   (GPIO_PIN0, ARM_GPIO_INPUT);
-// 
-//  /* Pin GPIO_PIN1: Input with trigger on rising and falling edge */
-//  GPIOdrv->Setup          (GPIO_PIN1, GPIO_SignalEvent);
-//  GPIOdrv->SetDirection   (GPIO_PIN1, ARM_GPIO_INPUT);
-//  GPIOdrv->SetEventTrigger(GPIO_PIN1, ARM_GPIO_TRIGGER_EITHER_EDGE);
-// 
-//  /* Pin GPIO_PIN2: Output push-pull (initial level 0) */
-//  GPIOdrv->Setup          (GPIO_PIN2, NULL);
-//  GPIOdrv->SetOutput      (GPIO_PIN2, 0U);
-//  GPIOdrv->SetDirection   (GPIO_PIN2, ARM_GPIO_OUTPUT);
-// 
-//  /* Pin GPIO_PIN3: Output open-drain with pull-up resistor (initial level 1) */
-//  GPIOdrv->Setup          (GPIO_PIN3, NULL);
-//  GPIOdrv->SetPullResistor(GPIO_PIN3, ARM_GPIO_PULL_UP);
-//  GPIOdrv->SetOutputMode  (GPIO_PIN3, ARM_GPIO_OPEN_DRAIN);
-//  GPIOdrv->SetOutput      (GPIO_PIN3, 1U);
-//  GPIOdrv->SetDirection   (GPIO_PIN3, ARM_GPIO_OUTPUT);
-//}
-
 
 /*----------------------------------------------------------------------------
  * Application main thread
@@ -108,8 +176,10 @@ void app_main (void *argument) {
     LEDdrv->Setup          (GPIO_PIN5, NULL);
     LEDdrv->SetOutput      (GPIO_PIN5, 1U);
     LEDdrv->SetDirection   (GPIO_PIN5, ARM_GPIO_OUTPUT);
-    //osThreadNew(cmsis_dv, NULL, NULL);
     
+    osThreadNew(cmsis_dv, NULL, NULL);
+    
+    EEPROM_Initialize(false);
     for (;;) {
         LEDdrv->SetOutput      (GPIO_PIN4, 1U);
         LEDdrv->SetOutput      (GPIO_PIN5, 0U);

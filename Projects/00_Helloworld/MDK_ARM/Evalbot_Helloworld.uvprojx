@@ -10,8 +10,8 @@
       <TargetName>Evalbot_Release</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pArmCC>6210000::V6.21::ARMCLANG</pArmCC>
-      <pCCUsed>6210000::V6.21::ARMCLANG</pCCUsed>
+      <pArmCC>6240000::V6.24::ARMCLANG</pArmCC>
+      <pCCUsed>6240000::V6.24::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -34,8 +34,8 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:LM3S9B92$SVD\lm3s9b92.svd</SFDFile>
-          <bCustSvd>0</bCustSvd>
+          <SFDFile>E:\Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\Sources\Device\SVD\LM3S9B92\lm3s9b92.SFR</SFDFile>
+          <bCustSvd>1</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
           <IncludePath></IncludePath>
@@ -191,7 +191,7 @@
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
-            <useUlib>0</useUlib>
+            <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <nSecure>0</nSecure>
@@ -203,7 +203,7 @@
             <NoZi2>0</NoZi2>
             <NoZi3>0</NoZi3>
             <NoZi4>0</NoZi4>
-            <NoZi5>0</NoZi5>
+            <NoZi5>1</NoZi5>
             <Ro1Chk>0</Ro1Chk>
             <Ro2Chk>0</Ro2Chk>
             <Ro3Chk>0</Ro3Chk>
@@ -303,12 +303,12 @@
               <OCR_RVCT9>
                 <Type>0</Type>
                 <StartAddress>0x20000000</StartAddress>
-                <Size>0x18000</Size>
+                <Size>0x13000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
+                <StartAddress>0x20013000</StartAddress>
+                <Size>0x5000</Size>
               </OCR_RVCT10>
             </OnChipMemories>
             <RvctStartVector></RvctStartVector>
@@ -341,7 +341,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\Sources\Core\inc;..\..\..\Libraries\StellarisWare;..\..\..\Libraries\StellarisWare\driverlib;..\..\..\Sources\CMSIS_Drivers\GPIO;..\..\..\Sources\CMSIS_Drivers\UART</IncludePath>
+              <IncludePath>..\..\..\Sources\Core\inc;..\..\..\Libraries\StellarisWare;..\..\..\Libraries\StellarisWare\driverlib;..\..\..\Sources\CMSIS_Drivers\GPIO;..\..\..\Sources\CMSIS_Drivers\UART;..\..\..\Sources\Device\Include\LM3S9B92;..\..\..\Sources\CMSIS_Drivers\I2C;..\..\..\Sources\CMSIS_Drivers\Common\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -393,12 +393,12 @@
             <File>
               <FileName>system_lm3s9b92.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\Sources\Core\src\system_lm3s9b92.c</FilePath>
+              <FilePath>..\..\..\Sources\Device\Source\LM3S9B92\system_lm3s9b92.c</FilePath>
             </File>
             <File>
               <FileName>startup_lm3s9b92_ac5_noSct.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\..\..\Sources\Core\src\startup_lm3s9b92_ac5_noSct.s</FilePath>
+              <FilePath>..\..\..\Sources\Device\Source\LM3S9B92\ARM\AC5\startup_lm3s9b92_ac5_noSct.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -548,6 +548,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>CMSIS-Core\Common</GroupName>
+          <Files>
+            <File>
+              <FileName>SYS_LM3S9B92_Config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\..\Sources\Device\Include\LM3S9B92\SYS_LM3S9B92_Config.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>CMSIS-Driver\GPIO</GroupName>
           <Files>
             <File>
@@ -564,41 +574,6 @@
               <FileName>UART_LM3S9B92.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Sources\CMSIS_Drivers\UART\UART_LM3S9B92.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>CMSIS-Driver\SPI</GroupName>
-          <Files>
-            <File>
-              <FileName>SPI_LM3S9B92.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Sources\CMSIS_Drivers\SPI\SPI_LM3S9B92.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>CMSIS-Driver\I2C</GroupName>
-          <Files>
-            <File>
-              <FileName>I2C_LM3S9B92.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Sources\CMSIS_Drivers\I2C\I2C_LM3S9B92.c</FilePath>
-            </File>
-            <File>
-              <FileName>I2C_LM3S9B92_Config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\..\Sources\CMSIS_Drivers\Common\I2C_LM3S9B92_Config.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Utilities\STDIO Retarget</GroupName>
-          <Files>
-            <File>
-              <FileName>stdio_retarget.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Sources\Utilities\STDIO_Retarget\stdio_retarget.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -654,10 +629,117 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>CMSIS-Driver\SPI</GroupName>
+          <GroupOption>
+            <CommonProperty>
+              <UseCPPCompiler>0</UseCPPCompiler>
+              <RVCTCodeConst>0</RVCTCodeConst>
+              <RVCTZI>0</RVCTZI>
+              <RVCTOtherData>0</RVCTOtherData>
+              <ModuleSelection>0</ModuleSelection>
+              <IncludeInBuild>0</IncludeInBuild>
+              <AlwaysBuild>2</AlwaysBuild>
+              <GenerateAssemblyFile>2</GenerateAssemblyFile>
+              <AssembleAssemblyFile>2</AssembleAssemblyFile>
+              <PublicsOnly>2</PublicsOnly>
+              <StopOnExitCode>11</StopOnExitCode>
+              <CustomArgument></CustomArgument>
+              <IncludeLibraryModules></IncludeLibraryModules>
+              <ComprImg>1</ComprImg>
+            </CommonProperty>
+            <GroupArmAds>
+              <Cads>
+                <interw>2</interw>
+                <Optim>0</Optim>
+                <oTime>2</oTime>
+                <SplitLS>2</SplitLS>
+                <OneElfS>2</OneElfS>
+                <Strict>2</Strict>
+                <EnumInt>2</EnumInt>
+                <PlainCh>2</PlainCh>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <wLevel>0</wLevel>
+                <uThumb>2</uThumb>
+                <uSurpInc>2</uSurpInc>
+                <uC99>2</uC99>
+                <uGnu>2</uGnu>
+                <useXO>2</useXO>
+                <v6Lang>0</v6Lang>
+                <v6LangP>0</v6LangP>
+                <vShortEn>2</vShortEn>
+                <vShortWch>2</vShortWch>
+                <v6Lto>2</v6Lto>
+                <v6WtE>2</v6WtE>
+                <v6Rtti>2</v6Rtti>
+                <VariousControls>
+                  <MiscControls></MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
+                </VariousControls>
+              </Cads>
+              <Aads>
+                <interw>2</interw>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <thumb>2</thumb>
+                <SplitLS>2</SplitLS>
+                <SwStkChk>2</SwStkChk>
+                <NoWarn>2</NoWarn>
+                <uSurpInc>2</uSurpInc>
+                <useXO>2</useXO>
+                <ClangAsOpt>0</ClangAsOpt>
+                <VariousControls>
+                  <MiscControls></MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
+                </VariousControls>
+              </Aads>
+            </GroupArmAds>
+          </GroupOption>
+          <Files>
+            <File>
+              <FileName>SPI_LM3S9B92.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Sources\CMSIS_Drivers\SPI\SPI_LM3S9B92.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>CMSIS-Driver\I2C</GroupName>
+          <Files>
+            <File>
+              <FileName>I2C_LM3S9B92.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Sources\CMSIS_Drivers\I2C\I2C_LM3S9B92.c</FilePath>
+            </File>
+            <File>
+              <FileName>I2C_LM3S9B92_Config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\..\Sources\CMSIS_Drivers\I2C\I2C_LM3S9B92_Config.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>CMSIS-Driver\Common</GroupName>
+          <Files>
+            <File>
+              <FileName>driver_utils.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\..\Sources\CMSIS_Drivers\Common\Include\driver_utils.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS Driver</GroupName>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS Driver Validation</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS-Compiler</GroupName>
@@ -674,7 +756,6 @@
       <TargetName>Evalbot_Debug</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pArmCC>6240000::V6.24::ARMCLANG</pArmCC>
       <pCCUsed>6240000::V6.24::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
@@ -698,7 +779,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>E:\Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\SVD\lm3s9b92.SFR</SFDFile>
+          <SFDFile>E:\Workshop\Work_in_progress\36_EvalbotPack\LM3S9B92-CMSIS-DFP\Sources\Device\SVD\LM3S9B92\lm3s9b92.SFR</SFDFile>
           <bCustSvd>1</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -1002,10 +1083,10 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>-gdwarf-3</MiscControls>
+              <MiscControls>-gdwarf-2</MiscControls>
               <Define>TARGET_IS_TEMPEST_RC3, PART_LM3S9B92</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\Sources\Core\inc;..\..\..\Libraries\StellarisWare;..\..\..\Libraries\StellarisWare\driverlib;..\..\..\Sources\CMSIS_Drivers\GPIO;..\..\..\Sources\CMSIS_Drivers\UART;..\..\..\Sources\CMSIS_Drivers\Common</IncludePath>
+              <IncludePath>..\..\..\Libraries\StellarisWare;..\..\..\Libraries\StellarisWare\driverlib;..\..\..\Sources\CMSIS_Drivers\GPIO;..\..\..\Sources\CMSIS_Drivers\UART;..\..\..\Sources\CMSIS_Drivers\Common;..\..\..\Sources\Device\Include\LM3S9B92;..\..\..\Sources\Core\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1057,12 +1138,12 @@
             <File>
               <FileName>system_lm3s9b92.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\Sources\Core\src\system_lm3s9b92.c</FilePath>
+              <FilePath>..\..\..\Sources\Device\Source\LM3S9B92\system_lm3s9b92.c</FilePath>
             </File>
             <File>
               <FileName>startup_lm3s9b92_ac5_noSct.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\..\..\Sources\Core\src\startup_lm3s9b92_ac5_noSct.s</FilePath>
+              <FilePath>..\..\..\Sources\Device\Source\LM3S9B92\ARM\AC5\startup_lm3s9b92_ac5_noSct.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -1281,6 +1362,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>CMSIS-Core\Common</GroupName>
+          <Files>
+            <File>
+              <FileName>SYS_LM3S9B92_Config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\..\Sources\Device\Include\LM3S9B92\SYS_LM3S9B92_Config.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>CMSIS-Driver\GPIO</GroupName>
           <Files>
             <File>
@@ -1419,123 +1510,21 @@
               <FileName>I2C_LM3S9B92.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\Sources\CMSIS_Drivers\I2C\I2C_LM3S9B92.c</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>0</IncludeInBuild>
-                  <AlwaysBuild>2</AlwaysBuild>
-                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                </CommonProperty>
-                <FileArmAds>
-                  <Cads>
-                    <interw>2</interw>
-                    <Optim>0</Optim>
-                    <oTime>2</oTime>
-                    <SplitLS>2</SplitLS>
-                    <OneElfS>2</OneElfS>
-                    <Strict>2</Strict>
-                    <EnumInt>2</EnumInt>
-                    <PlainCh>2</PlainCh>
-                    <Ropi>2</Ropi>
-                    <Rwpi>2</Rwpi>
-                    <wLevel>0</wLevel>
-                    <uThumb>2</uThumb>
-                    <uSurpInc>2</uSurpInc>
-                    <uC99>2</uC99>
-                    <uGnu>2</uGnu>
-                    <useXO>2</useXO>
-                    <v6Lang>0</v6Lang>
-                    <v6LangP>0</v6LangP>
-                    <vShortEn>2</vShortEn>
-                    <vShortWch>2</vShortWch>
-                    <v6Lto>2</v6Lto>
-                    <v6WtE>2</v6WtE>
-                    <v6Rtti>2</v6Rtti>
-                    <VariousControls>
-                      <MiscControls></MiscControls>
-                      <Define></Define>
-                      <Undefine></Undefine>
-                      <IncludePath></IncludePath>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
             </File>
             <File>
               <FileName>I2C_LM3S9B92_Config.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\..\Sources\CMSIS_Drivers\Common\I2C_LM3S9B92_Config.h</FilePath>
+              <FilePath>..\..\..\Sources\CMSIS_Drivers\I2C\I2C_LM3S9B92_Config.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>Utilities\STDIO Retarget</GroupName>
+          <GroupName>CMSIS-Driver\Common</GroupName>
           <Files>
             <File>
-              <FileName>stdio_retarget.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Sources\Utilities\STDIO_Retarget\stdio_retarget.c</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>0</IncludeInBuild>
-                  <AlwaysBuild>2</AlwaysBuild>
-                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                </CommonProperty>
-                <FileArmAds>
-                  <Cads>
-                    <interw>2</interw>
-                    <Optim>0</Optim>
-                    <oTime>2</oTime>
-                    <SplitLS>2</SplitLS>
-                    <OneElfS>2</OneElfS>
-                    <Strict>2</Strict>
-                    <EnumInt>2</EnumInt>
-                    <PlainCh>2</PlainCh>
-                    <Ropi>2</Ropi>
-                    <Rwpi>2</Rwpi>
-                    <wLevel>0</wLevel>
-                    <uThumb>2</uThumb>
-                    <uSurpInc>2</uSurpInc>
-                    <uC99>2</uC99>
-                    <uGnu>2</uGnu>
-                    <useXO>2</useXO>
-                    <v6Lang>0</v6Lang>
-                    <v6LangP>0</v6LangP>
-                    <vShortEn>2</vShortEn>
-                    <vShortWch>2</vShortWch>
-                    <v6Lto>2</v6Lto>
-                    <v6WtE>2</v6WtE>
-                    <v6Rtti>2</v6Rtti>
-                    <VariousControls>
-                      <MiscControls></MiscControls>
-                      <Define></Define>
-                      <Undefine></Undefine>
-                      <IncludePath></IncludePath>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
+              <FileName>driver_utils.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\..\Sources\CMSIS_Drivers\Common\Include\driver_utils.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1613,6 +1602,9 @@
         </Group>
         <Group>
           <GroupName>::CMSIS Driver</GroupName>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS Driver Validation</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS-Compiler</GroupName>
@@ -2011,12 +2003,12 @@
             <File>
               <FileName>system_lm3s9b92.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\Sources\Core\src\system_lm3s9b92.c</FilePath>
+              <FilePath>..\..\..\Sources\Device\Source\LM3S9B92\system_lm3s9b92.c</FilePath>
             </File>
             <File>
               <FileName>startup_lm3s9b92_ac5_noSct.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\..\..\Sources\Core\src\startup_lm3s9b92_ac5_noSct.s</FilePath>
+              <FilePath>..\..\..\Sources\Device\Source\LM3S9B92\ARM\AC5\startup_lm3s9b92_ac5_noSct.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -2166,6 +2158,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>CMSIS-Core\Common</GroupName>
+          <Files>
+            <File>
+              <FileName>SYS_LM3S9B92_Config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\..\Sources\Device\Include\LM3S9B92\SYS_LM3S9B92_Config.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>CMSIS-Driver\GPIO</GroupName>
           <Files>
             <File>
@@ -2206,17 +2208,17 @@
             <File>
               <FileName>I2C_LM3S9B92_Config.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\..\Sources\CMSIS_Drivers\Common\I2C_LM3S9B92_Config.h</FilePath>
+              <FilePath>..\..\..\Sources\CMSIS_Drivers\I2C\I2C_LM3S9B92_Config.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>Utilities\STDIO Retarget</GroupName>
+          <GroupName>CMSIS-Driver\Common</GroupName>
           <Files>
             <File>
-              <FileName>stdio_retarget.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Sources\Utilities\STDIO_Retarget\stdio_retarget.c</FilePath>
+              <FileName>driver_utils.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\..\Sources\CMSIS_Drivers\Common\Include\driver_utils.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2225,6 +2227,9 @@
         </Group>
         <Group>
           <GroupName>::CMSIS Driver</GroupName>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS Driver Validation</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS-Compiler</GroupName>
@@ -2273,6 +2278,14 @@
           <targetInfo name="Evalbot_Release"/>
         </targetInfos>
       </api>
+      <api Capiversion="1.1.0" Cclass="CMSIS-Compiler" Cgroup="OS Interface" condition="ARMCC CortexDevice" exclusive="1">
+        <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.3.0"/>
+        <targetInfos>
+          <targetInfo name="Evalbot_Debug"/>
+          <targetInfo name="Evalbot_Debug_RAM"/>
+          <targetInfo name="Evalbot_Release"/>
+        </targetInfos>
+      </api>
       <api Capiversion="1.1.0" Cclass="CMSIS-Compiler" Cgroup="STDOUT" condition="CortexDevice" exclusive="1">
         <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
         <targetInfos>
@@ -2299,6 +2312,22 @@
       </api>
     </apis>
     <components>
+      <component Cclass="CMSIS Driver Validation" Cgroup="Framework" Cvendor="ARM" Cversion="2.0.0" condition="CMSIS Core with RTOS and STDOUT" ymlID="CMSIS Driver Validation:Framework">
+        <package name="CMSIS-Driver_Validation" schemaVersion="1.7.31" url="https://www.keil.com/pack/" vendor="ARM" version="3.1.0-dev"/>
+        <targetInfos>
+          <targetInfo name="Evalbot_Debug"/>
+          <targetInfo name="Evalbot_Debug_RAM"/>
+          <targetInfo name="Evalbot_Release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="CMSIS Driver Validation" Cgroup="I2C" Cvendor="ARM" Cversion="1.4.0" condition="CMSIS Driver Validation I2C" ymlID="CMSIS Driver Validation:I2C">
+        <package name="CMSIS-Driver_Validation" schemaVersion="1.7.31" url="https://www.keil.com/pack/" vendor="ARM" version="3.1.0-dev"/>
+        <targetInfos>
+          <targetInfo name="Evalbot_Debug"/>
+          <targetInfo name="Evalbot_Debug_RAM"/>
+          <targetInfo name="Evalbot_Release"/>
+        </targetInfos>
+      </component>
       <component Capiversion="1.0.0" Cclass="CMSIS Driver" Cgroup="GPIO" Csub="Custom" Cvendor="ARM" Cversion="1.0.0" custom="1" ymlID="CMSIS Driver:GPIO:Custom">
         <package name="CMSIS" schemaVersion="1.7.40" url="https://www.keil.com/pack/" vendor="ARM" version="6.2.0"/>
         <targetInfos>
@@ -2331,8 +2360,16 @@
           <targetInfo name="Evalbot_Release"/>
         </targetInfos>
       </component>
-      <component Cclass="CMSIS-Compiler" Cgroup="CORE" Cvendor="ARM" Cversion="1.1.0" condition="ARMCC CortexDevice" ymlID="CMSIS-Compiler:CORE">
-        <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
+      <component Cclass="CMSIS-Compiler" Cgroup="CORE" Cvendor="ARM" Cversion="1.2.1" condition="ARMCC CortexDevice" ymlID="CMSIS-Compiler:CORE">
+        <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.3.0"/>
+        <targetInfos>
+          <targetInfo name="Evalbot_Debug"/>
+          <targetInfo name="Evalbot_Debug_RAM"/>
+          <targetInfo name="Evalbot_Release"/>
+        </targetInfos>
+      </component>
+      <component Capiversion="1.1.0" Cclass="CMSIS-Compiler" Cgroup="OS Interface" Csub="CMSIS-RTOS2" Cvendor="ARM" Cversion="2.1.0" condition="ARMCC CORE CMSIS-RTOS2" ymlID="CMSIS-Compiler:OS Interface:CMSIS-RTOS2">
+        <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.3.0"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
           <targetInfo name="Evalbot_Debug_RAM"/>
@@ -2352,26 +2389,23 @@
         <targetInfos>
           <targetInfo name="Evalbot_Debug">
             <mem>
-              <RVCTOtherData>5</RVCTOtherData>
               <RVCTZI>5</RVCTZI>
             </mem>
           </targetInfo>
           <targetInfo name="Evalbot_Debug_RAM">
             <mem>
-              <RVCTOtherData>5</RVCTOtherData>
               <RVCTZI>5</RVCTZI>
             </mem>
           </targetInfo>
           <targetInfo name="Evalbot_Release">
             <mem>
-              <RVCTOtherData>5</RVCTOtherData>
               <RVCTZI>5</RVCTZI>
             </mem>
           </targetInfo>
         </targetInfos>
       </component>
-      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="6.1.1" condition="ARMv6_7_8-M Device" ymlID="CMSIS:CORE">
-        <package name="CMSIS" schemaVersion="1.7.40" url="https://www.keil.com/pack/" vendor="ARM" version="6.2.0"/>
+      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="6.2.0" condition="ARMv6_7_8-M Device" ymlID="CMSIS:CORE">
+        <package name="CMSIS" schemaVersion="1.7.53" url="https://www.keil.com/pack/" vendor="ARM" version="6.3.0"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
           <targetInfo name="Evalbot_Debug_RAM"/>
@@ -2386,8 +2420,8 @@
           <targetInfo name="Evalbot_Release"/>
         </targetInfos>
       </component>
-      <component Capiversion="2.3.0" Cclass="CMSIS" Cgroup="RTOS2" Csub="Keil RTX5" Cvariant="Source" Cvendor="ARM" Cversion="5.9.0" condition="RTX5" ymlID="CMSIS:RTOS2:Keil RTX5&amp;Source">
-        <package name="CMSIS-RTX" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
+      <component Capiversion="2.3.0" Cclass="CMSIS" Cgroup="RTOS2" Csub="Keil RTX5" Cvariant="Source" Cvendor="ARM" Cversion="5.9.1" condition="RTX5" ymlID="CMSIS:RTOS2:Keil RTX5&amp;Source">
+        <package name="CMSIS-RTX" schemaVersion="1.7.54" url="https://www.keil.com/pack/" vendor="ARM" version="5.9.1"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
           <targetInfo name="Evalbot_Debug_RAM"/>
@@ -2416,18 +2450,18 @@
       </file>
       <file attr="config" category="source" name="Config\RTX_Config.c" version="5.2.0">
         <instance index="0">RTE\CMSIS\RTX_Config.c</instance>
-        <component Capiversion="2.3.0" Cclass="CMSIS" Cgroup="RTOS2" Csub="Keil RTX5" Cvariant="Source" Cvendor="ARM" Cversion="5.9.0" condition="RTX5"/>
-        <package name="CMSIS-RTX" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
+        <component Capiversion="2.3.0" Cclass="CMSIS" Cgroup="RTOS2" Csub="Keil RTX5" Cvariant="Source" Cvendor="ARM" Cversion="5.9.1" condition="RTX5"/>
+        <package name="CMSIS-RTX" schemaVersion="1.7.54" url="https://www.keil.com/pack/" vendor="ARM" version="5.9.1"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
           <targetInfo name="Evalbot_Debug_RAM"/>
           <targetInfo name="Evalbot_Release"/>
         </targetInfos>
       </file>
-      <file attr="config" category="header" name="Config\RTX_Config.h" version="5.6.0">
+      <file attr="config" category="header" name="Config\RTX_Config.h" version="5.6.1">
         <instance index="0">RTE\CMSIS\RTX_Config.h</instance>
-        <component Capiversion="2.3.0" Cclass="CMSIS" Cgroup="RTOS2" Csub="Keil RTX5" Cvariant="Source" Cvendor="ARM" Cversion="5.9.0" condition="RTX5"/>
-        <package name="CMSIS-RTX" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
+        <component Capiversion="2.3.0" Cclass="CMSIS" Cgroup="RTOS2" Csub="Keil RTX5" Cvariant="Source" Cvendor="ARM" Cversion="5.9.1" condition="RTX5"/>
+        <package name="CMSIS-RTX" schemaVersion="1.7.54" url="https://www.keil.com/pack/" vendor="ARM" version="5.9.1"/>
         <targetInfos>
           <targetInfo name="Evalbot_Debug"/>
           <targetInfo name="Evalbot_Debug_RAM"/>
@@ -2447,10 +2481,14 @@
         <targetInfos/>
       </file>
       <file attr="config" category="header" name="Config\DV_I2C_Config.h" version="1.0.0">
-        <instance index="0" removed="1">RTE\CMSIS_Driver_Validation\DV_I2C_Config.h</instance>
+        <instance index="0">RTE\CMSIS_Driver_Validation\DV_I2C_Config.h</instance>
         <component Cclass="CMSIS Driver Validation" Cgroup="I2C" Cvendor="ARM" Cversion="1.4.0" condition="CMSIS Driver Validation I2C"/>
-        <package name="CMSIS-Driver_Validation" schemaVersion="1.7.31" url="https://www.keil.com/pack/" vendor="ARM" version="3.1.0-dev"/>
-        <targetInfos/>
+        <package name="CMSIS-Driver_Validation" schemaVersion="1.7.52" url="https://www.keil.com/pack/" vendor="ARM" version="3.1.0"/>
+        <targetInfos>
+          <targetInfo name="Evalbot_Debug"/>
+          <targetInfo name="Evalbot_Debug_RAM"/>
+          <targetInfo name="Evalbot_Release"/>
+        </targetInfos>
       </file>
       <file attr="config" category="header" name="Config\DV_SPI_Config.h" version="1.1.0">
         <instance index="0" removed="1">RTE\CMSIS_Driver_Validation\DV_SPI_Config.h</instance>
