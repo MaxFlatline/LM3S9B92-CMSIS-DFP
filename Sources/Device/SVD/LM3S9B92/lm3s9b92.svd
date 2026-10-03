@@ -1893,6 +1893,1028 @@ by the other GPIO configuration registers.</description>
       </interrupt>
     </peripheral>
     
+    <!-- SSI 0 -->
+    <peripheral>
+      <name>SSI0</name>
+      <version>1.0</version>
+      <description>Synchronous Serial Interface 0.</description>
+      <baseAddress>0x40008000</baseAddress>
+      <groupName>SSI</groupName>
+      <headerStructName>SSI</headerStructName>
+      <disableCondition>(SYSCTL->RCGC1->SSI0 == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC1->SSI0 == 0) &amp;&amp; (SYSCTL->DCGC1->SSI0 == 0)))</disableCondition>
+      
+      <size>32</size>
+      <access>read-write</access>
+      
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x00001000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>SSI0</name>
+        <description>Synchronous Serial Interface 0 interrupt.</description>
+        <value>7</value>
+      </interrupt>
+      
+      <registers>
+      <!-- CR0: Control 0 Register -->
+        <register>
+          <name>CR0</name>
+          <description>The SSICR0 register contains bit fields that control various functions within the SSI module. Functionality such as protocol mode, clock rate, and data size are configured in this register.</description>
+          <addressOffset>0x00000000</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000FFFF</resetMask>
+          
+          <fields>
+            <!-- SCR: SSI Serial Clock Rate field -->
+            <field>
+              <name>SCR</name>
+              <description>This bit field is used to generate the transmit and receive bit rate of the SSI. The bit rate is:\nBR=SSIClk/(CPSDVSR * (1 + SCR))\nwhere CPSDVSR is an even value from 2-254 programmed in the SSICPSR register, and SCR is a value from 0-255.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>8</bitWidth>
+              <access>read-write</access>
+            </field>
+            <!-- SPH: SSI Serial Clock Phase field -->
+            <field>
+              <name>SPH</name>
+              <description>This bit is only applicable to the Freescale SPI Format. The SPH control bit selects the clock edge that captures data and allows it to change state. This bit has the most impact on the first bit transmitted by either allowing or not allowing a clock transition before the first data capture edge.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SPH_PHASE_SECOND</name>
+                  <description>Data is captured on the second clock edge transition.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SPH_PHASE_FIRST</name>
+                  <description>Data is captured on the first clock edge transition.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SPO: SSI Serial Clock Polarity field -->
+            <field>
+              <name>SPO</name>
+              <description>SSI Serial Clock Polarity.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SPO_POLARITY_HIGH</name>
+                  <description>A steady state High value is placed on the SSIClk pin when data is not being transferred.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SPO_POLARITY_LOW</name>
+                  <description>A steady state Low value is placed on the SSIClk pin.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- FRF: SSI Frame Format Select field -->
+            <field>
+              <name>FRF</name>
+              <description>SSI Frame Format Select.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>2</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>FRF_FORMAT_MICROWIRE</name>
+                  <description>MICROWIRE Frame Format.</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>FRF_FORMAT_TI</name>
+                  <description>Texas Instruments Synchronous Serial Frame Format.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>FRF_FORMAT_FREESCALE</name>
+                  <description>Freescale SPI Frame Format.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DSS: SSI Data Size Select field -->
+            <field>
+              <name>DSS</name>
+              <description>SSI Data Size Select.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>4</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DSS_DSIZE_16</name>
+                  <description>16-bit data.</description>
+                  <value>0xF</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DSS_DSIZE_15</name>
+                  <description>15-bit data.</description>
+                  <value>0xE</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DSS_DSIZE_14</name>
+                  <description>14-bit data.</description>
+                  <value>0xD</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DSS_DSIZE_13</name>
+                  <description>13-bit data.</description>
+                  <value>0xC</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DSS_DSIZE_12</name>
+                  <description>12-bit data.</description>
+                  <value>0xB</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DSS_DSIZE_11</name>
+                  <description>11-bit data.</description>
+                  <value>0xA</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DSS_DSIZE_10</name>
+                  <description>10-bit data.</description>
+                  <value>0x9</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DSS_DSIZE_9</name>
+                  <description>9-bit data.</description>
+                  <value>0x8</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DSS_DSIZE_8</name>
+                  <description>8-bit data.</description>
+                  <value>0x7</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DSS_DSIZE_7</name>
+                  <description>7-bit data.</description>
+                  <value>0x6</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DSS_DSIZE_6</name>
+                  <description>6-bit data.</description>
+                  <value>0x5</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DSS_DSIZE_5</name>
+                  <description>5-bit data.</description>
+                  <value>0x4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DSS_DSIZE_4</name>
+                  <description>4-bit data.</description>
+                  <value>0x3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- CR1: Control 1 Register -->
+        <register>
+          <name>CR1</name>
+          <description>The SSICR1 register contains bit fields that control various functions within the SSI module. Master and slave mode functionality is controlled by this register.</description>
+          <addressOffset>0x00000004</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000001F</resetMask>
+          
+          <fields>
+            <!-- EOT: End of Transmission field -->
+            <field>
+              <name>EOT</name>
+              <description>End of Transmission.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>EOT_TXRIS_ENDMODE</name>
+                  <description>The End of Transmit interrupt mode for the TXRIS interrupt is enabled.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>EOT_TXRIS_HALFDONEMODE</name>
+                  <description>The TXRIS interrupt indicates that the transmit FIFO is half full or less.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SOD: SSI Slave Mode Output Disable field -->
+            <field>
+              <name>SOD</name>
+              <description>This bit is relevant only in the Slave mode (MS=1). In multiple-slave systems, it is possible for the SSI master to broadcast a message to all slaves in the system while ensuring that only one slave drives data onto the serial output line. In such systems, the TXD lines from multiple slaves could be tied together. To operate in such a system, the SOD bit can be configured so that the SSI slave does not drive the SSITx pin.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SOD_SSITx_UNUSED</name>
+                  <description>SSI must not drive the SSITx output in Slave mode.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SOD_SSITx_DRIVEN</name>
+                  <description>SSI can drive the SSITx output in Slave mode.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MS: SSI Slave Mode Output Disable field -->
+            <field>
+              <name>MS</name>
+              <description>This bit selects Master or Slave mode and can be modified only when the SSI is disabled (SSE=0).</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MS_SLAVE</name>
+                  <description>The SSI is configured as a slave.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MS_MASTER</name>
+                  <description>The SSI is configured as a master.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- SSE: SSI Synchronous Serial Port Enable field -->
+            <field>
+              <name>SSE</name>
+              <description>SSI Synchronous Serial Port Enable. This bit must be cleared before any control registers are reprogrammed.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SSE_SSI_ENABLED</name>
+                  <description>SSI operation is enabled.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SSE_SSI_DISABLED</name>
+                  <description>SSI operation is disabled.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- LBM: SSI Loopback Mode field -->
+            <field>
+              <name>LBM</name>
+              <description>SSI Loopback Mode.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>LBM_LOOPBACK</name>
+                  <description>Output of the transmit serial shift register is connected internally to the input of the receive serial shift register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LBM_NORMAL</name>
+                  <description>Normal serial port operation enabled.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DR: Data Register -->
+        <register>
+          <name>DR</name>
+          <description>SSI Data register (FIFO, 8 entries).</description>
+          <addressOffset>0x00000008</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000FF</resetMask>
+          
+          <fields>
+            <!-- DATA: SSI Data register field -->
+            <field>
+            <name>DATA</name>
+              <description>SSI Data register.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>16</bitWidth>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+      <!-- SR: Status Register -->
+        <register>
+          <name>SR</name>
+          <description>The SSISR register contains bits that indicate the FIFO fill status and the SSI busy status.</description>
+          <addressOffset>0x0000000C</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000FF</resetMask>
+          
+          <fields>
+            <!-- BSY: SSI Busy Bit field -->
+            <field>
+            <name>BSY</name>
+              <description>SSI Busy Bit.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>BSY_SSI_BUSY</name>
+                  <description>The SSI is currently transmitting and/or receiving a frame, or the transmit FIFO is not empty.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>BSY_SSI_IDLE</name>
+                  <description>The SSI is idle.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RFF: SSI Receive FIFO Full field -->
+            <field>
+            <name>RFF</name>
+              <description>SSI Receive FIFO Full.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RFF_RFIFO_FULL</name>
+                  <description>The receive FIFO is full.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RFF_RFIFO_NOTFULL</name>
+                  <description>The receive FIFO is not full.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RNE: SSI Receive FIFO Not Empty field -->
+            <field>
+            <name>RNE</name>
+              <description>SSI Receive FIFO Not Empty.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RNE_RFIFO_NOTEMPTY</name>
+                  <description>The receive FIFO is not empty.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RNE_RFIFO_EMPTY</name>
+                  <description>The receive FIFO is empty.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TNF: SSI Transmit FIFO Not Full field -->
+            <field>
+            <name>TNF</name>
+              <description>SSI Transmit FIFO Not Full.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>TNF_TFIFO_NOTFULL</name>
+                  <description>The transmit FIFO is not full.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>TNF_TFIFO_FULL</name>
+                  <description>The transmit FIFO is full.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TFE: SSI Transmit FIFO Empty field -->
+            <field>
+            <name>TFE</name>
+              <description>SSI Transmit FIFO Empty.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>TFE_TFIFO_NOTFULL</name>
+                  <description>The transmit FIFO is empty.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>TFE_TFIFO_FULL</name>
+                  <description>The transmit FIFO is not empty.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- CPSR: SSI Clock Prescale Register -->
+        <register>
+          <name>CPSR</name>
+          <description>The SSICPSR register specifies the division factor which is used to derive the SSIClk from the system clock. The clock is further divided by a value from 1 to 256, which is 1 + SCR. SCR is programmed in the SSICR0 register. The frequency of the SSIClk is defined by:\nSSIClk = SysClk / (CPSDVSR * (1 + SCR))\nThe value programmed into this register must be an even number between 2 and 254. The least-significant bit of the programmed number is hard-coded to zero. If an odd number is written to this register, data read back from this register has the least-significant bit as zero.</description>
+          <addressOffset>0x00000010</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000FF</resetMask>
+          
+          <fields>
+            <!-- CPSDVSR: SSI Clock Prescale Divisor field -->
+            <field>
+              <name>CPSDVSR</name>
+              <description>SSI Clock Prescale Divisor.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>8</bitWidth>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+      <!-- IM: Interrupt Mask Register -->
+        <register>
+          <name>IM</name>
+          <description>The SSIIM register is the interrupt mask set or clear register. It is a read/write register and all bits are cleared on reset.</description>
+          <addressOffset>0x00000014</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000000F</resetMask>
+          
+          <fields>
+            <!-- TXIM: SSI Transmit FIFO Interrupt Mask field -->
+            <field>
+            <name>TXIM</name>
+              <description>SSI Transmit FIFO Interrupt Mask.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>TXIM_IM_NOTMASKED</name>
+                  <description>The transmit FIFO interrupt is not masked.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>TXIM_IM_MASKED</name>
+                  <description>The transmit FIFO interrupt is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RXIM: SSI Receive FIFO Interrupt Mask field -->
+            <field>
+            <name>RXIM</name>
+              <description>SSI Receive FIFO Interrupt Mask Mask.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RXIM_IM_NOTMASKED</name>
+                  <description>The receive FIFO interrupt is not masked.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RXIM_IM_MASKED</name>
+                  <description>The receive FIFO interrupt is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RTIM: SSI Receive Time-Out Interrupt Mask field -->
+            <field>
+            <name>RTIM</name>
+              <description>SSI Receive Time-Out Interrupt Mask.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RTIM_IM_NOTMASKED</name>
+                  <description>The receive FIFO time-out interrupt is not masked.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RTIM_IM_MASKED</name>
+                  <description>The receive FIFO time-out interrupt is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RORIM: SSI Receive Overrun Interrupt Mask field -->
+            <field>
+            <name>RORIM</name>
+              <description>SSI Receive Overrun Interrupt Mask.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RORIM_IM_NOTMASKED</name>
+                  <description>The receive FIFO overrun interrupt is not masked.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RORIM_IM_MASKED</name>
+                  <description>The receive FIFO overrun interrupt is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- RIS: Raw Interrupt Status Register -->
+        <register>
+          <name>RIS</name>
+          <description>The SSIRIS register is the raw interrupt status register. On a read, this register gives the current raw status value of the corresponding interrupt prior to masking. A write has no effect.</description>
+          <addressOffset>0x00000018</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000000F</resetMask>
+          
+          <fields>
+            <!-- TXRIS: SSI Transmit FIFO Raw Interrupt Status field -->
+            <field>
+            <name>TXRIS</name>
+              <description>SSI Transmit FIFO Raw Interrupt Status.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>TXRIS_RIS_SET</name>
+                  <description>If the EOT bit in the SSICR1 register is clear, the transmit FIFO is half full or less.\nIf the EOT bit is set, the transmit FIFO is empty, and the last bit has been transmitted out of the serializer.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>TXRIS_RIS_RESET</name>
+                  <description>No interrupt.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RXRIS: SSI Receive FIFO Raw Interrupt Status field -->
+            <field>
+            <name>RXRIS</name>
+              <description>SSI Receive FIFO Raw Interrupt Status.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RXRIS_RIS_SET</name>
+                  <description>The receive FIFO is half full or more.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RXRIS_RIS_RESET</name>
+                  <description>No interrupt.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RTRIS: SSI Receive Time-Out Raw Interrupt Status field -->
+            <field>
+            <name>RTRIS</name>
+              <description>SSI Receive Time-Out Raw Interrupt Status.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RTRIS_RIS_SET</name>
+                  <description>The receive time-out has occurred.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RTRIS_RIS_RESET</name>
+                  <description>No interrupt.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RORRIS: SSI Receive Overrun Raw Interrupt Status field -->
+            <field>
+            <name>RORRIS</name>
+              <description>SSI Receive Overrun Raw Interrupt Status.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RORRIS_RIS_SET</name>
+                  <description>The receive FIFO has overflowed.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RORRIS_RIS_RESET</name>
+                  <description>No interrupt.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- MIS: Masked Interrupt Status Register -->
+        <register>
+          <name>MIS</name>
+          <description>The SSIRIS register is the raw interrupt status register. On a read, this register gives the current raw status value of the corresponding interrupt prior to masking. A write has no effect.</description>
+          <addressOffset>0x0000001C</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000000F</resetMask>
+          
+          <fields>
+            <!-- TXRIS: SSI Transmit FIFO Masked Interrupt Status field -->
+            <field>
+            <name>TXMIS</name>
+              <description>The SSIMIS register is the masked interrupt status register. On a read, this register gives the current masked status value of the corresponding interrupt. A write has no effect.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>TXMIS_MIS_SET</name>
+                  <description>If the EOT bit in the SSICR1 register is clear, the transmit FIFO is half full or less.\nIf the EOT bit is set, the transmit FIFO is empty, and the last bit has been transmitted out of the serializer.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>TXMIS_MIS_RESET</name>
+                  <description>An interrupt has not occurred or is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RXRIS: SSI Receive FIFO Raw Interrupt Status field -->
+            <field>
+            <name>RXMIS</name>
+              <description>SSI Receive FIFO Raw Interrupt Status.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RXMIS_MIS_SET</name>
+                  <description>An unmasked interrupt was signaled due to the receive FIFO being half full or less.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RXMIS_MIS_RESET</name>
+                  <description>An interrupt has not occurred or is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RTMIS: SSI Receive Time-Out Raw Interrupt Status field -->
+            <field>
+            <name>RTMIS</name>
+              <description>SSI Receive Time-Out Raw Interrupt Status.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RTMIS_MIS_SET</name>
+                  <description>An unmasked interrupt was signaled due to the receive time out.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RTMIS_MIS_RESET</name>
+                  <description>An interrupt has not occurred or is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RORMIS: SSI Receive Overrun Raw Interrupt Status field -->
+            <field>
+            <name>RORMIS</name>
+              <description>SSI Receive Overrun Raw Interrupt Status.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RORMIS_MIS_SET</name>
+                  <description>An unmasked interrupt was signaled due to the receive FIFO overflowing.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RORMIS_MIS_RESET</name>
+                  <description>An interrupt has not occurred or is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- IC: Interrupt Clear Register -->
+        <register>
+          <name>IC</name>
+          <description>The SSIICR register is the interrupt clear register. On a write of 1, the corresponding interrupt is cleared. A write of 0 has no effect.</description>
+          <addressOffset>0x00000020</addressOffset>
+          <size>32</size>
+          <access>write-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000000</resetMask>
+          
+          <fields>
+            <!-- RTIC: SSI Receive Time-Out Interrupt Clear field -->
+            <field>
+            <name>RTIC</name>
+              <description>SSI Receive Time-Out Interrupt Clear.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RTIC_IC_CLEAR</name>
+                  <description>Writing a 1 to this bit clears the RTRIS bit in the SSIRIS register and the RTMIS bit in the SSIMIS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RORIC: SSI Receive Overrun Interrupt Clear field -->
+            <field>
+            <name>RORIC</name>
+              <description>SSI Receive Overrun Interrupt Clear.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RORIC_IC_CLEAR</name>
+                  <description>Writing a 1 to this bit clears the RORRIS bit in the SSIRIS register and the RORMIS bit in the SSIMIS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- DMACTL: The SSIDMACTL register is the µDMA control Register -->
+        <register>
+          <name>DMACTL</name>
+          <description>The SSIDMACTL register is the uDMA control register.</description>
+          <addressOffset>0x00000024</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000000</resetMask>
+          
+          <fields>
+            <!-- TXDMAE: Transmit DMA Enable field -->
+            <field>
+            <name>TXDMAE</name>
+              <description>Transmit DMA Enable.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>TXDMAE_DMACTL_ENABLE</name>
+                  <description>uDMA for the transmit FIFO is enabled.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>TXDMAE_DMACTL_DISABLE</name>
+                  <description>uDMA for the transmit FIFO is disabled.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- RXDMAE: Receive DMA Enable field -->
+            <field>
+            <name>RXDMAE</name>
+              <description>Receive DMA Enable.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>RXDMAE_DMACTL_ENABLE</name>
+                  <description>uDMA for the receive FIFO is enabled.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RXDMAE_DMACTL_DISABLE</name>
+                  <description>uDMA for the receive FIFO is disabled.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID4: SSI Peripheral Identification 4 Register -->
+        <register>
+          <name>PeriphID4</name>
+          <description>SSI Peripheral Identification 4.</description>
+          <addressOffset>0xFD0</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID4</name>
+              <description>Peripheral ID Register [7:0].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID5: SSI Peripheral Identification 5 Register -->
+        <register>
+          <name>PeriphID5</name>
+          <description>SSI Peripheral Identification 5.</description>
+          <addressOffset>0xFD4</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID5</name>
+              <description>Peripheral ID Register [15:8].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID6: SSI Peripheral Identification 6 Register -->
+        <register>
+          <name>PeriphID6</name>
+          <description>SSI Peripheral Identification 6.</description>
+          <addressOffset>0xFD8</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID6</name>
+              <description>Peripheral ID Register [23:16].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID7: SSI Peripheral Identification 7 Register -->
+        <register>
+          <name>PeriphID7</name>
+          <description>SSI Peripheral Identification 7.</description>
+          <addressOffset>0xFDC</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID7</name>
+              <description>Peripheral ID Register [31:24].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID0: SSI Peripheral Identification 0 Register -->
+        <register>
+          <name>PeriphID0</name>
+          <description>SSI Peripheral Identification 0.</description>
+          <addressOffset>0xFE0</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000081</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID0</name>
+              <description>Peripheral ID Register [7:0].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID1: SSI Peripheral Identification 1 Register -->
+        <register>
+          <name>PeriphID1</name>
+          <description>SSI Peripheral Identification 1.</description>
+          <addressOffset>0xFE4</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID1</name>
+              <description>Peripheral ID Register [15:8].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID2: SSI Peripheral Identification 2 Register -->
+        <register>
+          <name>PeriphID2</name>
+          <description>SSI Peripheral Identification 2.</description>
+          <addressOffset>0xFE8</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000018</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID2</name>
+              <description>Peripheral ID Register [23:16].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PeriphID3: SSI Peripheral Identification 3 Register -->
+        <register>
+          <name>PeriphID3</name>
+          <description>SSI Peripheral Identification 3.</description>
+          <addressOffset>0xFEC</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000001</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>PID3</name>
+              <description>Peripheral ID Register [31:24].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PCellID0: SSI PrimeCell Identification 0 Register -->
+        <register>
+          <name>PCellID0</name>
+          <description>SSI PrimeCell Identification 0.</description>
+          <addressOffset>0xFF0</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x0000000D</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>CID0</name>
+              <description>PrimeCell ID Register [7:0].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PCellID1: SSI PrimeCell Identification 1 Register -->
+        <register>
+          <name>PCellID1</name>
+          <description>SSI PrimeCell Identification 1.</description>
+          <addressOffset>0xFF4</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x000000F0</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>CID1</name>
+              <description>PrimeCell ID Register [15:8].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PCellID2: SSI PrimeCell Identification 2 Register -->
+        <register>
+          <name>PCellID2</name>
+          <description>SSI PrimeCell Identification 2.</description>
+          <addressOffset>0xFF8</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000005</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>CID2</name>
+              <description>PrimeCell ID Register [23:16].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      <!-- PCellID3: SSI PrimeCell Identification 3 Register -->
+        <register>
+          <name>PCellID3</name>
+          <description>SSI PrimeCell Identification 3.</description>
+          <addressOffset>0xFFC</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x000000B1</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <fields>
+            <field>
+              <name>CID3</name>
+              <description>PrimeCell ID Register [31:24].</description>
+              <bitRange>[7:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+    
+    <!-- SSI 1 -->
+    <peripheral derivedFrom="SSI0">
+      <name>SSI1</name>
+      <description>Synchronous Serial Interface 1.</description>
+      <disableCondition>(SYSCTL->RCGC1->SSI1 == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC1->SSI1 == 0) &amp;&amp; (SYSCTL->DCGC1->SSI1 == 0)))</disableCondition>
+      <baseAddress>0x40009000</baseAddress>
+      <interrupt>
+        <name>SSI1</name>
+        <description>Synchronous Serial Interface 1 interrupt..</description>
+        <value>34</value>
+      </interrupt>
+    </peripheral>
+    
     <!-- I2C Master 0 -->
     <peripheral>
       <name>I2C_MASTER0</name>
@@ -2949,9 +3971,10 @@ by the other GPIO configuration registers.</description>
       </registers>
     </peripheral>
     
-    <!-- I2C Master 0 -->
+    <!-- I2C Master 1 -->
     <peripheral derivedFrom="I2C_MASTER0">
       <name>I2C_MASTER1</name>
+      <description>Inter-Integrated Circuit (I2C) Master Interface 1.</description>
       <disableCondition>(SYSCTL->RCGC1->I2C1 == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC1->I2C1 == 0) &amp;&amp; (SYSCTL->DCGC1->I2C1 == 0)))</disableCondition>
       <baseAddress>0x40021000</baseAddress>
       <interrupt>
@@ -2961,9 +3984,10 @@ by the other GPIO configuration registers.</description>
       </interrupt>
     </peripheral>
     
-    <!-- I2C Slave 0 -->
+    <!-- I2C Slave 1 -->
     <peripheral derivedFrom="I2C_SLAVE0">
       <name>I2C_SLAVE1</name>
+      <description>Inter-Integrated Circuit (I2C) Slave Interface 1.</description>
       <disableCondition>(SYSCTL->RCGC1->I2C1 == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC1->I2C1 == 0) &amp;&amp; (SYSCTL->DCGC1->I2C1 == 0)))</disableCondition>
       <baseAddress>0x40021800</baseAddress>
       <interrupt>
@@ -3236,6 +4260,7 @@ by the other GPIO configuration registers.</description>
     <!-- Watchdog timer 1 -->
     <peripheral derivedFrom="WDT0">
         <name>WDT1</name>
+        <description>Watchdog timer 1, with 32-bit down counter.</description>
         <disableCondition>(SYSCTL->RCGC0->WDT1 == 0) &amp;&amp; ((SYSCTL->RCC->ACG == 0) || ((SYSCTL->SCGC0->WDT1 == 0) &amp;&amp; (SYSCTL->DCGC0->WDT1 == 0)))</disableCondition>
         <baseAddress>0x40001000</baseAddress>
     </peripheral>
