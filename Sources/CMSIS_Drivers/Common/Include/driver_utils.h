@@ -19,6 +19,10 @@
 #ifndef CORE_UTILS_H
 #define CORE_UTILS_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
   \file     core_utils.h
   \brief    Common bit manipulation macros for hardware drivers
@@ -47,5 +51,9 @@
 /* Advanced Register Field Modification Macro */
 #define WRITE_REG(REG, VAL)                  ((REG) = (VAL))
 #define MODIFY_REG(REG, CLEARMASK, SETMASK)  ((REG) = (((REG) & (~(CLEARMASK))) | (SETMASK)))
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* CORE_UTILS_H */

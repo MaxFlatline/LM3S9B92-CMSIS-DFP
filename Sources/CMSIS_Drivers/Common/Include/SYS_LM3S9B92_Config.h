@@ -19,6 +19,10 @@
 #ifndef __SYS_LM3S9B92_CONFIG_H
 #define __SYS_LM3S9B92_CONFIG_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifdef   _RTE_
 #include "RTE_Components.h"
 #ifdef    RTE_RTX_CONFIG_H
@@ -52,5 +56,9 @@
 
 
 //------------- <<< end of configuration section >>> ---------------------------
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // __SYS_LM3S9B92_CONFIG_H

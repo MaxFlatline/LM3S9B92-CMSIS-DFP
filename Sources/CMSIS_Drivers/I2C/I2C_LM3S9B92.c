@@ -27,6 +27,7 @@
 
 #include CMSIS_device_header
 #include "I2C_LM3S9B92_Config.h"
+#include "SYS_LM3S9B92.h"
 #include "SYS_LM3S9B92_Config.h"
 
 #include "driver_utils.h"
@@ -51,15 +52,9 @@ static const ARM_I2C_CAPABILITIES DriverCapabilities = {
     0
 };
 
-typedef const struct LM3S_I2C_Pin_Config_s {
-    uint32_t   pinNum;
-    GPIO_Type* pinPort;
-    uint32_t   portClkMask;
-    uint32_t   pinCtlMsk;
-    uint32_t   pinCtlCode;
-}LM3S_I2C_Pin_Config_t;
+typedef LM3S_AF_Pin_Config_t LM3S_I2C_Pin_Config_t;
 
-typedef struct LM3S_I2C_DrvControl_s{
+typedef struct LM3S_I2C_DrvControl_s {
     ARM_I2C_SignalEvent_t cbEvent;
     ARM_I2C_STATUS        status;
     bool                  isInitialized;
@@ -72,7 +67,7 @@ typedef struct LM3S_I2C_DrvControl_s{
     bool                  pendingStop;
 } LM3S_I2C_DrvControl_t;
 
-typedef const struct LM3S_I2C_DrvResources_s{
+typedef const struct LM3S_I2C_DrvResources_s {
     I2C_MASTER_Type*       master;
     I2C_SLAVE_Type*        slave;
     uint32_t               irqNum;
@@ -120,7 +115,7 @@ static LM3S_I2C_Pin_Config_t I2C1_Sda_pin = {
     RTE_I2C1_SDA_PORT_CLOCK_EN_Msk,
     RTE_I2C1_SDA_PCTL_MASK,
     RTE_I2C1_SDA_PCTL_CODE
-    
+
 };
 
 static LM3S_I2C_DrvResources_t I2C0_Resources = {
@@ -134,14 +129,14 @@ static LM3S_I2C_DrvResources_t I2C0_Resources = {
 #elif (RTE_I2C0_SLEEP_USER_SET == 0)
     0
 #else
-    #error "Inconsistency in Config file, check I2C_LM3S9B92_Config.h!"
+#error "Inconsistency in Config file, check I2C_LM3S9B92_Config.h!"
 #endif
 #if defined(RTE_I2C0_DEEPSLEEP_USER_SET) && (RTE_I2C0_DEEPSLEEP_USER_SET == 1)
     SYSCTL_DCGC1_I2C0_Msk,
 #elif (RTE_I2C0_DEEPSLEEP_USER_SET == 0)
     0
 #else
-    #error "Inconsistency in Config file, check I2C_LM3S9B92_Config.h!"
+#error "Inconsistency in Config file, check I2C_LM3S9B92_Config.h!"
 #endif
 #endif
     &I2C0_Scl_pin,
@@ -159,14 +154,14 @@ static LM3S_I2C_DrvResources_t I2C1_Resources = {
 #elif (RTE_I2C1_SLEEP_USER_SET == 0)
     0
 #else
-    #error "Inconsistency in Config file, check I2C_LM3S9B92_Config.h!"
+#error "Inconsistency in Config file, check I2C_LM3S9B92_Config.h!"
 #endif
 #if defined(RTE_I2C1_DEEPSLEEP_USER_SET) && (RTE_I2C1_DEEPSLEEP_USER_SET == 1)
     SYSCTL_DCGC1_I2C1_Msk,
 #elif (RTE_I2C1_DEEPSLEEP_USER_SET == 0)
     0
 #else
-    #error "Inconsistency in Config file, check I2C_LM3S9B92_Config.h!"
+#error "Inconsistency in Config file, check I2C_LM3S9B92_Config.h!"
 #endif
 #endif
     &I2C1_Scl_pin,
@@ -222,11 +217,11 @@ static void I2C_Delay_BitBang(void);
 static int32_t I2C_BusClear(LM3S_I2C_DrvInstance_t *i2c);
 
 static ARM_DRIVER_VERSION LM3S_I2C_GetVersion(void) {
-  return DriverVersion;
+    return DriverVersion;
 }
 
 static ARM_I2C_CAPABILITIES LM3S_I2C_GetCapabilities(void) {
-  return DriverCapabilities;
+    return DriverCapabilities;
 }
 
 static int32_t LM3S_I2C_Initialize(LM3S_I2C_DrvInstance_t *i2c, ARM_I2C_SignalEvent_t cb_event) {
@@ -240,36 +235,29 @@ static int32_t LM3S_I2C_Initialize(LM3S_I2C_DrvInstance_t *i2c, ARM_I2C_SignalEv
     SET_REG(SYSCTL->RCGC2, i2c->resources->sclPin->portClkMask);
     SET_REG(SYSCTL->RCGC2, i2c->resources->sdaPin->portClkMask);
 #if defined (SYS_USE_ACG) && (SYS_USE_ACG == 1)
-    if (i2c->resources->sleepClockMask){
+    if (i2c->resources->sleepClockMask) {
         SET_REG(SYSCTL->SCGC2, i2c->resources->sclPin->portClkMask);
         SET_REG(SYSCTL->SCGC2, i2c->resources->sdaPin->portClkMask);
     }
-    if (i2c->resources->deepsleepClockMask){
+    if (i2c->resources->deepsleepClockMask) {
         SET_REG(SYSCTL->DCGC2, i2c->resources->sclPin->portClkMask);
         SET_REG(SYSCTL->DCGC2, i2c->resources->sdaPin->portClkMask);
     }
 #elif !defined (SYS_USE_ACG)
-    #error "Global system setting (ACG) is missing! Check SYS_LM3S9B92_Config.h"
+#error "Global system setting (ACG) is missing! Check SYS_LM3S9B92_Config.h"
 #endif
-    
-    __NOP(); __NOP(); __NOP();
-    
-    MODIFY_REG(i2c->resources->sclPin->pinPort->PCTL, i2c->resources->sclPin->pinCtlMsk, i2c->resources->sclPin->pinCtlCode);
-    SET_BIT(i2c->resources->sclPin->pinPort->AFSEL,   i2c->resources->sclPin->pinNum);
-    SET_BIT(i2c->resources->sclPin->pinPort->ODR,     i2c->resources->sclPin->pinNum);
-    SET_BIT(i2c->resources->sclPin->pinPort->PUR,     i2c->resources->sclPin->pinNum);
-    SET_BIT(i2c->resources->sclPin->pinPort->DEN,     i2c->resources->sclPin->pinNum);
-    
-    MODIFY_REG(i2c->resources->sdaPin->pinPort->PCTL, i2c->resources->sdaPin->pinCtlMsk, i2c->resources->sdaPin->pinCtlCode);
-    SET_BIT(i2c->resources->sdaPin->pinPort->AFSEL,   i2c->resources->sdaPin->pinNum);
-    SET_BIT(i2c->resources->sdaPin->pinPort->ODR,     i2c->resources->sdaPin->pinNum);
-    SET_BIT(i2c->resources->sdaPin->pinPort->PUR,     i2c->resources->sdaPin->pinNum);
-    SET_BIT(i2c->resources->sdaPin->pinPort->DEN,     i2c->resources->sdaPin->pinNum);
-    
+
+    __NOP();
+    __NOP();
+    __NOP();
+
+    LM3S_PinInitializeAF(i2c->resources->sclPin);
+    LM3S_PinInitializeAF(i2c->resources->sdaPin);
+
     i2c->control->slaveSelected = false;
     i2c->control->cbEvent       = cb_event;
     i2c->control->isInitialized = true;
-    
+
     return ARM_DRIVER_OK;
 }
 
@@ -285,33 +273,24 @@ static int32_t ARM_I2C_Uninitialize(LM3S_I2C_DrvInstance_t *i2c) {
     if(i2c->control->isInitialized == false) {
         return ARM_DRIVER_OK;
     }
-    
+
     if (i2c->control->isPowered != 0) {
         (void)ARM_I2C_PowerControl(i2c, ARM_POWER_OFF);
     }
-    
-    CLEAR_BIT(i2c->resources->sclPin->pinPort->DEN,   i2c->resources->sclPin->pinNum);
-    CLEAR_BIT(i2c->resources->sclPin->pinPort->AFSEL, i2c->resources->sclPin->pinNum);
-    CLEAR_REG(i2c->resources->sclPin->pinPort->PCTL,  i2c->resources->sclPin->pinCtlMsk);
-    CLEAR_BIT(i2c->resources->sclPin->pinPort->ODR,   i2c->resources->sclPin->pinNum);
-    CLEAR_BIT(i2c->resources->sclPin->pinPort->PUR,   i2c->resources->sclPin->pinNum);
-    CLEAR_BIT(i2c->resources->sclPin->pinPort->DIR,   i2c->resources->sclPin->pinNum);
-    
-    CLEAR_BIT(i2c->resources->sdaPin->pinPort->DEN,   i2c->resources->sdaPin->pinNum);
-    CLEAR_BIT(i2c->resources->sdaPin->pinPort->AFSEL, i2c->resources->sdaPin->pinNum);
-    CLEAR_REG(i2c->resources->sdaPin->pinPort->PCTL,  i2c->resources->sdaPin->pinCtlMsk);
-    CLEAR_BIT(i2c->resources->sdaPin->pinPort->ODR,   i2c->resources->sdaPin->pinNum);
-    CLEAR_BIT(i2c->resources->sdaPin->pinPort->PUR,   i2c->resources->sdaPin->pinNum);
-    CLEAR_BIT(i2c->resources->sdaPin->pinPort->DIR,   i2c->resources->sdaPin->pinNum);
-    
+
+    LM3S_PinUninitializeAF(i2c->resources->sclPin);
+    LM3S_PinUninitializeAF(i2c->resources->sdaPin);
+
     i2c->control->cbEvent       = NULL;
     i2c->control->pData         = NULL;
     i2c->control->numBytes      = 0U;
     i2c->control->cntBytes      = 0U;
-    i2c->control->status        = (ARM_I2C_STATUS){0};
+    i2c->control->status        = (ARM_I2C_STATUS) {
+        0
+    };
     i2c->control->slaveSelected = false;
     i2c->control->isInitialized = false;
-    
+
     return ARM_DRIVER_OK;
 }
 
@@ -325,72 +304,80 @@ static int32_t ARM_I2C1_Uninitialize(void) {
 
 static int32_t ARM_I2C_PowerControl(LM3S_I2C_DrvInstance_t *i2c, ARM_POWER_STATE state) {
     int32_t status;
-    
+
     status = ARM_DRIVER_OK;
     switch (state) {
-        case ARM_POWER_OFF:
-            if (i2c->control->isPowered == false) {
-                break;
-            }
-            i2c->resources->master->CTRL = 0;
-            i2c->resources->slave->CTRL  = 0;
-            i2c->control->pData        = NULL;
-            i2c->control->numBytes     = 0U;
-            i2c->control->cntBytes     = 0U;
-            i2c->control->status       = (ARM_I2C_STATUS){0};
-            
-            NVIC_DisableIRQ(i2c->resources->irqNum);
-            WRITE_REG(i2c->resources->slave->IMR,  0x00UL);
-            WRITE_REG(i2c->resources->master->IMR, 0x00UL);
-            WRITE_REG(i2c->resources->master->CR,  0x00UL);
-            WRITE_REG(i2c->resources->slave->CTRL, 0x00UL);
-            
-            CLEAR_REG(SYSCTL->RCGC1, i2c->resources->runClockMask);
+    case ARM_POWER_OFF:
+        if (i2c->control->isPowered == false) {
+            break;
+        }
+        i2c->resources->master->CTRL = 0;
+        i2c->resources->slave->CTRL  = 0;
+        i2c->control->pData        = NULL;
+        i2c->control->numBytes     = 0U;
+        i2c->control->cntBytes     = 0U;
+        i2c->control->status       = (ARM_I2C_STATUS) {
+            0
+        };
+
+        NVIC_DisableIRQ(i2c->resources->irqNum);
+        WRITE_REG(i2c->resources->slave->IMR,  0x00UL);
+        WRITE_REG(i2c->resources->master->IMR, 0x00UL);
+        WRITE_REG(i2c->resources->master->CR,  0x00UL);
+        WRITE_REG(i2c->resources->slave->CTRL, 0x00UL);
+
+        CLEAR_REG(SYSCTL->RCGC1, i2c->resources->runClockMask);
 #if defined (SYS_USE_ACG) && (SYS_USE_ACG == 1)
-            CLEAR_REG(SYSCTL->SCGC1, i2c->resources->runClockMask);
-            CLEAR_REG(SYSCTL->DCGC1, i2c->resources->runClockMask);
+        CLEAR_REG(SYSCTL->SCGC1, i2c->resources->runClockMask);
+        CLEAR_REG(SYSCTL->DCGC1, i2c->resources->runClockMask);
 #elif !defined(SYS_USE_ACG)
 #error "Global system setting (ACG) is missing! Check SYS_LM3S9B92_Config.h"
 #endif
-            i2c->control->slaveSelected = false;
-            i2c->control->isPowered = false;
-            break;
+        i2c->control->slaveSelected = false;
+        i2c->control->isPowered = false;
+        break;
 
-        case ARM_POWER_LOW:
-            status = ARM_DRIVER_ERROR_UNSUPPORTED;
-            break;
+    case ARM_POWER_LOW:
+        status = ARM_DRIVER_ERROR_UNSUPPORTED;
+        break;
 
-        case ARM_POWER_FULL:
-            if (i2c->control->isInitialized == false) {
-                status = ARM_DRIVER_ERROR;
-                break;
-            }
-            if (i2c->control->isPowered != false) {
-                break;
-            }
-            SET_REG(SYSCTL->RCGC1, i2c->resources->runClockMask);
+    case ARM_POWER_FULL:
+        if (i2c->control->isInitialized == false) {
+            status = ARM_DRIVER_ERROR;
+            break;
+        }
+        if (i2c->control->isPowered != false) {
+            break;
+        }
+        SET_REG(SYSCTL->RCGC1, i2c->resources->runClockMask);
 #if defined (SYS_USE_ACG) && (SYS_USE_ACG == 1)
-            if (i2c->resources->sleepClockMask){
-                SET_REG(SYSCTL->SCGC1, i2c->resources->sleepClockMask);
-            }
-            if (i2c->resources->deepsleepClockMask){
-                SET_REG(SYSCTL->DCGC1, i2c->resources->deepsleepClockMask);
-            }
+        if (i2c->resources->sleepClockMask) {
+            SET_REG(SYSCTL->SCGC1, i2c->resources->sleepClockMask);
+        }
+        if (i2c->resources->deepsleepClockMask) {
+            SET_REG(SYSCTL->DCGC1, i2c->resources->deepsleepClockMask);
+        }
 #elif !defined (SYS_USE_ACG)
 #error "Global system setting (ACG) is missing! Check SYS_LM3S9B92_Config.h"
 #endif
-            __NOP();__NOP();__NOP();
-            
-            WRITE_REG(i2c->resources->master->CR, I2C_MASTER_CR_SFE_Msk | I2C_MASTER_CR_MFE_Msk);
-            __NOP(); __NOP(); __NOP(); __NOP(); __NOP();
-            WRITE_REG(i2c->resources->slave->OA, 0x7FUL);
-            SET_REG(i2c->resources->master->IMR, I2C_MASTER_IMR_IM_Msk);
-            SET_REG(i2c->resources->slave->IMR, I2C_SLAVE_IMR_STOPIM_Msk | I2C_SLAVE_IMR_STARTIM_Msk | I2C_SLAVE_IMR_DATAIM_Msk);
-            
-            NVIC_EnableIRQ(i2c->resources->irqNum);
-            
-            i2c->control->isPowered = true;
-            break;
+        __NOP();
+        __NOP();
+        __NOP();
+
+        WRITE_REG(i2c->resources->master->CR, I2C_MASTER_CR_SFE_Msk | I2C_MASTER_CR_MFE_Msk);
+        __NOP();
+        __NOP();
+        __NOP();
+        __NOP();
+        __NOP();
+        WRITE_REG(i2c->resources->slave->OA, 0x7FUL);
+        SET_REG(i2c->resources->master->IMR, I2C_MASTER_IMR_IM_Msk);
+        SET_REG(i2c->resources->slave->IMR, I2C_SLAVE_IMR_STOPIM_Msk | I2C_SLAVE_IMR_STARTIM_Msk | I2C_SLAVE_IMR_DATAIM_Msk);
+
+        NVIC_EnableIRQ(i2c->resources->irqNum);
+
+        i2c->control->isPowered = true;
+        break;
     }
 
     return status;
@@ -418,29 +405,28 @@ static int32_t ARM_I2C_MasterTransmit(LM3S_I2C_DrvInstance_t *i2c, uint16_t addr
     if (I2C_Buffer_Lock(&i2c->control->status) != ARM_DRIVER_OK) {
         return ARM_DRIVER_ERROR_BUSY;
     }
-    
+
     i2c->control->pData    = (uint8_t *)data;
     i2c->control->numBytes = num;
     i2c->control->cntBytes = 0U;
     i2c->control->pendingStop = !xfer_pending;
     i2c->control->status.mode      = 1U;
     i2c->control->status.direction = 0U;
-    
+
     WRITE_REG(i2c->resources->master->SA, (addr << 1));
     WRITE_REG(i2c->resources->master->DR, i2c->control->pData[0]);
     i2c->control->cntBytes++;
-    
+
     if (i2c->control->numBytes == 1U) {
         if (i2c->control->pendingStop) {
             WRITE_REG(i2c->resources->master->CTRL, I2C_MASTER_CTRL_START_Msk | I2C_MASTER_CTRL_RUN_Msk | I2C_MASTER_CTRL_STOP_Pos);
         } else {
             WRITE_REG(i2c->resources->master->CTRL, I2C_MASTER_CTRL_START_Msk | I2C_MASTER_CTRL_RUN_Msk);
         }
-    } 
-    else {
+    } else {
         WRITE_REG(i2c->resources->master->CTRL, I2C_MASTER_CTRL_START_Msk | I2C_MASTER_CTRL_RUN_Msk);
     }
-    
+
     return ARM_DRIVER_OK;
 }
 
@@ -466,26 +452,25 @@ static int32_t ARM_I2C_MasterReceive(LM3S_I2C_DrvInstance_t *i2c, uint32_t addr,
     if (I2C_Buffer_Lock(&i2c->control->status) != ARM_DRIVER_OK) {
         return ARM_DRIVER_ERROR_BUSY;
     }
-    
+
     i2c->control->pData    = data;
     i2c->control->numBytes = num;
     i2c->control->cntBytes = 0U;
-    
+
     i2c->control->pendingStop = !xfer_pending;
-    
+
     WRITE_REG(i2c->resources->master->SA, (addr << 1) | I2C_MASTER_SA_R_S_Msk);
-    
+
     if (i2c->control->numBytes == 1U) {
         if (i2c->control->pendingStop) {
             WRITE_REG(i2c->resources->master->CTRL, I2C_MASTER_CTRL_START_Msk | I2C_MASTER_CTRL_RUN_Msk | I2C_MASTER_CTRL_STOP_Pos);
         } else {
             WRITE_REG(i2c->resources->master->CTRL, I2C_MASTER_CTRL_START_Msk | I2C_MASTER_CTRL_RUN_Msk);
         }
-    } 
-    else {
+    } else {
         WRITE_REG(i2c->resources->master->CTRL, I2C_MASTER_CTRL_ACK_Msk | I2C_MASTER_CTRL_START_Msk | I2C_MASTER_CTRL_RUN_Msk);
     }
-    
+
     return ARM_DRIVER_OK;
 }
 
@@ -507,15 +492,15 @@ static int32_t ARM_I2C_SlaveTransmit(LM3S_I2C_DrvInstance_t *i2c, const uint8_t 
     if (i2c->control->isPowered == false) {
         return ARM_DRIVER_ERROR;
     }
-    
+
     if (I2C_Buffer_Lock(&i2c->control->status) != ARM_DRIVER_OK) {
         return ARM_DRIVER_ERROR_BUSY;
     }
-    
+
     i2c->control->pData    = (uint8_t *)data;
     i2c->control->numBytes = num;
     i2c->control->cntBytes = 0U;
-    
+
     i2c->control->status.mode      = 0U;
     i2c->control->status.direction = 0U;
     WRITE_REG(i2c->resources->slave->CTRL, I2C_SLAVE_CTRL_DA_Msk);
@@ -540,15 +525,15 @@ static int32_t ARM_I2C_SlaveReceive(LM3S_I2C_DrvInstance_t *i2c, uint8_t *data, 
     if (i2c->control->isPowered == false) {
         return ARM_DRIVER_ERROR;
     }
-    
+
     if (I2C_Buffer_Lock(&i2c->control->status) != ARM_DRIVER_OK) {
         return ARM_DRIVER_ERROR_BUSY;
     }
-    
+
     i2c->control->pData    = data;
     i2c->control->numBytes = num;
     i2c->control->cntBytes = 0U;
-    
+
     i2c->control->status.mode      = 0U;
     i2c->control->status.direction = 1U;
     WRITE_REG(i2c->resources->slave->CTRL, I2C_SLAVE_CTRL_DA_Msk);
@@ -583,49 +568,51 @@ static int32_t ARM_I2C_Control(LM3S_I2C_DrvInstance_t *i2c, uint32_t control, ui
     if (i2c->control->isInitialized == false) {
         return ARM_DRIVER_ERROR;
     }
-    
+
     if (i2c->control->isPowered == false) {
         return ARM_DRIVER_ERROR;
     }
     if (i2c->control->status.busy) {
         return ARM_DRIVER_ERROR_BUSY;
     }
-    
+
     switch (control) {
-        case ARM_I2C_OWN_ADDRESS:
-            if (arg & ARM_I2C_ADDRESS_10BIT) {
-                return ARM_DRIVER_ERROR_UNSUPPORTED;
-            }
-            WRITE_REG(i2c->resources->slave->OA, arg & I2C_SLAVE_OA_OAR_Msk);
+    case ARM_I2C_OWN_ADDRESS:
+        if (arg & ARM_I2C_ADDRESS_10BIT) {
+            return ARM_DRIVER_ERROR_UNSUPPORTED;
+        }
+        WRITE_REG(i2c->resources->slave->OA, arg & I2C_SLAVE_OA_OAR_Msk);
+        break;
+    case ARM_I2C_BUS_SPEED:
+        current_sys_clk = SystemCoreClock;
+        switch (arg) {
+        case ARM_I2C_BUS_SPEED_STANDARD:
+            WRITE_REG(i2c->resources->master->TPR, I2C_CalcMTPR(current_sys_clk, 100000U));
             break;
-        case ARM_I2C_BUS_SPEED:
-            current_sys_clk = SystemCoreClock;
-            switch (arg) {
-                case ARM_I2C_BUS_SPEED_STANDARD:
-                    WRITE_REG(i2c->resources->master->TPR, I2C_CalcMTPR(current_sys_clk, 100000U));
-                    break;
-                case ARM_I2C_BUS_SPEED_FAST:
-                    WRITE_REG(i2c->resources->master->TPR, I2C_CalcMTPR(current_sys_clk, 400000U));
-                    break;
-                default:
-                    return ARM_DRIVER_ERROR_UNSUPPORTED;
-            }
-            break;
-        case ARM_I2C_BUS_CLEAR:
-            return I2C_BusClear(i2c);
-        case ARM_I2C_ABORT_TRANSFER:
-            WRITE_REG(i2c->resources->master->CTRL, 0x00UL);
-            WRITE_REG(i2c->resources->slave->CTRL, 0x00UL);
-            i2c->control->pData    = NULL;
-            i2c->control->numBytes = 0U;
-            i2c->control->cntBytes = 0U;
-            i2c->control->slaveSelected = false;
-            i2c->control->status   = (ARM_I2C_STATUS){0};
+        case ARM_I2C_BUS_SPEED_FAST:
+            WRITE_REG(i2c->resources->master->TPR, I2C_CalcMTPR(current_sys_clk, 400000U));
             break;
         default:
             return ARM_DRIVER_ERROR_UNSUPPORTED;
+        }
+        break;
+    case ARM_I2C_BUS_CLEAR:
+        return I2C_BusClear(i2c);
+    case ARM_I2C_ABORT_TRANSFER:
+        WRITE_REG(i2c->resources->master->CTRL, 0x00UL);
+        WRITE_REG(i2c->resources->slave->CTRL, 0x00UL);
+        i2c->control->pData    = NULL;
+        i2c->control->numBytes = 0U;
+        i2c->control->cntBytes = 0U;
+        i2c->control->slaveSelected = false;
+        i2c->control->status   = (ARM_I2C_STATUS) {
+            0
+        };
+        break;
+    default:
+        return ARM_DRIVER_ERROR_UNSUPPORTED;
     }
-    
+
     return ARM_DRIVER_OK;
 }
 
@@ -639,7 +626,9 @@ static int32_t ARM_I2C1_Control(uint32_t control, uint32_t arg) {
 
 static ARM_I2C_STATUS ARM_I2C_GetStatus(LM3S_I2C_DrvInstance_t *i2c) {
     if ((i2c->control->isInitialized == false) || (i2c->control->isPowered == false)) {
-        return (ARM_I2C_STATUS){0};
+        return (ARM_I2C_STATUS) {
+            0
+        };
     }
     return i2c->control->status;
 }
@@ -668,7 +657,7 @@ static int32_t I2C_Buffer_Lock(ARM_I2C_STATUS *status) {
 
 static __inline uint32_t I2C_CalcMTPR(uint32_t sys_clk, uint32_t i2c_clk) {
     uint32_t tpr = ((sys_clk + (10U * i2c_clk)) / (20U * i2c_clk)) - 1U;
-    
+
     return __USAT(tpr, I2C_MTPR_TPR_BIT_WIDTH);
 }
 
@@ -679,7 +668,7 @@ static void I2C_Delay_BitBang(void) {
 }
 
 static int32_t I2C_BusClear(LM3S_I2C_DrvInstance_t *i2c) {
-    
+
     WRITE_REG(i2c->resources->slave->IMR, 0x00UL);
     __NOP();
     CLEAR_BIT(i2c->resources->sclPin->pinPort->AFSEL, i2c->resources->sclPin->pinNum);
@@ -692,7 +681,7 @@ static int32_t I2C_BusClear(LM3S_I2C_DrvInstance_t *i2c) {
 
     for (uint32_t i = 0; i < 9U; i++) {
         if (i2c->resources->sdaPin->pinPort->DATA[1<<i2c->resources->sdaPin->pinNum] != 0x00UL) {
-            break; 
+            break;
         }
         i2c->resources->sclPin->pinPort->DATA[1<<i2c->resources->sclPin->pinNum] = 0x00UL;
         I2C_Delay_BitBang();
@@ -700,7 +689,7 @@ static int32_t I2C_BusClear(LM3S_I2C_DrvInstance_t *i2c) {
         I2C_Delay_BitBang();
     }
 
-    SET_BIT(i2c->resources->sdaPin->pinPort->DIR, i2c->resources->sdaPin->pinNum);  
+    SET_BIT(i2c->resources->sdaPin->pinPort->DIR, i2c->resources->sdaPin->pinNum);
 
     i2c->resources->sclPin->pinPort->DATA[1<<i2c->resources->sclPin->pinNum] = 0x00UL;
     i2c->resources->sdaPin->pinPort->DATA[1<<i2c->resources->sdaPin->pinNum] = 0x00UL;
@@ -713,8 +702,8 @@ static int32_t I2C_BusClear(LM3S_I2C_DrvInstance_t *i2c) {
     I2C_Delay_BitBang();
 
     CLEAR_BIT(i2c->resources->sdaPin->pinPort->DIR, 1<<i2c->resources->sdaPin->pinNum);
-    
-    
+
+
     MODIFY_REG(i2c->resources->sdaPin->pinPort->PCTL, i2c->resources->sdaPin->pinCtlMsk, i2c->resources->sdaPin->pinCtlCode);
     MODIFY_REG(i2c->resources->sclPin->pinPort->PCTL, i2c->resources->sclPin->pinCtlMsk, i2c->resources->sclPin->pinCtlCode);
     SET_BIT(i2c->resources->sclPin->pinPort->AFSEL, i2c->resources->sclPin->pinNum);
@@ -727,12 +716,12 @@ static int32_t I2C_BusClear(LM3S_I2C_DrvInstance_t *i2c) {
 
 static void I2C_Master_ISR(LM3S_I2C_DrvInstance_t *i2c) {
     uint32_t mcs = READ_REG(i2c->resources->master->STATUS, I2C_MASTER_STATUS_BUSBSY_Msk | \
-                                                            I2C_MASTER_STATUS_IDLE_Msk   | \
-                                                            I2C_MASTER_STATUS_ARBLST_Msk | \
-                                                            I2C_MASTER_STATUS_DATACK_Msk | \
-                                                            I2C_MASTER_STATUS_ADRACK_Msk | \
-                                                            I2C_MASTER_STATUS_ERROR_Msk  | \
-                                                            I2C_MASTER_STATUS_BUSY_Msk      );
+                            I2C_MASTER_STATUS_IDLE_Msk   | \
+                            I2C_MASTER_STATUS_ARBLST_Msk | \
+                            I2C_MASTER_STATUS_DATACK_Msk | \
+                            I2C_MASTER_STATUS_ADRACK_Msk | \
+                            I2C_MASTER_STATUS_ERROR_Msk  | \
+                            I2C_MASTER_STATUS_BUSY_Msk      );
 
     if (mcs & (I2C_MASTER_STATUS_ARBLST_Msk | I2C_MASTER_STATUS_ERROR_Msk)) {
         uint32_t event = ARM_I2C_EVENT_TRANSFER_INCOMPLETE;
@@ -763,7 +752,7 @@ static void I2C_Master_ISR(LM3S_I2C_DrvInstance_t *i2c) {
             WRITE_REG(i2c->resources->master->DR, *i2c->control->pData);
             i2c->control->pData++;
             i2c->control->numBytes--;
-            i2c->control->cntBytes++; 
+            i2c->control->cntBytes++;
             if (i2c->control->numBytes == 0U) {
                 if (i2c->control->pendingStop) {
                     WRITE_REG(i2c->resources->master->CTRL, (I2C_MASTER_CTRL_STOP_Msk | I2C_MASTER_CTRL_RUN_Msk));
@@ -773,8 +762,7 @@ static void I2C_Master_ISR(LM3S_I2C_DrvInstance_t *i2c) {
             } else {
                 WRITE_REG(i2c->resources->master->CTRL, I2C_MASTER_CTRL_RUN_Msk);
             }
-        } 
-        else {
+        } else {
             i2c->control->status.busy = 0U;
             i2c->control->pData       = NULL;
             if (i2c->control->cbEvent) {
@@ -799,8 +787,7 @@ static void I2C_Master_ISR(LM3S_I2C_DrvInstance_t *i2c) {
             } else {
                 WRITE_REG(i2c->resources->master->CTRL, (I2C_MASTER_CTRL_ACK_Msk | I2C_MASTER_CTRL_RUN_Msk));
             }
-        }
-        else {
+        } else {
             i2c->control->status.busy = 0U;
             i2c->control->pData       = NULL;
             if (i2c->control->cbEvent) {
@@ -817,7 +804,7 @@ static void I2C_Slave_ISR(LM3S_I2C_DrvInstance_t *i2c, uint32_t mis_slave) {
 
     if (slave_status & I2C_SLAVE_RIS_STARTRIS_Msk) {
         WRITE_REG(i2c->resources->slave->IC, I2C_SLAVE_IC_STARTIC_Msk);
-        if(i2c->control->slaveSelected){
+        if(i2c->control->slaveSelected) {
             i2c->control->status.busy = 0U;
             if (i2c->control->cbEvent) {
                 if (i2c->control->status.bus_error) {
@@ -829,9 +816,9 @@ static void I2C_Slave_ISR(LM3S_I2C_DrvInstance_t *i2c, uint32_t mis_slave) {
             i2c->control->pData = NULL;
         }
         i2c->control->cntBytes      = 0U;
-        i2c->control->slaveSelected = false; 
+        i2c->control->slaveSelected = false;
     }
-    
+
     if (slave_status & I2C_SLAVE_RIS_DATARIS_Msk) {
         WRITE_REG(i2c->resources->slave->IC, I2C_SLAVE_IC_DATAIC_Msk);
         uint32_t csr = READ_REG(i2c->resources->slave->STATUS, I2C_SLAVE_STATUS_FBR_Msk | I2C_SLAVE_STATUS_TREQ_Msk | I2C_SLAVE_STATUS_RREQ_Msk);
@@ -843,14 +830,13 @@ static void I2C_Slave_ISR(LM3S_I2C_DrvInstance_t *i2c, uint32_t mis_slave) {
                 if (i2c->control->cbEvent) {
                     if (csr & I2C_SLAVE_STATUS_TREQ_Msk) {
                         i2c->control->cbEvent(ARM_I2C_EVENT_SLAVE_TRANSMIT);
-                    }
-                    else {
+                    } else {
                         i2c->control->cbEvent(ARM_I2C_EVENT_SLAVE_RECEIVE);
                     }
                 }
             }
         }
-        if(i2c->control->slaveSelected){
+        if(i2c->control->slaveSelected) {
             if (csr & I2C_SLAVE_STATUS_RREQ_Msk) {
                 uint8_t rx_byte = (uint8_t)READ_REG(i2c->resources->slave->DR, 0xFFUL);
                 if (i2c->control->numBytes > 0U) {
@@ -858,10 +844,9 @@ static void I2C_Slave_ISR(LM3S_I2C_DrvInstance_t *i2c, uint32_t mis_slave) {
                     i2c->control->pData++;
                     i2c->control->numBytes--;
                 } else {
-                    i2c->control->status.bus_error = 1U; 
+                    i2c->control->status.bus_error = 1U;
                 }
-            }
-            else if (csr & I2C_SLAVE_STATUS_TREQ_Msk) {
+            } else if (csr & I2C_SLAVE_STATUS_TREQ_Msk) {
                 if (i2c->control->numBytes > 0U) {
                     WRITE_REG(i2c->resources->slave->DR, *(i2c->control->pData));
                     i2c->control->pData++;
@@ -876,8 +861,8 @@ static void I2C_Slave_ISR(LM3S_I2C_DrvInstance_t *i2c, uint32_t mis_slave) {
 
     if (slave_status & I2C_SLAVE_RIS_STOPRIS_Msk) {
         WRITE_REG(i2c->resources->slave->IC, I2C_SLAVE_IC_STOPIC_Msk);
-        if(i2c->control->slaveSelected){
-            i2c->control->status.busy = 0U; 
+        if(i2c->control->slaveSelected) {
+            i2c->control->status.busy = 0U;
             WRITE_REG(i2c->resources->slave->CTRL, 0x00UL);
             if (i2c->control->cbEvent) {
                 if (i2c->control->status.bus_error) {
@@ -897,7 +882,7 @@ void I2C_Interrupt_Handler(LM3S_I2C_DrvInstance_t *i2c) {
     uint32_t mis_master = READ_REG(i2c->resources->master->MIS, I2C_MASTER_MIS_MIS_Msk);
     uint32_t ris_slave  = i2c->resources->slave->RIS & i2c->resources->slave->IMR;
     if (mis_master != 0U) {
-        WRITE_REG(i2c->resources->master->IC, I2C_MASTER_MIS_MIS_Msk); 
+        WRITE_REG(i2c->resources->master->IC, I2C_MASTER_MIS_MIS_Msk);
     }
     if (ris_slave != 0U) {
         I2C_Slave_ISR(i2c, ris_slave);
@@ -909,8 +894,12 @@ void I2C_Interrupt_Handler(LM3S_I2C_DrvInstance_t *i2c) {
 
 
 /* Вектора NVIC просто пробрасывают свои инстанции */
-void I2C0_Handler(void) { I2C_Interrupt_Handler(&I2C0_Inst); }
-void I2C1_Handler(void) { I2C_Interrupt_Handler(&I2C1_Inst); }
+void I2C0_Handler(void) {
+    I2C_Interrupt_Handler(&I2C0_Inst);
+}
+void I2C1_Handler(void) {
+    I2C_Interrupt_Handler(&I2C1_Inst);
+}
 
 extern \
 ARM_DRIVER_I2C Driver_I2C0;
