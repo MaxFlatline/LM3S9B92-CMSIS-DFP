@@ -13290,6 +13290,3723 @@ by the other GPIO configuration registers.</description>
         </register>
       </registers>
     </peripheral>
+
+
+
+
+
+    <!--/////////////////////////////-->
+    <!-- Analog-to-Digital converter -->
+    <!--/////////////////////////////-->
+
+
+
+    <peripheral>
+      <name>ADC1</name>
+      <version>1.0</version>
+      <description>An analog-to-digital converter, second one</description>
+      <baseAddress>0x40039000</baseAddress>
+
+      <size>32</size>
+      <access>read-write</access>
+
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x00000E60</size>
+        <usage>registers</usage>
+      </addressBlock>
+
+
+      <registers>
+        <register>
+          <name>ADCACTSS</name>
+          <description>ADC Active Sample Sequencer. This register controls the activation of the sample sequencers. Each sample sequencer can be
+            enabled or disabled independently.</description>
+          <addressOffset>0x000</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000000f</resetMask>
+          <fields>
+
+            <!-- ASEN3 -->
+            <field>
+              <name>ASEN3</name>
+              <description>ADC SS3 Enable</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SAMPLE_SEQUENCER_3_IS_ACTIVE</name>
+                  <description>Sample Sequencer 3 is enabled.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SAMPLE_SEQUENCER_3_IS_DISABLED</name>
+                  <description>Sample Sequencer 3 is disabled</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <!-- ASEN2 -->
+            <field>
+              <name>ASEN2</name>
+              <description>ADC SS2 Enable</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SAMPLE_SEQUENCER_2_IS_ACTIVE</name>
+                  <description>Sample Sequencer 2 is enabled.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SAMPLE_SEQUENCER_2_IS_DISABLED</name>
+                  <description>Sample Sequencer 2 is disabled</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <!-- ASEN1 -->
+            <field>
+              <name>ASEN1</name>
+              <description>ADC SS1 Enable</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SAMPLE_SEQUENCER_1_IS_ACTIVE</name>
+                  <description>Sample Sequencer 1 is enabled.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SAMPLE_SEQUENCER_1_IS_DISABLED</name>
+                  <description>Sample Sequencer 1 is disabled</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <!-- ASEN3 -->
+            <field>
+              <name>ASEN0</name>
+              <description>ADC SS0 Enable</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SAMPLE_SEQUENCER_0_IS_ACTIVE</name>
+                  <description>Sample Sequencer 0 is enabled.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SAMPLE_SEQUENCER_0_IS_DISABLED</name>
+                  <description>Sample Sequencer 0 is disabled</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+
+
+
+        <register>
+          <name>ADCRIS</name>
+          <description>ADC Raw Interrupt Status. This register shows the status of the raw interrupt signal of each sample sequencer. These bits may
+            be polled by software to look for interrupt conditions without sending the interrupts to the interrupt
+            controller.</description>
+          <addressOffset>0x004</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0001000f</resetMask>
+          <fields>
+            <field>
+              <name>INRDC</name>
+              <description>Digital Comparator Raw Interrupt Status</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>INRDC_IS_ACTIVE</name>
+                  <description>At least one bit in the ADCDCISC register is set, meaning that
+                    a digital comparator interrupt has occurred.</description>
+                  <value>0x1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>INRDC_IS_DISABLED</name>
+                  <description>All bits in the ADCDCISC register are clear.</description>
+                  <value>0x0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>INR3</name>
+              <description>SS3 Raw Interrupt Status</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>INR3_IS_ACTIVE</name>
+                  <description>A sample has completed conversion and the respective
+                    ADCSSCTL3 IEn bit is set, enabling a raw interrupt.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>INR3_IS_DISABLED</name>
+                  <description>An interrupt has not occurred.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>INR2</name>
+              <description>SS2 Raw Interrupt Status</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>INR2_IS_ACTIVE</name>
+                  <description>A sample has completed conversion and the respective
+                    ADCSSCTL2 IEn bit is set, enabling a raw interrupt.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>INR2_IS_DISABLED</name>
+                  <description>An interrupt has not occurred.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>INR1</name>
+              <description>SS1 Raw Interrupt Status</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>INR1_IS_ACTIVE</name>
+                  <description>A sample has completed conversion and the respective
+                    ADCSSCTL1 IEn bit is set, enabling a raw interrupt.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>INR1_IS_DISABLED</name>
+                  <description>An interrupt has not occurred.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>INR0</name>
+              <description>SS0 Raw Interrupt Status</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>INR0_IS_ACTIVE</name>
+                  <description>A sample has completed conversion and the respective
+                    ADCSSCTL0 IEn bit is set, enabling a raw interrupt.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>INR0_IS_DISABLED</name>
+                  <description>An interrupt has not occurred.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+
+
+        <!--  ADC Interrupt Mask -->
+        <register>
+          <name>ADCIM</name>
+          <description>This register controls whether the sample sequencer and digital comparator raw interrupt signals
+            are sent to the interrupt controller. Each raw interrupt signal can be masked independently. Only a
+            single DCONSSn bit should be set at any given time. Setting more than one of these bits results in
+            the INRDC bit from the ADCRIS register being masked, and no interrupt is generated on any of the
+            sample sequencer interrupt lines.</description>
+          <addressOffset>0x008</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000f000f</resetMask>
+
+          <fields>
+            <!-- DCONSS3 -->
+            <field>
+              <name>DCONSS3</name>
+              <description>Digital Comparator Interrupt on SS3</description>
+              <bitOffset>19</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCONSS3_IS_ACTIVE</name>
+                  <description>The raw interrupt signal from the digital comparators (INRDC
+                    bit in the ADCRIS register) is sent to the interrupt controller on
+                    the SS3 interrupt line.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCONSS3_IS_DISABLED</name>
+                  <description>The status of the digital comparators does not affect the SS3
+                    interrupt status.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DCONSS2 -->
+            <field>
+              <name>DCONSS2</name>
+              <description>Digital Comparator Interrupt on SS2</description>
+              <bitOffset>18</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCONSS2_IS_ACTIVE</name>
+                  <description>The raw interrupt signal from the digital comparators (INRDC
+                    bit in the ADCRIS register) is sent to the interrupt controller on
+                    the SS2 interrupt line.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCONSS2_IS_DISABLED</name>
+                  <description>The status of the digital comparators does not affect the SS2
+                    interrupt status.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DCONSS1 -->
+            <field>
+              <name>DCONSS1</name>
+              <description>Digital Comparator Interrupt on SS3</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCONSS1_IS_ACTIVE</name>
+                  <description>The raw interrupt signal from the digital comparators (INRDC
+                    bit in the ADCRIS register) is sent to the interrupt controller on
+                    the SS1 interrupt line.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCONSS1_IS_DISABLED</name>
+                  <description>The status of the digital comparators does not affect the SS1
+                    interrupt status.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- DCONSS0 -->
+            <field>
+              <name>DCONSS0</name>
+              <description>Digital Comparator Interrupt on SS0</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCONSS0_IS_ACTIVE</name>
+                  <description>The raw interrupt signal from the digital comparators (INRDC
+                    bit in the ADCRIS register) is sent to the interrupt controller on
+                    the SS0 interrupt line.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCONSS0_IS_DISABLED</name>
+                  <description>The status of the digital comparators does not affect the SS0
+                    interrupt status.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MASK3 -->
+            <field>
+              <name>MASK3</name>
+              <description>SS3 Interrupt Mask</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MASK3_IS_ACTIVE</name>
+                  <description>The raw interrupt signal from Sample Sequencer 3 (ADCRIS
+                    register INR3 bit) is sent to the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MASK3_IS_DISABLED</name>
+                  <description>The status of Sample Sequencer 3 does not affect the SS3
+                    interrupt status.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MASK2 -->
+            <field>
+              <name>MASK2</name>
+              <description>SS2 Interrupt Mask</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MASK2_IS_ACTIVE</name>
+                  <description>The raw interrupt signal from Sample Sequencer 2 (ADCRIS
+                    register INR2 bit) is sent to the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MASK2_IS_DISABLED</name>
+                  <description>The status of Sample Sequencer 2 does not affect the SS2
+                    interrupt status.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MASK1 -->
+            <field>
+              <name>MASK3</name>
+              <description>SS3 Interrupt Mask</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MASK1_IS_ACTIVE</name>
+                  <description>The raw interrupt signal from Sample Sequencer 1 (ADCRIS
+                    register INR1 bit) is sent to the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MASK1_IS_DISABLED</name>
+                  <description>The status of Sample Sequencer 1 does not affect the SS1
+                    interrupt status.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- MASK0 -->
+            <field>
+              <name>MASK0</name>
+              <description>SS0 Interrupt Mask</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>MASK0_IS_ACTIVE</name>
+                  <description>The raw interrupt signal from Sample Sequencer 0 (ADCRIS
+                    register INR0 bit) is sent to the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MASK0_IS_DISABLED</name>
+                  <description>The status of Sample Sequencer 0 does not affect the SS0
+                    interrupt status.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+
+
+        <!-- ADC Interrupt Status and Clear -->
+        <register>
+          <name>ADCISC</name>
+          <description>This register provides the mechanism for clearing sample sequencer interrupt conditions and shows
+            the status of interrupts generated by the sample sequencers and the digital comparators which have
+            been sent to the interrupt controller. When read, each bit field is the logical AND of the respective
+            INR and MASK bits. Sample sequencer interrupts are cleared by writing a 1 to the corresponding
+            bit position. Digital comparator interrupts are cleared by writing a 1 to the appropriate bits in the
+            ADCDCISC register. If software is polling the ADCRIS instead of generating interrupts, the sample
+            sequence INRn bits are still cleared via the ADCISC register, even if the INn bit is not set.</description>
+          <addressOffset>0x00C</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000f000f</resetMask>
+          <modifiedWriteValues>oneToClear</modifiedWriteValues>
+
+          <fields>
+            <field>
+              <name>DCINSS3</name>
+              <description>Digital Comparator Interrupt Status on SS3</description>
+              <bitOffset>19</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-only</access>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>INTERRUPT</name>
+                  <description>Both the INRDC bit in the ADCRIS register and the DCONSS3
+                    bit in the ADCIM register are set, providing a level-base interrupt
+                    to the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NO_INTERRUPT</name>
+                  <description>No interrupt has occurred or the interrupt is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>CLEAR</name>
+                  <description>This bit is cleared by writing a 1 to it. Clearing this bit also clears the
+                    INRDC bit in the ADCRIS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field derivedFrom="DCINSS3">
+              <name>DCINSS2</name>
+              <description>Digital Comparator Interrupt Status on SS2</description>
+              <bitOffset>18</bitOffset>
+            </field>
+
+            <field derivedFrom="DCINSS3">
+              <name>DCINSS1</name>
+              <description>Digital Comparator Interrupt Status on SS1</description>
+              <bitOffset>17</bitOffset>
+            </field>
+
+            <field derivedFrom="DCINSS3">
+              <name>DCINSS0</name>
+              <description>Digital Comparator Interrupt Status on SS0</description>
+              <bitOffset>16</bitOffset>
+            </field>
+
+            <field>
+              <name>IN3</name>
+              <description>SS3 Interrupt Status and Clear</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>INTERRUPT</name>
+                  <description>Both the INR3 bit in the ADCRIS register and the MASK3 bit in
+                    the ADCIM register are set, providing a level-based interrupt to
+                    the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NO_INTERRUPT</name>
+                  <description>No interrupt has occurred or the interrupt is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>CLEAR</name>
+                  <description>This bit is cleared by writing a 1. Clearing this bit also clears the INR3
+                    bit in the ADCRIS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>IN2</name>
+              <description>SS2 Interrupt Status and Clear</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>INTERRUPT</name>
+                  <description>Both the INR2 bit in the ADCRIS register and the MASK2 bit in
+                    the ADCIM register are set, providing a level-based interrupt to
+                    the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NO_INTERRUPT</name>
+                  <description>No interrupt has occurred or the interrupt is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>CLEAR</name>
+                  <description>This bit is cleared by writing a 1. Clearing this bit also clears the INR3
+                    bit in the ADCRIS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>IN1</name>
+              <description>SS1 Interrupt Status and Clear</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>INTERRUPT</name>
+                  <description>Both the INR1 bit in the ADCRIS register and the MASK1 bit in
+                    the ADCIM register are set, providing a level-based interrupt to
+                    the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NO_INTERRUPT</name>
+                  <description>No interrupt has occurred or the interrupt is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>CLEAR</name>
+                  <description>This bit is cleared by writing a 1. Clearing this bit also clears the INR3
+                    bit in the ADCRIS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>IN0</name>
+              <description>SS0 Interrupt Status and Clear</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>INTERRUPT</name>
+                  <description>Both the INR0 bit in the ADCRIS register and the MASK0 bit in
+                    the ADCIM register are set, providing a level-based interrupt to
+                    the interrupt controller.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NO_INTERRUPT</name>
+                  <description>No interrupt has occurred or the interrupt is masked.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>CLEAR</name>
+                  <description>This bit is cleared by writing a 1. Clearing this bit also clears the INR3
+                    bit in the ADCRIS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+
+
+        <!-- ADC Overflow Status (ADCOSTAT) -->
+        <register>
+          <name>ADCOSTAT</name>
+          <description>This register indicates overflow conditions in the sample sequencer FIFOs. Once the overflow
+            condition has been handled by software, the condition can be cleared by writing a 1 to the
+            corresponding bit position.</description>
+          <addressOffset>0x010</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000000f</resetMask>
+          <modifiedWriteValues>oneToClear</modifiedWriteValues>
+
+          <fields>
+            <field>
+              <name>OV3</name>
+              <description>SS3 FIFO Overflow</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>OVERFLOW</name>
+                  <description>The FIFO for Sample Sequencer has hit an overflow condition,
+                    meaning that the FIFO is full and a write was requested. When
+                    an overflow is detected, the most recent write is dropped.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NO_OVERFLOW</name>
+                  <description>The FIFO has not overflowed.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>CLEAR</name>
+                  <description>This bit is cleared by writing a 1.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field derivedFrom="OV3">
+              <name>OV2</name>
+              <description>SS2 FIFO Overflow</description>
+              <bitOffset>2</bitOffset>
+            </field>
+
+            <field derivedFrom="OV3">
+              <name>OV1</name>
+              <description>SS1 FIFO Overflow</description>
+              <bitOffset>1</bitOffset>
+            </field>
+
+            <field derivedFrom="OV3">
+              <name>OV0</name>
+              <description>SS0 FIFO Overflow</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+
+
+        <!-- ADC Event Multiplexer Select (ADCEMUX) -->
+        <register>
+          <name>ADCEMUX</name>
+          <description>The ADCEMUX selects the event (trigger) that initiates sampling for each sample sequencer. Each
+            sample sequencer can be configured with a unique trigger source.</description>
+          <addressOffset>0x014</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000ffff</resetMask>
+
+          <fields>
+            <field>
+              <name>EM3</name>
+              <description>SS3 Trigger Select</description>
+              <bitOffset>15</bitOffset>
+              <bitWidth>4</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>IDLE</name>
+                  <description>Processor (default)</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>ANCOMP0</name>
+                  <description>Analog Comparator 0</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>ANCOMP1</name>
+                  <description>Analog Comparator 1</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>ANCOMP2</name>
+                  <description>Analog Comparator 2</description>
+                  <value>3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>EXTERNAL</name>
+                  <description>External (GPIO PB4)</description>
+                  <value>4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>TIMER</name>
+                  <description>In addition, the trigger must be enabled with the TnOTE bit
+                    in the GPTMCTL register (see page 455).</description>
+                  <value>5</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PWM0</name>
+                  <description>The PWM module 0 trigger can be configured with the PWM0
+                    Interrupt and Trigger Enable (PWM0INTEN) register</description>
+                  <value>6</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PWM1</name>
+                  <description>The PWM module 1 trigger can be configured with the PWM1
+                    Interrupt and Trigger Enable (PWM1INTEN) register</description>
+                  <value>7</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PWM2</name>
+                  <description>The PWM module 2 trigger can be configured with the PWM2
+                    Interrupt and Trigger Enable (PWM2INTEN) register</description>
+                  <value>8</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PWM3</name>
+                  <description>The PWM module 3 trigger can be configured with the PWM3
+                    Interrupt and Trigger Enable (PWM3INTEN) register</description>
+                  <value>9</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>ALWAYS</name>
+                  <description>Always (continuously sample)</description>
+                  <value>15</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field derivedFrom="EM3">
+              <name>EM2</name>
+              <description>SS2 Trigger Select</description>
+              <bitOffset>11</bitOffset>
+            </field>
+
+            <field derivedFrom="EM3">
+              <name>EM1</name>
+              <description>SS1 Trigger Select</description>
+              <bitOffset>7</bitOffset>
+            </field>
+
+            <field derivedFrom="EM3">
+              <name>EM0</name>
+              <description>SS0 Trigger Select</description>
+              <bitOffset>3</bitOffset>
+            </field>
+          </fields>
+        </register>
+
+
+        <!-- ADC Underflow Status (ADCUSTAT) -->
+        <register>
+          <name>ADCUSTAT</name>
+          <description>This register indicates underflow conditions in the sample sequencer FIFOs. The corresponding
+            underflow condition is cleared by writing a 1 to the relevant bit position.</description>
+          <addressOffset>0x018</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000000f</resetMask>
+          <modifiedWriteValues>oneToClear</modifiedWriteValues>
+
+          <fields>
+            <field>
+              <name>UV3</name>
+              <description>SS3 FIFO Underflow</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>OVERFLOW</name>
+                  <description>The FIFO for the Sample Sequencer has hit an underflow
+                    condition, meaning that the FIFO is empty and a read was
+                    requested. The problematic read does not move the FIFO
+                    pointers, and 0s are returned.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NO_OVERFLOW</name>
+                  <description>The FIFO has not underflowed.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</write>
+                <enumeratedValue>
+                  <name>CLEAR</name>
+                  <description>  This bit is cleared by writing a 1. </description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field derivedFrom="UV3">
+              <name>UV2</name>
+              <description>SS2 FIFO Underflow</description>
+              <bitOffset>2</bitOffset>
+            </field>
+
+            <field derivedFrom="UV3">
+              <name>UV1</name>
+              <description>SS1 FIFO Underflow</description>
+              <bitOffset>1</bitOffset>
+            </field>
+
+            <field derivedFrom="UV3">
+              <name>UV0</name>
+              <description>SS0 FIFO Underflow</description>
+              <bitOffset>0</bitOffset>
+            </field>
+          </fields>
+        </register>
+
+
+        <!-- ADC Sample Sequencer Priority (ADCSSPRI) -->
+        <register>
+          <name>ADCSSPRI</name>
+          <description>This register sets the priority for each of the sample sequencers. Out of reset, Sequencer 0 has the
+            highest priority, and Sequencer 3 has the lowest priority. When reconfiguring sequence priorities,
+            each sequence must have a unique priority for the ADC to operate properly.</description>
+          <addressOffset>0x020</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00003210</resetValue>
+          <resetMask>0x00003333</resetMask>
+
+          <fields>
+            <field>
+              <name>SS3</name>
+              <description>SS3 Priority. This field contains a binary-encoded value that specifies the priority
+                encoding of Sample Sequencer 3. A priority encoding of 0x0 is highest
+                and 0x3 is lowest. The priorities assigned to the sequencers must be
+                uniquely mapped. The ADC may not operate properly if two or more
+                fields are equal.</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>2</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGHEST_PRIORITY</name>
+                  <description>Highest priority, which is 0</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MEDIUM_HIGH_PRIORITY</name>
+                  <description>Medium-high priority, which is 1</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MEDIUM_LOW_PRIORITY</name>
+                  <description>Medium-low priority, which is 2</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOWEST_PRIORITY</name>
+                  <description>Lowest priority, which is 3</description>
+                  <value>3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field derivedFrom="SS3">
+              <name>SS2</name>
+              <description>SS2 Priority. This field contains a binary-encoded value that specifies the priority
+                encoding of Sample Sequencer 2. A priority encoding of 0x0 is highest
+                and 0x3 is lowest. The priorities assigned to the sequencers must be
+                uniquely mapped. The ADC may not operate properly if two or more
+                fields are equal.</description>
+              <bitOffset>9</bitOffset>
+            </field>
+
+            <field derivedFrom="SS3">
+              <name>SS1</name>
+              <description>SS1 Priority. This field contains a binary-encoded value that specifies the priority
+                encoding of Sample Sequencer 1. A priority encoding of 0x0 is highest
+                and 0x3 is lowest. The priorities assigned to the sequencers must be
+                uniquely mapped. The ADC may not operate properly if two or more
+                fields are equal.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+
+            <field derivedFrom="SS3">
+              <name>SS0</name>
+              <description>SS0 Priority. This field contains a binary-encoded value that specifies the priority
+                encoding of Sample Sequencer 0. A priority encoding of 0x0 is highest
+                and 0x3 is lowest. The priorities assigned to the sequencers must be
+                uniquely mapped. The ADC may not operate properly if two or more
+                fields are equal.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+          </fields>
+        </register>
+
+
+        <!-- ADC Sample Phase Control (ADCSPC) -->
+        <register>
+          <name>ADCSPC</name>
+          <description>This register allows the ADC module to sample at one of 16 different discrete phases from 0.0°
+            through 337.5°. For example, the sample rate could be effectively doubled by sampling a signal
+            using one ADC module configured with the standard sample time and the second ADC module
+            configured with a 180.0° phase lag.
+            Note:
+            Care should be taken when the PHASE field is non-zero, as the resulting delay in sampling
+            the AINx input may result in undesirable system consequences. Designers should carefully
+            consider the impact of this delay.</description>
+          <addressOffset>0x024</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000000f</resetMask>
+
+          <fields>
+            <field>
+              <name>PHASE</name>
+              <description>Phase difference: This field selects the sample phase difference from the standard sample time.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>4</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>LAG_IS_0</name>
+                  <description>ADC sample lags by 0.0°</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_22_5</name>
+                  <description>ADC sample lags by 22.5°</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_45</name>
+                  <description>ADC sample lags by 45.0°</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_67_5</name>
+                  <description>ADC sample lags by 67.5°</description>
+                  <value>3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_90</name>
+                  <description>ADC sample lags by 90°</description>
+                  <value>4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_112_5</name>
+                  <description>ADC sample lags by 112.5°</description>
+                  <value>5</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_135</name>
+                  <description>ADC sample lags by 135°</description>
+                  <value>6</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_157_5</name>
+                  <description>ADC sample lags by 157.5°</description>
+                  <value>7</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_180</name>
+                  <description>ADC sample lags by 180°</description>
+                  <value>8</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_202_5</name>
+                  <description>ADC sample lags by 202.5°</description>
+                  <value>9</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_225</name>
+                  <description>ADC sample lags by 225°</description>
+                  <value>10</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_247_5</name>
+                  <description>ADC sample lags by 247.5°</description>
+                  <value>11</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_270</name>
+                  <description>ADC sample lags by 270°</description>
+                  <value>12</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_292_5</name>
+                  <description>ADC sample lags by 292.5°</description>
+                  <value>13</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_315</name>
+                  <description>ADC sample lags by 315°</description>
+                  <value>14</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LAG_IS_337_5</name>
+                  <description>ADC sample lags by 337.5°</description>
+                  <value>15</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+
+
+        <!-- ADC Processor Sample Sequence Initiate (ADCPSSI) -->
+        <register>
+          <name>ADCPSSI</name>
+          <description>This register provides a mechanism for application software to initiate sampling in the sample
+            sequencers. Sample sequences can be initiated individually or in any combination. When multiple
+            sequences are triggered simultaneously, the priority encodings in ADCSSPRI dictate execution
+            order.
+            This register also provides a means to configure and then initiate concurrent sampling on all ADC
+            modules. To do this, the first ADC module should be configured. The ADCPSSI register for that
+            module should then be written. The appropriate SS bits should be set along with the SYNCWAIT bit.
+            Additional ADC modules should then be configured following the same procedure. Once the final
+            ADC module is configured, its ADCPSSI register should be written with the appropriate SS bits set
+            along with the GSYNC bit. All of the ADC modules then begin concurrent sampling according to their
+            configuration.</description>
+          <addressOffset>0x028</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x88000000</resetMask>
+
+          <fields>
+            <field>
+              <name>GSYNCM</name>
+              <description>Global Synchronize</description>
+              <bitOffset>31</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>GSYNCM_IS_ACTIVE</name>
+                  <description>This bit initiates sampling in multiple ADC modules at the same
+                    time. Any ADC module that has been initialized by setting an
+                    SSn bit and the SYNCWAIT bit starts sampling once this bit is
+                    written.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>GSYNCM_IS_DISABLED</name>
+                  <description>This bit is cleared once sampling has been initiated.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>SYNCWAIT</name>
+              <description>Synchronize Wait</description>
+              <bitOffset>27</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SYNCWAIT_IS_ACTIVE</name>
+                  <description>This bit allows the sample sequences to be initiated, but delays
+                    sampling until the GSYNC bit is set.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYNCWAIT_IS_DISABLED</name>
+                  <description>Sampling begins when a sample sequence has been initiated.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>SS3</name>
+              <description>SS3 Initiate. Only a write by software is valid; a read of this register returns no meaningful data.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>write-only</access>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>SS3_IS_ACTIVE</name>
+                  <description>Begin sampling on Sample Sequencer 3, if the sequencer is
+                    enabled in the ADCACTSS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SS3_IS_DISABLED</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>SS2</name>
+              <description>SS2 Initiate. Only a write by software is valid; a read of this register returns no meaningful data.</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>write-only</access>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>SS2_IS_ACTIVE</name>
+                  <description>Begin sampling on Sample Sequencer 2, if the sequencer is
+                    enabled in the ADCACTSS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SS2_IS_DISABLED</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>SS1</name>
+              <description>SS1 Initiate. Only a write by software is valid; a read of this register returns no meaningful data.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>write-only</access>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>SS1_IS_ACTIVE</name>
+                  <description>Begin sampling on Sample Sequencer 1, if the sequencer is
+                    enabled in the ADCACTSS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SS1_IS_DISABLED</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>SS0</name>
+              <description>SS0 Initiate. Only a write by software is valid; a read of this register returns no meaningful data.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>write-only</access>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>SS0_IS_ACTIVE</name>
+                  <description>Begin sampling on Sample Sequencer 0, if the sequencer is
+                    enabled in the ADCACTSS register.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SS0_IS_DISABLED</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+
+
+        <!-- ADC Sample Averaging Control (ADCSAC) -->
+        <register>
+          <name>ADCSAC</name>
+          <description>This register controls the amount of hardware averaging applied to conversion results. The final
+            conversion result stored in the FIFO is averaged from 2 AVG consecutive ADC samples at the specified
+            ADC speed. If AVG is 0, the sample is passed directly through without any averaging. If AVG=6,
+            then 64 consecutive ADC samples are averaged to generate one result in the sequencer FIFO. An
+            AVG = 7 provides unpredictable results.</description>
+          <addressOffset>0x030</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000007</resetMask>
+          <fields>
+            <field>
+              <name>AVG</name>
+              <description>Hardware Averaging Control
+                Specifies the amount of hardware averaging that will be applied to ADC
+                samples. The AVG field can be any value between 0 and 6. Entering a
+                value of 7 creates unpredictable results.</description>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>NO_OVERSAMPLING</name>
+                  <description>No hardware oversampling</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>2X_OVERSAMPLING</name>
+                  <description>2x hardware oversampling</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>4X_OVERSAMPLING</name>
+                  <description>4x hardware oversampling</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>8X_OVERSAMPLING</name>
+                  <description>8x hardware oversampling</description>
+                  <value>3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>16X_OVERSAMPLING</name>
+                  <description>16x hardware oversampling</description>
+                  <value>4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>32X_OVERSAMPLING</name>
+                  <description>32x hardware oversampling</description>
+                  <value>5</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>64_OVERSAMPLING</name>
+                  <description>64x hardware oversampling</description>
+                  <value>6</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+
+
+        <!-- ADC Digital Comparator Interrupt Status and Clear (ADCDCISC) -->
+        <register>
+          <name>ADCDCISC</name>
+          <description>This register provides status and acknowledgement of digital comparator interrupts. One bit is
+            provided for each comparator.</description>
+          <addressOffset>0x034</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x000000ff</resetMask>
+          <modifiedWriteValues>oneToClear</modifiedWriteValues>
+          <fields>
+
+            <field>
+              <name>DCINT7</name>
+              <description>Digital Comparator 7 Interrupt Status and Clear</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>INTERRUPT</name>
+                  <description>Digital Comparator has generated an interrupt.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NO_INTERRUPT</name>
+                  <description>No interrupt.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>CLEAR</name>
+                  <description>This bit is cleared by writing a 1.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field derivedFrom="DCINT7">
+              <name>DCINT6</name>
+              <description>Digital Comparator 6 Interrupt Status and Clear</description>
+              <bitOffset>6</bitOffset>
+            </field>
+
+            <field derivedFrom="DCINT7">
+              <name>DCINT5</name>
+              <description>Digital Comparator 5 Interrupt Status and Clear</description>
+              <bitOffset>5</bitOffset>
+            </field>
+
+            <field derivedFrom="DCINT7">
+              <name>DCINT4</name>
+              <description>Digital Comparator 4 Interrupt Status and Clear</description>
+              <bitOffset>4</bitOffset>
+            </field>
+
+            <field derivedFrom="DCINT7">
+              <name>DCINT3</name>
+              <description>Digital Comparator 3 Interrupt Status and Clear</description>
+              <bitOffset>3</bitOffset>
+            </field>
+
+            <field derivedFrom="DCINT7">
+              <name>DCINT2</name>
+              <description>Digital Comparator 2 Interrupt Status and Clear</description>
+              <bitOffset>2</bitOffset>
+            </field>
+
+            <field derivedFrom="DCINT7">
+              <name>DCINT1</name>
+              <description>Digital Comparator 1 Interrupt Status and Clear</description>
+              <bitOffset>1</bitOffset>
+            </field>
+
+            <field derivedFrom="DCINT7">
+              <name>DCINT0</name>
+              <description>Digital Comparator 0 Interrupt Status and Clear</description>
+              <bitOffset>0</bitOffset>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <!-- ADC Control (ADCCTL) -->
+        <register>
+          <name>ADCCTL</name>
+          <description>This register selects the voltage reference.</description>
+          <addressOffset>0x038</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          <fields>
+
+            <field>
+              <name>VREF</name>
+              <description>Voltage Reference Select</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The external VREFA input is the voltage reference.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>The internal reference as the voltage reference.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+
+
+        <!-- ADC Sample Sequence Input Multiplexer Select 0 (ADCSSMUX0) -->
+        <register>
+          <name>ADCSSMUX0</name>
+          <description>This register defines the analog input configuration for each sample in a sequence executed with
+            Sample Sequencer 0. This register is 32 bits wide and contains information for eight possible
+            samples.</description>
+          <addressOffset>0x040</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0xffffffff</resetMask>
+          <fields>
+
+            <field>
+              <name>MUX7</name>
+              <description>The MUX7 field is used during the eighth sample of a sequence executed
+                with the sample sequencer. It specifies which of the analog inputs is
+                sampled for the analog-to-digital conversion. The value set here indicates
+                the corresponding pin, for example, a value of 0x1 indicates the input
+                is AIN1.</description>
+              <bitOffset>31</bitOffset>
+              <bitWidth>4</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>AIN0</name>
+                  <description>Analog input 0 is sampled</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN1</name>
+                  <description>Analog input 1 is sampled</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN2</name>
+                  <description>Analog input 2 is sampled</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN3</name>
+                  <description>Analog input 3 is sampled</description>
+                  <value>3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN4</name>
+                  <description>Analog input 4 is sampled</description>
+                  <value>4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN6</name>
+                  <description>Analog input 6 is sampled</description>
+                  <value>6</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN7</name>
+                  <description>Analog input 7 is sampled</description>
+                  <value>7</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN8</name>
+                  <description>Analog input 8 is sampled</description>
+                  <value>8</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN9</name>
+                  <description>Analog input 9 is sampled</description>
+                  <value>9</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN10</name>
+                  <description>Analog input 10 is sampled</description>
+                  <value>10</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN11</name>
+                  <description>Analog input 11 is sampled</description>
+                  <value>11</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN12</name>
+                  <description>Analog input 12 is sampled</description>
+                  <value>12</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN13</name>
+                  <description>Analog input 13 is sampled</description>
+                  <value>13</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN14</name>
+                  <description>Analog input 14 is sampled</description>
+                  <value>14</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>AIN15</name>
+                  <description>Analog input 15 is sampled</description>
+                  <value>15</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field derivedFrom="MUX7">
+              <name>MUX6</name>
+              <description>The MUX6 field is used during the seventh sample of a sequence
+                executed with the sample sequencer. It specifies which of the analog
+                inputs is sampled for the analog-to-digital conversion.</description>
+              <bitOffset>27</bitOffset>
+            </field>
+
+            <field derivedFrom="MUX7">
+              <name>MUX5</name>
+              <description>The MUX5 field is used during the sixth sample of a sequence executed
+                with the sample sequencer. It specifies which of the analog inputs is
+                sampled for the analog-to-digital conversion.</description>
+              <bitOffset>23</bitOffset>
+            </field>
+
+            <field derivedFrom="MUX7">
+              <name>MUX4</name>
+              <description>The MUX4 field is used during the fifth sample of a sequence executed
+                with the sample sequencer. It specifies which of the analog inputs is
+                sampled for the analog-to-digital conversion.</description>
+              <bitOffset>19</bitOffset>
+            </field>
+
+            <field derivedFrom="MUX7">
+              <name>MUX3</name>
+              <description>The MUX3 field is used during the fourth sample of a sequence executed
+                with the sample sequencer. It specifies which of the analog inputs is
+                sampled for the analog-to-digital conversion.</description>
+              <bitOffset>15</bitOffset>
+            </field>
+
+            <field derivedFrom="MUX7">
+              <name>MUX2</name>
+              <description>The MUX2 field is used during the third sample of a sequence executed
+                with the sample sequencer. It specifies which of the analog inputs is
+                sampled for the analog-to-digital conversion.</description>
+              <bitOffset>11</bitOffset>
+            </field>
+
+            <field derivedFrom="MUX7">
+              <name>MUX1</name>
+              <description>The MUX1 field is used during the second sample of a sequence executed
+                with the sample sequencer. It specifies which of the analog inputs is
+                sampled for the analog-to-digital conversion.</description>
+              <bitOffset>7</bitOffset>
+            </field>
+
+            <field derivedFrom="MUX7">
+              <name>MUX0</name>
+              <description>The MUX0 field is used during the first sample of a sequence executed
+                with the sample sequencer. It specifies which of the analog inputs is
+                sampled for the analog-to-digital conversion.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <!-- ADC Sample Sequence Control 0 (ADCSSCTL0) -->
+        <register>
+          <name>ADCSSCTL0</name>
+          <description>This register contains the configuration information for each sample for a sequence executed with
+            a sample sequencer. When configuring a sample sequence, the END bit must be set for the final
+            sample, whether it be after the first sample, eighth sample, or any sample in between. This register
+            is 32 bits wide and contains information for eight possible samples.</description>
+          <addressOffset>0x044</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0xffffffff</resetMask>
+          <fields>
+
+            <field>
+              <name>TS7</name>
+              <description>8th Sample Temp Sensor Select</description>
+              <bitOffset>31</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The temperature sensor is read during the this sample of the
+                    sample sequence.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description> The input pin specified by the ADCSSMUXn register is read
+                    during the eighth sample of the sample sequence.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>IE7</name>
+              <description>8th Sample Interrupt Enable</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The raw interrupt signal (INR0 bit) is asserted at the end of the
+                    current sample's conversion. If the MASK0 bit in the ADCIM
+                    register is set, the interrupt is promoted to the interrupt controller.
+                    It is legal to have multiple samples within a sequence generate interrupts.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>The raw interrupt is not asserted to the interrupt controller.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>END7</name>
+              <description>8th Sample is End of Sequence
+                It is possible to end the sequence on any sample position. Software
+                must set an ENDn bit somewhere within the sequence. Samples defined
+                after the sample containing a set ENDn bit are not requested for
+                conversion even though the fields may be non-zero.</description>
+              <bitOffset>29</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>This sample is the last sample of the sequence.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>Another sample is the sequence is the final sample.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>D7</name>
+              <description>8th Sample Diff Input Select</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The analog input is differentially sampled. The corresponding
+                    ADCSSMUXn nibble must be set to the pair number "i", where
+                    the paired inputs are "2i and 2i+1".
+                    Because the temperature sensor does not have a differential option,
+                    this bit must not be set when the TS bit is set.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>Another sample is the sequence is the final sample.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field derivedFrom="TS7">
+              <name>TS5</name>
+              <description>6th Sample Temp Sensor Select.</description>
+              <bitOffset>23</bitOffset>
+            </field>
+
+            <field derivedFrom="TS7">
+              <name>TS4</name>
+              <description>5th Sample Temp Sensor Select.</description>
+              <bitOffset>19</bitOffset>
+            </field>
+
+            <field derivedFrom="TS7">
+              <name>TS3</name>
+              <description>4th Sample Temp Sensor Select.</description>
+              <bitOffset>15</bitOffset>
+            </field>
+
+            <field derivedFrom="TS7">
+              <name>TS2</name>
+              <description>3th Sample Temp Sensor Select.</description>
+              <bitOffset>11</bitOffset>
+            </field>
+
+            <field derivedFrom="TS7">
+              <name>TS1</name>
+              <description>2th Sample Temp Sensor Select.</description>
+              <bitOffset>7</bitOffset>
+            </field>
+
+            <field derivedFrom="TS7">
+              <name>TS3</name>
+              <description>1th Sample Temp Sensor Select.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+
+            <field derivedFrom="IE7">
+              <name>IE6</name>
+              <description>7th Sample Interrupt Enable</description>
+              <bitOffset>26</bitOffset>
+            </field>
+
+            <field derivedFrom="IE7">
+              <name>IE5</name>
+              <description>6th Sample Interrupt Enable</description>
+              <bitOffset>22</bitOffset>
+            </field>
+
+            <field derivedFrom="IE7">
+              <name>IE4</name>
+              <description>5th Sample Interrupt Enable</description>
+              <bitOffset>18</bitOffset>
+            </field>
+
+            <field derivedFrom="IE7">
+              <name>IE3</name>
+              <description>4th Sample Interrupt Enable</description>
+              <bitOffset>14</bitOffset>
+            </field>
+
+            <field derivedFrom="IE7">
+              <name>IE2</name>
+              <description>3th Sample Interrupt Enable</description>
+              <bitOffset>10</bitOffset>
+            </field>
+
+            <field derivedFrom="IE7">
+              <name>IE1</name>
+              <description>2th Sample Interrupt Enable</description>
+              <bitOffset>6</bitOffset>
+            </field>
+
+            <field derivedFrom="IE7">
+              <name>IE0</name>
+              <description>1th Sample Interrupt Enable</description>
+              <bitOffset>2</bitOffset>
+            </field>
+
+            <field derivedFrom="END7">
+              <name>END6</name>
+              <description>7th Sample is End of Sequence
+                It is possible to end the sequence on any sample position. Software
+                must set an ENDn bit somewhere within the sequence. Samples defined
+                after the sample containing a set ENDn bit are not requested for
+                conversion even though the fields may be non-zero.</description>
+              <bitOffset>25</bitOffset>
+            </field>
+
+            <field derivedFrom="END7">
+              <name>END5</name>
+              <description>6th Sample is End of Sequence
+                It is possible to end the sequence on any sample position. Software
+                must set an ENDn bit somewhere within the sequence. Samples defined
+                after the sample containing a set ENDn bit are not requested for
+                conversion even though the fields may be non-zero.</description>
+              <bitOffset>21</bitOffset>
+            </field>
+
+            <field derivedFrom="END7">
+              <name>END4</name>
+              <description>5th Sample is End of Sequence
+                It is possible to end the sequence on any sample position. Software
+                must set an ENDn bit somewhere within the sequence. Samples defined
+                after the sample containing a set ENDn bit are not requested for
+                conversion even though the fields may be non-zero.</description>
+              <bitOffset>17</bitOffset>
+            </field>
+
+            <field derivedFrom="END7">
+              <name>END3</name>
+              <description>4th Sample is End of Sequence
+                It is possible to end the sequence on any sample position. Software
+                must set an ENDn bit somewhere within the sequence. Samples defined
+                after the sample containing a set ENDn bit are not requested for
+                conversion even though the fields may be non-zero.</description>
+              <bitOffset>13</bitOffset>
+            </field>
+
+            <field derivedFrom="END7">
+              <name>END2</name>
+              <description>3th Sample is End of Sequence
+                It is possible to end the sequence on any sample position. Software
+                must set an ENDn bit somewhere within the sequence. Samples defined
+                after the sample containing a set ENDn bit are not requested for
+                conversion even though the fields may be non-zero.</description>
+              <bitOffset>9</bitOffset>
+            </field>
+
+            <field derivedFrom="END7">
+              <name>END1</name>
+              <description>2th Sample is End of Sequence
+                It is possible to end the sequence on any sample position. Software
+                must set an ENDn bit somewhere within the sequence. Samples defined
+                after the sample containing a set ENDn bit are not requested for
+                conversion even though the fields may be non-zero.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+
+            <field derivedFrom="END7">
+              <name>END0</name>
+              <description>1sth Sample is End of Sequence
+                It is possible to end the sequence on any sample position. Software
+                must set an ENDn bit somewhere within the sequence. Samples defined
+                after the sample containing a set ENDn bit are not requested for
+                conversion even though the fields may be non-zero.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+
+            <field derivedFrom="D7">
+              <name>D6</name>
+              <description>7th Sample Diff Input Select</description>
+              <bitOffset>24</bitOffset>
+            </field>
+
+            <field derivedFrom="D7">
+              <name>D5</name>
+              <description>6th Sample Diff Input Select</description>
+              <bitOffset>20</bitOffset>
+            </field>
+
+            <field derivedFrom="D7">
+              <name>D4</name>
+              <description>5th Sample Diff Input Select</description>
+              <bitOffset>16</bitOffset>
+            </field>
+
+            <field derivedFrom="D7">
+              <name>D3</name>
+              <description>4th Sample Diff Input Select</description>
+              <bitOffset>12</bitOffset>
+            </field>
+
+            <field derivedFrom="D7">
+              <name>D2</name>
+              <description>3th Sample Diff Input Select</description>
+              <bitOffset>8</bitOffset>
+            </field>
+
+            <field derivedFrom="D7">
+              <name>D1</name>
+              <description>2th Sample Diff Input Select</description>
+              <bitOffset>4</bitOffset>
+            </field>
+
+            <field derivedFrom="D7">
+              <name>D0</name>
+              <description>2th Sample Diff Input Select</description>
+              <bitOffset>0</bitOffset>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <!-- ADC Sample Sequence Result FIFO 0 (ADCSSFIFO0) -->
+        <register>
+          <name>ADCSSFIFO0</name>
+          <description>This register contains the conversion results for samples collected with the sample sequencer (the
+            ADCSSFIFO0 register is used for Sample Sequencer 0, ADCSSFIFO1 for Sequencer 1,
+            ADCSSFIFO2 for Sequencer 2, and ADCSSFIFO3 for Sequencer 3). Reads of this register return
+            conversion result data in the order sample 0, sample 1, and so on, until the FIFO is empty. If the
+            FIFO is not properly handled by software, overflow and underflow conditions are registered in the
+            ADCOSTAT and ADCUSTAT registers.</description>
+          <addressOffset>0x048</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000000</resetMask>
+          <fields>
+
+            <field>
+              <name>DATA</name>
+              <description>Conversion Result Data</description>
+              <bitOffset>9</bitOffset>
+              <bitWidth>10</bitWidth>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <!-- ADC Sample Sequence Result FIFO 1 (ADCSSFIFO1) -->
+        <register derivedFrom="ADCSSFIFO0">
+          <name>ADCSSFIFO1</name>
+          <addressOffset>0x068</addressOffset>
+        </register>
+
+
+        <!-- ADC Sample Sequence Result FIFO 2 (ADCSSFIFO2) -->
+        <register derivedFrom="ADCSSFIFO0">
+          <name>ADCSSFIFO2</name>
+          <addressOffset>0x088</addressOffset>
+        </register>
+
+        <!-- ADC Sample Sequence Result FIFO 3 (ADCSSFIFO3) -->
+        <register derivedFrom="ADCSSFIFO0">
+          <name>ADCSSFIFO3</name>
+          <addressOffset>0x0A8</addressOffset>
+        </register>
+
+
+        <!-- ADC Sample Sequence FIFO 0 Status (ADCSSFSTAT0)-->
+        <register>
+          <name>ADCSSFSTAT0</name>
+          <description>This register provides a window into the sample sequencer, providing full/empty status information
+            as well as the positions of the head and tail pointers. The reset value of 0x100 indicates an empty
+            FIFO. The ADCSSFSTAT0 register provides status on FIFO0, which has 8 entries; ADCSSFSTAT1
+            on FIFO1, which has 4 entries; ADCSSFSTAT2 on FIFO2, which has 4 entries; and ADCSSFSTAT3
+            on FIFO3 which has a single entry.</description>
+          <addressOffset>0x04C</addressOffset>
+          <access>read-only</access>
+          <resetValue>0x00000100</resetValue>
+          <resetMask>0x000011ff</resetMask>
+          <fields>
+
+            <field>
+              <name>FULL</name>
+              <description>FIFO Full</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>IS_FULL</name>
+                  <description>The FIFO is currently full.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_FULL</name>
+                  <description>The FIFO is not currently full.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>EMPTY</name>
+              <description>FIFO Empty</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>IS_EMPTY</name>
+                  <description>The FIFO is currently empty.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>NOT_EMPTY</name>
+                  <description>The FIFO is not currently empty.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>HPTR</name>
+              <description>FIFO Head Pointer.
+                This field contains the current "head" pointer index for the FIFO, that is,
+                the next entry to be written.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>4</bitWidth>
+            </field>
+
+            <field>
+              <name>TPTR</name>
+              <description>FIFO Tail Pointer.
+                This field contains the current "tail" pointer index for the FIFO, that is,
+                the next entry to be read.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>4</bitWidth>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <!-- ADC Sample Sequence FIFO 1 Status (ADCSSFSTAT1) -->
+        <register derivedFrom="ADCSSFSTAT0">
+          <name>ADCSSFSTAT1</name>
+          <addressOffset>0x06C</addressOffset>
+        </register>
+
+
+        <!-- ADC Sample Sequence FIFO 2 Status (ADCSSFSTAT2) -->
+        <register derivedFrom="ADCSSFSTAT0">
+          <name>ADCSSFSTAT2</name>
+          <addressOffset>0x08C</addressOffset>
+        </register>
+
+
+        <!-- ADC Sample Sequence FIFO 3 Status (ADCSSFSTAT3) -->
+        <register derivedFrom="ADCSSFSTAT0">
+          <name>ADCSSFSTAT3</name>
+          <addressOffset>0x0AC</addressOffset>
+        </register>
+
+
+        <!-- ADC Sample Sequence 0 Operation (ADCSSOP0) -->
+        <register>
+          <name>ADCSSOP0</name>
+          <description>This register determines whether the sample from the given conversion on Sample Sequence 0 is
+            saved in the Sample Sequence FIFO0 or sent to the digital comparator unit.</description>
+          <addressOffset>0x050</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x11111111</resetMask>
+          <fields>
+
+            <field>
+              <name>S7DCOP</name>
+              <description>Sample 7 Digital Comparator Operation.</description>
+              <bitOffset>28</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The eighth sample is sent to the digital comparator unit specified
+                    by the S7DCSEL bit in the ADCSSDC0 register, and the value
+                    is not written to the FIFO.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>The eighth sample is saved in Sample Sequence FIFO0.</description>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>S6DCOP</name>
+              <description>Sample 6 Digital Comparator Operation.</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The seventh sample is sent to the digital comparator unit specified
+                    by the S6DCSEL bit in the ADCSSDC0 register, and the value
+                    is not written to the FIFO.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>The seventh sample is saved in Sample Sequence FIFO0.</description>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>S5DCOP</name>
+              <description>Sample 5 Digital Comparator Operation.</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The sixth sample is sent to the digital comparator unit specified
+                    by the S5DCSEL bit in the ADCSSDC0 register, and the value
+                    is not written to the FIFO.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>The sixth sample is saved in Sample Sequence FIFO0.</description>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>S4DCOP</name>
+              <description>Sample 4 Digital Comparator Operation.</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The fifth sample is sent to the digital comparator unit specified
+                    by the S4DCSEL bit in the ADCSSDC0 register, and the value
+                    is not written to the FIFO.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>The fifth sample is saved in Sample Sequence FIFO0.</description>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>S3DCOP</name>
+              <description>Sample 3 Digital Comparator Operation.</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The fourth sample is sent to the digital comparator unit specified
+                    by the S3DCSEL bit in the ADCSSDC0 register, and the value
+                    is not written to the FIFO.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>The fourth sample is saved in Sample Sequence FIFO0.</description>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>S2DCOP</name>
+              <description>Sample 2 Digital Comparator Operation.</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The third sample is sent to the digital comparator unit specified
+                    by the S2DCSEL bit in the ADCSSDC0 register, and the value
+                    is not written to the FIFO.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>The third sample is saved in Sample Sequence FIFO0.</description>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>S1DCOP</name>
+              <description>Sample 1 Digital Comparator Operation.</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The second sample is sent to the digital comparator unit specified
+                    by the S1DCSEL bit in the ADCSSDC0 register, and the value
+                    is not written to the FIFO.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>The second sample is saved in Sample Sequence FIFO0.</description>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>S0DCOP</name>
+              <description>Sample 0 Digital Comparator Operation.</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The first sample is sent to the digital comparator unit specified
+                    by the S0DCSEL bit in the ADCSSDC0 register, and the value
+                    is not written to the FIFO.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>The first sample is saved in Sample Sequence FIFO0.</description>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <!--  ADC Sample Sequence 0 Digital Comparator Select (ADCSSDC0) -->
+        <register>
+          <name>ADCSSDC0</name>
+          <description>This register determines which digital comparator receives the sample from the given conversion
+            on Sample Sequence 0, if the corresponding SnDCOP bit in the ADCSSOP0 register is set.</description>
+          <addressOffset>0x054</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0xffffffff</resetMask>
+          <fields>
+
+            <field>
+              <name>S7DCSEL</name>
+              <description>Sample 7 Digital Comparator Select.
+                When the S7DCOP bit in the ADCSSOP0 register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the eighth sample from Sample Sequencer 0.</description>
+              <bitOffset>31</bitOffset>
+              <bitWidth>4</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCU_0</name>
+                  <description>Digital Comparator Unit 0 (ADCDCCMP0 and ADCCCTL0)</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_1</name>
+                  <description>Digital Comparator Unit 1 (ADCDCCMP1 and ADCCCTL1)</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_2</name>
+                  <description>Digital Comparator Unit 2 (ADCDCCMP2 and ADCCCTL2)</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_3</name>
+                  <description>Digital Comparator Unit 3 (ADCDCCMP3 and ADCCCTL3)</description>
+                  <value>3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_4</name>
+                  <description>Digital Comparator Unit 4 (ADCDCCMP4 and ADCCCTL4)</description>
+                  <value>4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_5</name>
+                  <description>Digital Comparator Unit 5 (ADCDCCMP5 and ADCCCTL5)</description>
+                  <value>5</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_6</name>
+                  <description>Digital Comparator Unit 6 (ADCDCCMP6 and ADCCCTL6)</description>
+                  <value>6</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_7</name>
+                  <description>Digital Comparator Unit 7 (ADCDCCMP7 and ADCCCTL7)</description>
+                  <value>7</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field derivedFrom="S7DCSEL">
+              <name>S6DCSEL</name>
+              <description>Sample 6 Digital Comparator Select.
+                When the S6DCOP bit in the ADCSSOP0 register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the seventh sample from Sample Sequencer 0.</description>
+              <bitOffset>27</bitOffset>
+            </field>
+
+            <field derivedFrom="S7DCSEL">
+              <name>S5DCSEL</name>
+              <description>Sample 5 Digital Comparator Select.
+                When the S5DCOP bit in the ADCSSOP0 register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the sixth sample from Sample Sequencer 0.</description>
+              <bitOffset>23</bitOffset>
+            </field>
+
+            <field derivedFrom="S7DCSEL">
+              <name>S4DCSEL</name>
+              <description>Sample 4 Digital Comparator Select.
+                When the S4DCOP bit in the ADCSSOP0 register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the fifth sample from Sample Sequencer 0.</description>
+              <bitOffset>19</bitOffset>
+            </field>
+
+            <field derivedFrom="S7DCSEL">
+              <name>S3DCSEL</name>
+              <description>Sample 3 Digital Comparator Select.
+                When the S3DCOP bit in the ADCSSOP0 register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the fourth sample from Sample Sequencer 0.</description>
+              <bitOffset>15</bitOffset>
+            </field>
+
+            <field derivedFrom="S7DCSEL">
+              <name>S2DCSEL</name>
+              <description>Sample 2 Digital Comparator Select.
+                When the S2DCOP bit in the ADCSSOP0 register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the third sample from Sample Sequencer 0.</description>
+              <bitOffset>11</bitOffset>
+            </field>
+
+            <field derivedFrom="S7DCSEL">
+              <name>S1DCSEL</name>
+              <description>Sample 1 Digital Comparator Select.
+                When the S1DCOP bit in the ADCSSOP0 register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the second sample from Sample Sequencer 0.</description>
+              <bitOffset>7</bitOffset>
+            </field>
+
+            <field derivedFrom="S7DCSEL">
+              <name>S0DCSEL</name>
+              <description>Sample 0 Digital Comparator Select.
+                When the S0DCOP bit in the ADCSSOP0 register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the first sample from Sample Sequencer 0.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <!-- Register 26: ADC Sample Sequence Input Multiplexer Select 1 (ADCSSMUX1) -->
+        <register>
+          <name>ADCSSMUX1</name>
+          <description>This register defines the analog input configuration for each sample in a sequence executed with
+            Sample Sequencer 1 or 2. These registers are 16 bits wide and contain information for four possible
+            samples. See the ADCSSMUX0 register on page 552 for detailed bit descriptions. The ADCSSMUX1
+            register affects Sample Sequencer 1 and the ADCSSMUX2 register affects Sample Sequencer 2.</description>
+          <addressOffset>0x060</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000ffff</resetMask>
+          <fields>
+
+            <field>
+              <name>MUX3</name>
+              <description>4th Sample Input Select</description>
+              <bitOffset>15</bitOffset>
+              <bitWidth>4</bitWidth>
+            </field>
+
+            <field>
+              <name>MUX2</name>
+              <description>3th Sample Input Select</description>
+              <bitOffset>11</bitOffset>
+              <bitWidth>4</bitWidth>
+            </field>
+
+            <field>
+              <name>MUX1</name>
+              <description>2th Sample Input Select</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>4</bitWidth>
+            </field>
+
+            <field>
+              <name>MUX0</name>
+              <description>1th Sample Input Select</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>4</bitWidth>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <!-- ADC Sample Sequence Input Multiplexer Select 2 (ADCSSMUX2) -->
+        <register derivedFrom="ADCSSMUX1">
+          <name>ADCSSMUX2</name>
+          <addressOffset>0x080</addressOffset>
+        </register>
+
+
+        <!--ADC Sample Sequence Control 1 (ADCSSCTL1) -->
+        <register>
+          <name>ADCSSCTL1</name>
+          <description>This register contain the configuration information for each sample for a sequence executed with
+            Sample Sequencer 1 or 2. When configuring a sample sequence, the END bit must be set for the
+            final sample, whether it be after the first sample, fourth sample, or any sample in between. These
+            registers are 16-bits wide and contain information for four possible samples. See the ADCSSCTL0
+            register on page 554 for detailed bit descriptions. The ADCSSCTL1 register configures Sample
+            Sequencer 1 and the ADCSSCTL2 register configures Sample Sequencer 2.</description>
+          <addressOffset>0x064</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000ffff</resetMask>
+          <fields>
+
+            <field>
+              <name>TS3</name>
+              <description>4th Sample Temp Sensor Select</description>
+              <bitOffset>15</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The analog input is differentially sampled. The corresponding
+                    ADCSSMUXn nibble must be set to the pair number "i", where
+                    the paired inputs are "2i and 2i+1".
+                    Because the temperature sensor does not have a differential option,
+                    this bit must not be set when the TS7 bit is set.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>Another sample is the sequence is the final sample.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>IE3</name>
+              <description>4th Sample Interrupt Enable</description>
+              <bitOffset>14</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The raw interrupt signal (INR0 bit) is asserted at the end of the
+                    current sample's conversion. If the MASK0 bit in the ADCIM
+                    register is set, the interrupt is promoted to the interrupt controller.
+                    It is legal to have multiple samples within a sequence generate interrupts.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>The raw interrupt is not asserted to the interrupt controller.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>END3</name>
+              <description>4th Sample is End of Sequence
+                It is possible to end the sequence on any sample position. Software
+                must set an ENDn bit somewhere within the sequence. Samples defined
+                after the sample containing a set ENDn bit are not requested for
+                conversion even though the fields may be non-zero.</description>
+              <bitOffset>13</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>This sample is the last sample of the sequence.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>Another sample is the sequence is the final sample.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>D3</name>
+              <description>4th Sample Diff Input Select</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The analog input is differentially sampled. The corresponding
+                    ADCSSMUXn nibble must be set to the pair number "i", where
+                    the paired inputs are "2i and 2i+1".
+                    Because the temperature sensor does not have a differential option,
+                    this bit must not be set when the TS bit is set.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>Another sample is the sequence is the final sample.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field derivedFrom="TS3">
+              <name>TS2</name>
+              <description>3th Sample Interrupt Enable</description>
+              <bitOffset>11</bitOffset>
+            </field>
+
+            <field derivedFrom="TS3">
+              <name>TS1</name>
+              <description>2th Sample Interrupt Enable</description>
+              <bitOffset>7</bitOffset>
+            </field>
+
+            <field derivedFrom="TS3">
+              <name>TS0</name>
+              <description>1th Sample Interrupt Enable</description>
+              <bitOffset>3</bitOffset>
+            </field>
+
+            <field derivedFrom="IE3">
+              <name>IE2</name>
+              <description>3th Sample Interrupt Enable</description>
+              <bitOffset>10</bitOffset>
+            </field>
+
+            <field derivedFrom="IE3">
+              <name>IE1</name>
+              <description>2th Sample Interrupt Enable</description>
+              <bitOffset>6</bitOffset>
+            </field>
+
+            <field derivedFrom="IE3">
+              <name>IE0</name>
+              <description>1th Sample Interrupt Enable</description>
+              <bitOffset>2</bitOffset>
+            </field>
+
+            <field derivedFrom="END3">
+              <name>END2</name>
+              <description>3th Sample is End of Sequence
+                It is possible to end the sequence on any sample position. Software
+                must set an ENDn bit somewhere within the sequence. Samples defined
+                after the sample containing a set ENDn bit are not requested for
+                conversion even though the fields may be non-zero.</description>
+              <bitOffset>9</bitOffset>
+            </field>
+
+            <field derivedFrom="END3">
+              <name>END1</name>
+              <description>2th Sample is End of Sequence
+                It is possible to end the sequence on any sample position. Software
+                must set an ENDn bit somewhere within the sequence. Samples defined
+                after the sample containing a set ENDn bit are not requested for
+                conversion even though the fields may be non-zero.</description>
+              <bitOffset>5</bitOffset>
+            </field>
+
+            <field derivedFrom="END3">
+              <name>END0</name>
+              <description>1th Sample is End of Sequence
+                It is possible to end the sequence on any sample position. Software
+                must set an ENDn bit somewhere within the sequence. Samples defined
+                after the sample containing a set ENDn bit are not requested for
+                conversion even though the fields may be non-zero.</description>
+              <bitOffset>1</bitOffset>
+            </field>
+
+            <field derivedFrom="D3">
+              <name>D2</name>
+              <description>3th Sample Diff Input Select</description>
+              <bitOffset>8</bitOffset>
+            </field>
+
+            <field derivedFrom="D3">
+              <name>D1</name>
+              <description>2th Sample Diff Input Select</description>
+              <bitOffset>4</bitOffset>
+            </field>
+
+            <field derivedFrom="D3">
+              <name>D0</name>
+              <description>1th Sample Diff Input Select</description>
+              <bitOffset>0</bitOffset>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <!-- ADC Sample Sequence Control 2 (ADCSSCTL2) -->
+        <register derivedFrom="ADCSSCTL2">
+          <name>ADCSSCTL1</name>
+          <addressOffset>0x084</addressOffset>
+        </register>
+
+
+        <!--  ADC Sample Sequence 1 Operation (ADCSSOP1) -->
+        <register>
+          <name>ADCSSOP1</name>
+          <description>This register determines whether the sample from the given conversion on Sample Sequence n is
+            saved in the Sample Sequence n FIFO or sent to the digital comparator unit. The ADCSSOP1
+            register controls Sample Sequencer 1 and the ADCSSOP2 register controls Sample Sequencer 2.</description>
+          <addressOffset>0x070</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00001111</resetMask>
+          <fields>
+
+            <field>
+              <name>S3DCOP</name>
+              <description>Sample 3 Digital Comparator Operation</description>
+              <bitOffset>12</bitOffset>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The fourth sample is sent to the digital comparator unit specified
+                    by the S3DCSEL bit in the ADCSSDC0n register, and the value
+                    is not written to the FIFO.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description> The fourth sample is saved in Sample Sequence FIFOn.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>S2DCOP</name>
+              <description>Sample 2 Digital Comparator Operation</description>
+              <bitOffset>8</bitOffset>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The third sample is sent to the digital comparator unit specified
+                    by the S3DCSEL bit in the ADCSSDC0n register, and the value
+                    is not written to the FIFO.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description> The third sample is saved in Sample Sequence FIFOn.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>S1DCOP</name>
+              <description>Sample 1 Digital Comparator Operation</description>
+              <bitOffset>4</bitOffset>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The second sample is sent to the digital comparator unit specified
+                    by the S3DCSEL bit in the ADCSSDC0n register, and the value
+                    is not written to the FIFO.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description> The second sample is saved in Sample Sequence FIFOn.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>S0DCOP</name>
+              <description>Sample 0 Digital Comparator Operation</description>
+              <bitOffset>12</bitOffset>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The first sample is sent to the digital comparator unit specified
+                    by the S3DCSEL bit in the ADCSSDC0n register, and the value
+                    is not written to the FIFO.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description> The first sample is saved in Sample Sequence FIFOn.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <!--ADC Sample Sequence 2 Operation (ADCSSOP2)-->
+        <register derivedFrom="ADCSSOP1">
+          <name>ADCSSOP2</name>
+          <addressOffset>0x090</addressOffset>
+        </register>
+
+
+        <!--  ADC Sample Sequence 1 Digital Comparator Select (ADCSSDC1) -->
+        <register>
+          <name>ADCSSDC1</name>
+          <description>This register determine which digital comparator receives the sample from the given conversion
+            on Sample Sequence n if the corresponding SnDCOP bit in the ADCSSOPn register is set.
+            ADCSSDC1 register controls the selection for Sample Sequencer 1 and the ADCSSDC2 register
+            controls the selection for Sample Sequencer 2.</description>
+          <addressOffset>0x074</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000ffff</resetMask>
+          <fields>
+            <field>
+              <name>S3DCSEL</name>
+              <description>Sample 3 Digital Comparator Select.
+                When the S3DCOP bit in the ADCSSOPn register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the eighth sample from Sample Sequencer n.</description>
+              <bitOffset>15</bitOffset>
+              <bitWidth>4</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCU_0</name>
+                  <description>Digital Comparator Unit 0 (ADCDCCMP0 and ADCCCTL0)</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_1</name>
+                  <description>Digital Comparator Unit 1 (ADCDCCMP1 and ADCCCTL1)</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_2</name>
+                  <description>Digital Comparator Unit 2 (ADCDCCMP2 and ADCCCTL2)</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_3</name>
+                  <description>Digital Comparator Unit 3 (ADCDCCMP3 and ADCCCTL3)</description>
+                  <value>3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_4</name>
+                  <description>Digital Comparator Unit 4 (ADCDCCMP4 and ADCCCTL4)</description>
+                  <value>4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_5</name>
+                  <description>Digital Comparator Unit 5 (ADCDCCMP5 and ADCCCTL5)</description>
+                  <value>5</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_6</name>
+                  <description>Digital Comparator Unit 6 (ADCDCCMP6 and ADCCCTL6)</description>
+                  <value>6</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_7</name>
+                  <description>Digital Comparator Unit 7 (ADCDCCMP7 and ADCCCTL7)</description>
+                  <value>7</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>S3DCSEL</name>
+              <description>Sample 3 Digital Comparator Select.
+                When the S3DCOP bit in the ADCSSOPn register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the eighth sample from Sample Sequencer n.</description>
+              <bitOffset>15</bitOffset>
+              <bitWidth>4</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCU_0</name>
+                  <description>Digital Comparator Unit 0 (ADCDCCMP0 and ADCCCTL0)</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_1</name>
+                  <description>Digital Comparator Unit 1 (ADCDCCMP1 and ADCCCTL1)</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_2</name>
+                  <description>Digital Comparator Unit 2 (ADCDCCMP2 and ADCCCTL2)</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_3</name>
+                  <description>Digital Comparator Unit 3 (ADCDCCMP3 and ADCCCTL3)</description>
+                  <value>3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_4</name>
+                  <description>Digital Comparator Unit 4 (ADCDCCMP4 and ADCCCTL4)</description>
+                  <value>4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_5</name>
+                  <description>Digital Comparator Unit 5 (ADCDCCMP5 and ADCCCTL5)</description>
+                  <value>5</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_6</name>
+                  <description>Digital Comparator Unit 6 (ADCDCCMP6 and ADCCCTL6)</description>
+                  <value>6</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_7</name>
+                  <description>Digital Comparator Unit 7 (ADCDCCMP7 and ADCCCTL7)</description>
+                  <value>7</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field derivedFrom="S3DCSEL">
+              <name>S2DCSEL</name>
+              <description>Sample 2 Digital Comparator Select.
+                When the S2DCOP bit in the ADCSSOPn register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the eighth sample from Sample Sequencer n.</description>
+              <bitOffset>11</bitOffset>
+            </field>
+
+            <field derivedFrom="S3DCSEL">
+              <name>S1DCSEL</name>
+              <description>Sample 1 Digital Comparator Select.
+                When the S1DCOP bit in the ADCSSOPn register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the eighth sample from Sample Sequencer n.</description>
+              <bitOffset>7</bitOffset>
+            </field>
+
+            <field derivedFrom="S3DCSEL">
+              <name>S0DCSEL</name>
+              <description>Sample 0 Digital Comparator Select.
+                When the S0DCOP bit in the ADCSSOPn register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the eighth sample from Sample Sequencer n.</description>
+              <bitOffset>3</bitOffset>
+            </field>
+
+          </fields>
+        </register>
+
+        <!-- ADC Sample Sequence 2 Digital Comparator Select (ADCSSDC2) -->
+        <register derivedFrom="ADCSSDC1">
+          <name>ADCSSDC2</name>
+          <addressOffset>0x094</addressOffset>
+        </register>
+
+
+        <!-- ADC Sample Sequence Input Multiplexer Select 3 (ADCSSMUX3) -->
+        <register>
+          <name>ADCSSMUX3</name>
+          <description>This register defines the analog input configuration for the sample executed with Sample Sequencer
+            3. This register is 4 bits wide and contains information for one possible sample. See the ADCSSMUX0
+            register on page 552 for detailed bit descriptions.</description>
+          <addressOffset>0x0A0</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000000f</resetMask>
+          <fields>
+
+            <field>
+              <name>SELECT</name>
+              <description>1st Sample Input Select</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>4</bitWidth>
+            </field>
+          </fields>
+        </register>
+
+
+        <!-- Register 35: ADC Sample Sequence Control 3 (ADCSSCTL3) -->
+        <register>
+          <name>ADCSSCTL3</name>
+          <description>This register contains the configuration information for a sample executed with Sample Sequencer
+            3. The END0 bit is always set as this sequencer can execute only one sample. This register is 4 bits
+            wide and contains information for one possible sample. See the ADCSSCTL0 register on page 554
+            for detailed bit descriptions.</description>
+          <addressOffset>0x0A4</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000002</resetValue>
+          <resetMask>0x0000000f</resetMask>
+          <fields>
+
+            <field>
+              <name>TS0</name>
+              <description>1st Sample Temp Sensor Select</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The temperature sensor is read during the this sample of the
+                    sample sequence.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description> The input pin specified by the ADCSSMUXn register is read
+                    during the eighth sample of the sample sequence.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>IE0</name>
+              <description>1th Sample Interrupt Enable</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The raw interrupt signal (INR0 bit) is asserted at the end of the
+                    current sample's conversion. If the MASK0 bit in the ADCIM
+                    register is set, the interrupt is promoted to the interrupt controller.
+                    It is legal to have multiple samples within a sequence generate interrupts.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>The raw interrupt is not asserted to the interrupt controller.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>END0</name>
+              <description>1th Sample is End of Sequence
+                It is possible to end the sequence on any sample position. Software
+                must set an ENDn bit somewhere within the sequence. Samples defined
+                after the sample containing a set ENDn bit are not requested for
+                conversion even though the fields may be non-zero.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>This sample is the last sample of the sequence.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>Another sample is the sequence is the final sample.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>D0</name>
+              <description>1th Sample Diff Input Select</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The analog input is differentially sampled. The corresponding
+                    ADCSSMUXn nibble must be set to the pair number "i", where
+                    the paired inputs are "2i and 2i+1".
+                    Because the temperature sensor does not have a differential option,
+                    this bit must not be set when the TS bit is set.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>Another sample is the sequence is the final sample.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <!--  ADC Sample Sequence 3 Operation (ADCSSOP3) -->
+        <register>
+          <name>ADCSSOP3</name>
+          <description>This register determines whether the sample from the given conversion on Sample Sequence 3 is
+            saved in the Sample Sequence 3 FIFO or sent to the digital comparator unit.</description>
+          <addressOffset>0x0B0</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000001</resetMask>
+          <fields>
+
+            <field>
+              <name>S0DCOP</name>
+              <description>Sample 0 Digital Comparator Operation</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>The sample is sent to the digital comparator unit specified by
+                    the S0DCSEL bit in the ADCSSDC03 register, and the value is
+                    not written to the FIFO.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>The sample is saved in Sample Sequence FIFO3.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <!--  ADC Sample Sequence 3 Digital Comparator Select (ADCSSDC3) -->
+        <register>
+          <name>ADCSSDC3</name>
+          <description>This register determines which digital comparator receives the sample from the given conversion
+            on Sample Sequence 3 if the corresponding SnDCOP bit in the ADCSSOP3 register is set.</description>
+          <addressOffset>0x0B4</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x0000000f</resetMask>
+          <fields>
+
+            <field>
+              <name>S0DCSEL</name>
+              <description>Sample 0 Digital Comparator Select
+                When the S0DCOP bit in the ADCSSOP3 register is set, this field
+                indicates which digital comparator unit (and its associated set of control
+                registers) receives the sample from Sample Sequencer 3.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>4</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>DCU_0</name>
+                  <description>Digital Comparator Unit 0 (ADCDCCMP0 and ADCCCTL0)</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_1</name>
+                  <description>Digital Comparator Unit 1 (ADCDCCMP1 and ADCCCTL1)</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_2</name>
+                  <description>Digital Comparator Unit 2 (ADCDCCMP2 and ADCCCTL2)</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_3</name>
+                  <description>Digital Comparator Unit 3 (ADCDCCMP3 and ADCCCTL3)</description>
+                  <value>3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_4</name>
+                  <description>Digital Comparator Unit 4 (ADCDCCMP4 and ADCCCTL4)</description>
+                  <value>4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_5</name>
+                  <description>Digital Comparator Unit 5 (ADCDCCMP5 and ADCCCTL5)</description>
+                  <value>5</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_6</name>
+                  <description>Digital Comparator Unit 6 (ADCDCCMP6 and ADCCCTL6)</description>
+                  <value>6</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>DCU_7</name>
+                  <description>Digital Comparator Unit 7 (ADCDCCMP7 and ADCCCTL7)</description>
+                  <value>7</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+
+        </register>
+
+
+        <!-- ADC Digital Comparator Reset Initial Conditions (ADCDCRIC) -->
+        <register>
+          <name>ADCDCRIC</name>
+          <description>This register provides the ability to reset any of the digital comparator interrupt or trigger functions
+            back to their initial conditions. Resetting these functions ensures that the data that is being used by
+            the interrupt and trigger functions in the digital comparator unit is not stale</description>
+          <addressOffset>0xD00</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00ff00ff</resetMask>
+          <fields>
+
+            <field>
+              <name>DCTRIG7</name>
+              <description>Digital Comparator Trigger 7</description>
+              <bitOffset>23</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 7 trigger unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCTRIG7</name>
+              <description>Digital Comparator Trigger 7</description>
+              <bitOffset>22</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 7 trigger unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCTRIG5</name>
+              <description>Digital Comparator Trigger 5</description>
+              <bitOffset>21</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 5 trigger unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCTRIG4</name>
+              <description>Digital Comparator Trigger 4</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 4 trigger unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCTRIG3</name>
+              <description>Digital Comparator Trigger 3</description>
+              <bitOffset>19</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 3 trigger unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCTRIG2</name>
+              <description>Digital Comparator Trigger 2</description>
+              <bitOffset>18</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 2 trigger unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCTRIG1</name>
+              <description>Digital Comparator Trigger 1</description>
+              <bitOffset>17</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 1 trigger unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCTRIG0</name>
+              <description>Digital Comparator Trigger 0</description>
+              <bitOffset>16</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 0 trigger unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCINT7</name>
+              <description>Digital Comparator Interrupt 7</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 7 interrupt unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCINT6</name>
+              <description>Digital Comparator Interrupt 6</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 6 interrupt unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCINT5</name>
+              <description>Digital Comparator Interrupt 5</description>
+              <bitOffset>5</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 5 interrupt unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCINT4</name>
+              <description>Digital Comparator Interrupt 4</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 4 interrupt unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCINT3</name>
+              <description>Digital Comparator Interrupt 3</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 3 interrupt unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCINT2</name>
+              <description>Digital Comparator Interrupt 2</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 2 interrupt unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCINT1</name>
+              <description>Digital Comparator Interrupt 1</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 1 interrupt unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>This register provides the comparison encodings that generate an interrupt or PWM trigger.
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>DCINT0</name>
+              <description>Digital Comparator Interrupt 0</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Resets the Digital Comparator 0 interrupt unit to its initial
+                    conditions.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>No effect.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <!-- ADC Digital Comparator Control 0 (ADCDCCTL0) -->
+        <register>
+          <name>ADCDCCTL0</name>
+          <description>This register provides the comparison encodings that generate an interrupt or PWM trigger.</description>
+          <addressOffset>0xE00</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x001f001f</resetMask>
+          <fields>
+
+            <field>
+              <name>CTE</name>
+              <description>Comparison Trigger Enable</description>
+              <bitOffset>12</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Enables the trigger function state machine. The ADC conversion
+                    data is used to determine if a trigger should be generated
+                    according to the programming of the CTC and CTM fields.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>Disables the trigger function state machine. ADC conversion
+                    data is ignored by the trigger function.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>CTC</name>
+              <description>Comparison Trigger Condition.
+                This field specifies the operational region in which a trigger is generated
+                when the ADC conversion data is compared against the values of COMP0
+                and COMP1. The COMP0 and COMP1 fields are defined in the
+                ADCDCCMPx registers.</description>
+              <bitOffset>11</bitOffset>
+              <bitWidth>2</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>LOW_BAND</name>
+                  <description>ADC Data less than COMP0 and  COMP1</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MID_BAND</name>
+                  <description>COMP0 less or equal ADC Data, ADC Data less than COMP1</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>HIGH_BAND</name>
+                  <description>COMP0 less or equal COMP1,  COMP1 less or equal ADC Data</description>
+                  <value>3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>CTM</name>
+              <description>Comparison Trigger Mode. This field specifies the mode by which the trigger comparison is made.</description >
+              <bitOffset>9</bitOffset>
+              <bitWidth>2</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ALWAYS</name>
+                  <description>This mode generates a trigger every time the ADC conversion
+                    data falls within the selected operational region.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>ONCE</name>
+                  <description>This mode generates a trigger the first time that the ADC
+                    conversion data enters the selected operational region.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>HYSTERESIS_ONLY</value>
+                  <description>This mode generates a trigger when the ADC conversion data
+                    falls within the selected operational region and continues to
+                    generate the trigger until the hysteresis condition is cleared by
+                    entering the opposite operational region.
+                    Note that the hysteresis modes are only defined for CTC
+                    encodings of 0x0 and 0x3.</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>HYSTERESIS_ONCE</name>
+                  <description>This mode generates a trigger the first time that the ADC
+                    conversion data falls within the selected operational region. No
+                    additional triggers are generated until the hysteresis condition
+                    is cleared by entering the opposite operational region.
+                    Note that the hysteresis modes are only defined for CTC
+                    encodings of 0x0 and 0x3.</description>
+                  <value>3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>CIE</name>
+              <description>Comparison Interrupt Enable</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>1</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>HIGH</name>
+                  <description>Enables the comparison interrupt. The ADC conversion data is
+                    used to determine if an interrupt should be generated according
+                    to the programming of the CIC and CIM fields.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LOW</name>
+                  <description>Disables the comparison interrupt. ADC conversion data has
+                    no effect on interrupt generation.</description>
+                  <value>0</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>CIC</name>
+              <description>Comparison Interrupt Condition
+                This field specifies the operational region in which an interrupt is
+                generated when the ADC conversion data is compared against the
+                values of COMP0 and COMP1. The COMP0 and COMP1 fields are defined
+                in the ADCDCCMPx registers.</description>
+              <bitOffset>3</bitOffset>
+              <bitWidth>2</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>LOW_BAND</name>
+                  <description>ADC Data less than COMP0 and  COMP1</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>MID_BAND</name>
+                  <description>COMP0 less or equal ADC Data, ADC Data less than COMP1</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>HIGH_BAND</name>
+                  <description>COMP0 less or equal COMP1,  COMP1 less or equal ADC Data</description>
+                  <value>3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+            <field>
+              <name>CIM</name>
+              <description>Comparison Interrupt Mode
+                This field specifies the mode by which the interrupt comparison is made.</description>
+              <bitOffset>1</bitOffset>
+              <bitWidth>2</bitWidth>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>ALWAYS</name>
+                  <description>This mode generates an interrupt every time the ADC conversion
+                    data falls within the selected operational region.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>ONCE</name>
+                  <description>This mode generates an interrupt the first time that the ADC
+                    conversion data enters the selected operational region.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>HYSTERESIS_ONLY</value>
+                  <description>This mode generates an interrupt when the ADC conversion
+                    data falls within the selected operational region and continues
+                    to generate the interrupt until the hysteresis condition is cleared
+                    by entering the opposite operational region.
+                    Note that the hysteresis modes are only defined for CTC
+                    encodings of 0x0 and 0x3.</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>HYSTERESIS_ONCE</name>
+                  <description>This mode generates an interrupt the first time that the ADC
+                    conversion data falls within the selected operational region. No
+                    additional interrupts are generated until the hysteresis condition
+                    is cleared by entering the opposite operational region.
+                    Note that the hysteresis modes are only defined for CTC
+                    encodings of 0x0 and 0x3.</description>
+                  <value>3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+
+          </fields>
+        </register>
+
+
+        <register derivedFrom="ADCDCCTL0">
+          <name>ADCDCCTL1</name>
+          <addressOffset>0xE04</addressOffset>
+        </register>
+
+
+        <register derivedFrom="ADCDCCTL0">
+          <name>ADCDCCTL2</name>
+          <addressOffset>0xE08</addressOffset>
+        </register>
+
+
+        <register derivedFrom="ADCDCCTL0">
+          <name>ADCDCCTL3</name>
+          <addressOffset>0xE08</addressOffset>
+        </register>
+
+
+        <register derivedFrom="ADCDCCTL0">
+          <name>ADCDCCTL4</name>
+          <addressOffset>0xE0C</addressOffset>
+        </register>
+
+
+        <register derivedFrom="ADCDCCTL0">
+          <name>ADCDCCTL5</name>
+          <addressOffset>0xE14</addressOffset>
+        </register>
+
+
+        <register derivedFrom="ADCDCCTL0">
+          <name>ADCDCCTL6</name>
+          <addressOffset>0xE18</addressOffset>
+        </register>
+
+
+        <register derivedFrom="ADCDCCTL0">
+          <name>ADCDCCTL7</name>
+          <addressOffset>0xE1C</addressOffset>
+        </register>
+
+
+        <!-- ADC Digital Comparator Range 0 (ADCDCCMP0) -->
+        <register>
+          <name>ADCDCCMP0</name>
+          <description>This register defines the comparison values that are used to determine if the ADC conversion data
+            falls in the appropriate operating region.</description>
+          <addressOffset>0xE40</addressOffset>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x03ff03ff</resetMask>
+          <fields>
+
+            <field>
+              <name>COMP1</name>
+              <description>The value in this field is compared against the ADC conversion data.
+                The result of the comparison is used to determine if the data lies within
+                the high-band region.
+                Note that the value of COMP1 must be greater than or equal to the value
+                of COMP0.</description>
+              <bitOffset>25</bitOffset>
+              <bitWidth>10</bitWidth>
+            </field>
+
+            <field>
+              <name>COMP0</name>
+              <description>The value in this field is compared against the ADC conversion data.
+                The result of the comparison is used to determine if the data lies within
+                the low-band region.</description>
+              <bitOffset>9</bitOffset>
+              <bitWidth>10</bitWidth>
+            </field>
+
+          </field>
+        </register>
+
+
+        <register derivedFrom="ADCDCCMP0">
+          <name>ADCDCCMP1</name>
+          <addressOffset>0xE44</addressOffset>
+        </register>
+
+
+        <register derivedFrom="ADCDCCMP0">
+          <name>ADCDCCMP2</name>
+          <addressOffset>0xE48</addressOffset>
+        </register>
+
+
+        <register derivedFrom="ADCDCCMP0">
+          <name>ADCDCCMP3</name>
+          <addressOffset>0xE4C</addressOffset>
+        </register>
+
+
+        <register derivedFrom="ADCDCCMP0">
+          <name>ADCDCCMP4</name>
+          <addressOffset>0xE50</addressOffset>
+        </register>
+
+
+        <register derivedFrom="ADCDCCMP0">
+          <name>ADCDCCMP5</name>
+          <addressOffset>0xE54</addressOffset>
+        </register>
+
+
+        <register derivedFrom="ADCDCCMP0">
+          <name>ADCDCCMP6</name>
+          <addressOffset>0xE58</addressOffset>
+        </register>
+
+
+        <register derivedFrom="ADCDCCMP0">
+          <name>ADCDCCMP7</name>
+          <addressOffset>0xE5C</addressOffset>
+        </register>
+
+
+      </registers>
+    </peripheral>
+
+
+
+
+
+    <peripheral derivedFrom="ADC1">
+      <name>ADC0</name>
+      <description>An analog-to-digital converter, first one</description>
+      <baseAddress>0x40038000</baseAddress>
+
+      <!-- ADC0 has several interrupts -->
+      <interrupt>
+        <name>ADC0 Sequence 0</name>
+        <description>ADC0 Sequence 0 interrupt</description>
+        <value>14</value>
+      </interrupt>
+
+      <interrupt>
+        <name>ADC0 Sequence 1</name>
+        <description>ADC0 Sequence 1 interrupt</description>
+        <value>15</value>
+      </interrupt>
+
+      <interrupt>
+        <name>ADC0 Sequence 2</name>
+        <description>ADC0 Sequence 2 interrupt</description>
+        <value>16</value>
+      </interrupt>
+
+      <interrupt>
+        <name>ADC0 Sequence 3</name>
+        <description>ADC0 Sequence 3 interrupt</description>
+        <value>17</value>
+      </interrupt>
+
+    </peripheral>
+
+
   </peripherals>
     
 
